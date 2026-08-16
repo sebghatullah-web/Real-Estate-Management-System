@@ -47,7 +47,7 @@ include 'header.php';
     <div class="container position-relative" style="z-index: 1;">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <h1>به <span style="color: #ffc107;">شرکت خاور</span> خوش آمدید</h1>
+                <h1>به <span style="color: #ffc107;">شرکت ساختمانی خاور</span> خوش آمدید</h1>
                 <p>شرکت ساختمانی و انکشافی خاور - مرجع معتبر خرید و فروش نمرات مسکونی، تجارتی و اپارتمان ها در کابل جدید</p>
                 <a href="map.php" class="btn btn-hero">
                     <i class="bi bi-map me-2"></i>مشاهده نقشه نمرات

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2026 at 07:49 AM
+-- Generation Time: Aug 16, 2026 at 06:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -229,8 +229,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `full_name`, `fathar_name`, `address`, `occupation`, `phone`, `email`, `national_id`, `profile_pic`, `created_at`) VALUES
-(1, 'احمد', 'غلام فاروق', 'کابل', 'آزاد', '0791349150', 'ahmad@gmail.com', '4567899', 'img/profilePic/1779349428_download.jpg', '2026-05-19 05:23:58'),
-(3, 'صبغت', 'محمد حسین', 'ده سبز ناحیه 19', 'دیزاینر', '0791349150', 'sebghatullahbahadori03@gmail.com', '127689', 'img/profilePic/1779350221_images.jpg', '2026-05-21 07:57:01'),
+(1, 'غلام احمد', 'غلام فاروق', 'کابل', 'آزاد', '0791349150', 'ahmad@gmail.com', '4567899', 'img/profilePic/1779349428_download.jpg', '2026-05-19 05:23:58'),
+(3, 'بریالی', 'حاجی شاه', 'ده سبز ناحیه 19', 'دیزاینر', '0791349150', 'baryali03@gmail.com', '127689', 'img/profilePic/1779350221_images.jpg', '2026-05-21 07:57:01'),
 (4, 'محمد علم', 'احمد خان', 'ناحیه 5، کابل-افغانستان', 'آزاد', '0784848653', 'mohammad@gmail.com', '0435678', NULL, '2026-06-16 05:38:40');
 
 -- --------------------------------------------------------
