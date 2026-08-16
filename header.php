@@ -9,10 +9,10 @@ require 'config/db.php';
     <title>KHAWAR CONSTRACTION COMPANY DB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazir+FD&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { direction: rtl; font-family: 'Vazir FD', Tahoma, Arial, sans-serif; background-color: #f8f9fa; overflow-x: hidden; }
+        body { direction: rtl; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background-color: #f8f9fa; overflow-x: hidden; }
         .navbar { background: linear-gradient(135deg, #1a3a5c 0%, #2c5f7c 100%); box-shadow: 0 2px 15px rgba(0,0,0,0.1); padding: 12px 0; }
         .navbar-brand { font-weight: bold; font-size: 1.5rem; color: #fff !important; display: flex; align-items: center; gap: 10px; }
         .navbar-brand i { font-size: 2rem; }

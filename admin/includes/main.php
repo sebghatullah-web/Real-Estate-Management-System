@@ -198,7 +198,7 @@ foreach (getPlotTables() as $table) {
                     <div class="card card-inverse card-info">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalSoldValue); ?></h4>
-                            <p>ارزش نمرات فروخته شده (افغانی)</p>
+                            <p>ارزش نمرات فروخته شده (دالر)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart7" class="chart" height="70"></canvas>

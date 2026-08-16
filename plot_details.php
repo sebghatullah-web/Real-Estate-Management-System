@@ -39,12 +39,12 @@ if ($plot_code) {
     <title>جزئیات نمره <?= htmlspecialchars($plot_code) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazir+FD&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             direction: rtl;
-            font-family: 'Vazir FD', Tahoma, Arial, sans-serif;
+            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
             background: #f0f2f5;
         }
         .nav-bar {
