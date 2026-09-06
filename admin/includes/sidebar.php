@@ -46,10 +46,23 @@
                 </li>
 
                 <li class="nav-title">
-                   مدیریت فروشات
+                   مدیریت بلاک‌ها و اپارتمان‌ها
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blocks.php"><i class="icon-home"></i> بلاک‌ها </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="block_units.php"><i class="icon-grid"></i> اپارتمان‌ها / واحدها </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list_sold_units.php"><i class="icon-basket"></i> لیست فروشات اپارتمان‌ها </a>
+                </li>
+
+                <li class="nav-title">
+                   لیست فروشات
                 </li>
                 <li class="nav-item nav-dropdown">
-                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> لیست فروشات </a>
+                    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> نمرات رهایشی </a>
                     <ul class="nav-dropdown-items">
                         <li class="nav-item">
                             <a class="nav-link" href="list_plots_200.php"><i class="icon-people"></i> لیست دوبسوه </a>

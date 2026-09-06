@@ -1,0 +1,221 @@
+/* ============================================================
+   KHAWARDB professional A4 invoice stylesheet
+   ============================================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: #eef1f5; margin: 0; padding: 0; }
+body {
+    font-family: 'Vazirmatn', Tahoma, 'Segoe UI', Arial, sans-serif;
+    text-align: right;
+    color: #222;
+    font-size: 13px;
+}
+
+/* خروجی دقیقاً روی یک ورق A4 */
+@page { size: A4 portrait; margin: 0; }
+
+/* ---------- نوار ابزار (فقط صفحه نمایش) ---------- */
+.invoice-toolbar {
+    max-width: 210mm;
+    margin: 18px auto 0;
+    padding: 0 12mm;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.btn-p {
+    display: inline-block;
+    padding: 11px 24px;
+    border-radius: 7px;
+    border: none;
+    font-size: 14px;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .2s;
+}
+.btn-p-primary { background: #0f4c81; color: #fff; }
+.btn-p-primary:hover { background: #0b3a64; }
+.btn-p-secondary { background: #e2e6ea; color: #333; }
+.btn-p-secondary:hover { background: #d3d8de; }
+
+/* ---------- ورق انوایس ---------- */
+.invoice-sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 15px auto;
+    background: #fff;
+    box-shadow: 0 6px 28px rgba(0, 0, 0, .16);
+    padding: 11mm 13mm 10mm;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- سربرگ ---------- */
+.inv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #0f4c81;
+    margin-bottom: 12px;
+}
+.inv-brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, #0f4c81, #145a94);
+    color: #fff; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 20px; letter-spacing: 1px;
+    box-shadow: 0 3px 8px rgba(15, 76, 129, .35);
+}
+.brand-text h1 { font-size: 24px; color: #0f4c81; margin: 0; font-weight: 800; }
+.brand-text p { margin: 2px 0 0; font-size: 12px; color: #6b7280; }
+.inv-title { text-align: center; }
+.inv-title h2 { font-size: 25px; color: #0f4c81; margin: 0; letter-spacing: .5px; }
+.inv-title p { font-size: 11px; color: #9aa2ad; margin: 2px 0 0; letter-spacing: 3px; }
+
+/* ---------- شماره و تاریخ ---------- */
+.inv-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f4f6f9;
+    border: 1px solid #e3e7ec;
+    border-radius: 8px;
+    padding: 9px 16px;
+    margin-bottom: 14px;
+}
+.meta-item span { color: #88909c; font-size: 12px; display: block; margin-bottom: 2px; }
+.meta-item strong { font-size: 14px; color: #0f4c81; }
+
+/* ---------- فروشنده / خریدار ---------- */
+.inv-parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 8px;
+}
+.party {
+    border: 1px solid #e3e7ec;
+    border-radius: 9px;
+    padding: 12px 16px;
+    min-height: 108px;
+}
+.party h4 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #0f4c81;
+    border-bottom: 1px solid #eef0f4;
+    padding-bottom: 6px;
+}
+.party h4 .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #0f4c81; margin-left: 6px; }
+.party p { margin: 3px 0; font-size: 13px; color: #444; }
+.party .p-name { font-size: 15px; font-weight: 700; color: #111; }
+.party-seller { background: #f6f9fc; }
+/* ---------- عنوان بخش ---------- */
+.inv-section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 16px 0 9px;
+}
+.inv-section-title .bar { width: 5px; height: 20px; background: #0f4c81; border-radius: 3px; }
+.inv-section-title h3 { margin: 0; font-size: 16px; color: #0f4c81; }
+
+/* ---------- جدول‌ها ---------- */
+.inv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.inv-table th, .inv-table td {
+    border: 1px solid #dfe4ea;
+    padding: 8px 11px;
+    text-align: right;
+    vertical-align: middle;
+}
+.inv-table thead th {
+    background: #0f4c81; color: #fff;
+    font-size: 13px; font-weight: 600;
+}
+.inv-table tbody tr:nth-child(even) { background: #fafbfc; }
+.inv-table .num { text-align: left; direction: ltr; font-weight: 600; }
+.inv-table .t-center { text-align: center; }
+
+/* جدول مبالغ */
+.amount-table td:first-child { font-weight: 600; }
+.amount-table .total-row td { background: #0f4c81 !important; color: #fff; font-weight: 700; font-size: 14px; }
+.amount-table .payment-row td { background: #fffbe9 !important; font-weight: 700; }
+.amount-table .paid-row td { background: #eaf7ec !important; font-weight: 700; color: #1a7f37; }
+.amount-table .dang-row td { background: #fdeeee !important; font-weight: 700; color: #bb2d3b; }
+
+/* شرحِ خدمات/مورد در بالای جدول مبالغ */
+.inv-service {
+    background: #f6f9fc;
+    border-right: 4px solid #0f4c81;
+    padding: 8px 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 13px;
+    color: #333;
+}
+.inv-service b { color: #0f4c81; }
+
+/* ---------- مبلغ به حروف ---------- */
+.inv-words {
+    margin-top: 10px;
+    padding: 9px 14px;
+    background: #f6f9fc;
+    border: 1px solid #e3e7ec;
+    border-radius: 7px;
+    font-size: 13px;
+    color: #333;
+}
+.inv-words b { color: #0f4c81; }
+
+/* ---------- یادداشت ---------- */
+.inv-note {
+    margin-top: 14px;
+    padding: 9px 14px;
+    background: #fffbe9;
+    border: 1px dashed #d9c879;
+    border-radius: 7px;
+    font-size: 12px;
+    color: #6b6550;
+    line-height: 1.9;
+}
+
+/* ---------- امضاها ---------- */
+.inv-signatures {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 38px;
+}
+.sign-box span { font-size: 13px; color: #444; }
+.sig-line { border-bottom: 1.6px solid #444; height: 38px; margin-top: 4px; }
+
+/* ---------- پاورقی (فقط صفحه نمایش - در چاپ حذف می‌شود) ---------- */
+.inv-footer-note {
+    margin-top: auto;
+    padding-top: 26px;
+    text-align: center;
+    color: #a5adb8;
+    font-size: 11px;
+    border-top: 1px solid #edf0f3;
+}
+.inv-footer-note b { color: #0f4c81; }
+
+/* ---------- چاپ: فقط ورق انوایس، بدون دکمه‌ها و فوتر ---------- */
+@media print {
+    .no-print,
+    .invoice-toolbar,
+    .inv-footer-note { display: none !important; }
+    body { background: #fff !important; }
+    .invoice-sheet {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        min-height: 297mm;
+    }
+    .inv-signatures { margin-top: 42px; }
+    .inv-note { break-inside: avoid; }
+    .inv-table tr, .inv-table { break-inside: avoid; }
+    thead { display: table-header-group; }
+}
