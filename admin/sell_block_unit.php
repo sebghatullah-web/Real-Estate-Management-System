@@ -1,6 +1,7 @@
 <?php require_once __DIR__ . '/includes/auth_check.php'; ?>
 <?php
 include 'config/db.php';
+require_once __DIR__ . '/includes/block_catalog.php';
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if (!$id) {
@@ -8,7 +9,7 @@ if (!$id) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT bu.*, b.block_code, b.block_name, b.size, b.units_per_floor, b.floors_count
+$stmt = $conn->prepare("SELECT bu.*, b.block_code, b.block_name, b.size, b.floors_count
                         FROM block_units bu
                         JOIN blocks b ON bu.block_id = b.id
                         WHERE bu.id = ?");
@@ -132,8 +133,10 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
                         <div class="col-md-3"><strong>کد اپارتمان:</strong> <?= htmlspecialchars($unit['unit_code']) ?></div>
                         <div class="col-md-3"><strong>بلاک:</strong> <?= htmlspecialchars($unit['block_code']) ?> (<?= htmlspecialchars($unit['block_name'] ?? '') ?>)</div>
                         <div class="col-md-2"><strong>منزل:</strong> <?= htmlspecialchars($unit['floor_number']) ?></div>
+                        <div class="col-md-2"><strong>کتگوری:</strong> <?= htmlspecialchars(unit_category_label($unit['category'])) ?></div>
                         <div class="col-md-2"><strong>اتاق:</strong> <?= $roomLabel ?></div>
                         <div class="col-md-2"><strong>متراژ:</strong> <?= htmlspecialchars($unit['unit_size']) ?> متر مربع</div>
+                        <div class="col-md-2"><strong>واحد/منزل:</strong> <?= htmlspecialchars($unit['units_per_floor']) ?> واحد</div>
                     </div>
                 </div>
             </div>

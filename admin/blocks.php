@@ -1,5 +1,6 @@
 <?php require_once __DIR__ . '/includes/auth_check.php'; ?>
 <?php include 'config/db.php'; ?>
+<?php require_once 'includes/block_catalog.php'; ?>
 <!DOCTYPE html>
 <html lang="IR-fa" dir="rtl">
 
@@ -49,10 +50,9 @@
 
         <div class="container-fluid">
 
-            <?php
-            // فلتر کتگوری
-            $filter_cat = isset($_GET['category']) && in_array($_GET['category'], ['standard', 'premium', 'vip']) ? $_GET['category'] : '';
-            ?>
+            <?php if (isset($_GET['ok'])): ?>
+                <div class="alert alert-success">بلاک موفقانه ثبت/ویرایش شد. حالا از بخش «واحدها» اپارتمان‌های هر منزل را اضافه کنید.</div>
+            <?php endif; ?>
 
             <!-- ========== فرم افزودن بلاک ========== -->
             <div class="card mt-3">
@@ -71,7 +71,7 @@
                             <label class="form-label">سایز بلاک (متر مربع) <span class="text-danger">*</span></label>
                             <input type="number" id="size" name="size" class="form-control" list="size_options" min="1" required>
                             <datalist id="size_options">
-                                <option value="114">114 - ۵ منزل</option>
+                                <option value="159">159 - ۵ منزل</option>
                                 <option value="412">412 - ۷ منزل</option>
                                 <option value="644">644 - ۱۰ منزل</option>
                                 <option value="902">902 - ۷ منزل</option>
@@ -85,53 +85,28 @@
                         <div class="col-md-3">
                             <label class="form-label">راه پله (متر مربع)</label>
                             <input type="number" id="staircase_size" name="staircase_size" class="form-control" min="0" value="45">
+                            <small class="text-muted">بعداً از متراژ هر منزل کسر می‌شود</small>
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label">تعداد واحد در هر منزل <span class="text-danger">*</span></label>
-                            <select id="units_per_floor" name="units_per_floor" class="form-select" required>
-                                <option value="1">۱ واحد</option>
-                                <option value="2">۲ واحد</option>
-                                <option value="3">۳ واحد</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">کتگوری بلاک</label>
-                            <select name="category" class="form-select">
-                                <option value="standard">استاندارد</option>
-                                <option value="premium">پریمیوم</option>
-                                <option value="vip">وی‌آی‌پی</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">متراژ هر واحد (پیش‌نمایش)</label>
-                            <div class="form-control bg-light fw-bold" id="unit_size_preview">-</div>
+<div class="col-12 mt-2">
+                            <label class="form-label fw-bold">امکانات بلاک (اختیاری — یکی یا چند مورد را انتخاب کنید)</label>
+                            <div class="row">
+                                <?php foreach ($BLOCK_AMENITIES as $key => $label): ?>
+                                <div class="col-md-2 form-check ms-1">
+                                    <input class="form-check-input" type="checkbox" name="amenities[]" value="<?= $key ?>" id="am_<?= $key ?>">
+                                    <label class="form-check-label small" for="am_<?= $key ?>"><?= htmlspecialchars($label) ?></label>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-success">ثبت بلاک (تولید خودکار اپارتمان‌ها)</button>
-                            <small class="text-muted ms-2">با ثبت بلاک، تمام اپارتمان‌های تمام منزل‌ها به‌صورت خودکار ساخته می‌شوند.</small>
+                            <button type="submit" class="btn btn-success">ثبت بلاک</button>
+                            <small class="text-muted ms-2">توجه: واحدهای اپارتمان خودکار ساخته نمی‌شود؛ بعد از ثبت بلاک از بخش «واحدها» آنها را اضافه کنید.</small>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <!-- ========== لیست بلاک‌ها ========== -->
+<!-- ========== لیست بلاک‌ها ========== -->
             <h2 class="mb-4">لیست بلاک‌ها</h2>
-
-            <div class="mb-3">
-                <form method="GET" class="row g-2 align-items-center">
-                    <div class="col-auto">
-                        <select name="category" class="form-select" onchange="this.form.submit()">
-                            <option value="">همه کتگوری‌ها</option>
-                            <option value="standard" <?= $filter_cat == 'standard' ? 'selected' : '' ?>>استاندارد</option>
-                            <option value="premium" <?= $filter_cat == 'premium' ? 'selected' : '' ?>>پریمیوم</option>
-                            <option value="vip" <?= $filter_cat == 'vip' ? 'selected' : '' ?>>وی‌آی‌پی</option>
-                        </select>
-                    </div>
-                    <div class="col-auto">
-                        <a href="blocks.php" class="btn btn-secondary">بازنشانی</a>
-                    </div>
-                </form>
-            </div>
 
             <table id="blocksTable" class="table table-bordered table-striped">
                 <thead class="table-dark">
@@ -140,28 +115,23 @@
                         <th>کد بلاک</th>
                         <th>نام بلاک</th>
                         <th>سایز (متر)</th>
-                        <th>منزل</th>
-                        <th>واحد / منزل</th>
-                        <th>متراژ واحد</th>
+                        <th>تعداد منزل</th>
+                        <th>راه پله</th>
                         <th>تعداد اپارتمان‌ها</th>
-                        <th>کتگوری</th>
+                        <th>امکانات</th>
                         <th>وضعیت</th>
                         <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $query = "SELECT b.*, 
-                        (SELECT COUNT(*) FROM block_units bu WHERE bu.block_id = b.id) AS unit_count
-                        FROM blocks b";
-                    if ($filter_cat !== '') {
-                        $query .= " WHERE b.category = '" . $conn->real_escape_string($filter_cat) . "'";
-                    }
-                    $query .= " ORDER BY b.id DESC";
+                    $query = "SELECT b.*,
+                        (SELECT COUNT(*) FROM block_units bu WHERE bu.block_id = b.id) AS unit_count,
+                        (SELECT COUNT(*) FROM block_amenities ba WHERE ba.block_id = b.id) AS amenity_count
+                        FROM blocks b
+                        ORDER BY b.id DESC";
                     $result = $conn->query($query);
                     while($row = $result->fetch_assoc()):
-                        $catLabel = $row['category'] == 'premium' ? 'پریمیوم' : ($row['category'] == 'vip' ? 'وی‌آی‌پی' : 'استاندارد');
-                        $catClass = $row['category'] == 'premium' ? 'text-info' : ($row['category'] == 'vip' ? 'text-warning' : 'text-secondary');
                     ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
@@ -169,14 +139,19 @@
                         <td><?= htmlspecialchars($row['block_name'] ?? '') ?></td>
                         <td><?= htmlspecialchars($row['size']) ?> متر</td>
                         <td><?= htmlspecialchars($row['floors_count']) ?> منزل</td>
-                        <td><?= htmlspecialchars($row['units_per_floor']) ?> واحد</td>
-                        <td><?= htmlspecialchars($row['unit_size']) ?> متر</td>
+                        <td><?= htmlspecialchars($row['staircase_size']) ?> متر</td>
                         <td>
                             <a href="block_units.php?block_id=<?= $row['id'] ?>" class="badge bg-primary text-decoration-none">
                                 <?= htmlspecialchars($row['unit_count']) ?> واحد
                             </a>
                         </td>
-                        <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
+                        <td>
+                            <?php if ($row['amenity_count'] > 0): ?>
+                                <span class="badge bg-success"><?= htmlspecialchars($row['amenity_count']) ?> مورد</span>
+                            <?php else: ?>
+                                <span class="text-muted">-</span>
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <?php if ($row['status'] == 'active'): ?>
                                 <span class="badge bg-success">فعال</span>
@@ -224,27 +199,14 @@
         });
     });
 
-    // ===== محاسبه زنده متراژ واحد =====
+    // ===== پر کردن خودکار تعداد منزل بر اساس سایز =====
     var sizeFloors = { 114: 5, 412: 7, 644: 10, 902: 7 };
-
-    function calcUnitSize() {
-        var size = parseFloat($('#size').val()) || 0;
-        var stairs = parseFloat($('#staircase_size').val());
-        if (isNaN(stairs) || stairs < 0) stairs = 0;
-        var units = parseInt($('#units_per_floor').val()) || 1;
-        var usable = size - stairs;
-        var per = units > 0 ? usable / units : 0;
-        $('#unit_size_preview').text(per > 0 ? per.toFixed(2) + ' متر مربع' : 'لطفاً سایز را وارد کنید');
-    }
-
     $('#size').on('input change', function() {
         var s = parseInt(this.value);
         if (sizeFloors[s]) {
             $('#floors_count').val(sizeFloors[s]);
         }
-        calcUnitSize();
     });
-    $('#staircase_size, #units_per_floor').on('input change', calcUnitSize);
     </script>
 
     <!-- Bootstrap and necessary plugins -->

@@ -1,5 +1,6 @@
 <?php require_once __DIR__ . '/includes/auth_check.php'; ?>
 <?php include 'config/db.php'; ?>
+<?php require_once 'includes/block_catalog.php'; ?>
 <!DOCTYPE html>
 <html lang="IR-fa" dir="rtl">
 
@@ -75,7 +76,9 @@
                         <th>آی‌دی</th>
                         <th>بلاک</th>
                         <th>اپارتمان / واحد</th>
+                        <th>کتگوری</th>
                         <th>منزل</th>
+                        <th>واحد/منزل</th>
                         <th>متراژ</th>
                         <th>قیمت مجموعی</th>
                         <th>پرداخت‌شده</th>
@@ -98,13 +101,15 @@
                     if ($filter_block > 0) {
                         $sql .= " AND bu.block_id = " . intval($filter_block);
                     }
-                    $sql .= " GROUP BY bu.id, bu.block_id, bu.floor_number, bu.unit_number, bu.unit_code, bu.rooms, bu.unit_size, bu.status, bu.customer_id, bu.unit_price_per_meter, bu.gov_cost_per_meter, bu.infra_cost_per_meter, bu.unit_price, bu.gov_cost, bu.infra_cost, bu.total_price, bu.sold_at, b.block_code, b.block_name, c.full_name, c.fathar_name, c.national_id
+                    $sql .= " GROUP BY bu.id, bu.block_id, bu.floor_number, bu.units_per_floor, bu.category, bu.unit_number, bu.unit_code, bu.rooms, bu.unit_size, bu.status, bu.customer_id, bu.unit_price_per_meter, bu.gov_cost_per_meter, bu.infra_cost_per_meter, bu.unit_price, bu.gov_cost, bu.infra_cost, bu.total_price, bu.sold_at, b.block_code, b.block_name, c.full_name, c.fathar_name, c.national_id
                         ORDER BY bu.id ASC";
 
                     $result = $conn->query($sql);
 
                     while($row = $result->fetch_assoc()):
                         $roomLabel = $row['rooms'] == 2 ? '۲ اتاقه' : ($row['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه');
+                        $catLabel = unit_category_label($row['category']);
+                        $catClass = unit_category_class($row['category']);
                         $remaining = (float)$row['remaining_amount'];
                     ?>
                     <tr>
@@ -116,7 +121,9 @@
                             <?php endif; ?>
                         </td>
                         <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong><br><small class="text-muted"><?= $roomLabel ?></small></td>
+                        <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
                         <td><?= htmlspecialchars($row['floor_number']) ?> منزل</td>
+                        <td><?= htmlspecialchars($row['units_per_floor']) ?> واحد</td>
                         <td><?= htmlspecialchars($row['unit_size']) ?> متر</td>
                         <td><strong><?= number_format((float)$row['total_price'], 2) ?></strong> دالر</td>
                         <td class="text-success"><?= number_format((float)$row['paid_amount'], 2) ?> دالر</td>

@@ -156,7 +156,7 @@ if ($plot_code) {
             <i class="bi bi-building me-2"></i>KhawarDB
         </a>
         <div>
-            <a href="map.php" class="btn-map-link me-2">
+            <a href="new_map.php" class="btn-map-link me-2">
                 <i class="bi bi-map me-1"></i>بازگشت به نقشه
             </a>
             <a href="index.php" class="btn-map-link">
@@ -237,7 +237,7 @@ if ($plot_code) {
                                     <i class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;"></i>
                                     <h5 class="text-danger mt-2">این نمره قبلاً فروخته شده است</h5>
                                     <p class="text-muted">لطفاً نمره دیگری را از نقشه انتخاب کنید</p>
-                                    <a href="map.php" class="btn btn-outline-primary">
+                                    <a href="new_map.php" class="btn btn-outline-primary">
                                         <i class="bi bi-map me-1"></i>مشاهده نقشه
                                     </a>
                                 </div>
@@ -246,7 +246,7 @@ if ($plot_code) {
                                     <i class="bi bi-clock-fill text-warning" style="font-size: 3rem;"></i>
                                     <h5 class="text-warning mt-2">این نمره رزرو شده است</h5>
                                     <p class="text-muted">لطفاً نمره دیگری را از نقشه انتخاب کنید</p>
-                                    <a href="map.php" class="btn btn-outline-primary">
+                                    <a href="new_map.php" class="btn btn-outline-primary">
                                         <i class="bi bi-map me-1"></i>مشاهده نقشه
                                     </a>
                                 </div>
@@ -281,7 +281,7 @@ if ($plot_code) {
             <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
             <h3 class="mt-3">نمره مورد نظر یافت نشد</h3>
             <p class="text-muted">این نمره در دیتابیس ثبت نشده است</p>
-            <a href="map.php" class="btn btn-primary mt-3">
+            <a href="new_map.php" class="btn btn-primary mt-3">
                 <i class="bi bi-map me-2"></i>بازگشت به نقشه
             </a>
         </div>

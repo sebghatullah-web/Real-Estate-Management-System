@@ -1,6 +1,7 @@
 <?php require_once __DIR__ . '/includes/auth_check.php'; ?>
 <?php
 include 'config/db.php';
+require_once __DIR__ . '/includes/block_catalog.php';
 
 $unit_id = isset($_GET['unit_id']) ? intval($_GET['unit_id']) : 0;
 $amount  = isset($_GET['amount']) ? floatval($_GET['amount']) : 0;
@@ -12,7 +13,7 @@ if (!$unit_id) {
 
 // معلومات اپارتمان/واحد به همراه مشتری و بلاک
 $sql = "SELECT bu.*, c.full_name, c.fathar_name, c.national_id, c.phone, c.address,
-               b.block_code, b.block_name, b.category
+               b.block_code, b.block_name
         FROM block_units bu
         LEFT JOIN customers c ON bu.customer_id = c.id
         LEFT JOIN blocks b ON bu.block_id = b.id
@@ -50,7 +51,7 @@ invoice_a4_billto($unit);
 
 // ---------- جزئیات اپارتمان ----------
 $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه');
-$catLabel = $unit['category'] == 'premium' ? 'پریمیوم' : ($unit['category'] == 'vip' ? 'وی‌آی‌پی' : 'استاندارد');
+$catLabel = unit_category_label($unit['category']);
 
 invoice_a4_section('معلومات اپارتمان / واحد');
 ?>

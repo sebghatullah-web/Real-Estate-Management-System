@@ -2734,14 +2734,13 @@ COMMIT;
 
 -- --------------------------------------------------------
 -- بلاک‌ها (Blocks) و اپارتمان‌ها/واحدها (Block Units)
--- سیستم املاک KHAWARDB – دیتابیس: map
+-- سیستم املاک KHAWARDB – دیتابیس: map — نسخه ۲
 -- --------------------------------------------------------
 
 SET NAMES utf8mb4;
 
 --
 -- Table structure for table `blocks`
--- بلاک: ساختمانی با چند منزل/طبقه که هر منزل ۱، ۲ یا ۳ واحد/اپارتمان دارد.
 --
 
 CREATE TABLE IF NOT EXISTS `blocks` (
@@ -2751,9 +2750,6 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `size` int(11) NOT NULL COMMENT 'سایز بلاک (متر مربع) مثلاً 114، 412، 644، 902',
   `staircase_size` int(11) NOT NULL DEFAULT 45 COMMENT 'راه پله (متر مربع)',
   `floors_count` int(11) NOT NULL COMMENT 'تعداد منزل/طبقه‌ها',
-  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد واحد در هر منزل (1، 2 یا 3)',
-  `unit_size` decimal(10,2) NOT NULL COMMENT 'متراژ هر واحد = (سایز - راه پله) ÷ تعداد واحد در منزل',
-  `category` enum('standard','premium','vip') NOT NULL DEFAULT 'standard' COMMENT 'کتگوری بلاک',
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -2762,14 +2758,15 @@ CREATE TABLE IF NOT EXISTS `blocks` (
 
 --
 -- Table structure for table `block_units`
--- هر اپارتمان/واحد داخل یک بلاک.
 --
 
 CREATE TABLE IF NOT EXISTS `block_units` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `block_id` int(11) NOT NULL,
   `floor_number` int(11) NOT NULL COMMENT 'شماره منزل/طبقه',
-  `unit_number` varchar(20) NOT NULL COMMENT 'شماره واحد (مثلاً 1، 2، 3)',
+  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد واحد در این منزل (۱ تا ۴ واحد)',
+  `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'کتگوری واحد: standard، premium، vip، vvip و ...',
+  `unit_number` varchar(20) NOT NULL COMMENT 'شماره واحد (مثلاً 1، 2، 3، 4)',
   `unit_code` varchar(100) NOT NULL COMMENT 'کد کامل واحد (بلاک-طبقه-واحد)',
   `rooms` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد اتاق (۱ اتاقه، ۲ اتاقه، ۳ اتاقه)',
   `unit_size` decimal(10,2) NOT NULL COMMENT 'متراژ واحد (متر مربع)',
@@ -2787,8 +2784,38 @@ CREATE TABLE IF NOT EXISTS `block_units` (
   PRIMARY KEY (`id`),
   KEY `block_id` (`block_id`),
   KEY `customer_id` (`customer_id`),
-CONSTRAINT `fk_block_units_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_block_units_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_block_units_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Table structure for table `block_amenities`
+--
+
+CREATE TABLE IF NOT EXISTS `block_amenities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `block_id` int(11) NOT NULL,
+  `amenity_key` varchar(50) NOT NULL COMMENT 'شناسه امکانات (لطفاً با حروف انگلیسی)',
+  `amenity_label` varchar(100) NOT NULL COMMENT 'نام امکانات به فارسی',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `block_amenity_unique` (`block_id`, `amenity_key`),
+  CONSTRAINT `fk_block_amenities_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Table structure for table `block_unit_features`
+--
+
+CREATE TABLE IF NOT EXISTS `block_unit_features` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `unit_id` int(11) NOT NULL,
+  `feature_key` varchar(50) NOT NULL COMMENT 'شناسه جزئیات (لطفاً با حروف انگلیسی)',
+  `feature_label` varchar(100) NOT NULL COMMENT 'نام جزئیات به فارسی',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unit_feature_unique` (`unit_id`, `feature_key`),
+  CONSTRAINT `fk_unit_features_unit` FOREIGN KEY (`unit_id`) REFERENCES `block_units` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

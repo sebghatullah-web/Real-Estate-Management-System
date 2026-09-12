@@ -89,6 +89,62 @@ foreach (getPlotTables() as $table) {
     $row['type_label'] = $plotType;
     $plotTypeStats[$plotType] = $row;
 }
+
+// ========== 7. Block / Apartment Stats ==========
+$totalBlocks = $pdo->query("SELECT COUNT(*) FROM blocks")->fetchColumn();
+
+$unitStats = $pdo->query("SELECT
+    COUNT(*) as total,
+    SUM(CASE WHEN status='sold' THEN 1 ELSE 0 END) as sold,
+    SUM(CASE WHEN status='available' THEN 1 ELSE 0 END) as available,
+    SUM(CASE WHEN status='reserved' THEN 1 ELSE 0 END) as reserved,
+    COALESCE(SUM(CASE WHEN status='sold' THEN total_price ELSE 0 END), 0) as sold_value
+FROM block_units")->fetch(PDO::FETCH_ASSOC);
+
+$totalUnits = $unitStats['total'] ?? 0;
+$totalUnitsSold = $unitStats['sold'] ?? 0;
+$totalUnitsAvailable = $unitStats['available'] ?? 0;
+$totalUnitsReserved = $unitStats['reserved'] ?? 0;
+$totalUnitSoldValue = $unitStats['sold_value'] ?? 0;
+
+$totalUnitRevenue = $pdo->query("SELECT COALESCE(SUM(amount), 0) FROM pay_block_units")->fetchColumn();
+
+// ========== 8. Block Type Stats (per block) ==========
+$blockStats = [];
+$blocksRes = $pdo->query("SELECT
+    b.id,
+    b.block_code,
+    b.block_name,
+    b.size,
+    COUNT(u.id) as total,
+    SUM(CASE WHEN u.status='sold' THEN 1 ELSE 0 END) as sold,
+    SUM(CASE WHEN u.status='available' THEN 1 ELSE 0 END) as available,
+    SUM(CASE WHEN u.status='reserved' THEN 1 ELSE 0 END) as reserved
+FROM blocks b
+LEFT JOIN block_units u ON u.block_id = b.id
+GROUP BY b.id, b.block_code, b.block_name, b.size
+ORDER BY b.block_code ASC");
+while ($blk = $blocksRes->fetch(PDO::FETCH_ASSOC)) {
+    $blockStats[] = $blk;
+}
+
+// ========== 9. Recent Block Unit Payments (last 10) ==========
+$recentUnitPayments = [];
+$unitPayStmt = $pdo->prepare("
+    SELECT p.id, p.amount, p.payment_date, p.unit_id, p.customer_id,
+           c.full_name,
+           u.unit_code,
+           b.block_code
+    FROM pay_block_units p
+    LEFT JOIN customers c ON p.customer_id = c.id
+    LEFT JOIN block_units u ON p.unit_id = u.id
+    LEFT JOIN blocks b ON u.block_id = b.id
+    ORDER BY p.payment_date DESC
+    LIMIT 10");
+$unitPayStmt->execute();
+while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
+    $recentUnitPayments[] = $payRow;
+}
 ?>
 <!-- Main content -->
 <main class="main">
@@ -267,6 +323,213 @@ foreach (getPlotTables() as $table) {
                                     </tr>
                                     <?php $i++; ?>
                                     <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== Block / Apartment Stats Cards Row 1 ========== -->
+            <div class="row mt-4">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-primary">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalBlocks); ?></h4>
+                            <p>تعداد بلاک‌ها</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart9" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-info">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnits); ?></h4>
+                            <p>تعداد کل واحدها (اپارتمان‌ها)</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart10" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-success">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnitsAvailable); ?></h4>
+                            <p>واحدهای موجود</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart11" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-danger">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnitsSold); ?></h4>
+                            <p>واحدهای فروخته شده</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart12" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+            </div>
+            <!--/row-->
+
+            <!-- ========== Block / Apartment Stats Cards Row 2 ========== -->
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-warning">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnitsReserved); ?></h4>
+                            <p>واحدهای رزرو شده</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart13" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-primary">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnitRevenue); ?></h4>
+                            <p>مجموع دریافتی واحدها (افغانی)</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart14" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-info">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnitSoldValue); ?></h4>
+                            <p>ارزش واحدهای فروخته شده (دالر)</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart15" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card card-inverse card-success">
+                        <div class="card-block p-b-0">
+                            <h4 class="m-b-0"><?php echo number_format($totalUnits - $totalUnitsAvailable - $totalUnitsSold - $totalUnitsReserved); ?></h4>
+                            <p>سایر واحدها (نامشخص)</p>
+                        </div>
+                        <div class="chart-wrapper p-x-1" style="height:70px;">
+                            <canvas id="card-chart16" class="chart" height="70"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <!--/col-->
+            </div>
+            <!--/row-->
+
+            <!-- ========== Block Stats Table ========== -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>آمار تفکیکی بلاک‌ها و اپارتمان‌ها</strong>
+                        </div>
+                        <div class="card-block">
+                            <table class="table table-bordered table-striped table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>بلاک</th>
+                                        <th>مجموع واحدها</th>
+                                        <th>موجود</th>
+                                        <th>فروخته شده</th>
+                                        <th>رزرو شده</th>
+                                        <th style="width:200px;">نمودار</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($blockStats as $blk): ?>
+                                    <tr>
+                                        <td>
+                                            <strong><?php echo htmlspecialchars($blk['block_code']); ?></strong>
+                                            <?php if (!empty($blk['block_name'])): ?> <small class="text-muted">(<?php echo htmlspecialchars($blk['block_name']); ?>)</small><?php endif; ?>
+                                            <span class="badge badge-secondary"><?php echo number_format($blk['size']); ?> m²</span>
+                                        </td>
+                                        <td><?php echo number_format($blk['total']); ?></td>
+                                        <td class="text-success"><?php echo number_format($blk['available']); ?></td>
+                                        <td class="text-danger"><?php echo number_format($blk['sold']); ?></td>
+                                        <td class="text-warning"><?php echo number_format($blk['reserved']); ?></td>
+                                        <td>
+                                            <div class="progress" style="height:22px;">
+                                                <?php
+                                                $total = $blk['total'] > 0 ? $blk['total'] : 1;
+                                                $availPercent = round(($blk['available'] / $total) * 100);
+                                                $soldPercent = round(($blk['sold'] / $total) * 100);
+                                                $reservedPercent = round(($blk['reserved'] / $total) * 100);
+                                                ?>
+                                                <div class="progress-bar progress-bar-striped bg-success" style="width: <?php echo $availPercent; ?>%">موجود <?php echo $availPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-danger" style="width: <?php echo $soldPercent; ?>%">فروخته <?php echo $soldPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-warning" style="width: <?php echo $reservedPercent; ?>%">رزرو <?php echo $reservedPercent; ?>%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== Recent Block Unit Payments ========== -->
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>آخرین پرداخت‌های اپارتمان‌ها / واحدها</strong>
+                        </div>
+                        <div class="card-block">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>مشتری</th>
+                                        <th>واحد</th>
+                                        <th>بلاک</th>
+                                        <th>مبلغ (افغانی)</th>
+                                        <th>تاریخ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (count($recentUnitPayments) > 0): ?>
+                                        <?php $mp = 1; ?>
+                                        <?php foreach ($recentUnitPayments as $payment): ?>
+                                        <tr>
+                                            <td><?php echo $mp++; ?></td>
+                                            <td><?php echo htmlspecialchars($payment['full_name'] ?? 'N/A'); ?></td>
+                                            <td><?php echo htmlspecialchars($payment['unit_code'] ?? 'N/A'); ?></td>
+                                            <td><?php echo htmlspecialchars($payment['block_code'] ?? 'N/A'); ?></td>
+                                            <td><?php echo number_format($payment['amount']); ?></td>
+                                            <td><?php echo date('Y-m-d H:i', strtotime($payment['payment_date'])); ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <tr><td colspan="6" class="text-center">هیچ پرداختی برای اپارتمان‌ها ثبت نشده است</td></tr>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
