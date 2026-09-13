@@ -109,7 +109,7 @@ if ($block) {
     <div class="container d-flex justify-content-between align-items-center">
         <a href="index.php" class="brand"><i class="bi bi-building me-2"></i>KhawarDB</a>
         <div>
-            <a href="new_map.php" class="btn-map-link me-2"><i class="bi bi-map me-1"></i>بازگشت به نقشه</a>
+            <a href="map.php" class="btn-map-link me-2"><i class="bi bi-map me-1"></i>بازگشت به نقشه</a>
             <a href="index.php" class="btn-map-link"><i class="bi bi-house me-1"></i>خانه</a>
         </div>
     </div>
@@ -306,7 +306,7 @@ if ($block) {
             <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
             <h3 class="mt-3">بلاک مورد نظر یافت نشد</h3>
             <p class="text-muted">این بلاک در دیتابیس ثبت نشده است</p>
-            <a href="new_map.php" class="btn btn-primary mt-3">
+            <a href="map.php" class="btn btn-primary mt-3">
                 <i class="bi bi-map me-2"></i>بازگشت به نقشه
             </a>
         </div>

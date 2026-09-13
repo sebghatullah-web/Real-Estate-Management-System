@@ -21,7 +21,6 @@
                         <li class="mb-2"><a href="about.php"><i class="bi bi-chevron-left small me-1"></i>درباره ما</a></li>
                         <li class="mb-2"><a href="services.php"><i class="bi bi-chevron-left small me-1"></i>خدمات</a></li>
                         <li class="mb-2"><a href="map.php"><i class="bi bi-chevron-left small me-1"></i>نقشه نمرات</a></li>
-                        <li class="mb-2"><a href="gallery.php"><i class="bi bi-chevron-left small me-1"></i>گالری تصاویر</a></li>
                         <li class="mb-2"><a href="contact.php"><i class="bi bi-chevron-left small me-1"></i>تماس با ما</a></li>
                     </ul>
                 </div>
@@ -38,7 +37,7 @@
             </div>
             <hr class="border-light opacity-25">
             <div class="text-center">
-                <p class="small opacity-75 mb-0">© 2026 KhawarDB - تمامی حقوق محفوظ است</p>
+                <p class="small opacity-75 mb-0">© 2026 KhawarCMS - تمامی حقوق محفوظ است</p>
             </div>
         </div>
     </footer>

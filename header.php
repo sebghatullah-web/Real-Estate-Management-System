@@ -100,7 +100,7 @@ require 'config/db.php';
                     <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>" href="contact.php"><i class="bi bi-envelope"></i> تماس با ما</a>
                 </li>
             </ul>
-            <a href="map.php" class="btn btn-map nav-link"><i class="bi bi-map"></i> نقشه نمرات</a>
+            <a href="map.php" class="btn btn-map nav-link" target="_blank"><i class="bi bi-map"></i> نقشه نمرات</a>
         </div>
     </div>
 </nav>
