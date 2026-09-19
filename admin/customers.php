@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/includes/auth_check.php'; ?>
 <?php include 'config/db.php'; ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -35,17 +35,17 @@
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="#">مدیریت</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="#">Management</a>
             </li>
-            <li class="breadcrumb-item active">داشبرد</li>
+            <li class="breadcrumb-item active">Dashboard</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
-                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
+                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
                 </div>
             </li>
         </ol>
@@ -53,59 +53,59 @@
         <div class="container-fluid">
 
 
-            <!-- فرم افزودن مشتری -->
-            <h3 class="mt-5">افزودن مشتری جدید</h3>
+            <!-- Add customer form -->
+            <h3 class="mt-5">Add New Customer</h3>
             <form action="add_customer.php" method="POST" enctype="multipart/form-data" class="row g-3">
                 <div class="col-md-3">
-                    <label class="form-label">نام کامل</label>
+                    <label class="form-label">Full Name</label>
                     <input type="text" name="full_name" class="form-control" required>
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">نام پدر</label>
+                    <label class="form-label">Father&#039;s Name</label>
                     <input type="text" name="fathar_name" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">شماره تماس</label>
+                    <label class="form-label">Phone</label>
                     <input type="text" name="phone" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">ایمیل</label>
+                    <label class="form-label">Email</label>
                     <input type="email" name="email" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">شماره تذکره</label>
+                    <label class="form-label">National ID</label>
                     <input type="text" name="national_id" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">آدرس</label>
+                    <label class="form-label">Address</label>
                     <input type="text" name="address" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">شغل</label>
+                    <label class="form-label">Occupation</label>
                     <input type="text" name="occupation" class="form-control">
                 </div>
                 <div class="col-md-3">
-                    <label class="form-label">عکس پروفایل (URL)</label>
+                    <label class="form-label">Profile Picture (URL)</label>
                     <input type="file" name="profile_pic" class="form-control">
                 </div>
                 <div class="col-12">
-                    <button type="submit" class="btn btn-success">ثبت مشتری</button>
+                    <button type="submit" class="btn btn-success">Save Customer</button>
                 </div>
             </form>
 
 
-            <h2 class="mb-4">لیست مشتریان</h2>
+            <h2 class="mb-4">Customer List</h2>
 
-            <!-- جدول مشتریان -->
+            <!-- Customers table -->
             <table id="plotsTable" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
-                    <th>آی‌دی</th>
-                    <th>نام کامل</th>
-                    <th>نام پدر</th>
-                    <th>شماره تماس</th>
-                    <th>ایمیل</th>
-                    <th>عملیات</th>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Father&#039;s Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -120,8 +120,8 @@
                     <td><?= $row['phone'] ?></td>
                     <td><?= $row['email'] ?></td>
                     <td>
-                        <a href="edit_customer.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">ویرایش</a>
-                        <a href="delete_customer.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('آیا مطمئن هستید؟')">حذف</a>
+                        <a href="edit_customer.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="delete_customer.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
                     </td>
                     </tr>
                     <?php endwhile; ?>
@@ -137,7 +137,7 @@
     <?php require_once 'includes/footer.php'; ?>
 
 
-    <!-- jQuery فقط یک بار -->
+    <!-- jQuery loaded once -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -148,21 +148,21 @@
                 "pageLength": 10,
                 "lengthMenu": [10, 20, 30, 50],
                 "language": {
-                    "search": "جستجو:",
-                    "lengthMenu": "نمایش _MENU_ رکورد در هر صفحه",
-                    "info": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
+                    "search": "Search:",
+                    "lengthMenu": "Show _MENU_ entries per page",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
                     "paginate": {
-                        "first": "اول",
-                        "last": "آخر",
-                        "next": "بعدی",
-                        "previous": "قبلی"
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
                     }
                 },
-                dom: 'Bfrtip', // اضافه کردن بخش دکمه‌ها
+                dom: 'Bfrtip', // enable buttons
                 buttons: [
-                    { extend: 'excelHtml5', text: 'خروجی Excel' },
-                    { extend: 'pdfHtml5', text: 'خروجی PDF' },
-                    { extend: 'print', text: 'چاپ' }
+                    { extend: 'excelHtml5', text: 'Export Excel' },
+                    { extend: 'pdfHtml5', text: 'Export PDF' },
+                    { extend: 'print', text: 'Print' }
                 ]
             });
         });
@@ -178,7 +178,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-    <!-- وابستگی‌ها برای Excel و PDF -->
+    <!-- Dependencies for Excel and PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>

@@ -10,12 +10,12 @@ if ($block_code) {
     $block = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// ----- جزئیات واحدها (برای مودال) -----
+// ----- Unit details (for the modal) -----
 $unitFeatures = [];   // unit_id => [ [key,label], ... ]
-$unitPayments = [];   // unit_id => مبلغ مجموعی پرداخت شده
+$unitPayments = [];   // unit_id => total amount paid
 
 if ($block) {
-    // امکانات بلاک
+    // Block amenities
     $amenities = [];
     $amStmt = $pdo->prepare("SELECT amenity_key, amenity_label FROM block_amenities WHERE block_id = ? ORDER BY id ASC");
     $amStmt->execute([$block['id']]);
@@ -24,7 +24,7 @@ if ($block) {
     }
     $block['amenities'] = $amenities;
 
-    // واحدها
+    // Units
     $units = [];
     $uStmt = $pdo->prepare("SELECT bu.*, c.full_name, c.fathar_name, c.phone
                             FROM block_units bu
@@ -37,7 +37,7 @@ if ($block) {
     }
     $block['units'] = $units;
 
-    // جزئیات هر واحد
+    // Details of each unit
     $fStmt = $pdo->prepare("SELECT unit_id, feature_key, feature_label FROM block_unit_features ORDER BY id ASC");
     $fStmt->execute();
     while ($f = $fStmt->fetch(PDO::FETCH_ASSOC)) {
@@ -47,7 +47,7 @@ if ($block) {
         $unitFeatures[$f['unit_id']][] = array($f['feature_key'], $f['feature_label']);
     }
 
-    // پرداخت های هر واحد
+    // Payments of each unit
     $pStmt = $pdo->prepare("SELECT unit_id, COALESCE(SUM(amount), 0) AS paid FROM pay_block_units GROUP BY unit_id");
     $pStmt->execute();
     while ($p = $pStmt->fetch(PDO::FETCH_ASSOC)) {
@@ -56,17 +56,17 @@ if ($block) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جزئیات بلاک <?= htmlspecialchars($block_code) ?></title>
+    <title>Block Details <?= htmlspecialchars($block_code) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { direction: rtl; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background: #f0f2f5; }
+        body { direction: ltr; font-family: 'Poppins', 'Segoe UI', Tahoma, Arial, sans-serif; background: #f0f2f5; }
         .nav-bar { background: linear-gradient(135deg, #1a3a5c 0%, #2c5f7c 100%); padding: 15px 0; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
         .nav-bar a { color: #fff; text-decoration: none; }
         .nav-bar .brand { font-weight: bold; font-size: 1.3rem; }
@@ -101,7 +101,7 @@ if ($block) {
 <body>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/9379349150" target="_blank" class="whatsapp-float" title="ارتباط با ما در واتساپ">
+<a href="https://wa.me/9379349150" target="_blank" class="whatsapp-float" title="Contact us on WhatsApp">
     <i class="bi bi-whatsapp"></i>
 </a>
 
@@ -109,8 +109,8 @@ if ($block) {
     <div class="container d-flex justify-content-between align-items-center">
         <a href="index.php" class="brand"><i class="bi bi-building me-2"></i>KhawarDB</a>
         <div>
-            <a href="map.php" class="btn-map-link me-2"><i class="bi bi-map me-1"></i>بازگشت به نقشه</a>
-            <a href="index.php" class="btn-map-link"><i class="bi bi-house me-1"></i>خانه</a>
+            <a href="map.php" class="btn-map-link me-2"><i class="bi bi-map me-1"></i>Back to Map</a>
+            <a href="index.php" class="btn-map-link"><i class="bi bi-house me-1"></i>Home</a>
         </div>
     </div>
 </div>
@@ -119,48 +119,48 @@ if ($block) {
     <?php if ($block): ?>
 <div class="text-center mb-4 pt-3">
             <h1 class="fw-bold" style="color: #1a3a5c;">
-                <i class="bi bi-building me-2"></i>بلاک <?= htmlspecialchars($block['block_code']) ?>
+                <i class="bi bi-building me-2"></i>Block <?= htmlspecialchars($block['block_code']) ?>
             </h1>
-            <p class="text-muted"><?= htmlspecialchars($block['block_name'] ?? '') ?> | سایز: <?= htmlspecialchars($block['size']) ?> متر مربع</p>
+            <p class="text-muted"><?= htmlspecialchars($block['block_name'] ?? '') ?> | Size: <?= htmlspecialchars($block['size']) ?> Square Meters</p>
         </div>
 
         <div class="row g-4">
             <div class="col-lg-7">
                 <div class="detail-card card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>جزئیات بلاک</h4>
+                        <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Block Details</h4>
                         <span class="status-badge badge <?= $block['status'] === 'active' ? 'bg-success' : 'bg-secondary' ?>">
-                            <?= $block['status'] === 'active' ? 'فعال' : 'غیرفعال' ?>
+                            <?= $block['status'] === 'active' ? 'Active' : 'Inactive' ?>
                         </span>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered detail-table mb-0">
                             <tr>
-                                <th><i class="bi bi-hash me-1"></i>کد بلاک</th>
+                                <th><i class="bi bi-hash me-1"></i>Block Code</th>
                                 <td><?= htmlspecialchars($block['block_code']) ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-tag me-1"></i>نام بلاک</th>
+                                <th><i class="bi bi-tag me-1"></i>Block Name</th>
                                 <td><?= htmlspecialchars($block['block_name'] ?? '—') ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-arrows-fullscreen me-1"></i>سایز بلاک (متر مربع)</th>
-                                <td><?= htmlspecialchars($block['size']) ?> متر مربع</td>
+                                <th><i class="bi bi-arrows-fullscreen me-1"></i>Block Size (Square Meters)</th>
+                                <td><?= htmlspecialchars($block['size']) ?> Square Meters</td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-stairs me-1"></i>راه‌پله (متر مربع)</th>
-                                <td><?= htmlspecialchars($block['staircase_size']) ?> متر مربع</td>
+                                <th><i class="bi bi-stairs me-1"></i>Staircase (Square Meters)</th>
+                                <td><?= htmlspecialchars($block['staircase_size']) ?> Square Meters</td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-layers me-1"></i>تعداد منزل / طبقه</th>
-                                <td><?= htmlspecialchars($block['floors_count']) ?> منزل</td>
+                                <th><i class="bi bi-layers me-1"></i>Number of Floors</th>
+                                <td><?= htmlspecialchars($block['floors_count']) ?> Floors</td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-building me-1"></i>تعداد واحد</th>
-                                <td><?php $tc = 0; foreach ($block['units'] as $uu) { $tc++; } echo $tc . ' واحد'; ?></td>
+                                <th><i class="bi bi-building me-1"></i>Number of Units</th>
+                                <td><?php $tc = 0; foreach ($block['units'] as $uu) { $tc++; } echo $tc . ' Unit(s)'; ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-calendar3 me-1"></i>تاریخ ثبت</th>
+                                <th><i class="bi bi-calendar3 me-1"></i>Registration Date</th>
                                 <td><?= date('Y-m-d', strtotime($block['created_at'])) ?></td>
                             </tr>
                         </table>
@@ -169,7 +169,7 @@ if ($block) {
 
                 <div class="detail-card card mt-3">
                     <div class="card-header">
-                        <h4 class="mb-0"><i class="bi bi-stars me-2"></i>امکانات بلاک</h4>
+                        <h4 class="mb-0"><i class="bi bi-stars me-2"></i>Block Amenities</h4>
                     </div>
                     <div class="card-body">
                         <?php if (count($block['amenities']) > 0): ?>
@@ -181,7 +181,7 @@ if ($block) {
                                 <?php endforeach; ?>
                             </div>
                         <?php else: ?>
-                            <p class="text-muted text-center py-3">امکاناتی برای این بلاک ثبت نشده است</p>
+                            <p class="text-muted text-center py-3">No amenities have been registered for this block</p>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -199,19 +199,19 @@ if ($block) {
                     }
                     ?>
                     <?php if ($imgFound): ?>
-                        <img src="<?= htmlspecialchars($imgFound) ?>" alt="عکس بلاک <?= htmlspecialchars($block['block_code']) ?>">
+                        <img src="<?= htmlspecialchars($imgFound) ?>" alt="Block photo <?= htmlspecialchars($block['block_code']) ?>">
                     <?php else: ?>
                         <div class="placeholder">
                             <i class="bi bi-building"></i>
-                            <span>عکس بلاک <?= htmlspecialchars($block['block_code']) ?></span>
-                            <small style="opacity:0.7">تصویر در img/blocks/ ثبت نشده است</small>
+                            <span>Block photo <?= htmlspecialchars($block['block_code']) ?></span>
+                            <small style="opacity:0.7">No image registered in img/blocks/</small>
                         </div>
                     <?php endif; ?>
                 </div>
 
                 <div class="detail-card card mt-3">
                     <div class="card-header">
-                        <h4 class="mb-0"><i class="bi bi-graph-up me-2"></i>آمار واحدها</h4>
+                        <h4 class="mb-0"><i class="bi bi-graph-up me-2"></i>Unit Statistics</h4>
                     </div>
                     <div class="card-body">
                         <?php
@@ -226,19 +226,19 @@ if ($block) {
                             <div class="col-4">
                                 <div class="border rounded-3 p-3 bg-success-subtle">
                                     <h4 class="mb-0 text-success"><?php echo $cnt_available; ?></h4>
-                                    <small class="text-muted">موجود</small>
+                                    <small class="text-muted">Available</small>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="border rounded-3 p-3 bg-warning-subtle">
                                     <h4 class="mb-0 text-warning"><?php echo $cnt_reserved; ?></h4>
-                                    <small class="text-muted">رزرو</small>
+                                    <small class="text-muted">Reserved</small>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="border rounded-3 p-3 bg-danger-subtle">
                                     <h4 class="mb-0 text-danger"><?php echo $cnt_sold; ?></h4>
-                                    <small class="text-muted">فروخته</small>
+                                    <small class="text-muted">Sold</small>
                                 </div>
                             </div>
                         </div>
@@ -250,8 +250,8 @@ if ($block) {
             <div class="col-12">
                 <div class="detail-card card">
                     <div class="card-header">
-                        <h4 class="mb-0"><i class="bi bi-layers me-2"></i>منزل‌ها و واحدهای بلاک</h4>
-                        <small class="ms-2 text-white-50">برای دیدن جزئیات هر واحد، روی آن کلیک کنید</small>
+                        <h4 class="mb-0"><i class="bi bi-layers me-2"></i>Floors and Units of the Block</h4>
+                        <small class="ms-2 text-white-50">Click on each unit to see its details</small>
                     </div>
                     <div class="card-body">
                         <?php if (count($block['units']) > 0): ?>
@@ -270,20 +270,20 @@ if ($block) {
                             ?>
                             <?php foreach ($floors as $fn => $unitList): ?>
                                 <div class="floor-title mb-3">
-                                    <i class="bi bi-layers me-1"></i>منزل / طبقه شماره <?= $fn ?>
-                                    <span class="badge bg-light text-dark ms-2"><?= count($unitList) ?> واحد</span>
+                                    <i class="bi bi-layers me-1"></i>Floor No. <?= $fn ?>
+                                    <span class="badge bg-light text-dark ms-2"><?= count($unitList) ?> Units</span>
                                 </div>
                                 <div class="row g-3 mb-4">
                                     <?php foreach ($unitList as $u): ?>
                                         <div class="col-6 col-md-3" style="max-width: <?= $maxUnitsPerFloor > 1 ? round(100 / $maxUnitsPerFloor) : 25 ?>%;">
                                             <div class="unit-cell unit-<?= $u['status'] ?>" data-unit-id="<?= $u['id'] ?>" data-bs-toggle="modal" data-bs-target="#unitModal">
-                                                <div class="u-no"><i class="bi bi-door-closed me-1"></i>واحد <?= htmlspecialchars($u['unit_number']) ?></div>
+                                                <div class="u-no"><i class="bi bi-door-closed me-1"></i>Unit <?= htmlspecialchars($u['unit_number']) ?></div>
                                                 <div class="u-rooms">
-                                                    <?= $u['rooms'] == 2 ? '۲ اتاقه' : ($u['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه') ?>
+                                                    <?= $u['rooms'] == 2 ? '2-Bedroom' : ($u['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom') ?>
                                                     | <?= htmlspecialchars($u['unit_size']) ?> m²
                                                 </div>
                                                 <div class="u-status">
-                                                    <?= $u['status'] === 'sold' ? '<span class="text-danger">فروخته شده</span>' : ($u['status'] === 'reserved' ? '<span class="text-warning">رزرو شده</span>' : '<span class="text-success">قابل فروش</span>') ?>
+                                                    <?= $u['status'] === 'sold' ? '<span class="text-danger">Sold</span>' : ($u['status'] === 'reserved' ? '<span class="text-warning">Reserved</span>' : '<span class="text-success">For Sale</span>') ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -293,8 +293,8 @@ if ($block) {
                         <?php else: ?>
                             <div class="text-center py-5">
                                 <i class="bi bi-door-closed text-muted" style="font-size: 3rem;"></i>
-                                <h5 class="mt-3 text-muted">هنوز واحدی برای این بلاک ثبت نشده است</h5>
-                                <p class="text-muted">به زودی واحدهای این بلاک اضافه خواهد شد</p>
+                                <h5 class="mt-3 text-muted">No units have been registered for this block yet</h5>
+                                <p class="text-muted">Units of this block will be added soon</p>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -304,30 +304,30 @@ if ($block) {
 <?php else: ?>
         <div class="text-center py-5">
             <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
-            <h3 class="mt-3">بلاک مورد نظر یافت نشد</h3>
-            <p class="text-muted">این بلاک در دیتابیس ثبت نشده است</p>
+            <h3 class="mt-3">Block not found</h3>
+            <p class="text-muted">This block is not registered in the database</p>
             <a href="map.php" class="btn btn-primary mt-3">
-                <i class="bi bi-map me-2"></i>بازگشت به نقشه
+                <i class="bi bi-map me-2"></i>Back to Map
             </a>
         </div>
     <?php endif; ?>
 </div>
 
-<!-- Modal جزئیات واحد -->
+<!-- Unit Details Modal -->
 <div class="modal fade" id="unitModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content rounded-4">
             <div class="modal-header bg-soft">
                 <h5 class="modal-title fw-bold" id="unitModalTitle" style="color:#1a3a5c;">
-                    <i class="bi bi-door-closed me-2"></i>جزئیات واحد
+                    <i class="bi bi-door-closed me-2"></i>Unit Details
                 </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div id="unitModalBody"><p class="text-muted text-center py-4">در حال بارگذاری...</p></div>
+                <div id="unitModalBody"><p class="text-muted text-center py-4">Loading...</p></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -340,14 +340,14 @@ var unitFeatures = <?= json_encode($unitFeatures) ?>;
 var unitPayments = <?= json_encode($unitPayments) ?>;
 
 function faRooms(n) {
-    if (n == 2) return '۲ اتاقه';
-    if (n == 3) return '۳ اتاقه';
-    return '۱ اتاقه';
+    if (n == 2) return '2-Bedroom';
+    if (n == 3) return '3-Bedroom';
+    return '1-Bedroom';
 }
 function faStatus(s) {
-    if (s === 'sold') return '<span class="badge bg-danger">فروخته شده</span>';
-    if (s === 'reserved') return '<span class="badge bg-warning text-dark">رزرو شده</span>';
-    return '<span class="badge bg-success">قابل فروش</span>';
+    if (s === 'sold') return '<span class="badge bg-danger">Sold</span>';
+    if (s === 'reserved') return '<span class="badge bg-warning text-dark">Reserved</span>';
+    return '<span class="badge bg-success">For Sale</span>';
 }
 function money(n) {
     var v = parseFloat(n || 0);
@@ -365,19 +365,19 @@ document.addEventListener("DOMContentLoaded", function() {
             if (!u) return;
 
             document.getElementById("unitModalTitle").innerHTML =
-                '<i class="bi bi-door-closed me-2"></i>جزئیات واحد ' + String(u.unit_number) +
-                ' — منزل ' + String(u.floor_number);
+                '<i class="bi bi-door-closed me-2"></i>Unit Details ' + String(u.unit_number) +
+                ' — Floor ' + String(u.floor_number);
 
             var feats = unitFeatures[id] || [];
             var featsHtml = '';
             if (feats.length > 0) {
-                featsHtml = '<div class="mt-3"><div class="fw-bold mb-2"><i class="bi bi-stars me-1"></i>جزئیات واحد:</div><div class="d-flex flex-wrap gap-2">';
+                featsHtml = '<div class="mt-3"><div class="fw-bold mb-2"><i class="bi bi-stars me-1"></i>Unit Features:</div><div class="d-flex flex-wrap gap-2">';
                 for (var k = 0; k < feats.length; k++) {
                     featsHtml += '<span class="badge rounded-pill bg-info-subtle text-info-emphasis p-2"><i class="bi bi-check2-square me-1"></i>' + feats[k][1] + '</span>';
                 }
                 featsHtml += '</div></div>';
             } else {
-                featsHtml = '<div class="mt-3"><div class="fw-bold mb-2"><i class="bi bi-stars me-1"></i>جزئیات واحد:</div><p class="text-muted">جزئیاتی ثبت نشده است</p></div>';
+                featsHtml = '<div class="mt-3"><div class="fw-bold mb-2"><i class="bi bi-stars me-1"></i>Unit Features:</div><p class="text-muted">No features registered</p></div>';
             }
 
             var paid = unitPayments[id] || 0;
@@ -385,21 +385,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
             var html = '' +
             '<table class="table table-bordered detail-table mb-2">' +
-                '<tr><th><i class="bi bi-hash me-1"></i>کد واحد</th><td>' + String(u.unit_code) + '</td></tr>' +
-                '<tr><th><i class="bi bi-layers me-1"></i>منزل / طبقه</th><td>' + String(u.floor_number) + '</td></tr>' +
-                '<tr><th><i class="bi bi-door-closed me-1"></i>شماره واحد</th><td>' + String(u.unit_number) + '</td></tr>' +
-                '<tr><th><i class="bi bi-grid me-1"></i>تعداد واحد در منزل</th><td>' + String(u.units_per_floor) + '</td></tr>' +
-                '<tr><th><i class="bi bi-tags me-1"></i>کتگوری</th><td>' + String(u.category || 'standard') + '</td></tr>' +
-                '<tr><th><i class="bi bi-door-open me-1"></i>تعداد اتاق</th><td>' + faRooms(u.rooms) + '</td></tr>' +
-                '<tr><th><i class="bi bi-rulers me-1"></i>متراژ</th><td>' + money(u.unit_size) + ' متر مربع</td></tr>' +
-                '<tr><th><i class="bi bi-flag me-1"></i>وضعیت</th><td>' + faStatus(u.status) + '</td></tr>';
+                '<tr><th><i class="bi bi-hash me-1"></i>Unit Code</th><td>' + String(u.unit_code) + '</td></tr>' +
+                '<tr><th><i class="bi bi-layers me-1"></i>Floor</th><td>' + String(u.floor_number) + '</td></tr>' +
+                '<tr><th><i class="bi bi-door-closed me-1"></i>Unit Number</th><td>' + String(u.unit_number) + '</td></tr>' +
+                '<tr><th><i class="bi bi-grid me-1"></i>Units per Floor</th><td>' + String(u.units_per_floor) + '</td></tr>' +
+                '<tr><th><i class="bi bi-tags me-1"></i>Category</th><td>' + String(u.category || 'standard') + '</td></tr>' +
+                '<tr><th><i class="bi bi-door-open me-1"></i>Rooms</th><td>' + faRooms(u.rooms) + '</td></tr>' +
+                '<tr><th><i class="bi bi-rulers me-1"></i>Area</th><td>' + money(u.unit_size) + ' Square Meters</td></tr>' +
+                '<tr><th><i class="bi bi-flag me-1"></i>Status</th><td>' + faStatus(u.status) + '</td></tr>';
             if (u.customer_id) {
-                html += '<tr><th><i class="bi bi-person me-1"></i>مشتری</th><td>' + String(u.full_name || '') + (u.fathar_name ? ' (ولد: ' + String(u.fathar_name) + ')' : '') + '</td></tr>';
+                html += '<tr><th><i class="bi bi-person me-1"></i>Customer</th><td>' + String(u.full_name || '') + (u.fathar_name ? ' (Son of: ' + String(u.fathar_name) + ')' : '') + '</td></tr>';
             }
             if (u.total_price) {
-                html += '<tr><th><i class="bi bi-currency-dollar me-1"></i>قیمت مجموعی</th><td>' + money(u.total_price) + ' دالر</td></tr>';
-                html += '<tr><th><i class="bi bi-cash-coin me-1"></i>پرداخت‌شده</th><td>' + money(paid) + ' افغانی</td></tr>';
-                html += '<tr><th><i class="bi bi-hourglass-split me-1"></i>باقی‌مانده</th><td class="text-danger">' + money(remaining) + ' دالر</td></tr>';
+                html += '<tr><th><i class="bi bi-currency-dollar me-1"></i>Total Price</th><td>' + money(u.total_price) + ' USD</td></tr>';
+                html += '<tr><th><i class="bi bi-cash-coin me-1"></i>Paid</th><td>' + money(paid) + ' AFN</td></tr>';
+                html += '<tr><th><i class="bi bi-hourglass-split me-1"></i>Remaining</th><td class="text-danger">' + money(remaining) + ' USD</td></tr>';
             }
             html += '</table>' + featsHtml;
 

@@ -8,7 +8,7 @@ if (!$plot_id) {
     exit;
 }
 
-// گرفتن اطلاعات نمره و مشتری
+// Get plot and customer info
 $sql = "SELECT p.*, c.full_name, c.fathar_name, c.national_id 
         FROM plots_260 p 
         LEFT JOIN customers c ON p.customer_id = c.id 
@@ -19,10 +19,10 @@ $stmt->execute();
 $plot = $stmt->get_result()->fetch_assoc();
 
 if (!$plot) {
-    die("نمره یافت نشد.");
+    die("Plot not found.");
 }
 
-// مجموع پرداختی‌های قبلی
+// Sum of previous payments
 $pay_sql = "SELECT IFNULL(SUM(amount),0) AS paid_amount FROM pay_260 WHERE plot_id=?";
 $pay_stmt = $conn->prepare($pay_sql);
 $pay_stmt->bind_param("i", $plot_id);
@@ -31,7 +31,7 @@ $paid = $pay_stmt->get_result()->fetch_assoc()['paid_amount'];
 
 $remaining = $plot['total_price'] - $paid;
 
-// ثبت پرداخت جدید
+// Insert new payment
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['amount'])) {
     $amount = $_POST['amount'];
 
@@ -40,27 +40,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['amount'])) {
         $insert->bind_param("iid", $plot_id, $plot['customer_id'], $amount);
         $insert->execute();
 
-        // بعد از ثبت پرداخت، چاپ انوایس
+        // After saving the payment, print the invoice
         header("Location: invoice_260.php?plot_id=$plot_id&amount=$amount");
         exit;
     } else {
-        $error = "مبلغ پرداختی باید مثبت و کمتر یا مساوی باقی‌مانده باشد.";
+        $error = "Payment amount must be positive and not exceed the remaining balance.";
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>ثبت پرداختی</title>
+  <title>Record Payment</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body dir="rtl" class="container mt-4">
-  <h2>ثبت پرداختی برای نمره (<?= htmlspecialchars($plot['plot_code']) ?>)</h2>
-  <p>مشتری: <?= htmlspecialchars($plot['full_name']) ?> - <?= htmlspecialchars($plot['fathar_name']) ?> - <?= htmlspecialchars($plot['national_id']) ?></p>
-  <p>قیمت مجموعی: <?= htmlspecialchars($plot['total_price']) ?> دالر</p>
-  <p>پرداخت‌شده: <?= htmlspecialchars($paid) ?> دالر</p>
-  <p>باقی‌مانده: <?= htmlspecialchars($remaining) ?> دالر</p>
+<body class="container mt-4">
+  <h2>Record Payment for Plot (<?= htmlspecialchars($plot['plot_code']) ?>)</h2>
+  <p>Customer: <?= htmlspecialchars($plot['full_name']) ?> - <?= htmlspecialchars($plot['fathar_name']) ?> - <?= htmlspecialchars($plot['national_id']) ?></p>
+  <p>Total Price: <?= htmlspecialchars($plot['total_price']) ?> USD</p>
+  <p>Paid: <?= htmlspecialchars($paid) ?> USD</p>
+  <p>Remaining: <?= htmlspecialchars($remaining) ?> USD</p>
 
   <?php if (!empty($error)): ?>
     <div class="alert alert-danger"><?= $error ?></div>
@@ -69,16 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['amount'])) {
   <?php if ($remaining > 0): ?>
     <form method="post" class="row g-3">
       <div class="col-md-4">
-        <label class="form-label">مبلغ پرداختی</label>
+        <label class="form-label">Payment Amount</label>
         <input type="number" step="0.01" name="amount" class="form-control" required>
       </div>
       <div class="col-12">
-        <button type="submit" class="btn btn-success">ثبت پرداخت</button>
-        <a href="list_plots_260.php" class="btn btn-secondary">بازگشت</a>
+        <button type="submit" class="btn btn-success">Save Payment</button>
+        <a href="list_plots_260.php" class="btn btn-secondary">Back</a>
       </div>
     </form>
   <?php else: ?>
-    <div class="alert alert-info">این نمره کاملاً پرداخت شده است.</div>
+    <div class="alert alert-info">This plot is fully paid.</div>
   <?php endif; ?>
 </body>
 </html>

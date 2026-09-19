@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h5><i class="bi bi-building me-2"></i>شرکت خاور</h5>
+                    <h5><i class="bi bi-building me-2"></i>Khawar Company</h5>
                     <p class="small opacity-75">
-                        شرکت ساختمانی و انکشافی خاور با سال‌ها تجربه در زمینه ساخت و ساز، فروش و مدیریت املاک، آماده ارائه بهترین خدمات به شما مشتریان گرامی می‌باشد.
+                        Khawar Construction & Development Company, with years of experience in construction, real estate sales and management, is ready to provide the best services to our valued customers.
                     </p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/share/1DxwejASUk/"><i class="bi bi-facebook"></i></a>
@@ -15,29 +15,29 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-4">
-                    <h5>لینک‌های سریع</h5>
+                    <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="index.php"><i class="bi bi-chevron-left small me-1"></i>خانه</a></li>
-                        <li class="mb-2"><a href="about.php"><i class="bi bi-chevron-left small me-1"></i>درباره ما</a></li>
-                        <li class="mb-2"><a href="services.php"><i class="bi bi-chevron-left small me-1"></i>خدمات</a></li>
-                        <li class="mb-2"><a href="map.php"><i class="bi bi-chevron-left small me-1"></i>نقشه نمرات</a></li>
-                        <li class="mb-2"><a href="contact.php"><i class="bi bi-chevron-left small me-1"></i>تماس با ما</a></li>
+                        <li class="mb-2"><a href="index.php"><i class="bi bi-chevron-right small me-1"></i>Home</a></li>
+                        <li class="mb-2"><a href="about.php"><i class="bi bi-chevron-right small me-1"></i>About Us</a></li>
+                        <li class="mb-2"><a href="services.php"><i class="bi bi-chevron-right small me-1"></i>Services</a></li>
+                        <li class="mb-2"><a href="map.php"><i class="bi bi-chevron-right small me-1"></i>Plots Map</a></li>
+                        <li class="mb-2"><a href="contact.php"><i class="bi bi-chevron-right small me-1"></i>Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-6 col-md-6 mb-4">
-                    <h5>اطلاعات تماس</h5>
+                    <h5>Contact Information</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">دفتر مرکزی:</span> سرک عمومی شیرپور، خانه نمبر 27، کابل-افغانستان</li>
-                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">دفتر ساحوی:</span> سرک عمومی شیرپور، خانه نمبر 27، کابل-افغانستان</li>
-                        <li class="mb-2"><i class="bi bi-telephone me-2"></i> 8168 501 074 93+ / 4444 588 078 93+ / 0635 853 070 93+ </li>
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">Head Office:</span> Sherpur Main Road, House No. 27, Kabul - Afghanistan</li>
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">Field Office:</span> Sherpur Main Road, House No. 27, Kabul - Afghanistan</li>
+                        <li class="mb-2"><i class="bi bi-telephone me-2"></i> +93 074 501 6818 / +93 078 588 4444 / +93 070 853 0635 </li>
                         <li class="mb-2"><i class="bi bi-envelope me-2"></i> info@kabulnewcity.com / properties@kabulnewcity.com / invest@kabulnewcity.com </li>
-                        <li class="mb-2"><i class="bi bi-clock me-2"></i>شنبه - پنجشنبه: 08:00 - 04:00</li>
+                        <li class="mb-2"><i class="bi bi-clock me-2"></i>Saturday - Thursday: 08:00 - 16:00</li>
                     </ul>
                 </div>
             </div>
             <hr class="border-light opacity-25">
             <div class="text-center">
-                <p class="small opacity-75 mb-0">© 2026 KhawarCMS - تمامی حقوق محفوظ است</p>
+                <p class="small opacity-75 mb-0">© 2026 KhawarCMS - All Rights Reserved</p>
             </div>
         </div>
     </footer>

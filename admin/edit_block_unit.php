@@ -12,7 +12,7 @@ if (!$unit) {
     exit;
 }
 
-// جزئیات فعلی واحد
+// Current unit details
 $curFeatures = [];
 $fRes = $conn->query("SELECT feature_key FROM block_unit_features WHERE unit_id = $id");
 while ($f = $fRes->fetch_assoc()) {
@@ -36,7 +36,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
-    // واحد فروخته‌شده — فقط اجازه ویرایش جزئیات (نه تغیر در معلومات فروش)
+    // Sold unit — only allow editing details (not sale information)
     if ($unit['status'] == 'sold') {
         $features = $_POST['features'] ?? [];
         if (!is_array($features) && $features !== '' && $features !== null) {
@@ -60,7 +60,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
     $unit_code = $unit['block_code'] . '-' . $floor . '-' . $unit_no;
 
-    // جلوگیری از تکراری بودن کد واحد
+    // Prevent duplicate unit code
     $check = $conn->prepare("SELECT id FROM block_units WHERE block_id = ? AND floor_number = ? AND unit_number = ? AND id != ?");
     $check->bind_param("iisi", $unit['block_id'], $floor, $unit_no, $id);
     $check->execute();
@@ -73,7 +73,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     }
     $check->close();
 
-    // محاسبه متراژ در صورت تغییر تعداد واحد در منزل
+    // Recalculate size when units per floor change
     $usable = intval($unit['size']) - intval($unit['staircase_size']);
     $unit_size = $usable > 0 ? round($usable / $units_per_fl, 2) : $unit['unit_size'];
 
@@ -82,13 +82,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $stmt->execute();
     $stmt->close();
 
-    // هماهنگ‌سازی واحدهای قبلی همین منزل
+    // Sync existing units on the same floor
     $sync = $conn->prepare("UPDATE block_units SET units_per_floor=?, category=? WHERE block_id=? AND floor_number=? AND status='available' AND id != ?");
     $sync->bind_param("isiii", $units_per_fl, $category, $unit['block_id'], $floor, $id);
     $sync->execute();
     $sync->close();
 
-    // ثبت جزئیات واحد
+    // Save unit details
     $features = $_POST['features'] ?? [];
     if (!is_array($features) && $features !== '' && $features !== null) {
         $features = array($features);
@@ -113,7 +113,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY full_name ASC");
 ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -123,7 +123,7 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
     <meta name="author" content="Lukasz Holeczek">
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-    <title>ویرایش اپارتمان / واحد</title>
+    <title>Edit Apartment / Unit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
@@ -140,17 +140,17 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="blocks.php">بلاک‌ها</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="blocks.php">Blocks</a>
             </li>
-            <li class="breadcrumb-item"><a href="block_units.php?block_id=<?= $unit['block_id'] ?>">واحدها</a>
+            <li class="breadcrumb-item"><a href="block_units.php?block_id=<?= $unit['block_id'] ?>">Units</a>
             </li>
-            <li class="breadcrumb-item active">ویرایش اپارتمان</li>
+            <li class="breadcrumb-item active">Edit Apartment</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn btn-secondary" href="block_units.php?block_id=<?= $unit['block_id'] ?>"><i class="icon-graph"></i> &nbsp;بازگشت به واحدها</a>
+                    <a class="btn btn-secondary" href="block_units.php?block_id=<?= $unit['block_id'] ?>"><i class="icon-graph"></i> &nbsp;Back to Units</a>
                 </div>
             </li>
         </ol>
@@ -158,52 +158,52 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
         <div class="container-fluid">
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
-                <div class="alert alert-danger mt-3">در این منزل همین شماره واحد قبلاً ثبت شده است.</div>
+                <div class="alert alert-danger mt-3">This unit number already exists on this floor.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
-                <div class="alert alert-danger mt-3">ورودی نامعتبر است.</div>
+                <div class="alert alert-danger mt-3">Invalid input.</div>
             <?php endif; ?>
 
-            <h2 class="mb-4">ویرایش اپارتمان: <?= htmlspecialchars($unit['unit_code']) ?></h2>
+            <h2 class="mb-4">Edit Apartment: <?= htmlspecialchars($unit['unit_code']) ?></h2>
 
             <?php if ($unit['status'] == 'sold' && $unit['total_price'] !== null): ?>
-                <!-- ========== معلومات فروش (قابل مشاهده بعد از فروش) ========== -->
+                <!-- ========== Sale information (visible after the sale) ========== -->
                 <div class="alert alert-secondary mt-2">
-                    این واحد فروخته شده است — فقط «جزئیات واحد» قابل تغیر است و تغییر در منزل/شماره/کتگوری اجازه ندارد.
+                    This unit is sold &mdash; only &quot;Unit Details&quot; can be changed; floor/number/category cannot be modified.
                 </div>
                 <div class="card mb-4">
-                    <div class="card-header bg-success text-white"><strong>معلومات فروش</strong></div>
+                    <div class="card-header bg-success text-white"><strong>Sale Information</strong></div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4"><strong>قیمت واحد (فی متر):</strong> <?= htmlspecialchars($unit['unit_price_per_meter']) ?> دالر</div>
-                            <div class="col-md-4"><strong>قیمت مجموعی:</strong> <?= htmlspecialchars($unit['total_price']) ?> دالر</div>
-                            <div class="col-md-4"><strong>تاریخ فروش:</strong> <?= htmlspecialchars($unit['sold_at']) ?></div>
+                            <div class="col-md-4"><strong>Unit Price (per sqm):</strong> <?= htmlspecialchars($unit['unit_price_per_meter']) ?> USD</div>
+                            <div class="col-md-4"><strong>Total Price:</strong> <?= htmlspecialchars($unit['total_price']) ?> USD</div>
+                            <div class="col-md-4"><strong>Sale Date:</strong> <?= htmlspecialchars($unit['sold_at']) ?></div>
                         </div>
                     </div>
                 </div>
             <?php endif; ?>
 <div class="card">
-                <div class="card-header"><strong>بلاک: <?= htmlspecialchars($unit['block_code']) ?> <?php if (!empty($unit['block_name'])): ?>(<?= htmlspecialchars($unit['block_name']) ?>)<?php endif; ?></strong></div>
+                <div class="card-header"><strong>Block: <?= htmlspecialchars($unit['block_code']) ?> <?php if (!empty($unit['block_name'])): ?>(<?= htmlspecialchars($unit['block_name']) ?>)<?php endif; ?></strong></div>
                 <div class="card-body">
                     <form method="POST" class="row g-3">
                         <div class="col-md-3">
-                            <label class="form-label">منزل / طبقه <span class="text-danger">*</span></label>
+                            <label class="form-label">Floor <span class="text-danger">*</span></label>
                             <input type="number" name="floor_number" class="form-control" min="1" value="<?= htmlspecialchars($unit['floor_number']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">شماره واحد <span class="text-danger">*</span></label>
+                            <label class="form-label">Unit Number <span class="text-danger">*</span></label>
                             <input type="text" id="unit_no" name="unit_number" class="form-control" value="<?= htmlspecialchars($unit['unit_number']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">تعداد واحد در منزل <span class="text-danger">*</span></label>
+                            <label class="form-label">Units Per Floor <span class="text-danger">*</span></label>
                             <select id="units_per_floor" name="units_per_floor" class="form-select" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                                <option value="1" <?= $unit['units_per_floor'] == '1' ? 'selected' : '' ?>>۱ واحد</option>
-                                <option value="2" <?= $unit['units_per_floor'] == '2' ? 'selected' : '' ?>>۲ واحد</option>
-                                <option value="3" <?= $unit['units_per_floor'] == '3' ? 'selected' : '' ?>>۳ واحد</option>
-                                <option value="4" <?= $unit['units_per_floor'] == '4' ? 'selected' : '' ?>>۴ واحد</option>
+                                <option value="1" <?= $unit['units_per_floor'] == '1' ? 'selected' : '' ?>>1 Unit</option>
+                                <option value="2" <?= $unit['units_per_floor'] == '2' ? 'selected' : '' ?>>2 Units</option>
+                                <option value="3" <?= $unit['units_per_floor'] == '3' ? 'selected' : '' ?>>3 Units</option>
+                                <option value="4" <?= $unit['units_per_floor'] == '4' ? 'selected' : '' ?>>4 Units</option>
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">کتگوری</label>
+                            <label class="form-label">Category</label>
                             <input type="text" name="category" class="form-control" list="cat_options" value="<?= htmlspecialchars($unit['category']) ?>" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                             <datalist id="cat_options">
                                 <?php foreach ($UNIT_CATEGORIES as $cat): ?>
@@ -212,29 +212,29 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
                             </datalist>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">متراژ واحد</label>
-                            <div class="form-control bg-light fw-bold" id="unit_size_display"><?= htmlspecialchars($unit['unit_size']) ?> متر مربع</div>
+                            <label class="form-label">Unit Area</label>
+                            <div class="form-control bg-light fw-bold" id="unit_size_display"><?= htmlspecialchars($unit['unit_size']) ?> sqm</div>
                         </div>
 <div class="col-md-3">
-                            <label class="form-label">تعداد اتاق</label>
+                            <label class="form-label">Rooms</label>
                             <select name="rooms" class="form-select" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                                <option value="1" <?= $unit['rooms'] == '1' ? 'selected' : '' ?>>۱ اتاقه</option>
-                                <option value="2" <?= $unit['rooms'] == '2' ? 'selected' : '' ?>>۲ اتاقه</option>
-                                <option value="3" <?= $unit['rooms'] == '3' ? 'selected' : '' ?>>۳ اتاقه</option>
+                                <option value="1" <?= $unit['rooms'] == '1' ? 'selected' : '' ?>>1 Room</option>
+                                <option value="2" <?= $unit['rooms'] == '2' ? 'selected' : '' ?>>2 Rooms</option>
+                                <option value="3" <?= $unit['rooms'] == '3' ? 'selected' : '' ?>>3 Rooms</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">وضعیت</label>
+                            <label class="form-label">Status</label>
                             <select name="status" class="form-select" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                                <option value="available" <?= $unit['status'] == 'available' ? 'selected' : '' ?>>قابل فروش</option>
-                                <option value="reserved" <?= $unit['status'] == 'reserved' ? 'selected' : '' ?>>رزرو شده</option>
-                                <option value="sold" <?= $unit['status'] == 'sold' ? 'selected' : '' ?>>فروخته شده</option>
+                                <option value="available" <?= $unit['status'] == 'available' ? 'selected' : '' ?>>Available for Sale</option>
+                                <option value="reserved" <?= $unit['status'] == 'reserved' ? 'selected' : '' ?>>Reserved</option>
+                                <option value="sold" <?= $unit['status'] == 'sold' ? 'selected' : '' ?>>Sold</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">مشتری</label>
+                            <label class="form-label">Customer</label>
                             <select name="customer_id" class="form-select" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                                <option value="">-- بدون مشتری --</option>
+                                <option value="">-- No Customer --</option>
                                 <?php while ($c = $customersResult->fetch_assoc()): ?>
                                 <option value="<?= $c['id'] ?>" <?= $unit['customer_id'] == $c['id'] ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($c['full_name']) ?>
@@ -243,7 +243,7 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
                             </select>
                         </div>
 <div class="col-12 mt-2">
-                            <label class="form-label fw-bold">جزئیات واحد (اتاق‌ها و امکانات - اختیاری)</label>
+                            <label class="form-label fw-bold">Unit Details (rooms &amp; amenities - optional)</label>
                             <div class="row">
                                 <?php foreach ($UNIT_FEATURES as $key => $label): ?>
                                 <div class="col-md-2 form-check ms-1">
@@ -254,8 +254,8 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
                             </div>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
-                            <a href="block_units.php?block_id=<?= $unit['block_id'] ?>" class="btn btn-secondary">بازگشت</a>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                            <a href="block_units.php?block_id=<?= $unit['block_id'] ?>" class="btn btn-secondary">Back</a>
                         </div>
                     </form>
                 </div>
@@ -282,7 +282,7 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
     <script src="style/js/views/main.js"></script>
 
     <script>
-    // ===== به‌روزرسانی متراژ با تغیر تعداد واحد در منزل =====
+    // ===== Update size when units per floor change =====
     var blockSize   = <?= json_encode((float)$unit['size']) ?>;
     var blockStairs = <?= json_encode((float)$unit['staircase_size']) ?>;
 
@@ -290,7 +290,7 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
         var units = parseInt(this.value) || 1;
         var usable = blockSize - blockStairs;
         var per = usable > 0 ? usable / units : 0;
-        $('#unit_size_display').text(per > 0 ? per.toFixed(2) + ' متر مربع' : '-');
+        $('#unit_size_display').text(per > 0 ? per.toFixed(2) + ' sqm' : '-');
     });
     </script>
 

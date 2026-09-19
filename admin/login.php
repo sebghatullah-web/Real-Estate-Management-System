@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? '';
 
     if (empty($username) || empty($password)) {
-        $error = 'لطفا نام کاربری و رمز عبور را وارد کنید';
+        $error = 'Please enter username and password';
     } else {
         try {
             $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = :username LIMIT 1");
@@ -34,26 +34,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: index.php');
                 exit;
             } else {
-                $error = 'نام کاربری یا رمز عبور اشتباه است';
+                $error = 'Invalid username or password';
             }
         } catch (PDOException $e) {
             // Check if admins table doesn't exist yet
             if ($e->getCode() == '42S02') {
-                $error = 'جدول مدیران وجود ندارد. لطفا ابتدا ثبت نام کنید.';
+                $error = 'Admins table does not exist. Please register first.';
             } else {
-                $error = 'خطا در اتصال به دیتابیس: ' . $e->getMessage();
+                $error = 'Database connection error: ' . $e->getMessage();
             }
         }
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ورود به سیستم - KHAWAR DB</title>
+    <title>Login - KHAWAR DB</title>
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <link href="style/dest/style.css" rel="stylesheet">
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-header">
                 <span class="brand-logo"><i class="icon-screen-desktop"></i></span>
                 <h3>KHAWAR DB</h3>
-                <p>به پنل مدیریت خوش آمدید</p>
+                <p>Welcome to the Admin Panel</p>
             </div>
             <div class="card-body">
                 <?php if ($error): ?>
@@ -183,20 +183,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <form method="POST" action="">
                     <div class="form-group">
-                        <label for="username"><i class="icon-user"></i> نام کاربری</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="نام کاربری خود را وارد کنید" required autofocus>
+                        <label for="username"><i class="icon-user"></i> Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required autofocus>
                     </div>
                     <div class="form-group">
-                        <label for="password"><i class="icon-lock"></i> رمز عبور</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="رمز عبور خود را وارد کنید" required>
+                        <label for="password"><i class="icon-lock"></i> Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
                     </div>
                     <button type="submit" class="btn-login">
-                        <i class="icon-login"></i> ورود به سیستم
+                        <i class="icon-login"></i> Login
                     </button>
                 </form>
 
                 <div class="register-link">
-                    حساب کاربری ندارید؟ <a href="register.php">ثبت نام کنید</a>
+                    Don&#039;t have an account? <a href="register.php">Register</a>
                 </div>
             </div>
         </div>

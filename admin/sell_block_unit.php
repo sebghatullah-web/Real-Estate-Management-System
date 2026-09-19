@@ -18,7 +18,7 @@ $stmt->execute();
 $unit = $stmt->get_result()->fetch_assoc();
 
 if (!$unit) {
-    die("اپارتمان یافت نشد.");
+    die("Apartment not found.");
 }
 
 if ($unit['status'] != 'available') {
@@ -43,16 +43,16 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'
     $check->close();
 
     if (!$exists) {
-        $error = "مشتری انتخاب‌شده معتبر نیست!";
+        $error = "Selected customer is not valid!";
     } elseif ($unit_price_per_meter <= 0 || $gov_cost_per_meter < 0 || $infra_cost_per_meter < 0) {
-        $error = "لطفاً قیمت فی متر مربع را درست وارد کنید (قیمت واحد باید بیشتر از صفر باشد).";
+        $error = "Please enter a valid price per square meter (unit price must be greater than zero).";
     } else {
         $size = floatval($unit['unit_size']);
 
-        $unit_price  = round($unit_price_per_meter * $size, 2); // قیمت کل واحد
-        $gov_cost    = round($gov_cost_per_meter   * $size, 2); // خدمات دولت
-        $infra_cost  = round($infra_cost_per_meter * $size, 2); // خدمات زیربنا
-        $total_price = round($unit_price + $gov_cost + $infra_cost, 2); // قیمت مجموعی
+        $unit_price  = round($unit_price_per_meter * $size, 2); // total unit price
+        $gov_cost    = round($gov_cost_per_meter   * $size, 2); // government service fee
+        $infra_cost  = round($infra_cost_per_meter * $size, 2); // infrastructure service fee
+        $total_price = round($unit_price + $gov_cost + $infra_cost, 2); // total price
 
         $update = $conn->prepare("UPDATE block_units SET
             status='sold',
@@ -75,10 +75,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'
     }
 }
 
-$roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه');
+$roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
 ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -87,8 +87,8 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
     <meta name="description" content="CoreUI Bootstrap 4 Admin Template">
     <meta name="author" content="Lukasz Holeczek">
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
-    <title>فروش اپارتمان / واحد</title>
-    <!-- Select2 برای جستجوی مشتری -->
+    <title>Sell Apartment / Unit</title>
+    <!-- Select2 for customer search -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
@@ -106,37 +106,37 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="blocks.php">بلاک‌ها</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="blocks.php">Blocks</a>
             </li>
-            <li class="breadcrumb-item"><a href="block_units.php?block_id=<?= $unit['block_id'] ?>">واحدها</a>
+            <li class="breadcrumb-item"><a href="block_units.php?block_id=<?= $unit['block_id'] ?>">Units</a>
             </li>
-            <li class="breadcrumb-item active">فروش اپارتمان</li>
+            <li class="breadcrumb-item active">Sell Apartment</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn btn-secondary" href="block_units.php?block_id=<?= $unit['block_id'] ?>"><i class="icon-graph"></i> &nbsp;بازگشت به واحدها</a>
+                    <a class="btn btn-secondary" href="block_units.php?block_id=<?= $unit['block_id'] ?>"><i class="icon-graph"></i> &nbsp;Back to Units</a>
                 </div>
             </li>
         </ol>
 
         <div class="container-fluid">
 
-            <h2 class="mb-4">فروش اپارتمان / واحد</h2>
+            <h2 class="mb-4">Sell Apartment / Unit</h2>
 
-            <!-- ========== معلومات اپارتمان ========== -->
+            <!-- ========== Apartment information ========== -->
             <div class="card mb-4">
-                <div class="card-header"><strong>معلومات اپارتمان</strong></div>
+                <div class="card-header"><strong>Apartment Information</strong></div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3"><strong>کد اپارتمان:</strong> <?= htmlspecialchars($unit['unit_code']) ?></div>
-                        <div class="col-md-3"><strong>بلاک:</strong> <?= htmlspecialchars($unit['block_code']) ?> (<?= htmlspecialchars($unit['block_name'] ?? '') ?>)</div>
-                        <div class="col-md-2"><strong>منزل:</strong> <?= htmlspecialchars($unit['floor_number']) ?></div>
-                        <div class="col-md-2"><strong>کتگوری:</strong> <?= htmlspecialchars(unit_category_label($unit['category'])) ?></div>
-                        <div class="col-md-2"><strong>اتاق:</strong> <?= $roomLabel ?></div>
-                        <div class="col-md-2"><strong>متراژ:</strong> <?= htmlspecialchars($unit['unit_size']) ?> متر مربع</div>
-                        <div class="col-md-2"><strong>واحد/منزل:</strong> <?= htmlspecialchars($unit['units_per_floor']) ?> واحد</div>
+                        <div class="col-md-3"><strong>Apartment Code:</strong> <?= htmlspecialchars($unit['unit_code']) ?></div>
+                        <div class="col-md-3"><strong>Block:</strong> <?= htmlspecialchars($unit['block_code']) ?> (<?= htmlspecialchars($unit['block_name'] ?? '') ?>)</div>
+                        <div class="col-md-2"><strong>Floor:</strong> <?= htmlspecialchars($unit['floor_number']) ?></div>
+                        <div class="col-md-2"><strong>Category:</strong> <?= htmlspecialchars(unit_category_label($unit['category'])) ?></div>
+                        <div class="col-md-2"><strong>Rooms:</strong> <?= $roomLabel ?></div>
+                        <div class="col-md-2"><strong>Area:</strong> <?= htmlspecialchars($unit['unit_size']) ?> sqm</div>
+                        <div class="col-md-2"><strong>Units/Floor:</strong> <?= htmlspecialchars($unit['units_per_floor']) ?></div>
                     </div>
                 </div>
             </div>
@@ -145,15 +145,15 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
                 <div class="alert alert-danger"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
 
-<!-- ========== فرم فروش ========== -->
+<!-- ========== Sale form ========== -->
             <div class="card">
-                <div class="card-header"><strong>ثبت فروش — قیمت‌ها نظر به فی متر مربع محاسبه می‌شوند</strong></div>
+                <div class="card-header"><strong>Register Sale &mdash; prices are calculated per square meter</strong></div>
                 <div class="card-body">
                     <form method="POST" class="row g-3">
                         <div class="col-md-6">
-                            <label class="form-label">انتخاب مشتری <span class="text-danger">*</span></label>
+                            <label class="form-label">Select Customer <span class="text-danger">*</span></label>
                             <select name="customer_id" class="form-select select2" required>
-                                <option value="">جستجو و انتخاب مشتری...</option>
+                                <option value="">Search &amp; select customer...</option>
                                 <?php foreach ($customers as $c): ?>
                                     <option value="<?= $c['id'] ?>">
                                         <?= htmlspecialchars($c['full_name']) ?> -
@@ -164,58 +164,58 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">متراژ واحد (متر مربع)</label>
+                            <label class="form-label">Unit Area (sqm)</label>
                             <div class="form-control bg-light fw-bold" id="size_display"><?= htmlspecialchars($unit['unit_size']) ?></div>
                         </div>
 <div class="col-md-4">
-                            <label class="form-label">قیمت واحد (فی متر مربع) <span class="text-danger">*</span></label>
+                            <label class="form-label">Unit Price (per sqm) <span class="text-danger">*</span></label>
                             <input type="number" step="0.01" min="0.01" id="unit_rate" name="unit_price_per_meter" class="form-control" required>
-                            <small class="text-muted">مثلاً ۳۵۰ دالر فی متر مربع</small>
+                            <small class="text-muted">e.g. 350 USD per square meter</small>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">پول خدمات دولت (فی متر مربع)</label>
+                            <label class="form-label">Government Services (per sqm)</label>
                             <input type="number" step="0.01" min="0" id="gov_rate" name="gov_cost_per_meter" class="form-control" value="0">
-                            <small class="text-muted">مثلاً ۱۰ دالر فی متر مربع</small>
+                            <small class="text-muted">e.g. 10 USD per square meter</small>
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">پول خدمات زیربنا (فی متر مربع)</label>
+                            <label class="form-label">Infrastructure Services (per sqm)</label>
                             <input type="number" step="0.01" min="0" id="infra_rate" name="infra_cost_per_meter" class="form-control" value="0">
-                            <small class="text-muted">مثلاً ۸ دالر فی متر مربع</small>
+                            <small class="text-muted">e.g. 8 USD per square meter</small>
                         </div>
 
-                        <!-- ========== پیش‌نمایش محاسبه ========== -->
+                        <!-- ========== Calculation preview ========== -->
                         <div class="col-12">
                             <div class="table-responsive">
                                 <table class="table table-bordered mt-2 mb-0">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>شرح</th>
-                                            <th>نرخ فی متر</th>
-                                            <th>متراژ</th>
-                                            <th>مبلغ (دالر)</th>
+                                            <th>Description</th>
+                                            <th>Rate / sqm</th>
+                                            <th>Area (sqm)</th>
+                                            <th>Amount (USD)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>قیمت واحد</td>
+                                            <td>Unit Price</td>
                                             <td id="pv_unit_rate">-</td>
                                             <td id="pv_size"><?= htmlspecialchars($unit['unit_size']) ?></td>
                                             <td><strong id="pv_unit_price">-</strong></td>
                                         </tr>
                                         <tr>
-                                            <td>خدمات دولت</td>
+                                            <td>Government Fee</td>
                                             <td id="pv_gov_rate">-</td>
                                             <td id="pv_size_gov"><?= htmlspecialchars($unit['unit_size']) ?></td>
                                             <td id="pv_gov_cost">-</td>
                                         </tr>
                                         <tr>
-                                            <td>خدمات زیربنا</td>
+                                            <td>Infrastructure Fee</td>
                                             <td id="pv_infra_rate">-</td>
                                             <td id="pv_size_infra"><?= htmlspecialchars($unit['unit_size']) ?></td>
                                             <td id="pv_infra_cost">-</td>
                                         </tr>
                                         <tr class="table-success">
-                                            <td colspan="3" class="text-center fw-bold">قیمت مجموعی</td>
+                                            <td colspan="3" class="text-center fw-bold">Total Price</td>
                                             <td><strong id="pv_total">-</strong></td>
                                         </tr>
                                     </tbody>
@@ -226,10 +226,10 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
                         <div class="col-12">
                             <p class="text-muted small mb-2">
                                 <i class="icon-info"></i>
-                                قیمت واحد، پول خدمات دولت و پول خدمات زیربنا هر سه نظر به فی متر مربع محاسبه و در وقت فروش ثبت می‌شوند؛ چون ممکن است برای هر مشتری فرق کند.
+                                The unit price, government service fee and infrastructure service fee are all calculated per square meter and recorded at the time of sale, because they may differ for each customer.
                             </p>
-                            <button type="submit" name="sell_unit" class="btn btn-success btn-lg">ثبت فروش</button>
-                            <a href="block_units.php?block_id=<?= $unit['block_id'] ?>" class="btn btn-secondary btn-lg">بازگشت</a>
+                            <button type="submit" name="sell_unit" class="btn btn-success btn-lg">Confirm Sale</button>
+                            <a href="block_units.php?block_id=<?= $unit['block_id'] ?>" class="btn btn-secondary btn-lg">Back</a>
                         </div>
                     </form>
                 </div>
@@ -259,13 +259,13 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
 
     <script>
     $(document).ready(function() {
-        // جستجوی مشتری
+        // Customer search
         $('.select2').select2({
-            placeholder: "جستجو مشتری...",
+            placeholder: "Search customer...",
             allowClear: true
         });
 
-        // ===== محاسبه زنده قیمت‌ها =====
+        // ===== Live price calculation =====
         var unitSize = <?= json_encode((float)$unit['unit_size']) ?>;
 
         function fmt(n) {
@@ -277,10 +277,10 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
             var gr = parseFloat($('#gov_rate').val()) || 0;
             var ir = parseFloat($('#infra_rate').val()) || 0;
 
-            var up = ur * unitSize;   // قیمت واحد
-            var gc = gr * unitSize;   // خدمات دولت
-            var ic = ir * unitSize;   // خدمات زیربنا
-            var tp = up + gc + ic;    // قیمت مجموعی
+            var up = ur * unitSize;   // unit price
+            var gc = gr * unitSize;   // government service fee
+            var ic = ir * unitSize;   // infrastructure service fee
+            var tp = up + gc + ic;    // total price
 
             $('#pv_unit_rate').text(ur > 0 ? ur : '-');
             $('#pv_gov_rate').text(gr > 0 ? gr : '-');

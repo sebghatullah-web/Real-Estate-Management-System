@@ -15,7 +15,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
     if ($category === '') $category = 'standard';
 
-    // جدا کردن شماره‌های واحد (چند شماره با کامه «,»)
+    // Split unit numbers (several numbers separated by comma)
     $unit_numbers = [];
     foreach (explode(',', $unit_no_raw) as $part) {
         $num = trim($part);
@@ -27,7 +27,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
-    // دریافت معلومات بلاک
+    // Get block info
     $bResult = $conn->query("SELECT * FROM blocks WHERE id = $block_id");
     $block = $bResult->fetch_assoc();
 
@@ -36,13 +36,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
-    // شماره منزل نباید بیشتر از تعداد منزل‌های بلاک باشد
+    // Floor number must not exceed the block's floor count
     if ($floor > intval($block['floors_count'])) {
         header("Location: block_units.php?block_id=$block_id&error=floor");
         exit;
     }
 
-    // متراژ هر واحد در این منزل = (سایز بلاک − راه پله) ÷ تعداد واحد در منزل
+    // Unit size on this floor = (block size − staircase) ÷ units per floor
     $usable = intval($block['size']) - intval($block['staircase_size']);
     if ($usable <= 0) {
         header("Location: block_units.php?block_id=$block_id&error=size");
@@ -58,7 +58,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $stmt  = $conn->prepare("INSERT INTO block_units (block_id, floor_number, units_per_floor, category, unit_number, unit_code, rooms, unit_size, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     foreach ($unit_numbers as $unit_no) {
-        // جلوگیری از تکراری بودن شماره واحد در همین منزل
+        // Prevent duplicate unit number on the same floor
         $check->bind_param("iis", $block_id, $floor, $unit_no);
         $check->execute();
         $exists = $check->get_result()->fetch_assoc();
@@ -79,13 +79,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $stmt->close();
 
     if ($added > 0) {
-        // هماهنگ‌سازی واحدهای قبلی همین منزل (تعداد واحد و کتگوری)
+        // Sync existing units on this floor (unit count and category)
         $sync = $conn->prepare("UPDATE block_units SET units_per_floor=?, category=? WHERE block_id=? AND floor_number=? AND status='available'");
         $sync->bind_param("isii", $units_per_fl, $category, $block_id, $floor);
         $sync->execute();
         $sync->close();
 
-        // ثبت جزئیات واحدها (block_unit_features)
+        // Save unit details (block_unit_features)
         $features = $_POST['features'] ?? [];
         if (!is_array($features) && $features !== '' && $features !== null) {
             $features = array($features);

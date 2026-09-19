@@ -11,7 +11,7 @@ if (!$unit_id) {
     exit;
 }
 
-// معلومات اپارتمان/واحد به همراه مشتری و بلاک
+// Apartment/unit info with customer and block
 $sql = "SELECT bu.*, c.full_name, c.fathar_name, c.national_id, c.phone, c.address,
                b.block_code, b.block_name
         FROM block_units bu
@@ -24,10 +24,10 @@ $stmt->execute();
 $unit = $stmt->get_result()->fetch_assoc();
 
 if (!$unit) {
-    die("اپارتمان یافت نشد.");
+    die("Apartment not found.");
 }
 
-// مجموع پرداخت‌ها و آخرین پرداخت
+// Total payments and last payment
 $payStmt = $conn->prepare("SELECT IFNULL(SUM(amount),0) AS paid_total FROM pay_block_units WHERE unit_id = ?");
 $payStmt->bind_param("i", $unit_id);
 $payStmt->execute();
@@ -40,31 +40,31 @@ $lastPay = $lastStmt->get_result()->fetch_assoc();
 
 $remaining  = (float)$unit['total_price'] - (float)$paidTotal;
 $invoice_no = 'INV-A-' . date('Y') . '-' . str_pad((string)($lastPay['id'] ?? $unit_id), 5, '0', STR_PAD_LEFT);
-$date_str   = date('Y-m-d', strtotime($lastPay['payment_date'] ?? 'now')) . ' ساعت ' . date('H:i', strtotime($lastPay['payment_date'] ?? 'now'));
+$date_str   = date('Y-m-d', strtotime($lastPay['payment_date'] ?? 'now')) . ' at ' . date('H:i', strtotime($lastPay['payment_date'] ?? 'now'));
 
 require_once __DIR__ . '/includes/invoice_common.php';
 
-invoice_a4_head('انوایس پرداختی — اپارتمان ' . htmlspecialchars($unit['unit_code'] ?? ''));
-invoice_a4_toolbar('list_sold_units.php', 'بازگشت به لیست فروشات');
-invoice_a4_open($invoice_no, $date_str, 'انوایس پرداختی', 'PAYMENT INVOICE');
+invoice_a4_head('Payment Invoice — Apartment ' . htmlspecialchars($unit['unit_code'] ?? ''));
+invoice_a4_toolbar('list_sold_units.php', 'Back to Sold List');
+invoice_a4_open($invoice_no, $date_str, 'Payment Invoice', 'PAYMENT INVOICE');
 invoice_a4_billto($unit);
 
-// ---------- جزئیات اپارتمان ----------
-$roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه');
+// ---------- Apartment details ----------
+$roomLabel = $unit['rooms'] == 2 ? '2 Rooms' : ($unit['rooms'] == 3 ? '3 Rooms' : '1 Room');
 $catLabel = unit_category_label($unit['category']);
 
-invoice_a4_section('معلومات اپارتمان / واحد');
+invoice_a4_section('Apartment / Unit Details');
 ?>
 <table class="inv-table">
     <thead>
         <tr>
-            <th>کد اپارتمان</th>
-            <th>بلاک</th>
-            <th>منزل / طبقه</th>
-            <th>شماره واحد</th>
-            <th>تعداد اتاق</th>
-            <th>متراژ (متر مربع)</th>
-            <th>کتگوری</th>
+            <th>Apartment Code</th>
+            <th>Block</th>
+            <th>Floor</th>
+            <th>Unit No.</th>
+            <th>Rooms</th>
+            <th>Area (sqm)</th>
+            <th>Category</th>
         </tr>
     </thead>
     <tbody>
@@ -81,50 +81,50 @@ invoice_a4_section('معلومات اپارتمان / واحد');
 </table>
 
 <?php
-invoice_a4_section('جزییات مالی');
+invoice_a4_section('Financial Details');
 ?>
-<div class="inv-service"><b>مورد:</b> فروش اپارتمان <?= htmlspecialchars($unit['unit_code'] ?? '') ?> — منزل شماره <?= htmlspecialchars($unit['floor_number'] ?? '') ?> — به متراژ <?= htmlspecialchars($unit['unit_size'] ?? '') ?> متر مربع</div>
+<div class="inv-service"><b>Item:</b> Sale of apartment <?= htmlspecialchars($unit['unit_code'] ?? '') ?> — Floor No. <?= htmlspecialchars($unit['floor_number'] ?? '') ?> — area <?= htmlspecialchars($unit['unit_size'] ?? '') ?> sqm</div>
 <table class="inv-table amount-table">
     <thead>
-        <tr><th>شرح</th><th>نرخ فی متر (دالر)</th><th>مبلغ (دالر)</th></tr>
+        <tr><th>Description</th><th>Rate / sqm (USD)</th><th>Amount (USD)</th></tr>
     </thead>
     <tbody>
         <tr>
-            <td>قیمت واحد اپارتمان</td>
+            <td>Apartment Unit Price</td>
             <td class="num"><?= invoice_fmt($unit['unit_price_per_meter'] ?? 0) ?></td>
             <td class="num"><?= invoice_fmt($unit['unit_price'] ?? 0) ?></td>
         </tr>
         <tr>
-            <td>پول خدمات دولت</td>
+            <td>Government Service Fee</td>
             <td class="num"><?= invoice_fmt($unit['gov_cost_per_meter'] ?? 0) ?></td>
             <td class="num"><?= invoice_fmt($unit['gov_cost'] ?? 0) ?></td>
         </tr>
         <tr>
-            <td>پول خدمات زیربنا</td>
+            <td>Infrastructure Service Fee</td>
             <td class="num"><?= invoice_fmt($unit['infra_cost_per_meter'] ?? 0) ?></td>
             <td class="num"><?= invoice_fmt($unit['infra_cost'] ?? 0) ?></td>
         </tr>
         <tr class="total-row">
-            <td colspan="2">قیمت مجموعی</td>
+            <td colspan="2">Total Price</td>
             <td class="num"><?= invoice_fmt($unit['total_price'] ?? 0) ?></td>
         </tr>
         <tr class="payment-row">
-            <td colspan="2">مبلغ این پرداخت</td>
+            <td colspan="2">This Payment</td>
             <td class="num"><?= invoice_fmt($amount) ?></td>
         </tr>
         <tr class="paid-row">
-            <td colspan="2">مجموع پرداخت‌شده تا به حال</td>
+            <td colspan="2">Total Paid So Far</td>
             <td class="num"><?= invoice_fmt($paidTotal) ?></td>
         </tr>
         <tr class="dang-row">
-            <td colspan="2">باقی‌مانده</td>
+            <td colspan="2">Remaining Balance</td>
             <td class="num"><?= invoice_fmt($remaining) ?></td>
         </tr>
     </tbody>
 </table>
 
 <div class="inv-words">
-    مبلغ این قسط به حروف: <b><?= $amount > 0 ? numToWordsFa($amount) . ' دالر' : '-' ?></b>
+    This installment amount in words: <b><?= $amount > 0 ? numToWordsEn($amount) . ' USD' : '-' ?></b>
 </div>
 <?php
 invoice_a4_close();

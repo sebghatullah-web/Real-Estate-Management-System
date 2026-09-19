@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Validation
     if (empty($username) || empty($password) || empty($full_name) || empty($email)) {
-        $error = 'لطفا تمام فیلدهای اجباری را پر کنید';
+        $error = 'Please fill in all required fields';
     } elseif ($password !== $confirm_pass) {
-        $error = 'رمز عبور و تکرار آن مطابقت ندارد';
+        $error = 'Passwords do not match';
     } elseif (strlen($password) < 6) {
-        $error = 'رمز عبور باید حداقل ۶ کاراکتر باشد';
+        $error = 'Password must be at least 6 characters';
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = 'لطفا یک ایمیل معتبر وارد کنید';
+        $error = 'Please enter a valid email';
     } else {
         try {
             // Check if username already exists
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $check->execute(['username' => $username, 'email' => $email]);
 
             if ($check->fetch()) {
-                $error = 'نام کاربری یا ایمیل قبلا ثبت شده است';
+                $error = 'Username or email already registered';
             } else {
                 // Hash password and insert
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -54,25 +54,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'national_id' => $national_id ?: null,
                 ]);
 
-                $success = 'حساب کاربری با موفقیت ایجاد شد. اکنون می‌توانید وارد شوید.';
+                $success = 'Account created successfully. You can now log in.';
             }
         } catch (PDOException $e) {
             if ($e->getCode() == '42S02') {
-                $error = 'جدول مدیران وجود ندارد. لطفا ابتدا جدول admins را در دیتابیس ایجاد کنید.';
+                $error = 'Admins table does not exist. Please create the admins table first.';
             } else {
-                $error = 'خطا: ' . $e->getMessage();
+                $error = 'Error: ' . $e->getMessage();
             }
         }
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ثبت نام - KHAWAR DB</title>
+    <title>Register - KHAWAR DB</title>
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <link href="style/dest/style.css" rel="stylesheet">
@@ -214,8 +214,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card">
             <div class="card-header">
                 <span class="brand-logo"><i class="icon-user-follow"></i></span>
-                <h3>ثبت نام مدیر</h3>
-                <p>ایجاد حساب کاربری جدید برای پنل مدیریت</p>
+                <h3>Admin Registration</h3>
+                <p>Create a new admin account</p>
             </div>
             <div class="card-body">
                 <?php if ($error): ?>
@@ -225,55 +225,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if ($success): ?>
                     <div class="alert alert-success">
                         <?php echo htmlspecialchars($success); ?>
-                        <br><a href="login.php" style="font-weight:600;color:#155724;">ورود به سیستم</a>
+                        <br><a href="login.php" style="font-weight:600;color:#155724;">Login</a>
                     </div>
                 <?php endif; ?>
 
                 <form method="POST" action="">
                     <div class="form-group">
-                        <label for="username" class="required"><i class="icon-user"></i> نام کاربری</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="یک نام کاربری انتخاب کنید" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required>
+                        <label for="username" class="required"><i class="icon-user"></i> Username</label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Choose a username" value="<?php echo htmlspecialchars($_POST['username'] ?? ''); ?>" required>
                     </div>
 
                     <div class="row-tight">
                         <div class="form-group">
-                            <label for="password" class="required"><i class="icon-lock"></i> رمز عبور</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="حداقل ۶ کاراکتر" required>
+                            <label for="password" class="required"><i class="icon-lock"></i> Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Minimum 6 characters" required>
                         </div>
                         <div class="form-group">
-                            <label for="confirm_password" class="required"><i class="icon-lock"></i> تکرار رمز عبور</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="دوباره رمز را وارد کنید" required>
+                            <label for="confirm_password" class="required"><i class="icon-lock"></i> Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Re-enter password" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="full_name" class="required"><i class="icon-people"></i> نام کامل</label>
-                        <input type="text" class="form-control" id="full_name" name="full_name" placeholder="نام و نام خانوادگی" value="<?php echo htmlspecialchars($_POST['full_name'] ?? ''); ?>" required>
+                        <label for="full_name" class="required"><i class="icon-people"></i> Full Name</label>
+                        <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full name" value="<?php echo htmlspecialchars($_POST['full_name'] ?? ''); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="required"><i class="icon-envelope"></i> ایمیل</label>
+                        <label for="email" class="required"><i class="icon-envelope"></i> Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="<?php echo htmlspecialchars($_POST['email'] ?? ''); ?>" required>
                     </div>
 
                     <div class="row-tight">
                         <div class="form-group">
-                            <label for="phone"><i class="icon-phone"></i> شماره تماس</label>
-                            <input type="text" class="form-control" id="phone" name="phone" placeholder="اختیاری" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
+                            <label for="phone"><i class="icon-phone"></i> Phone</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Optional" value="<?php echo htmlspecialchars($_POST['phone'] ?? ''); ?>">
                         </div>
                         <div class="form-group">
-                            <label for="national_id"><i class="icon-doc"></i> شماره تذکره</label>
-                            <input type="text" class="form-control" id="national_id" name="national_id" placeholder="اختیاری" value="<?php echo htmlspecialchars($_POST['national_id'] ?? ''); ?>">
+                            <label for="national_id"><i class="icon-doc"></i> National ID</label>
+                            <input type="text" class="form-control" id="national_id" name="national_id" placeholder="Optional" value="<?php echo htmlspecialchars($_POST['national_id'] ?? ''); ?>">
                         </div>
                     </div>
 
                     <button type="submit" class="btn-register">
-                        <i class="icon-check"></i> ثبت نام
+                        <i class="icon-check"></i> Register
                     </button>
                 </form>
 
                 <div class="login-link">
-                    قبلا ثبت نام کرده‌اید؟ <a href="login.php">وارد شوید</a>
+                    Already registered? <a href="login.php">Login</a>
                 </div>
             </div>
         </div>

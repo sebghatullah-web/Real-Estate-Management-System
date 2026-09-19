@@ -5,7 +5,7 @@ include 'config/db.php';
 $id = intval($_GET['id'] ?? 0);
 
 if ($id > 0) {
-    // ابتدا واحدهای بلاک حذف می‌شوند، بعد خود بلاک
+    // Delete the block's units first, then the block itself
     $conn->query("DELETE FROM block_units WHERE block_id = $id");
     $conn->query("DELETE FROM blocks WHERE id = $id");
 }

@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/block_catalog.php';
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
-    // دریافت و اعتبارسنجی ورودی‌ها
+    // Get and validate inputs
     $block_code = trim($_POST['block_code'] ?? '');
     $block_name = trim($_POST['block_name'] ?? '');
     $size       = intval($_POST['size'] ?? 0);
@@ -21,7 +21,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
-    // درج بلاک (بدون category و units_per_floor — اینها حالا متعلق به واحدها است)
+    // Insert block (no category/units_per_floor — these now belong to units)
     $stmt = $conn->prepare("INSERT INTO blocks (block_code, block_name, size, staircase_size, floors_count, status) VALUES (?, ?, ?, ?, ?, 'active')");
     $stmt->bind_param("ssiii", $block_code, $block_name, $size, $staircase, $floors);
     $stmt->execute();
@@ -29,7 +29,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
     $block_id = $conn->insert_id;
 
-    // ثبت امکانات بلاک
+    // Save block amenities
     $amenities = $_POST['amenities'] ?? [];
     if (is_array($amenities) && count($amenities) > 0) {
         $amStmt = $conn->prepare("INSERT INTO block_amenities (block_id, amenity_key, amenity_label) VALUES (?, ?, ?)");
@@ -43,7 +43,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         $amStmt->close();
     }
 
-    // توجه: واحدهای اپارتمان به‌صورت خودکار ساخته نمی‌شود؛ ادمین بعداً از بخش واحدها اضافه می‌کند.
+    // Note: apartment units are not created automatically; the admin adds them later from the Units section.
 
     header("Location: blocks.php?ok=1&new=$block_id");
     exit;

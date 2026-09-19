@@ -12,7 +12,7 @@ if (!$block) {
     exit;
 }
 
-// امکانات فعلی بلاک
+// Current block amenities
 $curAmenities = [];
 $amRes = $conn->query("SELECT amenity_key FROM block_amenities WHERE block_id = $id");
 while ($a = $amRes->fetch_assoc()) {
@@ -40,7 +40,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $stmt->execute();
     $stmt->close();
 
-    // به‌روزرسانی امکانات: حذف قبلی و درج انتخاب‌شده
+    // Update amenities: delete previous rows and insert the selected ones
     $conn->query("DELETE FROM block_amenities WHERE block_id = $id");
     $amenities = $_POST['amenities'] ?? [];
     if (is_array($amenities) && count($amenities) > 0) {
@@ -60,7 +60,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -70,7 +70,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     <meta name="author" content="Lukasz Holeczek">
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-    <title>ویرایش بلاک</title>
+    <title>Edit Block</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
@@ -87,15 +87,15 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="blocks.php">بلاک‌ها</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="blocks.php">Blocks</a>
             </li>
-            <li class="breadcrumb-item active">ویرایش بلاک</li>
+            <li class="breadcrumb-item active">Edit Block</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn btn-secondary" href="blocks.php"><i class="icon-graph"></i> &nbsp;بازگشت به لیست</a>
+                    <a class="btn btn-secondary" href="blocks.php"><i class="icon-graph"></i> &nbsp;Back to List</a>
                 </div>
             </li>
         </ol>
@@ -103,46 +103,46 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         <div class="container-fluid">
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
-                <div class="alert alert-danger mt-3">ورودی نامعتبر است. لطفاً مقادیر را بررسی کنید.</div>
+                <div class="alert alert-danger mt-3">Invalid input. Please check the values.</div>
             <?php endif; ?>
 
-            <h2 class="mb-4">ویرایش بلاک: <?= htmlspecialchars($block['block_code']) ?></h2>
+            <h2 class="mb-4">Edit Block: <?= htmlspecialchars($block['block_code']) ?></h2>
 <form method="POST" class="row g-3">
                     <div class="col-md-4">
-                        <label class="form-label">کد بلاک <span class="text-danger">*</span></label>
+                        <label class="form-label">Block Code <span class="text-danger">*</span></label>
                         <input type="text" name="block_code" class="form-control" value="<?= htmlspecialchars($block['block_code']) ?>" required>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">نام بلاک</label>
+                        <label class="form-label">Block Name</label>
                         <input type="text" name="block_name" class="form-control" value="<?= htmlspecialchars($block['block_name'] ?? '') ?>">
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">سایز بلاک (متر مربع) <span class="text-danger">*</span></label>
+                        <label class="form-label">Block Size (sqm) <span class="text-danger">*</span></label>
                         <input type="number" id="size" name="size" class="form-control" list="size_options" min="1" value="<?= htmlspecialchars($block['size']) ?>" required>
                         <datalist id="size_options">
-                            <option value="114">114 - ۵ منزل</option>
-                            <option value="412">412 - ۷ منزل</option>
-                            <option value="644">644 - ۱۰ منزل</option>
-                            <option value="902">902 - ۷ منزل</option>
+                            <option value="114">114 - 5 floors</option>
+                            <option value="412">412 - 7 floors</option>
+                            <option value="644">644 - 10 floors</option>
+                            <option value="902">902 - 7 floors</option>
                         </datalist>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">تعداد منزل / طبقه‌ها <span class="text-danger">*</span></label>
+                        <label class="form-label">Number of Floors <span class="text-danger">*</span></label>
                         <input type="number" id="floors_count" name="floors_count" class="form-control" min="1" value="<?= htmlspecialchars($block['floors_count']) ?>" required>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">راه پله (متر مربع)</label>
+                        <label class="form-label">Staircase (sqm)</label>
                         <input type="number" id="staircase_size" name="staircase_size" class="form-control" min="0" value="<?= htmlspecialchars($block['staircase_size']) ?>">
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">وضعیت</label>
+                        <label class="form-label">Status</label>
                         <select name="status" class="form-select">
-                            <option value="active" <?= $block['status'] == 'active' ? 'selected' : '' ?>>فعال</option>
-                            <option value="inactive" <?= $block['status'] == 'inactive' ? 'selected' : '' ?>>غیرفعال</option>
+                            <option value="active" <?= $block['status'] == 'active' ? 'selected' : '' ?>>Active</option>
+                            <option value="inactive" <?= $block['status'] == 'inactive' ? 'selected' : '' ?>>Inactive</option>
                         </select>
                     </div>
                     <div class="col-12 mt-2">
-                        <label class="form-label fw-bold">امکانات بلاک (اختیاری)</label>
+                        <label class="form-label fw-bold">Block Amenities (optional)</label>
                         <div class="row">
                             <?php foreach ($BLOCK_AMENITIES as $key => $label): ?>
                             <div class="col-md-2 form-check ms-1">
@@ -153,8 +153,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
                         </div>
                     </div>
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
-                        <a href="blocks.php" class="btn btn-secondary">بازگشت</a>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="blocks.php" class="btn btn-secondary">Back</a>
                     </div>
                 </form>
 </div>
@@ -179,7 +179,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     <script src="style/js/views/main.js"></script>
 
     <script>
-    // ===== پر کردن خودکار تعداد منزل بر اساس سایز =====
+    // ===== Auto-fill floor count based on size =====
     var sizeFloors = { 114: 5, 412: 7, 644: 10, 902: 7 };
     $('#size').on('input change', function() {
         var s = parseInt(this.value);

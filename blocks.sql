@@ -1,23 +1,23 @@
 -- --------------------------------------------------------
--- بلاک‌ها (Blocks) و اپارتمان‌ها/واحدها (Block Units)
--- سیستم املاک KHAWARDB – دیتابیس: map — نسخه ۲
+-- Blocks & Block Units (Apartments) tables
+-- KHAWARDB Real Estate System – database: map — version 2
 -- --------------------------------------------------------
 
 SET NAMES utf8mb4;
 
 --
 -- Table structure for table `blocks`
--- بلاک: ساختمانی با چند منزل/طبقه. تعداد واحد در هر منزل و کتگوری
--- متعلق به خود واحدها (block_units) است، نه به بلاک.
+-- Block: a building with several floors. The number of units per floor and the category
+-- belong to the units themselves (block_units), not to the block.
 --
 
 CREATE TABLE IF NOT EXISTS `blocks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `block_code` varchar(50) NOT NULL COMMENT 'کد بلاک',
-  `block_name` varchar(100) DEFAULT NULL COMMENT 'نام بلاک',
-  `size` int(11) NOT NULL COMMENT 'سایز بلاک (متر مربع) مثلاً 114، 412، 644، 902',
-  `staircase_size` int(11) NOT NULL DEFAULT 45 COMMENT 'راه پله (متر مربع)',
-  `floors_count` int(11) NOT NULL COMMENT 'تعداد منزل/طبقه‌ها',
+  `block_code` varchar(50) NOT NULL COMMENT 'Block code',
+  `block_name` varchar(100) DEFAULT NULL COMMENT 'Block name',
+  `size` int(11) NOT NULL COMMENT 'Block size (sqm) e.g. 114, 412, 644, 902',
+  `staircase_size` int(11) NOT NULL DEFAULT 45 COMMENT 'Staircase (sqm)',
+  `floors_count` int(11) NOT NULL COMMENT 'Number of floors',
   `status` enum('active','inactive') NOT NULL DEFAULT 'active',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -26,30 +26,30 @@ CREATE TABLE IF NOT EXISTS `blocks` (
 
 --
 -- Table structure for table `block_units`
--- هر اپارتمان/واحد داخل یک بلاک.
--- هر منزل می‌تواند ۱ تا ۴ واحد داشته باشد و هر واحد در کتگوری مخصوص قرار گیرد.
+-- Each apartment/unit inside a block.
+-- Each floor can have 1 to 4 units and each unit has its own category.
 --
 
 CREATE TABLE IF NOT EXISTS `block_units` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `block_id` int(11) NOT NULL,
-  `floor_number` int(11) NOT NULL COMMENT 'شماره منزل/طبقه',
-  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد واحد در این منزل (۱ تا ۴ واحد)',
-  `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'کتگوری واحد: standard، premium، vip، vvip و ...',
-  `unit_number` varchar(20) NOT NULL COMMENT 'شماره واحد (مثلاً 1، 2، 3، 4)',
-  `unit_code` varchar(100) NOT NULL COMMENT 'کد کامل واحد (بلاک-طبقه-واحد)',
-  `rooms` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد اتاق (۱ اتاقه، ۲ اتاقه، ۳ اتاقه)',
-  `unit_size` decimal(10,2) NOT NULL COMMENT 'متراژ واحد (متر مربع)',
-  `status` enum('available','reserved','sold') NOT NULL DEFAULT 'available' COMMENT 'قابل فروش، رزرو شده، فروخته شده',
+  `floor_number` int(11) NOT NULL COMMENT 'Floor number',
+  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'Number of units on this floor (1 to 4 units)',
+  `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'Unit category: standard, premium, vip, vvip, etc.',
+  `unit_number` varchar(20) NOT NULL COMMENT 'Unit number (e.g. 1, 2, 3, 4)',
+  `unit_code` varchar(100) NOT NULL COMMENT 'Full unit code (block-floor-unit)',
+  `rooms` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'Number of rooms (1-Bedroom, 2-Bedroom, 3-Bedroom)',
+  `unit_size` decimal(10,2) NOT NULL COMMENT 'Unit area (sqm)',
+  `status` enum('available','reserved','sold') NOT NULL DEFAULT 'available' COMMENT 'For sale, reserved, sold',
   `customer_id` int(11) DEFAULT NULL,
-  `unit_price_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'قیمت واحد فی متر مربع (در وقت فروش ثبت می‌شود)',
-  `gov_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'خدمات دولت فی متر مربع (در وقت فروش ثبت می‌شود)',
-  `infra_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'خدمات زیربنا فی متر مربع (در وقت فروش ثبت می‌شود)',
-  `unit_price` decimal(12,2) DEFAULT NULL COMMENT 'قیمت کل واحد = نرخ فی متر × متراژ',
-  `gov_cost` decimal(12,2) DEFAULT NULL COMMENT 'خدمات دولت (کل)',
-  `infra_cost` decimal(12,2) DEFAULT NULL COMMENT 'خدمات زیربنا (کل)',
-  `total_price` decimal(12,2) DEFAULT NULL COMMENT 'قیمت مجموعی واحد = قیمت + خدمات دولت + خدمات زیربنا',
-  `sold_at` timestamp NULL DEFAULT NULL COMMENT 'تاریخ فروش',
+  `unit_price_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'Unit price per sqm (set at the time of sale)',
+  `gov_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'Government services per sqm (set at the time of sale)',
+  `infra_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'Infrastructure services per sqm (set at the time of sale)',
+  `unit_price` decimal(12,2) DEFAULT NULL COMMENT 'Total unit price = price per sqm x area',
+  `gov_cost` decimal(12,2) DEFAULT NULL COMMENT 'Government services (total)',
+  `infra_cost` decimal(12,2) DEFAULT NULL COMMENT 'Infrastructure services (total)',
+  `total_price` decimal(12,2) DEFAULT NULL COMMENT 'Total unit price = unit price + government services + infrastructure',
+  `sold_at` timestamp NULL DEFAULT NULL COMMENT 'Sale date',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `block_id` (`block_id`),
@@ -60,14 +60,14 @@ CREATE TABLE IF NOT EXISTS `block_units` (
 
 --
 -- Table structure for table `block_amenities`
--- امکانات/خدمات ساختمان (لابی، آسانسور، پارکینگ و ...)
+-- Building amenities/services (lobby, elevator, parking, etc.)
 --
 
 CREATE TABLE IF NOT EXISTS `block_amenities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `block_id` int(11) NOT NULL,
-  `amenity_key` varchar(50) NOT NULL COMMENT 'شناسه امکانات (لطفاً با حروف انگلیسی)',
-  `amenity_label` varchar(100) NOT NULL COMMENT 'نام امکانات به فارسی',
+  `amenity_key` varchar(50) NOT NULL COMMENT 'Amenity identifier (English letters)',
+  `amenity_label` varchar(100) NOT NULL COMMENT 'Amenity name (English)',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `block_amenity_unique` (`block_id`, `amenity_key`),
@@ -76,14 +76,14 @@ CREATE TABLE IF NOT EXISTS `block_amenities` (
 
 --
 -- Table structure for table `block_unit_features`
--- جزئیات هر واحد/اپارتمان (دهلیز، سالون، اتاق خواب و ...)
+-- Details of each unit/apartment (foyer, living room, bedroom, etc.)
 --
 
 CREATE TABLE IF NOT EXISTS `block_unit_features` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit_id` int(11) NOT NULL,
-  `feature_key` varchar(50) NOT NULL COMMENT 'شناسه جزئیات (لطفاً با حروف انگلیسی)',
-  `feature_label` varchar(100) NOT NULL COMMENT 'نام جزئیات به فارسی',
+  `feature_key` varchar(50) NOT NULL COMMENT 'Feature identifier (English letters)',
+  `feature_label` varchar(100) NOT NULL COMMENT 'Feature name (English)',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `unit_feature_unique` (`unit_id`, `feature_key`),
@@ -92,12 +92,12 @@ CREATE TABLE IF NOT EXISTS `block_unit_features` (
 
 --
 -- Table structure for table `pay_block_units`
--- پرداخت‌های اپارتمان/واحدها (مثل pay_200, pay_400 برای نمرات)
+-- Payments for apartments/units (like pay_200, pay_400 for plots)
 --
 
 CREATE TABLE IF NOT EXISTS `pay_block_units` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `unit_id` int(11) NOT NULL COMMENT 'شناسه اپارتمان/واحد (block_units.id)',
+  `unit_id` int(11) NOT NULL COMMENT 'Apartment/unit identifier (block_units.id)',
   `customer_id` int(11) NOT NULL,
   `amount` decimal(12,2) NOT NULL,
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),

@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/includes/auth_check.php'; ?>
 <?php include 'config/db.php'; ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -12,7 +12,7 @@
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
 
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-    <title>مدیریت نمرات دو بسوه‌ای</title>
+    <title>Manage Two Jiribs (200 sqm)</title>
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
@@ -35,17 +35,17 @@
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="#">مدیریت</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="#">Management</a>
             </li>
-            <li class="breadcrumb-item active">داشبرد</li>
+            <li class="breadcrumb-item active">Dashboard</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
-                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
+                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
                 </div>
             </li>
         </ol>
@@ -53,28 +53,28 @@
         <div class="container-fluid">
 
 
-        <h2 class="mb-4">لیست نمرات شش بسوه‌ای فروخته شده</h2>
+        <h2 class="mb-4">List of Sold Six Jiribs (600 sqm) Plots</h2>
 
         <table id="plotsTable" class="table table-bordered table-striped">
             <thead class="table-dark">
                 <tr>
-                    <th>آی‌دی</th>
-                    <th>کد نمره</th>
-                    <th>نوعیت نمره</th>
-                    <th>مساحت</th>
-                    <th>قیمت نمره</th>
-                    <th>خدمات دولت</th>
-                    <th>خدمات زیربنا</th>
-                    <th>قیمت مجموعی</th>
-                    <th>پرداخت‌شده</th>
-                    <th>باقی‌مانده</th>
-                    <th>مشتری</th>
-                    <th>عملیات</th>
+                    <th>ID</th>
+                    <th>Plot Code</th>
+                    <th>Plot Type</th>
+                    <th>Area</th>
+                    <th>Plot Price</th>
+                    <th>Gov. Services</th>
+                    <th>Infrastructure</th>
+                    <th>Total Price</th>
+                    <th>Paid</th>
+                    <th>Remaining</th>
+                    <th>Customer</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // JOIN با جدول مشتریان
+                // JOIN with the customers table
                         $sql = "SELECT p.*, 
                     c.full_name, c.fathar_name, c.national_id,
                     IFNULL(SUM(pay.amount),0) AS paid_amount,
@@ -94,13 +94,13 @@
                     <td><?= htmlspecialchars($row['id']) ?></td>
                     <td><?= htmlspecialchars($row['plot_code']) ?></td>
                     <td><?= htmlspecialchars($row['type']) ?></td>
-                    <td><?= htmlspecialchars($row['area']) ?> متر</td>
-                    <td><?= htmlspecialchars($row['base_price']) ?> دالر</td>
-                    <td><?= htmlspecialchars($row['gov_cost']) ?> دالر</td>
-                    <td><?= htmlspecialchars($row['infra_cost']) ?> دالر</td>
-                    <td><?= htmlspecialchars($row['total_price']) ?> دالر</td>
-                    <td class="text-success"><?= htmlspecialchars($row['paid_amount']) ?> دالر</td>
-                    <td class="text-danger"><?= htmlspecialchars($row['remaining_amount']) ?> دالر</td>
+                    <td><?= htmlspecialchars($row['area']) ?> sqm</td>
+                    <td><?= htmlspecialchars($row['base_price']) ?> USD</td>
+                    <td><?= htmlspecialchars($row['gov_cost']) ?> USD</td>
+                    <td><?= htmlspecialchars($row['infra_cost']) ?> USD</td>
+                    <td><?= htmlspecialchars($row['total_price']) ?> USD</td>
+                    <td class="text-success"><?= htmlspecialchars($row['paid_amount']) ?> USD</td>
+                    <td class="text-danger"><?= htmlspecialchars($row['remaining_amount']) ?> USD</td>
                     <td>
                         <?= htmlspecialchars($row['full_name']) ?> - 
                         <?= htmlspecialchars($row['fathar_name']) ?> - 
@@ -108,9 +108,9 @@
                     </td>
                     <td>
                         <?php if ($row['remaining_amount'] > 0): ?>
-                            <a href="pay_plots_600.php?plot_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning" target="_blank">پرداخت</a>
+                            <a href="pay_plots_600.php?plot_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning" target="_blank">Payment</a>
                         <?php else: ?>
-                            <button class="btn btn-sm btn-secondary" disabled>تکمیل</button>
+                            <button class="btn btn-sm btn-secondary" disabled>Completed</button>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -126,7 +126,7 @@
 
 
 
-    <!-- jQuery فقط یک بار -->
+    <!-- jQuery loaded once -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -137,21 +137,21 @@
                 "pageLength": 10,
                 "lengthMenu": [10, 20, 30, 50],
                 "language": {
-                    "search": "جستجو:",
-                    "lengthMenu": "نمایش _MENU_ رکورد در هر صفحه",
-                    "info": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
+                    "search": "Search:",
+                    "lengthMenu": "Show _MENU_ entries per page",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
                     "paginate": {
-                        "first": "اول",
-                        "last": "آخر",
-                        "next": "بعدی",
-                        "previous": "قبلی"
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
                     }
                 },
-                dom: 'Bfrtip', // اضافه کردن بخش دکمه‌ها
+                dom: 'Bfrtip', // enable buttons
                 buttons: [
-                    { extend: 'excelHtml5', text: 'خروجی Excel' },
-                    { extend: 'pdfHtml5', text: 'خروجی PDF' },
-                    { extend: 'print', text: 'چاپ' }
+                    { extend: 'excelHtml5', text: 'Export Excel' },
+                    { extend: 'pdfHtml5', text: 'Export PDF' },
+                    { extend: 'print', text: 'Print' }
                 ]
             });
         });
@@ -167,7 +167,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-    <!-- وابستگی‌ها برای Excel و PDF -->
+    <!-- Dependencies for Excel and PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>

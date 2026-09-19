@@ -2,13 +2,13 @@
 <?php include 'config/db.php'; ?>
 <?php require_once 'includes/block_catalog.php'; ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>لیست فروشات اپارتمان‌ها</title>
+    <title>Sold Units List</title>
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
@@ -30,15 +30,15 @@
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="#">مدیریت فروشات</a></li>
-            <li class="breadcrumb-item active">لیست فروشات اپارتمان‌ها</li>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="#">Sales Management</a></li>
+            <li class="breadcrumb-item active">Sold Units List</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
+                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
                 </div>
             </li>
         </ol>
@@ -46,45 +46,45 @@
         <div class="container-fluid">
 
             <?php
-            // فلتر بلاک
+            // Block filter
             $filter_block = isset($_GET['block_id']) ? intval($_GET['block_id']) : 0;
             $blocksResult = $conn->query("SELECT id, block_code, size FROM blocks WHERE status='active' ORDER BY block_code ASC");
             ?>
 
-            <h2 class="mb-4">لیست فروشات اپارتمان‌ها / واحدها</h2>
+            <h2 class="mb-4">Sold Apartments / Units List</h2>
 
             <div class="mb-3">
                 <form method="GET" class="row g-2 align-items-center">
                     <div class="col-auto">
                         <select name="block_id" class="form-select" onchange="this.form.submit()">
-                            <option value="">همه بلاک‌ها</option>
+                            <option value="">All Blocks</option>
                             <?php while ($b = $blocksResult->fetch_assoc()): ?>
                             <option value="<?= $b['id'] ?>" <?= $filter_block == $b['id'] ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($b['block_code']) ?> - <?= htmlspecialchars($b['size']) ?> متر
+                                <?= htmlspecialchars($b['block_code']) ?> - <?= htmlspecialchars($b['size']) ?> sqm
                             </option>
                             <?php endwhile; ?>
                         </select>
                     </div>
                     <div class="col-auto">
-                        <a href="list_sold_units.php" class="btn btn-secondary">همه‌ها</a>
+                        <a href="list_sold_units.php" class="btn btn-secondary">All</a>
                     </div>
                 </form>
             </div>
 <table id="soldUnitsTable" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>آی‌دی</th>
-                        <th>بلاک</th>
-                        <th>اپارتمان / واحد</th>
-                        <th>کتگوری</th>
-                        <th>منزل</th>
-                        <th>واحد/منزل</th>
-                        <th>متراژ</th>
-                        <th>قیمت مجموعی</th>
-                        <th>پرداخت‌شده</th>
-                        <th>باقی‌مانده</th>
-                        <th>مشتری</th>
-                        <th>عملیات</th>
+                        <th>ID</th>
+                        <th>Block</th>
+                        <th>Apartment / Unit</th>
+                        <th>Category</th>
+                        <th>Floor</th>
+                        <th>Units/Floor</th>
+                        <th>Area (sqm)</th>
+                        <th>Total Price</th>
+                        <th>Paid</th>
+                        <th>Remaining</th>
+                        <th>Customer</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -107,7 +107,7 @@
                     $result = $conn->query($sql);
 
                     while($row = $result->fetch_assoc()):
-                        $roomLabel = $row['rooms'] == 2 ? '۲ اتاقه' : ($row['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه');
+                        $roomLabel = $row['rooms'] == 2 ? '2-Bedroom' : ($row['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
                         $catLabel = unit_category_label($row['category']);
                         $catClass = unit_category_class($row['category']);
                         $remaining = (float)$row['remaining_amount'];
@@ -122,21 +122,21 @@
                         </td>
                         <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong><br><small class="text-muted"><?= $roomLabel ?></small></td>
                         <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
-                        <td><?= htmlspecialchars($row['floor_number']) ?> منزل</td>
-                        <td><?= htmlspecialchars($row['units_per_floor']) ?> واحد</td>
-                        <td><?= htmlspecialchars($row['unit_size']) ?> متر</td>
-                        <td><strong><?= number_format((float)$row['total_price'], 2) ?></strong> دالر</td>
-                        <td class="text-success"><?= number_format((float)$row['paid_amount'], 2) ?> دالر</td>
-                        <td class="text-danger"><?= number_format($remaining, 2) ?> دالر</td>
+                        <td><?= htmlspecialchars($row['floor_number']) ?> floor</td>
+                        <td><?= htmlspecialchars($row['units_per_floor']) ?> unit(s)</td>
+                        <td><?= htmlspecialchars($row['unit_size']) ?> sqm</td>
+                        <td><strong><?= number_format((float)$row['total_price'], 2) ?></strong> USD</td>
+                        <td class="text-success"><?= number_format((float)$row['paid_amount'], 2) ?> USD</td>
+                        <td class="text-danger"><?= number_format($remaining, 2) ?> USD</td>
                         <td>
                             <?= htmlspecialchars($row['full_name'] ?? '-') ?><br>
                             <small class="text-muted"><?= htmlspecialchars($row['fathar_name'] ?? '') ?> - <?= htmlspecialchars($row['national_id'] ?? '') ?></small>
                         </td>
                         <td>
                             <?php if ($remaining > 0): ?>
-                                <a href="pay_block_unit.php?unit_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning" target="_blank">پرداخت</a>
+                                <a href="pay_block_unit.php?unit_id=<?= $row['id'] ?>" class="btn btn-sm btn-warning" target="_blank">Payment</a>
                             <?php else: ?>
-                                <button class="btn btn-sm btn-secondary" disabled>تکمیل</button>
+                                <button class="btn btn-sm btn-secondary" disabled>Completed</button>
                             <?php endif; ?>
                         </td>
                     </tr>
@@ -157,7 +157,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
-    <!-- وابستگی‌ها برای Excel و PDF -->
+    <!-- Dependencies for Excel and PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
@@ -168,21 +168,21 @@
                 "pageLength": 10,
                 "lengthMenu": [10, 20, 30, 50],
                 "language": {
-                    "search": "جستجو:",
-                    "lengthMenu": "نمایش _MENU_ رکورد در هر صفحه",
-                    "info": "نمایش _START_ تا _END_ از _TOTAL_ رکورد",
+                    "search": "Search:",
+                    "lengthMenu": "Show _MENU_ entries per page",
+                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
                     "paginate": {
-                        "first": "اول",
-                        "last": "آخر",
-                        "next": "بعدی",
-                        "previous": "قبلی"
+                        "first": "First",
+                        "last": "Last",
+                        "next": "Next",
+                        "previous": "Previous"
                     }
                 },
                 dom: 'Bfrtip',
                 buttons: [
-                    { extend: 'excelHtml5', text: 'خروجی Excel' },
-                    { extend: 'pdfHtml5', text: 'خروجی PDF' },
-                    { extend: 'print', text: 'چاپ' }
+                    { extend: 'excelHtml5', text: 'Export Excel' },
+                    { extend: 'pdfHtml5', text: 'Export PDF' },
+                    { extend: 'print', text: 'Print' }
                 ]
             });
         });

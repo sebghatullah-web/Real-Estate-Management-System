@@ -1,7 +1,7 @@
 
 <?php require_once 'includes/auth_check.php'; ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -17,10 +17,10 @@
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application -->
     <link href="style/dest/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body, .navbar, .sidebar, .card, .table, .btn, .form-control, input, textarea, select, .nav-link, .dropdown-menu {
-            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif !important;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Arial, sans-serif !important;
         }
     </style>
 </head>

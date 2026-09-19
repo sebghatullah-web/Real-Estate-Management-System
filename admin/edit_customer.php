@@ -8,7 +8,7 @@
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $uploadDir = "img/profilePic/";
-                $profilePicPath = $customer['profile_pic']; // مسیر قبلی
+                $profilePicPath = $customer['profile_pic']; // previous path
 
                 if (!empty($_FILES['profile_pic']['name'])) {
                     $fileName = time() . "_" . basename($_FILES['profile_pic']['name']);
@@ -27,7 +27,7 @@
             }
 ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -55,17 +55,17 @@
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="#">مدیریت</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="#">Management</a>
             </li>
-            <li class="breadcrumb-item active">داشبرد</li>
+            <li class="breadcrumb-item active">Dashboard</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
-                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
+                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
                 </div>
             </li>
         </ol>
@@ -75,46 +75,46 @@
 
             
 
-            <h2>ویرایش مشتری</h2>
+            <h2>Edit Customer</h2>
             <form method="POST" enctype="multipart/form-data" class="row g-3">
             <div class="col-md-3">
-                <label class="form-label">نام کامل</label>
+                <label class="form-label">Full Name</label>
                 <input type="text" name="full_name" class="form-control" value="<?= $customer['full_name'] ?>" required>
             </div>
             <div class="col-md-3">
-                <label class="form-label">نام پدر</label>
+                <label class="form-label">Father&#039;s Name</label>
                 <input type="text" name="fathar_name" class="form-control" value="<?= $customer['fathar_name'] ?>">
             </div>
             <div class="col-md-3">
-                <label class="form-label">آدرس</label>
+                <label class="form-label">Address</label>
                 <input type="text" name="address" class="form-control" value="<?= $customer['address'] ?>">
             </div>
             <div class="col-md-3">
-                <label class="form-label">وظیفه</label>
+                <label class="form-label">Occupation</label>
                 <input type="text" name="occupation" class="form-control" value="<?= $customer['occupation'] ?>">
             </div>
             <div class="col-md-3">
-                <label class="form-label">شماره تماس</label>
+                <label class="form-label">Phone</label>
                 <input type="text" name="phone" class="form-control" value="<?= $customer['phone'] ?>">
             </div>
             <div class="col-md-3">
-                <label class="form-label">ایمیل</label>
+                <label class="form-label">Email</label>
                 <input type="text" name="email" class="form-control" value="<?= $customer['email'] ?>">
             </div>
             <div class="col-md-3">
-                <label class="form-label">شماره تذکره</label>
+                <label class="form-label">National ID</label>
                 <input type="text" name="national_id" class="form-control" value="<?= $customer['national_id'] ?>">
             </div>
-            <!-- سایر فیلدها مشابه -->
+            <!-- Other fields similar -->
             <div class="col-md-3">
-                <label class="form-label">عکس پروفایل</label>
+                <label class="form-label">Profile Picture</label>
                 <input type="file" name="profile_pic" class="form-control">
                 <?php if($customer['profile_pic']): ?>
                 <img src="<?= $customer['profile_pic'] ?>" alt="Profile" class="img-thumbnail mt-2" width="120">
                 <?php endif; ?>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
             </form>
 

@@ -2,24 +2,24 @@
 require 'config/db.php';
 ?>
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KHAWAR CONSTRACTION COMPANY DB</title>
+    <title>KHAWAR CONSTRUCTION COMPANY DB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { direction: rtl; font-family: 'Vazirmatn', Tahoma, Arial, sans-serif; background-color: #f8f9fa; overflow-x: hidden; }
+        body { direction: ltr; font-family: 'Poppins', 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #f8f9fa; overflow-x: hidden; }
         .navbar { background: linear-gradient(135deg, #1a3a5c 0%, #2c5f7c 100%); box-shadow: 0 2px 15px rgba(0,0,0,0.1); padding: 12px 0; }
         .navbar-brand { font-weight: bold; font-size: 1.5rem; color: #fff !important; display: flex; align-items: center; gap: 10px; }
         .navbar-brand i { font-size: 2rem; }
         .nav-link { color: rgba(255,255,255,0.85) !important; font-size: 1rem; margin: 0 8px; padding: 8px 16px !important; border-radius: 8px; transition: all 0.3s ease; }
         .nav-link:hover { color: #fff !important; background: rgba(255,255,255,0.15); transform: translateY(-1px); }
         .nav-link.active { background: rgba(255,255,255,0.2); color: #fff !important; }
-        .nav-link i { margin-left: 6px; }
+        .nav-link i { margin-right: 6px; }
         .btn-map { background: #ffc107; color: #1a3a5c; font-weight: bold; border-radius: 25px; padding: 8px 24px !important; transition: all 0.3s ease; }
         .btn-map:hover { background: #ffca2c; transform: scale(1.05); color: #1a3a5c !important; }
         .footer { background: linear-gradient(135deg, #1a3a5c 0%, #2c5f7c 100%); color: #fff; padding: 50px 0 20px; margin-top: 60px; }
@@ -65,7 +65,7 @@ require 'config/db.php';
 <body>
 
 <!-- WhatsApp Float Button -->
-<a href="https://wa.me/93708530635" target="_blank" class="whatsapp-float" title="ارتباط با ما در واتساپ">
+<a href="https://wa.me/93708530635" target="_blank" class="whatsapp-float" title="Contact us on WhatsApp">
     <i class="bi bi-whatsapp"></i>
 </a>
 
@@ -77,7 +77,7 @@ require 'config/db.php';
     <div class="container">
         <a class="navbar-brand" href="index.php">
             <i class="bi bi-building"></i>
-            شرکت ساختمانی خاور
+            Khawar Construction Company
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -85,22 +85,22 @@ require 'config/db.php';
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>" href="index.php"><i class="bi bi-house-door"></i> خانه</a>
+                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>" href="index.php"><i class="bi bi-house-door"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : '' ?>" href="about.php"><i class="bi bi-info-circle"></i> درباره ما</a>
+                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'about.php' ? 'active' : '' ?>" href="about.php"><i class="bi bi-info-circle"></i> About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'services.php' ? 'active' : '' ?>" href="services.php"><i class="bi bi-gear"></i> خدمات</a>
+                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'services.php' ? 'active' : '' ?>" href="services.php"><i class="bi bi-gear"></i> Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'gallery.php' ? 'active' : '' ?>" href="gallery.php"><i class="bi bi-images"></i> گالری</a>
+                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'gallery.php' ? 'active' : '' ?>" href="gallery.php"><i class="bi bi-images"></i> Gallery</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>" href="contact.php"><i class="bi bi-envelope"></i> تماس با ما</a>
+                    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'contact.php' ? 'active' : '' ?>" href="contact.php"><i class="bi bi-envelope"></i> Contact Us</a>
                 </li>
             </ul>
-            <a href="map.php" class="btn btn-map nav-link" target="_blank"><i class="bi bi-map"></i> نقشه نمرات</a>
+            <a href="map.php" class="btn btn-map nav-link" target="_blank"><i class="bi bi-map"></i> Plots Map</a>
         </div>
     </div>
 </nav>

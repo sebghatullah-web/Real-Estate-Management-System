@@ -32,19 +32,19 @@ if ($plot_code) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جزئیات نمره <?= htmlspecialchars($plot_code) ?></title>
+    <title>Plot Details <?= htmlspecialchars($plot_code) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            direction: rtl;
-            font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+            direction: ltr;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Arial, sans-serif;
             background: #f0f2f5;
         }
         .nav-bar {
@@ -145,7 +145,7 @@ if ($plot_code) {
 <body>
 
 <!-- WhatsApp Float -->
-<a href="https://wa.me/9379349150" target="_blank" class="whatsapp-float" title="ارتباط با ما در واتساپ">
+<a href="https://wa.me/9379349150" target="_blank" class="whatsapp-float" title="Contact us on WhatsApp">
     <i class="bi bi-whatsapp"></i>
 </a>
 
@@ -157,10 +157,10 @@ if ($plot_code) {
         </a>
         <div>
             <a href="map.php" class="btn-map-link me-2">
-                <i class="bi bi-map me-1"></i>بازگشت به نقشه
+                <i class="bi bi-map me-1"></i>Back to Map
             </a>
             <a href="index.php" class="btn-map-link">
-                <i class="bi bi-house me-1"></i>خانه
+                <i class="bi bi-house me-1"></i>Home
             </a>
         </div>
     </div>
@@ -171,9 +171,9 @@ if ($plot_code) {
         <!-- Header -->
         <div class="text-center mb-4 pt-3">
             <h1 class="fw-bold" style="color: #1a3a5c;">
-                <i class="bi bi-pin-map me-2"></i>نمره <?= htmlspecialchars($plot['plot_code']) ?>
+                <i class="bi bi-pin-map me-2"></i>Plot <?= htmlspecialchars($plot['plot_code']) ?>
             </h1>
-            <p class="text-muted"><?= htmlspecialchars($plot['type']) ?> | <?= htmlspecialchars($plot['area']) ?> متر مربع</p>
+            <p class="text-muted"><?= htmlspecialchars($plot['type']) ?> | <?= htmlspecialchars($plot['area']) ?> Square Meters</p>
         </div>
 
         <div class="row g-4">
@@ -181,41 +181,41 @@ if ($plot_code) {
             <div class="col-lg-7">
                 <div class="detail-card card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>جزئیات نمره</h4>
+                        <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Plot Details</h4>
                         <span class="status-badge badge 
                             <?= $plot['status'] === 'available' ? 'bg-success' : ($plot['status'] === 'reserved' ? 'bg-warning text-dark' : 'bg-danger') ?>">
-                            <?= $plot['status'] === 'available' ? 'قابل فروش' : ($plot['status'] === 'reserved' ? 'رزرو شده' : 'فروخته شده') ?>
+                            <?= $plot['status'] === 'available' ? 'For Sale' : ($plot['status'] === 'reserved' ? 'Reserved' : 'Sold') ?>
                         </span>
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered detail-table mb-0">
                             <tr>
-                                <th><i class="bi bi-hash me-1"></i>کد نمره</th>
+                                <th><i class="bi bi-hash me-1"></i>Plot Code</th>
                                 <td><?= htmlspecialchars($plot['plot_code']) ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-house me-1"></i>نوع</th>
+                                <th><i class="bi bi-house me-1"></i>Type</th>
                                 <td><?= htmlspecialchars($plot['type']) ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-rulers me-1"></i>مساحت</th>
-                                <td><?= htmlspecialchars($plot['area']) ?> متر مربع</td>
+                                <th><i class="bi bi-rulers me-1"></i>Area</th>
+                                <td><?= htmlspecialchars($plot['area']) ?> Square Meters</td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-cash me-1"></i>قیمت نمره</th>
-                                <td><?= htmlspecialchars($plot['base_price']) ?> دالر</td>
+                                <th><i class="bi bi-cash me-1"></i>Plot Price</th>
+                                <td><?= htmlspecialchars($plot['base_price']) ?> USD</td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-tools me-1"></i>هزینه خدمات زیربنایی</th>
-                                <td><?= htmlspecialchars($plot['infra_cost']) ?> دالر</td>
+                                <th><i class="bi bi-tools me-1"></i>Infrastructure Cost</th>
+                                <td><?= htmlspecialchars($plot['infra_cost']) ?> USD</td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-building me-1"></i>هزینه خدمات دولت</th>
-                                <td><?= htmlspecialchars($plot['gov_cost']) ?> دالر</td>
+                                <th><i class="bi bi-building me-1"></i>Government Service Cost</th>
+                                <td><?= htmlspecialchars($plot['gov_cost']) ?> USD</td>
                             </tr>
                             <tr class="table-success">
-                                <th class="fw-bold"><i class="bi bi-currency-dollar me-1"></i>قیمت مجموعی</th>
-                                <td class="fw-bold fs-5"><?= htmlspecialchars($plot['total_price']) ?> دالر</td>
+                                <th class="fw-bold"><i class="bi bi-currency-dollar me-1"></i>Total Price</th>
+                                <td class="fw-bold fs-5"><?= htmlspecialchars($plot['total_price']) ?> USD</td>
                             </tr>
                         </table>
 
@@ -223,31 +223,31 @@ if ($plot_code) {
                         <div class="mt-4 p-4 rounded-4" style="background: #f8f9fa;">
                             <?php if ($plot['status'] === 'available'): ?>
                                 <div class="text-center">
-                                    <p class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>این نمره برای خرید آماده است</p>
+                                    <p class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>This plot is ready for purchase</p>
                                     <a href="buy_plot.php?id=<?= urlencode($plot['plot_code']) ?>" class="btn btn-buy">
-                                        <i class="bi bi-cart-check me-2"></i>خرید این نمره
+                                        <i class="bi bi-cart-check me-2"></i>Buy This Plot
                                     </a>
                                     <p class="text-muted small mt-3">
                                         <i class="bi bi-info-circle me-1"></i>
-                                        با خرید این نمره، اطلاعات شما ثبت شده و نمره به نام شما می‌شود
+                                        By purchasing this plot, your information will be recorded and the plot will be registered in your name
                                     </p>
                                 </div>
                             <?php elseif ($plot['status'] === 'sold'): ?>
                                 <div class="text-center">
                                     <i class="bi bi-x-circle-fill text-danger" style="font-size: 3rem;"></i>
-                                    <h5 class="text-danger mt-2">این نمره قبلاً فروخته شده است</h5>
-                                    <p class="text-muted">لطفاً نمره دیگری را از نقشه انتخاب کنید</p>
+                                    <h5 class="text-danger mt-2">This plot has already been sold</h5>
+                                    <p class="text-muted">Please choose another plot from the map</p>
                                     <a href="map.php" class="btn btn-outline-primary">
-                                        <i class="bi bi-map me-1"></i>مشاهده نقشه
+                                        <i class="bi bi-map me-1"></i>View Map
                                     </a>
                                 </div>
                             <?php else: ?>
                                 <div class="text-center">
                                     <i class="bi bi-clock-fill text-warning" style="font-size: 3rem;"></i>
-                                    <h5 class="text-warning mt-2">این نمره رزرو شده است</h5>
-                                    <p class="text-muted">لطفاً نمره دیگری را از نقشه انتخاب کنید</p>
+                                    <h5 class="text-warning mt-2">This plot is reserved</h5>
+                                    <p class="text-muted">Please choose another plot from the map</p>
                                     <a href="map.php" class="btn btn-outline-primary">
-                                        <i class="bi bi-map me-1"></i>مشاهده نقشه
+                                        <i class="bi bi-map me-1"></i>View Map
                                     </a>
                                 </div>
                             <?php endif; ?>
@@ -265,13 +265,13 @@ if ($plot_code) {
                     <div class="mt-3 text-center">
                         <small class="text-muted">
                             <i class="bi bi-geo-alt me-1"></i>
-                            موقعیت نمره روی نقشه
+                            Plot location on the map
                         </small>
                     </div>
                 <?php else: ?>
                     <div class="card border-0 shadow-sm rounded-4 p-5 text-center">
                         <i class="bi bi-map text-muted" style="font-size: 4rem;"></i>
-                        <p class="text-muted mt-3">موقعیت جغرافیایی برای این نمره ثبت نشده است</p>
+                        <p class="text-muted mt-3">Geographic location has not been registered for this plot</p>
                     </div>
                 <?php endif; ?>
             </div>
@@ -279,10 +279,10 @@ if ($plot_code) {
     <?php else: ?>
         <div class="text-center py-5">
             <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
-            <h3 class="mt-3">نمره مورد نظر یافت نشد</h3>
-            <p class="text-muted">این نمره در دیتابیس ثبت نشده است</p>
+            <h3 class="mt-3">Plot not found</h3>
+            <p class="text-muted">This plot is not registered in the database</p>
             <a href="map.php" class="btn btn-primary mt-3">
-                <i class="bi bi-map me-2"></i>بازگشت به نقشه
+                <i class="bi bi-map me-2"></i>Back to Map
             </a>
         </div>
     <?php endif; ?>
@@ -301,13 +301,13 @@ if ($plot_code) {
     }).addTo(map);
 
     var markerColor = "blue";
-    var statusText = "قابل فروش";
+    var statusText = "For Sale";
     <?php if ($plot['status'] === 'reserved'): ?>
         markerColor = "orange";
-        statusText = "رزرو شده";
+        statusText = "Reserved";
     <?php elseif ($plot['status'] === 'sold'): ?>
         markerColor = "red";
-        statusText = "فروخته شده";
+        statusText = "Sold";
     <?php endif; ?>
 
     L.circleMarker([<?= $plot['latitude'] ?>, <?= $plot['longitude'] ?>], {

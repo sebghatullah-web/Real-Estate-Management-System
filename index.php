@@ -104,13 +104,13 @@ include 'header.php';
     <div class="container position-relative" style="z-index: 1;">
         <div class="row align-items-center">
             <div class="col-lg-7">
-                <h1>به <span style="color: #ffc107;">شرکت ساختمانی خاور</span> خوش آمدید</h1>
-                <p>شرکت ساختمانی و انکشافی خاور - مرجع معتبر خرید و فروش نمرات مسکونی، تجارتی و اپارتمان ها در کابل جدید</p>
+                <h1>Welcome to <span style="color: #ffc107;">Khawar Construction Company</span></h1>
+                <p>Khawar Construction & Development Company - trusted source for buying and selling residential, commercial plots and apartments in New Kabul</p>
                 <a href="map.php" class="btn btn-hero" target="_blank">
-                    <i class="bi bi-map me-2"></i>مشاهده نقشه نمرات
+                    <i class="bi bi-map me-2"></i>View Plots Map
                 </a>
                 <a href="contact.php" class="btn btn-outline-light btn-lg ms-3 px-4" style="border-radius: 30px;">
-                    <i class="bi bi-telephone me-2"></i>تماس با ما
+                    <i class="bi bi-telephone me-2"></i>Contact Us
                 </a>
             </div>
             <div class="col-lg-5 text-center mt-4 mt-lg-0">
@@ -125,33 +125,33 @@ include 'header.php';
     <div class="container">
         <div class="text-center mb-4 mt-5">
             <h4 class="fw-bold" style="color:#1a3a5c;">
-                <i class="bi bi-buildings me-2"></i>آمار نمرات رهایشی
+                <i class="bi bi-buildings me-2"></i>Residential Plots Statistics
             </h4>
-            <p class="text-muted">وضعیت نمرات رهایشی</p>
+            <p class="text-muted">Status of residential plots</p>
         </div>
         <div class="row g-4">
             <div class="col-md-3 col-6">
                 <div class="stats-box">
                     <h3><?= number_format($total_plots) ?></h3>
-                    <p><i class="bi bi-grid-3x3-gap-fill me-1"></i>تعداد نمرات</p>
+                    <p><i class="bi bi-grid-3x3-gap-fill me-1"></i>Total Plots</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="stats-box" style="background: linear-gradient(135deg, #28a745, #20c997);">
                     <h3><?= number_format($available_plots) ?></h3>
-                    <p><i class="bi bi-check-circle me-1"></i>نمرات قابل فروش</p>
+                    <p><i class="bi bi-check-circle me-1"></i>Available Plots</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="stats-box" style="background: linear-gradient(135deg, #dc3545, #e74c3c);">
                     <h3><?= number_format($sold_plots) ?></h3>
-                    <p><i class="bi bi-cart-check me-1"></i>نمرات فروخته شده</p>
+                    <p><i class="bi bi-cart-check me-1"></i>Sold Plots</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="stats-box" style="background: linear-gradient(135deg, #6f42c1, #8e44ad);">
                     <h3><?= number_format($total_customers) ?></h3>
-                    <p><i class="bi bi-people me-1"></i>مشتریان</p>
+                    <p><i class="bi bi-people me-1"></i>Customers</p>
                 </div>
             </div>
         </div>
@@ -159,33 +159,33 @@ include 'header.php';
         <!-- Block & Apartment Stats -->
         <div class="text-center mb-4 mt-5">
             <h4 class="fw-bold" style="color:#1a3a5c;">
-                <i class="bi bi-buildings me-2"></i>آمار بلاک ها و اپارتمان ها
+                <i class="bi bi-buildings me-2"></i>Blocks & Apartments Statistics
             </h4>
-            <p class="text-muted">وضعیت بلاک ها و واحدهای اپارتمانی ما</p>
+            <p class="text-muted">Status of our blocks and apartment units</p>
         </div>
         <div class="row g-4">
             <div class="col-md-3 col-6">
                 <div class="stats-box">
                     <h3><?= number_format($total_blocks) ?></h3>
-                    <p><i class="bi bi-building me-1"></i>تعداد بلاک ها</p>
+                    <p><i class="bi bi-building me-1"></i>Total Blocks</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="stats-box" style="background: linear-gradient(135deg, #17a2b8, #0e7c9e);">
                     <h3><?= number_format($total_units) ?></h3>
-                    <p><i class="bi bi-door-closed me-1"></i>تعداد واحدهای اپارتمان</p>
+                    <p><i class="bi bi-door-closed me-1"></i>Total Apartment Units</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="stats-box" style="background: linear-gradient(135deg, #28a745, #20c997);">
                     <h3><?= number_format($available_units) ?></h3>
-                    <p><i class="bi bi-check-circle me-1"></i>واحدهای قابل فروش</p>
+                    <p><i class="bi bi-check-circle me-1"></i>Available Units</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
                 <div class="stats-box" style="background: linear-gradient(135deg, #dc3545, #e74c3c);">
                     <h3><?= number_format($sold_units) ?></h3>
-                    <p><i class="bi bi-cart-check me-1"></i>واحدهای فروخته شده</p>
+                    <p><i class="bi bi-cart-check me-1"></i>Sold Units</p>
                 </div>
             </div>
         </div>
@@ -196,36 +196,36 @@ include 'header.php';
 <section class="py-5 bg-white">
     <div class="container">
         <div class="section-title">
-            <h2>چرا خاور را انتخاب کنید؟</h2>
-            <p>ما بهترین گزینه‌ها را برای سرمایه‌گذاری شما فراهم کرده‌ایم</p>
+            <h2>Why Choose Khawar?</h2>
+            <p>We have provided the best options for your investment</p>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <i class="bi bi-map"></i>
-                    <h5>نقشه تعاملی</h5>
-                    <p class="text-muted small">مشاهده تمام نمرات روی نقشه با امکان خرید آنلاین</p>
+                    <h5>Interactive Map</h5>
+                    <p class="text-muted small">View all plots on the map with online purchasing option</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <i class="bi bi-shield-check"></i>
-                    <h5>اسناد معتبر</h5>
-                    <p class="text-muted small">تمام نمرات دارای اسناد رسمی و قانونی می‌باشند</p>
+                    <h5>Valid Documents</h5>
+                    <p class="text-muted small">All plots come with official and legal documents</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <i class="bi bi-cash-coin"></i>
-                    <h5>قیمت منصفانه</h5>
-                    <p class="text-muted small">قیمت‌های رقابتی با امکان پرداخت قسطی</p>
+                    <h5>Fair Pricing</h5>
+                    <p class="text-muted small">Competitive prices with installment payment options</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="feature-box">
                     <i class="bi bi-headset"></i>
-                    <h5>پشتیبانی ۲۴/۷</h5>
-                    <p class="text-muted small">تیم پشتیبانی ما همیشه آماده پاسخ‌گویی است</p>
+                    <h5>24/7 Support</h5>
+                    <p class="text-muted small">Our support team is always ready to help</p>
                 </div>
             </div>
         </div>
@@ -236,20 +236,20 @@ include 'header.php';
 <section class="py-5">
     <div class="container">
         <div class="section-title">
-            <h2>انواع نمرات</h2>
-            <p>طیف گسترده‌ای از نمرات در اندازه‌های مختلف</p>
+            <h2>Plot Types</h2>
+            <p>A wide range of plots in different sizes</p>
         </div>
         <div class="row g-4">
             <?php
             $plot_types = [
-                ['code' => 'p_2_', 'name' => 'دو بسوه‌ای', 'area' => '۲۰۰ متر مربع', 'price' => '۳,۰۰۰', 'color' => '#ff7b00', 'icon' => 'bi-house'],
-                ['code' => 'p_2.6_', 'name' => 'دونیم بسوه‌ای', 'area' => '۲۶۰ متر مربع', 'price' => '۴,۰۰۰', 'color' => '#fd5826', 'icon' => 'bi-house-door'],
-                ['code' => 'p_3_', 'name' => 'سه بسوه‌ای', 'area' => '۳۰۰ متر مربع', 'price' => '۵,۰۰۰', 'color' => '#0515ee', 'icon' => 'bi-building'],
-                ['code' => 'p_4_', 'name' => 'چهار بسوه‌ای', 'area' => '۴۰۰ متر مربع', 'price' => '۱۰,۰۰۰', 'color' => '#fcb724', 'icon' => 'bi-buildings'],
-                ['code' => 'p_5_', 'name' => 'پنج بسوه‌ای', 'area' => '۵۱۰ متر مربع', 'price' => '۱۵,۰۰۰', 'color' => '#ff9100', 'icon' => 'bi-building-fill'],
-                ['code' => 'p_6_', 'name' => 'شش بسوه‌ای', 'area' => '۶۰۰ متر مربع', 'price' => '۲۰,۰۰۰', 'color' => '#03af2e', 'icon' => 'bi-buildings-fill'],
-                ['code' => 'p_10_', 'name' => 'ده بسوه‌ای', 'area' => '۱۰۰۰ متر مربع', 'price' => '۳۰,۰۰۰', 'color' => '#ff0000', 'icon' => 'bi-bank'],
-                ['code' => 'p_vip_', 'name' => 'VIP', 'area' => 'ویژه', 'price' => 'توافقی', 'color' => '#00d9ff', 'icon' => 'bi-star'],
+                ['code' => 'p_2_', 'name' => 'Two Jiribs', 'area' => '200 Square Meters', 'price' => '3,000', 'color' => '#ff7b00', 'icon' => 'bi-house'],
+                ['code' => 'p_2.6_', 'name' => 'Two and a Half Jiribs', 'area' => '260 Square Meters', 'price' => '4,000', 'color' => '#fd5826', 'icon' => 'bi-house-door'],
+                ['code' => 'p_3_', 'name' => 'Three Jiribs', 'area' => '300 Square Meters', 'price' => '5,000', 'color' => '#0515ee', 'icon' => 'bi-building'],
+                ['code' => 'p_4_', 'name' => 'Four Jiribs', 'area' => '400 Square Meters', 'price' => '10,000', 'color' => '#fcb724', 'icon' => 'bi-buildings'],
+                ['code' => 'p_5_', 'name' => 'Five Jiribs', 'area' => '510 Square Meters', 'price' => '15,000', 'color' => '#ff9100', 'icon' => 'bi-building-fill'],
+                ['code' => 'p_6_', 'name' => 'Six Jiribs', 'area' => '600 Square Meters', 'price' => '20,000', 'color' => '#03af2e', 'icon' => 'bi-buildings-fill'],
+                ['code' => 'p_10_', 'name' => 'Ten Jiribs', 'area' => '1000 Square Meters', 'price' => '30,000', 'color' => '#ff0000', 'icon' => 'bi-bank'],
+                ['code' => 'p_vip_', 'name' => 'VIP', 'area' => 'Special', 'price' => 'Negotiable', 'color' => '#00d9ff', 'icon' => 'bi-star'],
             ];
             foreach ($plot_types as $type): ?>
             <div class="col-lg-3 col-md-6">
@@ -260,9 +260,9 @@ include 'header.php';
                         </div>
                         <h5 class="fw-bold"><?= $type['name'] ?></h5>
                         <p class="text-muted mb-1"><i class="bi bi-rulers me-1"></i><?= $type['area'] ?></p>
-                        <p class="text-muted mb-1"><i class="bi bi-cash me-1"></i>از <?= $type['price'] ?> دالر</p>
+                        <p class="text-muted mb-1"><i class="bi bi-cash me-1"></i>From <?= $type['price'] ?> USD</p>
                         <a href="map.php" class="btn btn-outline-primary btn-sm mt-2" style="border-radius: 20px;" target="_blank">
-                            <i class="bi bi-eye me-1"></i>مشاهده
+                            <i class="bi bi-eye me-1"></i>View
                         </a>
                     </div>
                 </div>
@@ -276,8 +276,8 @@ include 'header.php';
 <section class="py-5">
     <div class="container">
         <div class="section-title">
-            <h2>انواع بلاک های اپارتمانی</h2>
-            <p>اپارتمان های مدرن در بلوک های مختلف با امکانات کامل</p>
+            <h2>Apartment Block Types</h2>
+            <p>Modern apartments in various blocks with full facilities</p>
         </div>
         <div class="row g-4">
             <?php if (count($block_types) > 0): ?>
@@ -288,16 +288,16 @@ include 'header.php';
                             <div style="width: 70px; height: 70px; background: #2c5f7c22; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;">
                                 <i class="bi bi-buildings" style="font-size: 2rem; color: #2c5f7c;"></i>
                             </div>
-                            <h5 class="fw-bold">بلاک <?= htmlspecialchars($bt['key']) ?> متری</h5>
-                            <p class="text-muted mb-1"><i class="bi bi-rulers me-1"></i>سایز <?= number_format($bt['size']) ?> متر مربع</p>
-                            <p class="text-muted mb-1"><i class="bi bi-layers me-1"></i><?= htmlspecialchars($bt['floors']) ?> منزل / طبقه</p>
-                            <p class="text-muted mb-1"><i class="bi bi-grid me-1"></i><?= number_format($bt['count']) ?> بلوک | <?= number_format($bt['units']) ?> واحد</p>
+                            <h5 class="fw-bold"><?= htmlspecialchars($bt['key']) ?> Meter Block</h5>
+                            <p class="text-muted mb-1"><i class="bi bi-rulers me-1"></i>Size <?= number_format($bt['size']) ?> Square Meters</p>
+                            <p class="text-muted mb-1"><i class="bi bi-layers me-1"></i><?= htmlspecialchars($bt['floors']) ?> Floor(s)</p>
+                            <p class="text-muted mb-1"><i class="bi bi-grid me-1"></i><?= number_format($bt['count']) ?> Blocks | <?= number_format($bt['units']) ?> Units</p>
                             <p class="mb-2">
-                                <span class="badge badge-available"><?= number_format($bt['avail']) ?> موجود</span>
-                                <span class="badge badge-sold me-1"><?= number_format($bt['sold']) ?> فروخته</span>
+                                <span class="badge badge-available"><?= number_format($bt['avail']) ?> Available</span>
+                                <span class="badge badge-sold me-1"><?= number_format($bt['sold']) ?> Sold</span>
                             </p>
                             <a href="map.php" class="btn btn-outline-primary btn-sm mt-2" style="border-radius: 20px;" target="_blank">
-                                <i class="bi bi-eye me-1"></i>مشاهده در نقشه
+                                <i class="bi bi-eye me-1"></i>View on Map
                             </a>
                         </div>
                     </div>
@@ -306,7 +306,7 @@ include 'header.php';
             <?php else: ?>
                 <div class="col-12 text-center text-muted py-4">
                     <i class="bi bi-building d-block mb-2" style="font-size: 3rem;"></i>
-                    هنوز بلاک اپارتمانی ثبت نشده است
+                    No apartment blocks have been registered yet
                 </div>
             <?php endif; ?>
         </div>
@@ -318,13 +318,13 @@ include 'header.php';
     <div class="container text-center">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="fw-bold" style="color: #1a3a5c;">برای خرید نمره و اپارتمان مورد نظر خود آماده‌اید؟</h2>
-                <p class="text-muted mb-4">با مراجعه به نقشه تعاملی ما، نمره یا اپارتمان مورد نظر خود را انتخاب کرده و خرید کنید</p>
+                <h2 class="fw-bold" style="color: #1a3a5c;">Ready to buy your desired plot or apartment?</h2>
+                <p class="text-muted mb-4">Visit our interactive map, choose your desired plot or apartment and buy it</p>
                 <a href="map.php" class="btn btn-lg btn-buy px-5" target="_blank">
-                    <i class="bi bi-map me-2"></i>رفتن به نقشه نمرات و اپارتمان ها
+                    <i class="bi bi-map me-2"></i>Go to Plots & Apartments Map
                 </a>
                 <a href="contact.php" class="btn btn-lg btn-outline-secondary ms-3 px-5" style="border-radius: 25px;">
-                    <i class="bi bi-telephone me-2"></i>مشاوره رایگان
+                    <i class="bi bi-telephone me-2"></i>Free Consultation
                 </a>
             </div>
         </div>

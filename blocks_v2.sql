@@ -1,17 +1,17 @@
 -- ============================================================
--- KHAWARDB — به‌روزرسانی ساختار بلاک‌ها و اپارتمان‌ها (نسخه ۲)
+-- KHAWARDB - Blocks & Apartments structure upgrade (version 2)
 --
--- یک) حذف فیلدهای category و units_per_floor و unit_size از جدول blocks
---     (تعداد واحد در منزل و کتگوری حالا متعلق به خود واحدها است)
--- دو) افزودن units_per_floor و category به جدول block_units
--- سه) ساخت جدول «امکانات بلاک» (block_amenities)
--- چهار) ساخت جدول «جزئیات واحد» (block_unit_features)
+-- 1) Remove category, units_per_floor and unit_size fields from the blocks table
+--    (units per floor and category now belong to the units themselves)
+-- 2) Add units_per_floor and category to the block_units table
+-- 3) Create the block amenities table (block_amenities)
+-- 4) Create the unit features table (block_unit_features)
 -- ============================================================
 
 SET NAMES utf8mb4;
 
 -- --------------------------------------------------------
--- ۱) حذف فیلدهای اضافی از جدول blocks
+-- 1) Remove extra fields from the blocks table
 -- --------------------------------------------------------
 ALTER TABLE `blocks`
   DROP COLUMN `category`,
@@ -19,13 +19,13 @@ ALTER TABLE `blocks`
   DROP COLUMN `unit_size`;
 
 -- --------------------------------------------------------
--- ۲) افزودن فیلدهای جدید به جدول block_units
+-- 2) Add new fields to the block_units table
 -- --------------------------------------------------------
 ALTER TABLE `block_units`
-  ADD COLUMN `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد واحد در این منزل (۱ تا ۴ عدد)' AFTER `floor_number`,
-  ADD COLUMN `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'کتگوری واحد: standard، premium، vip، vvip و ...' AFTER `units_per_floor`;
+  ADD COLUMN `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'Number of units on this floor (1 to 4)' AFTER `floor_number`,
+  ADD COLUMN `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'Unit category: standard, premium, vip, vvip, etc.' AFTER `units_per_floor`;
 
--- به‌روزرسانی units_per_floor برای داده‌های قبلی (بر اساس تعداد واحدها در هر منزل)
+-- Update units_per_floor for existing data (based on the number of units on each floor)
 UPDATE block_units bu
 JOIN (
   SELECT block_id, floor_number, COUNT(*) AS cnt
@@ -35,13 +35,13 @@ JOIN (
 SET bu.units_per_floor = x.cnt;
 
 -- --------------------------------------------------------
--- ۳) جدول امکانات بلاک (Lobby، آسانسور، پارکینگ و ...)
+-- 3) Block amenities table (Lobby, Elevator, Parking, etc.)
 -- --------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `block_amenities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `block_id` int(11) NOT NULL,
-  `amenity_key` varchar(50) NOT NULL COMMENT 'شناسه امکانات (لطفاً با حروف انگلیسی)',
-  `amenity_label` varchar(100) NOT NULL COMMENT 'نام امکانات به فارسی',
+  `amenity_key` varchar(50) NOT NULL COMMENT 'Amenity identifier (English letters)',
+  `amenity_label` varchar(100) NOT NULL COMMENT 'Amenity name (English)',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `block_amenity_unique` (`block_id`, `amenity_key`),
@@ -49,13 +49,13 @@ CREATE TABLE IF NOT EXISTS `block_amenities` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
--- ۴) جدول جزئیات هر واحد/اپارتمان (دهلیز، سالون، اتاق خواب و ...)
+-- 4) Unit features table (foyer, living room, bedroom, etc.)
 -- --------------------------------------------------------
 CREATE TABLE IF NOT EXISTS `block_unit_features` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit_id` int(11) NOT NULL,
-  `feature_key` varchar(50) NOT NULL COMMENT 'شناسه جزئیات (لطفاً با حروف انگلیسی)',
-  `feature_label` varchar(100) NOT NULL COMMENT 'نام جزئیات به فارسی',
+  `feature_key` varchar(50) NOT NULL COMMENT 'Feature identifier (English letters)',
+  `feature_label` varchar(100) NOT NULL COMMENT 'Feature name (English)',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `unit_feature_unique` (`unit_id`, `feature_key`),

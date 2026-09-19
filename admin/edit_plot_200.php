@@ -8,7 +8,7 @@ $plot = $result->fetch_assoc();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // آماده‌سازی مقدار customer_id
+    // Prepare the customer_id value
     $cust_id = !empty($_POST['customer_id']) ? $_POST['customer_id'] : NULL;
 
     $stmt = $conn->prepare("UPDATE plots_200 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -64,76 +64,76 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <!-- Breadcrumb -->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">خانه</li>
-            <li class="breadcrumb-item"><a href="#">مدیریت</a>
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item"><a href="#">Management</a>
             </li>
-            <li class="breadcrumb-item active">داشبرد</li>
+            <li class="breadcrumb-item active">Dashboard</li>
 
             <!-- Breadcrumb Menu-->
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
-                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
+                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                    <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
                 </div>
             </li>
         </ol>
 
         <div class="container-fluid">
 
-        <h2 class="mb-4">ویرایش نمره دو بسوه‌ای</h2>
+        <h2 class="mb-4">Edit Plot Two Jiribs (200 sqm)</h2>
         <form method="POST" class="row g-3">
           <div class="col-md-4">
-            <label class="form-label">کد نمره</label>
+            <label class="form-label">Plot Code</label>
             <input type="text" name="plot_code" class="form-control" value="<?= htmlspecialchars($plot['plot_code']) ?>" required>
           </div>
           <div class="col-md-4">
-            <label class="form-label">نوع</label>
+            <label class="form-label">Type</label>
             <input type="text" name="type" class="form-control" value="<?= htmlspecialchars($plot['type']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">مساحت</label>
+            <label class="form-label">Area</label>
             <input type="number" name="area" class="form-control" value="<?= htmlspecialchars($plot['area']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">قیمت پایه</label>
+            <label class="form-label">Base Price</label>
             <input type="number" step="0.01" name="base_price" class="form-control" value="<?= htmlspecialchars($plot['base_price']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">هزینه خدمات زیربنا</label>
+            <label class="form-label">Infrastructure Cost</label>
             <input type="number" step="0.01" name="infra_cost" class="form-control" value="<?= htmlspecialchars($plot['infra_cost']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">هزینه خدمات دولتی</label>
+            <label class="form-label">Government Services Cost</label>
             <input type="number" step="0.01" name="gov_cost" class="form-control" value="<?= htmlspecialchars($plot['gov_cost']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">قیمت مجموعی</label>
+            <label class="form-label">Total Price</label>
             <input type="number" step="0.01" name="total_price" class="form-control" value="<?= htmlspecialchars($plot['total_price']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">وضعیت</label>
+            <label class="form-label">Status</label>
             <select name="status" class="form-select">
-              <option value="available" <?= $plot['status']=='available'?'selected':'' ?>>قابل فروش</option>
-              <option value="reserved" <?= $plot['status']=='reserved'?'selected':'' ?>>رزرو شده</option>
-              <option value="sold" <?= $plot['status']=='sold'?'selected':'' ?>>فروخته شده</option>
+              <option value="available" <?= $plot['status']=='available'?'selected':'' ?>>For Sale</option>
+              <option value="reserved" <?= $plot['status']=='reserved'?'selected':'' ?>>Reserved</option>
+              <option value="sold" <?= $plot['status']=='sold'?'selected':'' ?>>Sold</option>
             </select>
           </div>
           <div class="col-md-4">
-            <label class="form-label">مشتری</label>
+            <label class="form-label">Customer</label>
             <input type="number" name="customer_id" class="form-control" value="<?= htmlspecialchars($plot['customer_id']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">عرض جغرافیایی</label>
+            <label class="form-label">Latitude</label>
             <input type="text" name="latitude" class="form-control" value="<?= htmlspecialchars($plot['latitude']) ?>">
           </div>
           <div class="col-md-4">
-            <label class="form-label">طول جغرافیایی</label>
+            <label class="form-label">Longitude</label>
             <input type="text" name="longitude" class="form-control" value="<?= htmlspecialchars($plot['longitude']) ?>">
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
-            <a href="plots_200.php" class="btn btn-secondary">بازگشت</a>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="plots_200.php" class="btn btn-secondary">Back</a>
           </div>
         </form>
 

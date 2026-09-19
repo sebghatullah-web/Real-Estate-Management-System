@@ -5,13 +5,13 @@
 
 html, body { background: #eef1f5; margin: 0; padding: 0; }
 body {
-    font-family: 'Vazirmatn', Tahoma, 'Segoe UI', Arial, sans-serif;
-    text-align: right;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Arial, sans-serif;
+    text-align: left;
     color: #222;
     font-size: 13px;
 }
 
-/* خروجی دقیقاً روی یک ورق A4 */
+/* Print exactly on one A4 sheet */
 @page { size: A4 portrait; margin: 0; }
 
 /* ---------- نوار ابزار (فقط صفحه نمایش) ---------- */
@@ -39,7 +39,7 @@ body {
 .btn-p-secondary { background: #e2e6ea; color: #333; }
 .btn-p-secondary:hover { background: #d3d8de; }
 
-/* ---------- ورق انوایس ---------- */
+/* ---------- Invoice sheet ---------- */
 .invoice-sheet {
     width: 210mm;
     min-height: 297mm;
@@ -51,7 +51,7 @@ body {
     flex-direction: column;
 }
 
-/* ---------- سربرگ ---------- */
+/* ---------- Header ---------- */
 .inv-header {
     display: flex;
     justify-content: space-between;
@@ -75,7 +75,7 @@ body {
 .inv-title h2 { font-size: 25px; color: #0f4c81; margin: 0; letter-spacing: .5px; }
 .inv-title p { font-size: 11px; color: #9aa2ad; margin: 2px 0 0; letter-spacing: 3px; }
 
-/* ---------- شماره و تاریخ ---------- */
+/* ---------- Invoice no. and date ---------- */
 .inv-meta {
     display: flex;
     justify-content: space-between;
@@ -89,7 +89,7 @@ body {
 .meta-item span { color: #88909c; font-size: 12px; display: block; margin-bottom: 2px; }
 .meta-item strong { font-size: 14px; color: #0f4c81; }
 
-/* ---------- فروشنده / خریدار ---------- */
+/* ---------- Seller / buyer ---------- */
 .inv-parties {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -113,7 +113,7 @@ body {
 .party p { margin: 3px 0; font-size: 13px; color: #444; }
 .party .p-name { font-size: 15px; font-weight: 700; color: #111; }
 .party-seller { background: #f6f9fc; }
-/* ---------- عنوان بخش ---------- */
+/* ---------- Section title ---------- */
 .inv-section-title {
     display: flex;
     align-items: center;
@@ -123,12 +123,12 @@ body {
 .inv-section-title .bar { width: 5px; height: 20px; background: #0f4c81; border-radius: 3px; }
 .inv-section-title h3 { margin: 0; font-size: 16px; color: #0f4c81; }
 
-/* ---------- جدول‌ها ---------- */
+/* ---------- Tables ---------- */
 .inv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 .inv-table th, .inv-table td {
     border: 1px solid #dfe4ea;
     padding: 8px 11px;
-    text-align: right;
+    text-align: left;
     vertical-align: middle;
 }
 .inv-table thead th {
@@ -139,25 +139,25 @@ body {
 .inv-table .num { text-align: left; direction: ltr; font-weight: 600; }
 .inv-table .t-center { text-align: center; }
 
-/* جدول مبالغ */
+/* Amount table */
 .amount-table td:first-child { font-weight: 600; }
 .amount-table .total-row td { background: #0f4c81 !important; color: #fff; font-weight: 700; font-size: 14px; }
 .amount-table .payment-row td { background: #fffbe9 !important; font-weight: 700; }
 .amount-table .paid-row td { background: #eaf7ec !important; font-weight: 700; color: #1a7f37; }
 .amount-table .dang-row td { background: #fdeeee !important; font-weight: 700; color: #bb2d3b; }
 
-/* شرحِ خدمات/مورد در بالای جدول مبالغ */
+/* Service / item description above the amount table */
 .inv-service {
     background: #f6f9fc;
-    border-right: 4px solid #0f4c81;
+    border-left: 4px solid #0f4c81;
     padding: 8px 12px;
-    border-radius: 0 6px 6px 0;
+    border-radius: 6px 0 0 6px;
     font-size: 13px;
     color: #333;
 }
 .inv-service b { color: #0f4c81; }
 
-/* ---------- مبلغ به حروف ---------- */
+/* ---------- Amount in words ---------- */
 .inv-words {
     margin-top: 10px;
     padding: 9px 14px;
@@ -169,7 +169,7 @@ body {
 }
 .inv-words b { color: #0f4c81; }
 
-/* ---------- یادداشت ---------- */
+/* ---------- Note ---------- */
 .inv-note {
     margin-top: 14px;
     padding: 9px 14px;
@@ -181,7 +181,7 @@ body {
     line-height: 1.9;
 }
 
-/* ---------- امضاها ---------- */
+/* ---------- Signatures ---------- */
 .inv-signatures {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -191,7 +191,7 @@ body {
 .sign-box span { font-size: 13px; color: #444; }
 .sig-line { border-bottom: 1.6px solid #444; height: 38px; margin-top: 4px; }
 
-/* ---------- پاورقی (فقط صفحه نمایش - در چاپ حذف می‌شود) ---------- */
+/* ---------- Footer (on-screen only - removed when printing) ---------- */
 .inv-footer-note {
     margin-top: auto;
     padding-top: 26px;
@@ -202,7 +202,7 @@ body {
 }
 .inv-footer-note b { color: #0f4c81; }
 
-/* ---------- چاپ: فقط ورق انوایس، بدون دکمه‌ها و فوتر ---------- */
+/* ---------- Print: only the invoice sheet, no buttons or footer ---------- */
 @media print {
     .no-print,
     .invoice-toolbar,

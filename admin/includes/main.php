@@ -151,14 +151,14 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
 
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">خانه</li>
-        <li class="breadcrumb-item"><a href="#">مدیریت</a></li>
-        <li class="breadcrumb-item active">داشبرد</li>
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item"><a href="#">Management</a></li>
+        <li class="breadcrumb-item active">Dashboard</li>
         <li class="breadcrumb-menu">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
-                <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
+                <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;Dashboard</a>
+                <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
             </div>
         </li>
     </ol>
@@ -172,7 +172,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-primary">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalCustomers); ?></h4>
-                            <p>تعداد مشتریان</p>
+                            <p>Total Customers</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart1" class="chart" height="70"></canvas>
@@ -185,7 +185,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-info">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalPlots); ?></h4>
-                            <p>تعداد کل نمرات</p>
+                            <p>Total Plots</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart2" class="chart" height="70"></canvas>
@@ -198,7 +198,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-success">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalAvailable); ?></h4>
-                            <p>نمرات موجود</p>
+                            <p>Available Plots</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart3" class="chart" height="70"></canvas>
@@ -211,7 +211,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-danger">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalSold); ?></h4>
-                            <p>نمرات فروخته شده</p>
+                            <p>Sold Plots</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart4" class="chart" height="70"></canvas>
@@ -228,7 +228,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-warning">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalReserved); ?></h4>
-                            <p>نمرات رزرو شده</p>
+                            <p>Reserved Plots</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart5" class="chart" height="70"></canvas>
@@ -241,7 +241,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-primary">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalRevenue); ?></h4>
-                            <p>مجموع دریافتی (افغانی)</p>
+                            <p>Total Received (AFN)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart6" class="chart" height="70"></canvas>
@@ -254,7 +254,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-info">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalSoldValue); ?></h4>
-                            <p>ارزش نمرات فروخته شده (دالر)</p>
+                            <p>Sold Plots Value (USD)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart7" class="chart" height="70"></canvas>
@@ -267,7 +267,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-success">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalPlots - $totalAvailable - $totalSold - $totalReserved); ?></h4>
-                            <p>سایر (نامشخص)</p>
+                            <p>Other (Undefined)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart8" class="chart" height="70"></canvas>
@@ -283,18 +283,18 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>آمار تفکیکی نمرات بر اساس نوع</strong>
+                            <strong>Plot Statistics by Type</strong>
                         </div>
                         <div class="card-block">
                             <table class="table table-bordered table-striped table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>نوع نمره</th>
-                                        <th>مجموع</th>
-                                        <th>موجود</th>
-                                        <th>فروخته شده</th>
-                                        <th>رزرو شده</th>
-                                        <th style="width:200px;">نمودار</th>
+                                        <th>Plot Type</th>
+                                        <th>Total</th>
+                                        <th>Available</th>
+                                        <th>Sold</th>
+                                        <th>Reserved</th>
+                                        <th style="width:200px;">Chart</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -302,7 +302,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                                     <?php $i = 0; ?>
                                     <?php foreach ($plotTypeStats as $type => $stats): ?>
                                     <tr>
-                                        <td><strong>نمره <?php echo $type; ?></strong></td>
+                                        <td><strong>Plot <?php echo $type; ?></strong></td>
                                         <td><?php echo number_format($stats['total']); ?></td>
                                         <td class="text-success"><?php echo number_format($stats['available']); ?></td>
                                         <td class="text-danger"><?php echo number_format($stats['sold']); ?></td>
@@ -315,9 +315,9 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                                                 $soldPercent = round(($stats['sold'] / $total) * 100);
                                                 $reservedPercent = round(($stats['reserved'] / $total) * 100);
                                                 ?>
-                                                <div class="progress-bar progress-bar-striped bg-success" style="width: <?php echo $availPercent; ?>%">موجود <?php echo $availPercent; ?>%</div>
-                                                <div class="progress-bar progress-bar-striped bg-danger" style="width: <?php echo $soldPercent; ?>%">فروخته <?php echo $soldPercent; ?>%</div>
-                                                <div class="progress-bar progress-bar-striped bg-warning" style="width: <?php echo $reservedPercent; ?>%">رزرو <?php echo $reservedPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-success" style="width: <?php echo $availPercent; ?>%">Available <?php echo $availPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-danger" style="width: <?php echo $soldPercent; ?>%">Sold <?php echo $soldPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-warning" style="width: <?php echo $reservedPercent; ?>%">Reserved <?php echo $reservedPercent; ?>%</div>
                                             </div>
                                         </td>
                                     </tr>
@@ -336,7 +336,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-primary">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalBlocks); ?></h4>
-                            <p>تعداد بلاک‌ها</p>
+                            <p>Total Blocks</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart9" class="chart" height="70"></canvas>
@@ -349,7 +349,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-info">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnits); ?></h4>
-                            <p>تعداد کل واحدها (اپارتمان‌ها)</p>
+                            <p>Total Units (Apartments)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart10" class="chart" height="70"></canvas>
@@ -362,7 +362,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-success">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnitsAvailable); ?></h4>
-                            <p>واحدهای موجود</p>
+                            <p>Available Units</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart11" class="chart" height="70"></canvas>
@@ -375,7 +375,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-danger">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnitsSold); ?></h4>
-                            <p>واحدهای فروخته شده</p>
+                            <p>Sold Units</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart12" class="chart" height="70"></canvas>
@@ -392,7 +392,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-warning">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnitsReserved); ?></h4>
-                            <p>واحدهای رزرو شده</p>
+                            <p>Reserved Units</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart13" class="chart" height="70"></canvas>
@@ -405,7 +405,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-primary">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnitRevenue); ?></h4>
-                            <p>مجموع دریافتی واحدها (افغانی)</p>
+                            <p>Units Total Received (AFN)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart14" class="chart" height="70"></canvas>
@@ -418,7 +418,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-info">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnitSoldValue); ?></h4>
-                            <p>ارزش واحدهای فروخته شده (دالر)</p>
+                            <p>Sold Units Value (USD)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart15" class="chart" height="70"></canvas>
@@ -431,7 +431,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                     <div class="card card-inverse card-success">
                         <div class="card-block p-b-0">
                             <h4 class="m-b-0"><?php echo number_format($totalUnits - $totalUnitsAvailable - $totalUnitsSold - $totalUnitsReserved); ?></h4>
-                            <p>سایر واحدها (نامشخص)</p>
+                            <p>Other Units (Undefined)</p>
                         </div>
                         <div class="chart-wrapper p-x-1" style="height:70px;">
                             <canvas id="card-chart16" class="chart" height="70"></canvas>
@@ -447,18 +447,18 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>آمار تفکیکی بلاک‌ها و اپارتمان‌ها</strong>
+                            <strong>Blocks &amp; Apartments Statistics</strong>
                         </div>
                         <div class="card-block">
                             <table class="table table-bordered table-striped table-responsive">
                                 <thead>
                                     <tr>
-                                        <th>بلاک</th>
-                                        <th>مجموع واحدها</th>
-                                        <th>موجود</th>
-                                        <th>فروخته شده</th>
-                                        <th>رزرو شده</th>
-                                        <th style="width:200px;">نمودار</th>
+                                        <th>Block</th>
+                                        <th>Total Units</th>
+                                        <th>Available</th>
+                                        <th>Sold</th>
+                                        <th>Reserved</th>
+                                        <th style="width:200px;">Chart</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -481,9 +481,9 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                                                 $soldPercent = round(($blk['sold'] / $total) * 100);
                                                 $reservedPercent = round(($blk['reserved'] / $total) * 100);
                                                 ?>
-                                                <div class="progress-bar progress-bar-striped bg-success" style="width: <?php echo $availPercent; ?>%">موجود <?php echo $availPercent; ?>%</div>
-                                                <div class="progress-bar progress-bar-striped bg-danger" style="width: <?php echo $soldPercent; ?>%">فروخته <?php echo $soldPercent; ?>%</div>
-                                                <div class="progress-bar progress-bar-striped bg-warning" style="width: <?php echo $reservedPercent; ?>%">رزرو <?php echo $reservedPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-success" style="width: <?php echo $availPercent; ?>%">Available <?php echo $availPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-danger" style="width: <?php echo $soldPercent; ?>%">Sold <?php echo $soldPercent; ?>%</div>
+                                                <div class="progress-bar progress-bar-striped bg-warning" style="width: <?php echo $reservedPercent; ?>%">Reserved <?php echo $reservedPercent; ?>%</div>
                                             </div>
                                         </td>
                                     </tr>
@@ -500,18 +500,18 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong>آخرین پرداخت‌های اپارتمان‌ها / واحدها</strong>
+                            <strong>Recent Apartment / Unit Payments</strong>
                         </div>
                         <div class="card-block">
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>مشتری</th>
-                                        <th>واحد</th>
-                                        <th>بلاک</th>
-                                        <th>مبلغ (افغانی)</th>
-                                        <th>تاریخ</th>
+                                        <th>Customer</th>
+                                        <th>Unit</th>
+                                        <th>Block</th>
+                                        <th>Amount (AFN)</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -528,7 +528,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                                         </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
-                                        <tr><td colspan="6" class="text-center">هیچ پرداختی برای اپارتمان‌ها ثبت نشده است</td></tr>
+                                        <tr><td colspan="6" class="text-center">No payments recorded for apartments</td></tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>
@@ -542,16 +542,16 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>آخرین مشتریان ثبت شده</strong>
+                            <strong>Recently Registered Customers</strong>
                         </div>
                         <div class="card-block">
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>نام مشتری</th>
-                                        <th>شماره تماس</th>
-                                        <th>تاریخ ثبت</th>
+                                        <th>Customer Name</th>
+                                        <th>Phone</th>
+                                        <th>Registered</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -566,7 +566,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                                         </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
-                                        <tr><td colspan="4" class="text-center">هیچ مشتری ثبت نشده است</td></tr>
+                                        <tr><td colspan="4" class="text-center">No customers registered</td></tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>
@@ -577,17 +577,17 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <strong>آخرین پرداخت‌ها</strong>
+                            <strong>Recent Payments</strong>
                         </div>
                         <div class="card-block">
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>مشتری</th>
-                                        <th>نوعیت نمره</th>
-                                        <th>مبلغ (افغانی)</th>
-                                        <th>تاریخ</th>
+                                        <th>Customer</th>
+                                        <th>Plot Type</th>
+                                        <th>Amount (AFN)</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -603,7 +603,7 @@ while ($payRow = $unitPayStmt->fetch(PDO::FETCH_ASSOC)) {
                                         </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
-                                        <tr><td colspan="5" class="text-center">هیچ پرداختی ثبت نشده است</td></tr>
+                                        <tr><td colspan="5" class="text-center">No payments recorded</td></tr>
                                     <?php endif; ?>
                                 </tbody>
                             </table>

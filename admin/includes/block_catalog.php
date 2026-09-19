@@ -1,60 +1,60 @@
 <?php
 /* ============================================================
-   KHAWARDB — کاتالوگ امکانات بلاک‌ها و جزئیات واحدها
-   این فایل در همه صفحات مدیریت بلاک‌ها به‌کار برده می‌شود.
+   KHAWARDB — Catalog of block amenities and unit features
+   Used on all block management pages.
    ============================================================ */
 
-// ---------- امکانات بلاک (عمارت) ----------
+// ---------- Block amenities (building / common areas) ----------
 $BLOCK_AMENITIES = [
-    'lobby'           => 'لابی',
-    'staircase'       => 'راه‌پله',
-    'elevator'        => 'آسانسور',
-    'parking'         => 'پارکینگ',
-    'green_space'     => 'فضای سبز',
-    'kids_play'       => 'محوطه بازی کودکان',
-    'security'        => 'نگهبانی / امنیت',
-    'cctv'            => 'سیستم CCTV',
-    'facilities_room' => 'اتاق تأسیسات',
-    'water_tank'      => 'مخزن آب',
-    'generator'       => 'ژنراتور یا برق اضطراری',
-    'fire_fighting'   => 'سیستم اطفای حریق',
-    'garbage_area'    => 'محل جمع‌آوری زباله',
+    'lobby'           => 'Lobby',
+    'staircase'       => 'Staircase',
+    'elevator'        => 'Elevator',
+    'parking'         => 'Parking',
+    'green_space'     => 'Green Space',
+    'kids_play'       => "Children's Play Area",
+    'security'        => 'Security / Guard',
+    'cctv'            => 'CCTV System',
+    'facilities_room' => 'Facilities Room',
+    'water_tank'      => 'Water Tank',
+    'generator'       => 'Generator / Emergency Power',
+    'fire_fighting'   => 'Fire Fighting System',
+    'garbage_area'    => 'Garbage Collection Area',
 ];
 
-// ---------- جزئیات/اتاق‌های هر واحد (اپارتمان) ----------
+// ---------- Features/rooms of each unit (apartment) ----------
 $UNIT_FEATURES = [
-    'entrance_foyer'  => 'دهلیز / ورودی',
-    'living_room'     => 'سالون عمومی',
-    'dining_room'     => 'اتاق غذاخوری',
-    'kitchen'         => 'آشپزخانه',
-    'master_bedroom'  => 'اتاق خواب اصلی',
-    'bathroom'        => 'حمام',
-    'toilet'          => 'توالت',
-    'master_bathroom' => 'حمام و توالت اختصاصی اتاق خواب اصلی',
-    'balcony'         => 'بالکن',
-    'walkin_closet'   => 'اتاق لباس / کمد دیواری',
-    'storage'         => 'انبار داخلی',
-    'laundry'         => 'رخت‌شویی',
+    'entrance_foyer'  => 'Entrance / Foyer',
+    'living_room'     => 'Living Room / Reception',
+    'dining_room'     => 'Dining Room',
+    'kitchen'         => 'Kitchen',
+    'master_bedroom'  => 'Master Bedroom',
+    'bathroom'        => 'Bathroom',
+    'toilet'          => 'Toilet',
+    'master_bathroom' => 'Master Bedroom Private Bathroom',
+    'balcony'         => 'Balcony / Terrace',
+    'walkin_closet'   => 'Walk-in Closet / Wardrobe',
+    'storage'         => 'Storage Room',
+    'laundry'         => 'Laundry Area',
 ];
 
-// ---------- کتگوری‌های واحد ----------
+// ---------- Unit categories ----------
 $UNIT_CATEGORIES = ['standard', 'premium', 'vip', 'vvip'];
 
 /**
- * تبدیل شناسه کتگوری به برچسب فارسی
+ * Convert category id to display label
  */
 function unit_category_label($cat) {
     switch ($cat) {
-        case 'premium': return 'پریمیوم';
-        case 'vip':     return 'وی‌آی‌پی';
-        case 'vvip':    return 'وی‌وی‌آی‌پی';
+        case 'premium': return 'Premium';
+        case 'vip':     return 'VIP';
+        case 'vvip':    return 'VVIP';
         case 'standard':
-        default:        return 'استاندارد';
+        default:        return 'Standard';
     }
 }
 
 /**
- * کلاس رنگ برای کتگوری (برای نمایش در جدول‌ها)
+ * Color class for a category (for table display)
  */
 function unit_category_class($cat) {
     switch ($cat) {

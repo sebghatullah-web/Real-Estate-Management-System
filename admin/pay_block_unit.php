@@ -8,7 +8,7 @@ if (!$unit_id) {
     exit;
 }
 
-// دریافت معلومات اپارتمان/واحد فروخته‌شده و مشتری
+// Get sold apartment/unit and customer info
 $sql = "SELECT bu.*, c.full_name, c.fathar_name, c.national_id, b.block_code
         FROM block_units bu
         LEFT JOIN customers c ON bu.customer_id = c.id
@@ -20,7 +20,7 @@ $stmt->execute();
 $unit = $stmt->get_result()->fetch_assoc();
 
 if (!$unit) {
-    die("اپارتمان یافت نشد.");
+    die("Apartment not found.");
 }
 
 if ($unit['status'] != 'sold') {
@@ -28,7 +28,7 @@ if ($unit['status'] != 'sold') {
     exit;
 }
 
-// مجموع پرداختی‌های قبلی
+// Sum of previous payments
 $pay_sql = "SELECT IFNULL(SUM(amount),0) AS paid_amount FROM pay_block_units WHERE unit_id = ?";
 $pay_stmt = $conn->prepare($pay_sql);
 $pay_stmt->bind_param("i", $unit_id);
@@ -37,38 +37,38 @@ $paid = $pay_stmt->get_result()->fetch_assoc()['paid_amount'];
 
 $remaining = $unit['total_price'] - $paid;
 
-// ثبت پرداخت جدید
+// Insert new payment
 $error = '';
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['amount'])) {
     $amount = floatval($_POST['amount'] ?? 0);
     $note = trim($_POST['note'] ?? '');
 
     if ($amount <= 0) {
-        $error = "مبلغ پرداختی باید مثبت باشد.";
+        $error = "Payment amount must be positive.";
     } elseif ($amount > $remaining) {
-        $error = "مبلغ پرداختی نمی‌تواند بیشتر از باقی‌مانده (" . number_format($remaining, 2) . " دالر) باشد.";
+        $error = "Payment amount cannot exceed the remaining balance (" . number_format($remaining, 2) . " USD).";
     } else {
         $insert = $conn->prepare("INSERT INTO pay_block_units (unit_id, customer_id, amount, note) VALUES (?, ?, ?, ?)");
         $insert->bind_param("iids", $unit_id, $unit['customer_id'], $amount, $note);
         $insert->execute();
         $insert->close();
 
-        // بعد از ثبت پرداخت، چاپ انوایس
+        // After saving the payment, print the invoice
         header("Location: invoice_block_unit.php?unit_id=$unit_id&amount=$amount");
         exit;
     }
 }
 
-$roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ اتاقه' : '۱ اتاقه');
+$roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
 ?>
 <!DOCTYPE html>
-<html lang="IR-fa" dir="rtl">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ثبت پرداختی اپارتمان</title>
+    <title>Record Apartment Payment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -77,18 +77,18 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
     <main class="main">
 
         <div class="container-fluid">
-            <h2 class="mb-4">ثبت پرداختی برای اپارتمان (<?= htmlspecialchars($unit['unit_code']) ?>)</h2>
+            <h2 class="mb-4">Record Payment for Apartment (<?= htmlspecialchars($unit['unit_code']) ?>)</h2>
 
             <div class="card">
-                <div class="card-header"><strong>معلومات</strong></div>
+                <div class="card-header"><strong>Information</strong></div>
                 <div class="card-body">
                     <div class="row mb-3">
-                        <div class="col-md-6">ابلاک: <?= htmlspecialchars($unit['block_code']) ?></div>
-                        <div class="col-md-6">اپارتمان: <?= htmlspecialchars($unit['unit_code']) ?> (<?= $roomLabel ?>، <?= htmlspecialchars($unit['unit_size']) ?> متر)</div>
+                        <div class="col-md-6">Block: <?= htmlspecialchars($unit['block_code']) ?></div>
+                        <div class="col-md-6">Apartment: <?= htmlspecialchars($unit['unit_code']) ?> (<?= $roomLabel ?>, <?= htmlspecialchars($unit['unit_size']) ?> sqm)</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            مشتری: <?= htmlspecialchars($unit['full_name'] ?? '-') ?> -
+                            Customer: <?= htmlspecialchars($unit['full_name'] ?? '-') ?> -
                             <?= htmlspecialchars($unit['fathar_name'] ?? '-') ?> -
                             <?= htmlspecialchars($unit['national_id'] ?? '-') ?>
                         </div>
@@ -96,9 +96,9 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-4"><strong>قیمت مجموعی:</strong> <?= number_format((float)$unit['total_price'], 2) ?> دالر</div>
-                        <div class="col-md-4 text-success"><strong>پرداخت‌شده:</strong> <?= number_format((float)$paid, 2) ?> دالر</div>
-                        <div class="col-md-4 text-danger"><strong>باقی‌مانده:</strong> <?= number_format((float)$remaining, 2) ?> دالر</div>
+                        <div class="col-md-4"><strong>Total Price:</strong> <?= number_format((float)$unit['total_price'], 2) ?> USD</div>
+                        <div class="col-md-4 text-success"><strong>Paid:</strong> <?= number_format((float)$paid, 2) ?> USD</div>
+                        <div class="col-md-4 text-danger"><strong>Remaining:</strong> <?= number_format((float)$remaining, 2) ?> USD</div>
                     </div>
                 </div>
             </div>
@@ -109,32 +109,32 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
 
             <?php if ($remaining > 0): ?>
                 <div class="card mt-3">
-                    <div class="card-header"><strong>ثبت پرداخت جدید</strong></div>
+                    <div class="card-header"><strong>New Payment</strong></div>
                     <div class="card-body">
                         <form method="POST" class="row g-3">
                             <div class="col-md-4">
-                                <label class="form-label">مبلغ پرداختی (دالر)</label>
+                                <label class="form-label">Payment Amount (USD)</label>
                                 <input type="number" step="0.01" min="0.01" max="<?= $remaining ?>" name="amount" class="form-control" required>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">ملاحظه (اختیاری)</label>
-                                <input type="text" name="note" class="form-control" placeholder="مثلاً قسط اول">
+                                <label class="form-label">Note (optional)</label>
+                                <input type="text" name="note" class="form-control" placeholder="e.g. first installment">
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-success">ثبت پرداخت</button>
-                                <a href="list_sold_units.php" class="btn btn-secondary">بازگشت</a>
+                                <button type="submit" class="btn btn-success">Save Payment</button>
+                                <a href="list_sold_units.php" class="btn btn-secondary">Back</a>
                             </div>
                         </form>
                     </div>
                 </div>
             <?php else: ?>
                 <div class="alert alert-info mt-3">
-                    این اپارتمان کاملاً پرداخت شده است. (پرداخت‌شده: <?= number_format((float)$paid, 2) ?> دالر از <?= number_format((float)$unit['total_price'], 2) ?> دالر)
+                    This apartment is fully paid. (Paid: <?= number_format((float)$paid, 2) ?> USD out of <?= number_format((float)$unit['total_price'], 2) ?> USD)
                 </div>
             <?php endif; ?>
 
             <?php
-            // تاریخچه پرداخت‌ها
+            // Payment history
             $hist_sql = "SELECT amount, payment_date, note FROM pay_block_units WHERE unit_id = ? ORDER BY payment_date DESC";
             $hist_stmt = $conn->prepare($hist_sql);
             $hist_stmt->bind_param("i", $unit_id);
@@ -143,16 +143,16 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
             ?>
 
             <div class="card mt-4">
-                <div class="card-header"><strong>تاریخچه پرداخت‌ها</strong></div>
+                <div class="card-header"><strong>Payment History</strong></div>
                 <div class="card-body">
                     <?php if (count($payments) > 0): ?>
                         <table class="table table-bordered table-striped">
                             <thead class="table-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>مبلغ (دالر)</th>
-                                    <th>تاریخ</th>
-                                    <th>ملاحظه</th>
+                                    <th>Amount (USD)</th>
+                                    <th>Date</th>
+                                    <th>Note</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -167,7 +167,7 @@ $roomLabel = $unit['rooms'] == 2 ? '۲ اتاقه' : ($unit['rooms'] == 3 ? '۳ 
                             </tbody>
                         </table>
                     <?php else: ?>
-                        <p class="text-muted mb-0">هیچ پرداختی ثبت نشده است.</p>
+                        <p class="text-muted mb-0">No payments recorded.</p>
                     <?php endif; ?>
                 </div>
             </div>
