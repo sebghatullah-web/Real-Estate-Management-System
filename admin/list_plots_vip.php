@@ -12,7 +12,7 @@
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
 
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-    <title>Manage Two Jiribs (200 sqm)</title>
+    <title>Manage VIP Plot List</title>
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">

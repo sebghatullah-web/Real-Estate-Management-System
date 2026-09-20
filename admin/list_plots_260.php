@@ -12,7 +12,7 @@
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
 
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-    <title>Manage Two Jiribs (200 sqm)</title>
+    <title>Manage Two and a Half Biswa (260 sqm)</title>
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -54,7 +54,7 @@
         <div class="container-fluid">
 
 
-        <h2 class="mb-4">List of Sold Two and a Half Jiribs (260 sqm) Plots</h2>
+        <h2 class="mb-4">List of Sold Two and a Half Biswa (260 sqm) Plots</h2>
 
         <table id="plotsTable" class="table table-bordered table-striped">
             <thead class="table-dark">

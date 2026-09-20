@@ -12,7 +12,7 @@
     <meta name="keyword" content="CoreUI Bootstrap 4 Admin Template">
 
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
-    <title>Manage Two Jiribs (200 sqm)</title>
+    <title>Manage Two Biswa (200 sqm)</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <!-- Icons -->
@@ -103,7 +103,7 @@
             </form>
 
 
-            <h2 class="mb-4">List of Two Jiribs (200 sqm)</h2>
+            <h2 class="mb-4">List of Two Biswa (200 sqm)</h2>
 
 
 

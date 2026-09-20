@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="container-fluid">
 
-            <h2 class="mb-4">Edit Plot Two Jiribs (200 sqm)</h2>
+            <h2 class="mb-4">Edit Plot Three Biswa (300 sqm)</h2>
             <form method="POST" class="row g-3">
               <div class="col-md-4">
                 <label class="form-label">Plot Code</label>
