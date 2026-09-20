@@ -13,9 +13,9 @@
             <div class="col-lg-6 mb-4">
                 <div class="card border-0 shadow-sm rounded-4 p-4">
                     <h2 style="color: #1a3a5c;" class="fw-bold mb-4">About Khawar Company</h2>
-                    <p class="text-muted lh-lg">Khawar Construction & Development Company is one of the reputable companies in the field of construction, sale of residential and commercial plots and apartments, and management of construction projects in New Kabul.</p>
-                    <p class="text-muted lh-lg">With our experienced and specialized team, we have successfully implemented projects in the New Kabul project and gained the satisfaction of our customers.</p>
-                    <p class="text-muted lh-lg">Our goal is to provide quality services, fair prices, and create a safe and secure environment for your investment.</p>
+                    <p class="text-muted lh-lg" style="text-align: justify;">Through a constructive vision aimed at contributing to Afghanistan’s re- construction and economic development, Khawar Construction Company (KCC) as a private independent company initiated a significant investment in a very critical situation. Years ago, it laid the foundation for the future Kabul New City, which is currently being implemented in the area, by launching the first modern township under the name of “Green Town” in its own property in the desert of Deh Sabz. The goal was to transform Deh Sabz ( literally, the green village) into Green Town and later into a green capital or city, which now lies at the heart of the recently planned Kabul New City Mega Project.</p>
+                    <p class="text-muted lh-lg" style="text-align: justify;">leveraging its unique experience of investing and working in a politically and economically unstable environment, challenging in terms of security, and deeply traditional from a cultural perspective,  Khawar demonstrated sincere engagement in the country and remained committed to contributing to the development of New Kabul and a new Afghanistan.</p>
+                    <p class="text-muted lh-lg" style="text-align: justify;">In line with this spirit, KCC partnered with the government of Afghanistan to implement parcel B of the first phase of Kabul New City. This project will initially cover an area of 250 Hectares encompassing residential, commercial, sport, recreational and other zones, as well as standard infrastructure.</p>
                 </div>
             </div>
             <div class="col-lg-6 mb-4">

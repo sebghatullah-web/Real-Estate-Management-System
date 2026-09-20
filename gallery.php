@@ -11,26 +11,62 @@
     <div class="container">
         <div class="row g-4">
             <?php
-            $gallery_images = [
-                ['icon' => 'bi-house', 'title' => 'Residential Plots Samples', 'color' => '#1a3a5c'],
-                ['icon' => 'bi-building', 'title' => 'Commercial Projects', 'color' => '#2c5f7c'],
-                ['icon' => 'bi-map', 'title' => 'Comprehensive Plots Map', 'color' => '#28a745'],
-                ['icon' => 'bi-tree', 'title' => 'Green & Peaceful Environment', 'color' => '#20c997'],
-                ['icon' => 'bi-water', 'title' => 'Natural Scenery', 'color' => '#0dcaf0'],
-                ['icon' => 'bi-sun', 'title' => 'Modern Lighting', 'color' => '#ffc107'],
-            ];
-            foreach ($gallery_images as $img): ?>
-            <div class="col-lg-4 col-md-6">
-                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-                    <div style="height: 250px; background: linear-gradient(135deg, <?= $img['color'] ?>22, <?= $img['color'] ?>44); display: flex; align-items: center; justify-content: center;">
-                        <i class="bi <?= $img['icon'] ?>" style="font-size: 5rem; color: <?= $img['color'] ?>;"></i>
+                $gallery_images = [
+                    [
+                        'image' => 'img/gallery/residential-plots.jpg',
+                        'title' => 'Residential Plots Samples'
+                    ],
+                    [
+                        'image' => 'img/gallery/commercial-projects.jpg',
+                        'title' => 'Commercial Projects'
+                    ],
+                    [
+                        'image' => 'img/gallery/apartments.jpg',
+                        'title' => 'Modern Apartments'
+                        
+                    ],
+                    [
+                        'image' => 'img/gallery/plots-map.jpg',
+                        'title' => 'Comprehensive Plots Map'
+                    ],
+                    [
+                        'image' => 'img/gallery/natural-scenery.jpg',
+                        'title' => 'Natural Scenery'
+                    ],
+                    [
+                        'image' => 'img/gallery/modern-mosque.jpg',
+                        'title' => 'Modern Mosque Designs'
+                    ],
+                ];
+            ?>
+            <div class="row g-4">
+
+                <?php foreach ($gallery_images as $img): ?>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+
+                            <div style="height: 250px;">
+                                <img 
+                                    src="<?= $img['image'] ?>" 
+                                    alt="<?= htmlspecialchars($img['title']) ?>"
+                                    class="w-100 h-100"
+                                    style="object-fit: cover;"
+                                >
+                            </div>
+
+                            <div class="card-body text-center">
+                                <h5 class="fw-bold">
+                                    <?= $img['title'] ?>
+                                </h5>
+                            </div>
+
+                        </div>
                     </div>
-                    <div class="card-body text-center">
-                        <h5 class="fw-bold"><?= $img['title'] ?></h5>
-                    </div>
-                </div>
+
+                <?php endforeach; ?>
+
             </div>
-            <?php endforeach; ?>
         </div>
         
         <div class="text-center mt-5">

@@ -171,9 +171,9 @@ if ($plot_code) {
         <!-- Header -->
         <div class="text-center mb-4 pt-3">
             <h1 class="fw-bold" style="color: #1a3a5c;">
-                <i class="bi bi-pin-map me-2"></i>Plot <?= htmlspecialchars($plot['plot_code']) ?>
+                <i class="bi bi-pin-map me-2"></i>Plot Code <?= htmlspecialchars($plot['plot_code']) ?>
             </h1>
-            <p class="text-muted"><?= htmlspecialchars($plot['type']) ?> | <?= htmlspecialchars($plot['area']) ?> Square Meters</p>
+            <p class="text-muted"><?= htmlspecialchars($plot['type']) ?></p><br>
         </div>
 
         <div class="row g-4">
@@ -203,19 +203,19 @@ if ($plot_code) {
                             </tr>
                             <tr>
                                 <th><i class="bi bi-cash me-1"></i>Plot Price</th>
-                                <td><?= htmlspecialchars($plot['base_price']) ?> USD</td>
+                                <td><?= htmlspecialchars($plot['base_price']) ?> $</td>
                             </tr>
                             <tr>
                                 <th><i class="bi bi-tools me-1"></i>Infrastructure Cost</th>
-                                <td><?= htmlspecialchars($plot['infra_cost']) ?> USD</td>
+                                <td><?= htmlspecialchars($plot['infra_cost']) ?> $</td>
                             </tr>
                             <tr>
                                 <th><i class="bi bi-building me-1"></i>Government Service Cost</th>
-                                <td><?= htmlspecialchars($plot['gov_cost']) ?> USD</td>
+                                <td><?= htmlspecialchars($plot['gov_cost']) ?> $</td>
                             </tr>
                             <tr class="table-success">
                                 <th class="fw-bold"><i class="bi bi-currency-dollar me-1"></i>Total Price</th>
-                                <td class="fw-bold fs-5"><?= htmlspecialchars($plot['total_price']) ?> USD</td>
+                                <td class="fw-bold fs-5"><?= htmlspecialchars($plot['total_price']) ?> $</td>
                             </tr>
                         </table>
 

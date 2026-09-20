@@ -119,9 +119,9 @@ if ($block) {
     <?php if ($block): ?>
 <div class="text-center mb-4 pt-3">
             <h1 class="fw-bold" style="color: #1a3a5c;">
-                <i class="bi bi-building me-2"></i>Block <?= htmlspecialchars($block['block_code']) ?>
+                <i class="bi bi-building me-2"></i>Block Code: <?= htmlspecialchars($block['block_code']) ?>
             </h1>
-            <p class="text-muted"><?= htmlspecialchars($block['block_name'] ?? '') ?> | Size: <?= htmlspecialchars($block['size']) ?> Square Meters</p>
+            <p class="text-muted"><?= htmlspecialchars($block['block_name'] ?? '') ?> </p>
         </div>
 
         <div class="row g-4">

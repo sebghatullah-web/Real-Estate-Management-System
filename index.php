@@ -107,7 +107,7 @@ include 'header.php';
                 <h1>Welcome to <span style="color: #ffc107;">Khawar Construction Company</span></h1>
                 <p>Khawar Construction & Development Company - trusted source for buying and selling residential, commercial plots and apartments in New Kabul</p>
                 <a href="map.php" class="btn btn-hero" target="_blank">
-                    <i class="bi bi-map me-2"></i>View Plots Map
+                    <i class="bi bi-map me-2"></i>View Plots & Apartments Map
                 </a>
                 <a href="contact.php" class="btn btn-outline-light btn-lg ms-3 px-4" style="border-radius: 30px;">
                     <i class="bi bi-telephone me-2"></i>Contact Us
@@ -242,13 +242,13 @@ include 'header.php';
         <div class="row g-4">
             <?php
             $plot_types = [
-                ['code' => 'p_2_', 'name' => 'Two Jiribs', 'area' => '200 Square Meters', 'price' => '3,000', 'color' => '#ff7b00', 'icon' => 'bi-house'],
-                ['code' => 'p_2.6_', 'name' => 'Two and a Half Jiribs', 'area' => '260 Square Meters', 'price' => '4,000', 'color' => '#fd5826', 'icon' => 'bi-house-door'],
-                ['code' => 'p_3_', 'name' => 'Three Jiribs', 'area' => '300 Square Meters', 'price' => '5,000', 'color' => '#0515ee', 'icon' => 'bi-building'],
-                ['code' => 'p_4_', 'name' => 'Four Jiribs', 'area' => '400 Square Meters', 'price' => '10,000', 'color' => '#fcb724', 'icon' => 'bi-buildings'],
-                ['code' => 'p_5_', 'name' => 'Five Jiribs', 'area' => '510 Square Meters', 'price' => '15,000', 'color' => '#ff9100', 'icon' => 'bi-building-fill'],
-                ['code' => 'p_6_', 'name' => 'Six Jiribs', 'area' => '600 Square Meters', 'price' => '20,000', 'color' => '#03af2e', 'icon' => 'bi-buildings-fill'],
-                ['code' => 'p_10_', 'name' => 'Ten Jiribs', 'area' => '1000 Square Meters', 'price' => '30,000', 'color' => '#ff0000', 'icon' => 'bi-bank'],
+                ['code' => 'p_2_', 'name' => 'Two Biswa', 'area' => '200 Square Meters', 'price' => '3,000', 'color' => '#ff7b00', 'icon' => 'bi-house'],
+                ['code' => 'p_2.6_', 'name' => 'Two and a Half Biswa', 'area' => '260 Square Meters', 'price' => '4,000', 'color' => '#fd5826', 'icon' => 'bi-house-door'],
+                ['code' => 'p_3_', 'name' => 'Three Biswa', 'area' => '300 Square Meters', 'price' => '5,000', 'color' => '#0515ee', 'icon' => 'bi-building'],
+                ['code' => 'p_4_', 'name' => 'Four Biswa', 'area' => '400 Square Meters', 'price' => '10,000', 'color' => '#fcb724', 'icon' => 'bi-buildings'],
+                ['code' => 'p_5_', 'name' => 'Five Biswa', 'area' => '510 Square Meters', 'price' => '15,000', 'color' => '#ff9100', 'icon' => 'bi-building-fill'],
+                ['code' => 'p_6_', 'name' => 'Six Biswa', 'area' => '600 Square Meters', 'price' => '20,000', 'color' => '#03af2e', 'icon' => 'bi-buildings-fill'],
+                ['code' => 'p_10_', 'name' => 'Ten Biswa', 'area' => '1000 Square Meters', 'price' => '30,000', 'color' => '#ff0000', 'icon' => 'bi-bank'],
                 ['code' => 'p_vip_', 'name' => 'VIP', 'area' => 'Special', 'price' => 'Negotiable', 'color' => '#00d9ff', 'icon' => 'bi-star'],
             ];
             foreach ($plot_types as $type): ?>
@@ -260,7 +260,7 @@ include 'header.php';
                         </div>
                         <h5 class="fw-bold"><?= $type['name'] ?></h5>
                         <p class="text-muted mb-1"><i class="bi bi-rulers me-1"></i><?= $type['area'] ?></p>
-                        <p class="text-muted mb-1"><i class="bi bi-cash me-1"></i>From <?= $type['price'] ?> USD</p>
+                        <p class="text-muted mb-1"><i class="bi bi-cash me-1"></i>From <?= $type['price'] ?> $</p>
                         <a href="map.php" class="btn btn-outline-primary btn-sm mt-2" style="border-radius: 20px;" target="_blank">
                             <i class="bi bi-eye me-1"></i>View
                         </a>
@@ -288,7 +288,7 @@ include 'header.php';
                             <div style="width: 70px; height: 70px; background: #2c5f7c22; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;">
                                 <i class="bi bi-buildings" style="font-size: 2rem; color: #2c5f7c;"></i>
                             </div>
-                            <h5 class="fw-bold"><?= htmlspecialchars($bt['key']) ?> Meter Block</h5>
+                            <h5 class="fw-bold"><?= htmlspecialchars($bt['key']) ?> Square Meter Block</h5>
                             <p class="text-muted mb-1"><i class="bi bi-rulers me-1"></i>Size <?= number_format($bt['size']) ?> Square Meters</p>
                             <p class="text-muted mb-1"><i class="bi bi-layers me-1"></i><?= htmlspecialchars($bt['floors']) ?> Floor(s)</p>
                             <p class="text-muted mb-1"><i class="bi bi-grid me-1"></i><?= number_format($bt['count']) ?> Blocks | <?= number_format($bt['units']) ?> Units</p>

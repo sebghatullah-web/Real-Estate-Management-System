@@ -137,7 +137,7 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
 <section class="page-banner">
     <div class="container">
         <h1><i class="bi bi-cart me-2"></i>Buy Plot</h1>
-        <p class="mb-0">Plot <?= htmlspecialchars($plot['plot_code']) ?> - <?= htmlspecialchars($plot['type']) ?></p>
+        <p class="mb-0">Plot Code: <?= htmlspecialchars($plot['plot_code']) ?> - <?= htmlspecialchars($plot['type']) ?></p>
     </div>
 </section>
 
@@ -164,19 +164,19 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
                             </tr>
                             <tr>
                                 <th class="bg-light">Base Price</th>
-                                <td><?= htmlspecialchars($plot['base_price']) ?> USD</td>
+                                <td><?= htmlspecialchars($plot['base_price']) ?> $</td>
                             </tr>
                             <tr>
                                 <th class="bg-light">Infrastructure Cost</th>
-                                <td><?= htmlspecialchars($plot['infra_cost']) ?> USD</td>
+                                <td><?= htmlspecialchars($plot['infra_cost']) ?> $</td>
                             </tr>
                             <tr>
                                 <th class="bg-light">Government Service Cost</th>
-                                <td><?= htmlspecialchars($plot['gov_cost']) ?> USD</td>
+                                <td><?= htmlspecialchars($plot['gov_cost']) ?> $</td>
                             </tr>
                             <tr class="table-success">
                                 <th class="fw-bold">Total Price</th>
-                                <td class="fw-bold"><?= htmlspecialchars($plot['total_price']) ?> USD</td>
+                                <td class="fw-bold"><?= htmlspecialchars($plot['total_price']) ?> $</td>
                             </tr>
                         </table>
                     </div>
