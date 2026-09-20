@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 16, 2026 at 08:40 AM
+-- Generation Time: Sep 20, 2026 at 09:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,7 +32,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_1000` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_6_E', i),
-            'Ten Biswa (1000 sqm)',
+            'ده بسوه‌ای',
             1000,
             30000,
             4200,
@@ -51,7 +51,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_200` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_2_', i),
-            'Two Biswa (200 sqm)',
+            'دو بسوه‌ای',
             200,
             3000,
             1960,
@@ -70,7 +70,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_260` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_2.6_', i),
-            'Two and a Half Biswa (260 sqm)',
+            'دونیم بسوه‌ای',
             260,
             4000,
             2100,
@@ -89,7 +89,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_300` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_3_', i),
-            'Three Biswa (300 sqm)',
+            'سه بسوه‌ای',
             300,
             5000,
             2240,
@@ -108,7 +108,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_400` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_4_', i),
-            'Four Biswa (400 sqm)',
+            'چهار بسوه‌ای',
             400,
             10000,
             2800,
@@ -127,7 +127,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_510` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_5_', i),
-            'Five Biswa (510 sqm)',
+            'پنج بسوه‌ای',
             510,
             15000,
             3500,
@@ -146,7 +146,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_plots_600` ()   BEGIN
         (plot_code, type, area, base_price, infra_cost, gov_cost, total_price, status)
         VALUES (
             CONCAT('p_6_', i),
-            'Six Biswa (600 sqm)',
+            'شش بسوه‌ای',
             600,
             20000,
             3640,
@@ -203,7 +203,281 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `username`, `password`, `full_name`, `email`, `phone`, `national_id`, `profile_image`, `role`, `created_at`) VALUES
-(1, 'admin', '$2y$10$EqGXPRqhCtXvedKyWZ0uPeE59JNaBg4AgEyorxdUC33hJXwmBt9xm', 'admin', 'admin@gmail.com', NULL, NULL, NULL, 'admin', '2026-06-16 03:51:32');
+(1, 'admin', '$2y$10$EqGXPRqhCtXvedKyWZ0uPeE59JNaBg4AgEyorxdUC33hJXwmBt9xm', 'admin', 'admin@gmail.com', NULL, NULL, NULL, 'admin', '2026-06-15 23:21:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blocks`
+--
+
+CREATE TABLE `blocks` (
+  `id` int(11) NOT NULL,
+  `block_code` varchar(50) NOT NULL COMMENT 'کد بلاک',
+  `block_name` varchar(100) DEFAULT NULL COMMENT 'نام بلاک',
+  `size` int(11) NOT NULL COMMENT 'سایز بلاک (متر مربع) مثلاً 114، 412، 644، 902',
+  `staircase_size` int(11) NOT NULL DEFAULT 45 COMMENT 'راه پله (متر مربع)',
+  `floors_count` int(11) NOT NULL COMMENT 'تعداد منزل/طبقه‌ها',
+  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `blocks`
+--
+
+INSERT INTO `blocks` (`id`, `block_code`, `block_name`, `size`, `staircase_size`, `floors_count`, `status`, `created_at`) VALUES
+(10011, 'b_114_97', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 06:27:23'),
+(10012, 'b_114_98', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:52:45'),
+(10013, 'b_114_99', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:53:18'),
+(10014, 'b_114_100', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:53:46'),
+(10015, 'b_114_101', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:54:10'),
+(10016, 'b_114_102', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:54:31'),
+(10017, 'b_114_103', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:54:56'),
+(10018, 'b_114_104', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:55:25'),
+(10019, 'b_114_105', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:55:50'),
+(10021, 'b_412_22', '412 Square Meter Blocks', 412, 45, 7, 'active', '2026-09-12 06:28:11'),
+(10023, 'b_412_23', '412 Square Meter Blocks', 412, 45, 7, 'active', '2026-09-12 10:21:15'),
+(10024, 'b_902_26', '902 Square Meter Blocks', 902, 45, 7, 'active', '2026-09-12 10:36:30'),
+(10025, 'b_644_59', '644 Square Meter Blocks', 644, 45, 10, 'active', '2026-09-12 10:37:50'),
+(10026, 'b_114_106', 'بلاک های 114 متر مربع', 159, 45, 5, 'active', '2026-09-20 05:11:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `block_amenities`
+--
+
+CREATE TABLE `block_amenities` (
+  `id` int(11) NOT NULL,
+  `block_id` int(11) NOT NULL,
+  `amenity_key` varchar(50) NOT NULL COMMENT 'شناسه امکانات (لطفاً با حروف انگلیسی)',
+  `amenity_label` varchar(100) NOT NULL COMMENT 'نام امکانات به فارسی',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `block_amenities`
+--
+
+INSERT INTO `block_amenities` (`id`, `block_id`, `amenity_key`, `amenity_label`, `created_at`) VALUES
+(24, 10011, 'staircase', 'Staircase', '2026-09-09 06:27:23'),
+(25, 10011, 'parking', 'Parking', '2026-09-09 06:27:23'),
+(26, 10011, 'green_space', 'Green Space', '2026-09-09 06:27:23'),
+(27, 10011, 'kids_play', 'Children\'s Play Area', '2026-09-09 06:27:23'),
+(28, 10011, 'security', 'Security / Guard', '2026-09-09 06:27:23'),
+(29, 10011, 'water_tank', 'Water Tank', '2026-09-09 06:27:23'),
+(30, 10011, 'garbage_area', 'Garbage Collection Area', '2026-09-09 06:27:23'),
+(31, 10012, 'staircase', 'Staircase', '2026-09-09 08:52:45'),
+(32, 10012, 'parking', 'Parking', '2026-09-09 08:52:45'),
+(33, 10012, 'green_space', 'Green Space', '2026-09-09 08:52:45'),
+(34, 10012, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:52:45'),
+(35, 10012, 'security', 'Security / Guard', '2026-09-09 08:52:45'),
+(36, 10012, 'water_tank', 'Water Tank', '2026-09-09 08:52:45'),
+(37, 10012, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:52:45'),
+(38, 10013, 'staircase', 'Staircase', '2026-09-09 08:53:18'),
+(39, 10013, 'parking', 'Parking', '2026-09-09 08:53:18'),
+(40, 10013, 'green_space', 'Green Space', '2026-09-09 08:53:18'),
+(41, 10013, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:53:18'),
+(42, 10013, 'security', 'Security / Guard', '2026-09-09 08:53:18'),
+(43, 10013, 'water_tank', 'Water Tank', '2026-09-09 08:53:18'),
+(44, 10013, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:53:18'),
+(45, 10014, 'staircase', 'Staircase', '2026-09-09 08:53:46'),
+(46, 10014, 'parking', 'Parking', '2026-09-09 08:53:46'),
+(47, 10014, 'green_space', 'Green Space', '2026-09-09 08:53:46'),
+(48, 10014, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:53:46'),
+(49, 10014, 'security', 'Security / Guard', '2026-09-09 08:53:46'),
+(50, 10014, 'water_tank', 'Water Tank', '2026-09-09 08:53:46'),
+(51, 10014, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:53:46'),
+(52, 10015, 'staircase', 'Staircase', '2026-09-09 08:54:10'),
+(53, 10015, 'parking', 'Parking', '2026-09-09 08:54:10'),
+(54, 10015, 'green_space', 'Green Space', '2026-09-09 08:54:10'),
+(55, 10015, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:54:10'),
+(56, 10015, 'security', 'Security / Guard', '2026-09-09 08:54:10'),
+(57, 10015, 'water_tank', 'Water Tank', '2026-09-09 08:54:10'),
+(58, 10015, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:54:10'),
+(59, 10016, 'staircase', 'Staircase', '2026-09-09 08:54:31'),
+(60, 10016, 'parking', 'Parking', '2026-09-09 08:54:31'),
+(61, 10016, 'green_space', 'Green Space', '2026-09-09 08:54:31'),
+(62, 10016, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:54:31'),
+(63, 10016, 'security', 'Security / Guard', '2026-09-09 08:54:31'),
+(64, 10016, 'water_tank', 'Water Tank', '2026-09-09 08:54:31'),
+(65, 10016, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:54:31'),
+(73, 10018, 'staircase', 'Staircase', '2026-09-09 08:55:25'),
+(74, 10018, 'parking', 'Parking', '2026-09-09 08:55:25'),
+(75, 10018, 'green_space', 'Green Space', '2026-09-09 08:55:25'),
+(76, 10018, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:55:25'),
+(77, 10018, 'security', 'Security / Guard', '2026-09-09 08:55:25'),
+(78, 10018, 'water_tank', 'Water Tank', '2026-09-09 08:55:25'),
+(79, 10018, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:55:25'),
+(101, 10019, 'staircase', 'Staircase', '2026-09-12 10:17:42'),
+(102, 10019, 'parking', 'Parking', '2026-09-12 10:17:42'),
+(103, 10019, 'green_space', 'Green Space', '2026-09-12 10:17:42'),
+(104, 10019, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:17:42'),
+(105, 10019, 'security', 'Security / Guard', '2026-09-12 10:17:42'),
+(106, 10019, 'water_tank', 'Water Tank', '2026-09-12 10:17:42'),
+(107, 10019, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:17:42'),
+(108, 10017, 'staircase', 'Staircase', '2026-09-12 10:17:51'),
+(109, 10017, 'parking', 'Parking', '2026-09-12 10:17:51'),
+(110, 10017, 'green_space', 'Green Space', '2026-09-12 10:17:51'),
+(111, 10017, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:17:51'),
+(112, 10017, 'security', 'Security / Guard', '2026-09-12 10:17:51'),
+(113, 10017, 'water_tank', 'Water Tank', '2026-09-12 10:17:51'),
+(114, 10017, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:17:51'),
+(115, 10021, 'staircase', 'Staircase', '2026-09-12 10:20:47'),
+(116, 10021, 'parking', 'Parking', '2026-09-12 10:20:47'),
+(117, 10021, 'green_space', 'Green Space', '2026-09-12 10:20:47'),
+(118, 10021, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:20:47'),
+(119, 10021, 'security', 'Security / Guard', '2026-09-12 10:20:47'),
+(120, 10021, 'water_tank', 'Water Tank', '2026-09-12 10:20:47'),
+(121, 10021, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:20:47'),
+(122, 10023, 'staircase', 'Staircase', '2026-09-12 10:21:15'),
+(123, 10023, 'parking', 'Parking', '2026-09-12 10:21:15'),
+(124, 10023, 'green_space', 'Green Space', '2026-09-12 10:21:15'),
+(125, 10023, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:21:15'),
+(126, 10023, 'security', 'Security / Guard', '2026-09-12 10:21:15'),
+(127, 10023, 'water_tank', 'Water Tank', '2026-09-12 10:21:15'),
+(128, 10023, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:21:15'),
+(129, 10024, 'staircase', 'Staircase', '2026-09-12 10:36:30'),
+(130, 10024, 'parking', 'Parking', '2026-09-12 10:36:30'),
+(131, 10024, 'green_space', 'Green Space', '2026-09-12 10:36:30'),
+(132, 10024, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:36:30'),
+(133, 10024, 'security', 'Security / Guard', '2026-09-12 10:36:30'),
+(134, 10024, 'water_tank', 'Water Tank', '2026-09-12 10:36:30'),
+(135, 10024, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:36:30'),
+(136, 10025, 'staircase', 'Staircase', '2026-09-12 10:37:50'),
+(137, 10025, 'parking', 'Parking', '2026-09-12 10:37:50'),
+(138, 10025, 'green_space', 'Green Space', '2026-09-12 10:37:50'),
+(139, 10025, 'security', 'Security / Guard', '2026-09-12 10:37:50'),
+(140, 10025, 'water_tank', 'Water Tank', '2026-09-12 10:37:50'),
+(141, 10025, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:37:50'),
+(142, 10026, 'elevator', 'Elevator', '2026-09-20 05:11:07'),
+(143, 10026, 'parking', 'Parking', '2026-09-20 05:11:07'),
+(144, 10026, 'green_space', 'Green Space', '2026-09-20 05:11:07'),
+(145, 10026, 'kids_play', 'Children\'s Play Area', '2026-09-20 05:11:07'),
+(146, 10026, 'facilities_room', 'Facilities Room', '2026-09-20 05:11:07'),
+(147, 10026, 'water_tank', 'Water Tank', '2026-09-20 05:11:07'),
+(148, 10026, 'fire_fighting', 'Fire Fighting System', '2026-09-20 05:11:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `block_units`
+--
+
+CREATE TABLE `block_units` (
+  `id` int(11) NOT NULL,
+  `block_id` int(11) NOT NULL,
+  `floor_number` int(11) NOT NULL COMMENT 'شماره منزل/طبقه',
+  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد واحد در این منزل (۱ تا ۴ عدد)',
+  `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'کتگوری واحد: standard، premium، vip، vvip و ...',
+  `unit_number` varchar(20) NOT NULL COMMENT 'شماره واحد (مثلاً 1، 2، 3)',
+  `unit_code` varchar(100) NOT NULL COMMENT 'کد کامل واحد (بلاک-طبقه-واحد)',
+  `rooms` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد اتاق (۱ اتاقه، ۲ اتاقه، ۳ اتاقه)',
+  `unit_size` decimal(10,2) NOT NULL COMMENT 'متراژ واحد (متر مربع)',
+  `status` enum('available','reserved','sold') NOT NULL DEFAULT 'available' COMMENT 'قابل فروش، رزرو شده، فروخته شده',
+  `customer_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `unit_price_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'قیمت واحد فی متر مربع (در وقت فروش ثبت می‌شود)',
+  `gov_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'خدمات دولت فی متر مربع (در وقت فروش ثبت می‌شود)',
+  `infra_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'خدمات زیربنا فی متر مربع (در وقت فروش ثبت می‌شود)',
+  `unit_price` decimal(12,2) DEFAULT NULL COMMENT 'قیمت کل واحد = نرخ فی متر × متراژ',
+  `gov_cost` decimal(12,2) DEFAULT NULL COMMENT 'خدمات دولت (کل)',
+  `infra_cost` decimal(12,2) DEFAULT NULL COMMENT 'خدمات زیربنا (کل)',
+  `total_price` decimal(12,2) DEFAULT NULL COMMENT 'قیمت مجموعی واحد = قیمت + خدمات دولت + خدمات زیربنا',
+  `sold_at` timestamp NULL DEFAULT NULL COMMENT 'تاریخ فروش'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `block_units`
+--
+
+INSERT INTO `block_units` (`id`, `block_id`, `floor_number`, `units_per_floor`, `category`, `unit_number`, `unit_code`, `rooms`, `unit_size`, `status`, `customer_id`, `created_at`, `unit_price_per_meter`, `gov_cost_per_meter`, `infra_cost_per_meter`, `unit_price`, `gov_cost`, `infra_cost`, `total_price`, `sold_at`) VALUES
+(100035, 10011, 1, 1, 'standard', '1', 'b_114_97-1-1', 3, 114.00, 'sold', 3, '2026-09-09 06:29:26', 300.00, 14.00, 19.00, 34200.00, 1596.00, 2166.00, 37962.00, '2026-09-09 06:31:30'),
+(100036, 10011, 2, 1, 'standard', '2', 'b_114_97-2-2', 3, 114.00, 'available', NULL, '2026-09-09 06:36:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100037, 10011, 3, 1, 'standard', '3', 'b_114_97-3-3', 3, 114.00, 'available', NULL, '2026-09-09 08:57:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100038, 10011, 4, 4, 'standard', '4', 'b_114_97-4-4', 3, 28.50, 'available', NULL, '2026-09-09 08:57:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100039, 10011, 5, 1, 'standard', '5', 'b_114_97-5-5', 3, 114.00, 'available', NULL, '2026-09-09 08:57:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100040, 10012, 1, 2, 'standard', '1', 'b_114_98-1-1', 2, 57.00, 'available', NULL, '2026-09-20 05:12:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `block_unit_features`
+--
+
+CREATE TABLE `block_unit_features` (
+  `id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
+  `feature_key` varchar(50) NOT NULL COMMENT 'شناسه جزئیات (لطفاً با حروف انگلیسی)',
+  `feature_label` varchar(100) NOT NULL COMMENT 'نام جزئیات به فارسی',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `block_unit_features`
+--
+
+INSERT INTO `block_unit_features` (`id`, `unit_id`, `feature_key`, `feature_label`, `created_at`) VALUES
+(43, 100035, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 06:29:26'),
+(44, 100035, 'living_room', 'Living Room', '2026-09-09 06:29:26'),
+(45, 100035, 'kitchen', 'Kitchen', '2026-09-09 06:29:26'),
+(46, 100035, 'master_bedroom', 'Master Bedroom', '2026-09-09 06:29:26'),
+(47, 100035, 'bathroom', 'Bathroom', '2026-09-09 06:29:26'),
+(48, 100035, 'toilet', 'Toilet', '2026-09-09 06:29:26'),
+(49, 100035, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 06:29:26'),
+(50, 100035, 'balcony', 'Balcony', '2026-09-09 06:29:26'),
+(51, 100035, 'storage', 'Internal Storage', '2026-09-09 06:29:26'),
+(52, 100036, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 06:36:33'),
+(53, 100036, 'living_room', 'Living Room', '2026-09-09 06:36:33'),
+(54, 100036, 'dining_room', 'Dining Room', '2026-09-09 06:36:33'),
+(55, 100036, 'kitchen', 'Kitchen', '2026-09-09 06:36:33'),
+(56, 100036, 'master_bedroom', 'Master Bedroom', '2026-09-09 06:36:33'),
+(57, 100036, 'bathroom', 'Bathroom', '2026-09-09 06:36:33'),
+(58, 100036, 'toilet', 'Toilet', '2026-09-09 06:36:33'),
+(59, 100036, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 06:36:33'),
+(60, 100036, 'balcony', 'Balcony', '2026-09-09 06:36:33'),
+(61, 100036, 'storage', 'Internal Storage', '2026-09-09 06:36:33'),
+(62, 100037, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 08:57:00'),
+(63, 100037, 'living_room', 'Living Room', '2026-09-09 08:57:00'),
+(64, 100037, 'dining_room', 'Dining Room', '2026-09-09 08:57:00'),
+(65, 100037, 'kitchen', 'Kitchen', '2026-09-09 08:57:00'),
+(66, 100037, 'master_bedroom', 'Master Bedroom', '2026-09-09 08:57:00'),
+(67, 100037, 'bathroom', 'Bathroom', '2026-09-09 08:57:00'),
+(68, 100037, 'toilet', 'Toilet', '2026-09-09 08:57:00'),
+(69, 100037, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 08:57:00'),
+(70, 100037, 'balcony', 'Balcony', '2026-09-09 08:57:00'),
+(71, 100037, 'storage', 'Internal Storage', '2026-09-09 08:57:00'),
+(72, 100038, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 08:57:35'),
+(73, 100038, 'living_room', 'Living Room', '2026-09-09 08:57:35'),
+(74, 100038, 'dining_room', 'Dining Room', '2026-09-09 08:57:35'),
+(75, 100038, 'kitchen', 'Kitchen', '2026-09-09 08:57:35'),
+(76, 100038, 'master_bedroom', 'Master Bedroom', '2026-09-09 08:57:35'),
+(77, 100038, 'bathroom', 'Bathroom', '2026-09-09 08:57:35'),
+(78, 100038, 'toilet', 'Toilet', '2026-09-09 08:57:35'),
+(79, 100038, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 08:57:35'),
+(80, 100038, 'balcony', 'Balcony', '2026-09-09 08:57:35'),
+(81, 100038, 'storage', 'Internal Storage', '2026-09-09 08:57:35'),
+(82, 100039, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 08:57:58'),
+(83, 100039, 'living_room', 'Living Room', '2026-09-09 08:57:58'),
+(84, 100039, 'dining_room', 'Dining Room', '2026-09-09 08:57:58'),
+(85, 100039, 'kitchen', 'Kitchen', '2026-09-09 08:57:58'),
+(86, 100039, 'master_bedroom', 'Master Bedroom', '2026-09-09 08:57:58'),
+(87, 100039, 'bathroom', 'Bathroom', '2026-09-09 08:57:58'),
+(88, 100039, 'toilet', 'Toilet', '2026-09-09 08:57:58'),
+(89, 100039, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 08:57:58'),
+(90, 100039, 'balcony', 'Balcony', '2026-09-09 08:57:58'),
+(91, 100039, 'storage', 'Internal Storage', '2026-09-09 08:57:58'),
+(92, 100040, 'entrance_foyer', 'Entrance / Foyer', '2026-09-20 05:12:25'),
+(93, 100040, 'living_room', 'Living Room / Reception', '2026-09-20 05:12:25'),
+(94, 100040, 'dining_room', 'Dining Room', '2026-09-20 05:12:25'),
+(95, 100040, 'kitchen', 'Kitchen', '2026-09-20 05:12:25'),
+(96, 100040, 'master_bedroom', 'Master Bedroom', '2026-09-20 05:12:25'),
+(97, 100040, 'bathroom', 'Bathroom', '2026-09-20 05:12:25'),
+(98, 100040, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-20 05:12:25'),
+(99, 100040, 'balcony', 'Balcony / Terrace', '2026-09-20 05:12:25'),
+(100, 100040, 'walkin_closet', 'Walk-in Closet / Wardrobe', '2026-09-20 05:12:25'),
+(101, 100040, 'storage', 'Storage Room', '2026-09-20 05:12:25');
 
 -- --------------------------------------------------------
 
@@ -254,7 +528,9 @@ CREATE TABLE `pay_200` (
 --
 
 INSERT INTO `pay_200` (`id`, `plot_id`, `customer_id`, `amount`, `payment_date`, `note`) VALUES
-(1, 1, 3, 1000.00, '2026-06-16 03:24:02', NULL);
+(1, 1, 3, 1000.00, '2026-06-16 03:24:02', NULL),
+(2, 1, 3, 500.00, '2026-09-06 05:24:57', NULL),
+(3, 1, 3, 100.00, '2026-09-06 05:41:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -347,6 +623,21 @@ CREATE TABLE `pay_600` (
 CREATE TABLE `pay_1000` (
   `id` int(11) NOT NULL,
   `plot_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `amount` decimal(12,2) NOT NULL,
+  `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `note` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pay_block_units`
+--
+
+CREATE TABLE `pay_block_units` (
+  `id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL COMMENT 'شناسه اپارتمان/واحد (block_units.id)',
   `customer_id` int(11) NOT NULL,
   `amount` decimal(12,2) NOT NULL,
   `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -540,46 +831,7 @@ INSERT INTO `plots_200` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (143, 'p_2_143', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
 (144, 'p_2_144', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
 (145, 'p_2_145', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(146, 'p_2_146', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(147, 'p_2_147', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(148, 'p_2_148', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(149, 'p_2_149', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(150, 'p_2_150', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(151, 'p_2_151', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(152, 'p_2_152', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(153, 'p_2_153', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(154, 'p_2_154', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(155, 'p_2_155', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(156, 'p_2_156', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(157, 'p_2_157', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(158, 'p_2_158', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(159, 'p_2_159', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(160, 'p_2_160', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(161, 'p_2_161', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(162, 'p_2_162', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(163, 'p_2_163', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(164, 'p_2_164', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(165, 'p_2_165', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(166, 'p_2_166', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(167, 'p_2_167', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(168, 'p_2_168', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(169, 'p_2_169', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(170, 'p_2_170', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(171, 'p_2_171', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(172, 'p_2_172', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(173, 'p_2_173', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(174, 'p_2_174', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(175, 'p_2_175', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(176, 'p_2_176', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(177, 'p_2_177', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(178, 'p_2_178', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(179, 'p_2_179', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(180, 'p_2_180', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(181, 'p_2_181', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(182, 'p_2_182', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(183, 'p_2_183', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(184, 'p_2_184', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09'),
-(185, 'p_2_185', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09');
+(146, 'p_2_146', 'Two Biswa (200 sqm)', 200, 3000.00, 1960.00, 2000.00, 6960.00, 'available', NULL, NULL, NULL, '2026-05-19 05:07:09');
 
 -- --------------------------------------------------------
 
@@ -947,7 +1199,8 @@ INSERT INTO `plots_260` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (337, 'p_2.6_337', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (338, 'p_2.6_338', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (339, 'p_2.6_339', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
-(340, 'p_2.6_340', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
+(340, 'p_2.6_340', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37');
+INSERT INTO `plots_260` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra_cost`, `gov_cost`, `total_price`, `status`, `customer_id`, `latitude`, `longitude`, `created_at`) VALUES
 (341, 'p_2.6_341', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (342, 'p_2.6_342', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (343, 'p_2.6_343', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
@@ -991,8 +1244,7 @@ INSERT INTO `plots_260` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (381, 'p_2.6_381', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (382, 'p_2.6_382', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (383, 'p_2.6_383', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
-(384, 'p_2.6_384', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37');
-INSERT INTO `plots_260` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra_cost`, `gov_cost`, `total_price`, `status`, `customer_id`, `latitude`, `longitude`, `created_at`) VALUES
+(384, 'p_2.6_384', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (385, 'p_2.6_385', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (386, 'p_2.6_386', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
 (387, 'p_2.6_387', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:37'),
@@ -1105,261 +1357,7 @@ INSERT INTO `plots_260` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (494, 'p_2.6_494', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
 (495, 'p_2.6_495', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
 (496, 'p_2.6_496', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(497, 'p_2.6_497', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(498, 'p_2.6_498', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(499, 'p_2.6_499', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(500, 'p_2.6_500', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(501, 'p_2.6_501', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(502, 'p_2.6_502', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(503, 'p_2.6_503', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(504, 'p_2.6_504', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(505, 'p_2.6_505', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(506, 'p_2.6_506', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(507, 'p_2.6_507', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(508, 'p_2.6_508', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(509, 'p_2.6_509', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(510, 'p_2.6_510', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(511, 'p_2.6_511', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(512, 'p_2.6_512', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(513, 'p_2.6_513', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(514, 'p_2.6_514', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(515, 'p_2.6_515', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(516, 'p_2.6_516', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(517, 'p_2.6_517', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(518, 'p_2.6_518', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(519, 'p_2.6_519', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(520, 'p_2.6_520', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(521, 'p_2.6_521', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(522, 'p_2.6_522', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(523, 'p_2.6_523', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(524, 'p_2.6_524', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(525, 'p_2.6_525', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(526, 'p_2.6_526', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(527, 'p_2.6_527', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(528, 'p_2.6_528', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(529, 'p_2.6_529', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(530, 'p_2.6_530', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(531, 'p_2.6_531', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(532, 'p_2.6_532', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(533, 'p_2.6_533', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(534, 'p_2.6_534', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(535, 'p_2.6_535', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(536, 'p_2.6_536', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(537, 'p_2.6_537', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(538, 'p_2.6_538', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(539, 'p_2.6_539', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(540, 'p_2.6_540', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(541, 'p_2.6_541', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(542, 'p_2.6_542', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(543, 'p_2.6_543', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(544, 'p_2.6_544', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(545, 'p_2.6_545', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(546, 'p_2.6_546', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(547, 'p_2.6_547', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(548, 'p_2.6_548', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(549, 'p_2.6_549', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(550, 'p_2.6_550', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(551, 'p_2.6_551', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(552, 'p_2.6_552', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(553, 'p_2.6_553', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(554, 'p_2.6_554', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(555, 'p_2.6_555', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(556, 'p_2.6_556', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(557, 'p_2.6_557', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(558, 'p_2.6_558', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(559, 'p_2.6_559', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(560, 'p_2.6_560', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(561, 'p_2.6_561', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(562, 'p_2.6_562', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(563, 'p_2.6_563', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(564, 'p_2.6_564', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(565, 'p_2.6_565', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(566, 'p_2.6_566', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(567, 'p_2.6_567', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(568, 'p_2.6_568', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(569, 'p_2.6_569', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(570, 'p_2.6_570', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(571, 'p_2.6_571', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(572, 'p_2.6_572', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(573, 'p_2.6_573', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(574, 'p_2.6_574', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(575, 'p_2.6_575', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(576, 'p_2.6_576', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(577, 'p_2.6_577', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(578, 'p_2.6_578', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(579, 'p_2.6_579', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(580, 'p_2.6_580', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(581, 'p_2.6_581', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(582, 'p_2.6_582', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(583, 'p_2.6_583', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(584, 'p_2.6_584', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(585, 'p_2.6_585', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(586, 'p_2.6_586', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(587, 'p_2.6_587', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(588, 'p_2.6_588', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(589, 'p_2.6_589', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(590, 'p_2.6_590', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(591, 'p_2.6_591', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(592, 'p_2.6_592', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(593, 'p_2.6_593', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(594, 'p_2.6_594', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(595, 'p_2.6_595', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(596, 'p_2.6_596', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(597, 'p_2.6_597', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(598, 'p_2.6_598', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(599, 'p_2.6_599', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(600, 'p_2.6_600', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(601, 'p_2.6_601', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(602, 'p_2.6_602', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(603, 'p_2.6_603', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(604, 'p_2.6_604', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(605, 'p_2.6_605', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(606, 'p_2.6_606', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(607, 'p_2.6_607', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(608, 'p_2.6_608', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(609, 'p_2.6_609', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(610, 'p_2.6_610', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(611, 'p_2.6_611', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(612, 'p_2.6_612', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(613, 'p_2.6_613', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(614, 'p_2.6_614', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(615, 'p_2.6_615', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(616, 'p_2.6_616', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(617, 'p_2.6_617', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(618, 'p_2.6_618', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(619, 'p_2.6_619', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(620, 'p_2.6_620', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(621, 'p_2.6_621', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(622, 'p_2.6_622', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(623, 'p_2.6_623', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(624, 'p_2.6_624', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(625, 'p_2.6_625', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(626, 'p_2.6_626', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(627, 'p_2.6_627', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(628, 'p_2.6_628', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(629, 'p_2.6_629', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(630, 'p_2.6_630', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(631, 'p_2.6_631', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(632, 'p_2.6_632', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(633, 'p_2.6_633', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(634, 'p_2.6_634', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(635, 'p_2.6_635', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(636, 'p_2.6_636', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(637, 'p_2.6_637', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(638, 'p_2.6_638', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(639, 'p_2.6_639', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(640, 'p_2.6_640', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(641, 'p_2.6_641', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(642, 'p_2.6_642', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(643, 'p_2.6_643', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(644, 'p_2.6_644', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(645, 'p_2.6_645', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(646, 'p_2.6_646', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(647, 'p_2.6_647', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(648, 'p_2.6_648', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(649, 'p_2.6_649', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(650, 'p_2.6_650', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(651, 'p_2.6_651', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(652, 'p_2.6_652', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(653, 'p_2.6_653', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(654, 'p_2.6_654', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(655, 'p_2.6_655', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(656, 'p_2.6_656', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(657, 'p_2.6_657', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(658, 'p_2.6_658', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(659, 'p_2.6_659', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(660, 'p_2.6_660', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(661, 'p_2.6_661', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(662, 'p_2.6_662', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(663, 'p_2.6_663', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(664, 'p_2.6_664', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(665, 'p_2.6_665', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(666, 'p_2.6_666', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(667, 'p_2.6_667', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(668, 'p_2.6_668', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(669, 'p_2.6_669', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(670, 'p_2.6_670', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(671, 'p_2.6_671', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(672, 'p_2.6_672', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(673, 'p_2.6_673', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(674, 'p_2.6_674', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(675, 'p_2.6_675', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(676, 'p_2.6_676', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(677, 'p_2.6_677', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(678, 'p_2.6_678', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(679, 'p_2.6_679', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(680, 'p_2.6_680', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(681, 'p_2.6_681', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(682, 'p_2.6_682', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(683, 'p_2.6_683', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(684, 'p_2.6_684', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(685, 'p_2.6_685', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(686, 'p_2.6_686', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(687, 'p_2.6_687', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(688, 'p_2.6_688', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(689, 'p_2.6_689', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(690, 'p_2.6_690', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(691, 'p_2.6_691', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(692, 'p_2.6_692', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(693, 'p_2.6_693', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(694, 'p_2.6_694', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(695, 'p_2.6_695', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(696, 'p_2.6_696', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(697, 'p_2.6_697', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(698, 'p_2.6_698', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(699, 'p_2.6_699', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(700, 'p_2.6_700', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(701, 'p_2.6_701', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(702, 'p_2.6_702', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(703, 'p_2.6_703', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(704, 'p_2.6_704', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(705, 'p_2.6_705', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(706, 'p_2.6_706', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(707, 'p_2.6_707', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(708, 'p_2.6_708', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(709, 'p_2.6_709', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(710, 'p_2.6_710', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(711, 'p_2.6_711', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(712, 'p_2.6_712', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(713, 'p_2.6_713', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(714, 'p_2.6_714', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(715, 'p_2.6_715', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(716, 'p_2.6_716', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(717, 'p_2.6_717', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(718, 'p_2.6_718', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(719, 'p_2.6_719', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(720, 'p_2.6_720', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(721, 'p_2.6_721', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(722, 'p_2.6_722', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(723, 'p_2.6_723', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(724, 'p_2.6_724', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(725, 'p_2.6_725', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(726, 'p_2.6_726', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(727, 'p_2.6_727', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(728, 'p_2.6_728', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(729, 'p_2.6_729', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(730, 'p_2.6_730', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(731, 'p_2.6_731', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(732, 'p_2.6_732', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(733, 'p_2.6_733', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(734, 'p_2.6_734', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(735, 'p_2.6_735', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(736, 'p_2.6_736', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(737, 'p_2.6_737', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(738, 'p_2.6_738', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(739, 'p_2.6_739', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(740, 'p_2.6_740', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(741, 'p_2.6_741', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(742, 'p_2.6_742', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(743, 'p_2.6_743', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(744, 'p_2.6_744', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(745, 'p_2.6_745', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(746, 'p_2.6_746', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(747, 'p_2.6_747', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(748, 'p_2.6_748', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(749, 'p_2.6_749', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(750, 'p_2.6_750', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38'),
-(751, 'p_2.6_751', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38');
+(497, 'p_2.6_497', 'Two and a Half Biswa (260 sqm)', 260, 4000.00, 2100.00, 2600.00, 8700.00, 'available', NULL, NULL, NULL, '2026-05-19 05:08:38');
 
 -- --------------------------------------------------------
 
@@ -1675,367 +1673,10 @@ INSERT INTO `plots_300` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (285, 'p_3_285', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
 (286, 'p_3_286', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
 (287, 'p_3_287', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(288, 'p_3_288', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(289, 'p_3_289', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(290, 'p_3_290', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(291, 'p_3_291', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(292, 'p_3_292', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(293, 'p_3_293', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(294, 'p_3_294', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(295, 'p_3_295', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(296, 'p_3_296', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(297, 'p_3_297', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(298, 'p_3_298', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(299, 'p_3_299', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(300, 'p_3_300', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(301, 'p_3_301', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(302, 'p_3_302', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(303, 'p_3_303', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(304, 'p_3_304', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(305, 'p_3_305', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(306, 'p_3_306', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(307, 'p_3_307', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(308, 'p_3_308', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(309, 'p_3_309', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(310, 'p_3_310', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(311, 'p_3_311', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(312, 'p_3_312', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(313, 'p_3_313', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(314, 'p_3_314', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(315, 'p_3_315', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(316, 'p_3_316', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(317, 'p_3_317', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(318, 'p_3_318', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(319, 'p_3_319', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(320, 'p_3_320', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(321, 'p_3_321', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(322, 'p_3_322', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(323, 'p_3_323', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(324, 'p_3_324', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(325, 'p_3_325', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(326, 'p_3_326', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(327, 'p_3_327', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(328, 'p_3_328', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(329, 'p_3_329', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(330, 'p_3_330', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(331, 'p_3_331', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(332, 'p_3_332', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(333, 'p_3_333', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(334, 'p_3_334', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(335, 'p_3_335', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(336, 'p_3_336', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(337, 'p_3_337', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(338, 'p_3_338', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(339, 'p_3_339', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(340, 'p_3_340', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(341, 'p_3_341', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(342, 'p_3_342', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(343, 'p_3_343', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(344, 'p_3_344', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(345, 'p_3_345', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(346, 'p_3_346', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(347, 'p_3_347', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(348, 'p_3_348', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(349, 'p_3_349', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(350, 'p_3_350', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(351, 'p_3_351', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(352, 'p_3_352', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(353, 'p_3_353', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(354, 'p_3_354', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(355, 'p_3_355', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(356, 'p_3_356', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(357, 'p_3_357', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(358, 'p_3_358', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(359, 'p_3_359', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(360, 'p_3_360', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(361, 'p_3_361', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(362, 'p_3_362', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(363, 'p_3_363', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(364, 'p_3_364', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(365, 'p_3_365', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(366, 'p_3_366', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(367, 'p_3_367', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(368, 'p_3_368', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(369, 'p_3_369', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(370, 'p_3_370', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(371, 'p_3_371', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(372, 'p_3_372', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(373, 'p_3_373', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(374, 'p_3_374', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(375, 'p_3_375', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(376, 'p_3_376', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(377, 'p_3_377', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(378, 'p_3_378', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(379, 'p_3_379', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(380, 'p_3_380', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(381, 'p_3_381', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(382, 'p_3_382', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(383, 'p_3_383', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(384, 'p_3_384', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(385, 'p_3_385', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(386, 'p_3_386', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(387, 'p_3_387', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(388, 'p_3_388', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(389, 'p_3_389', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(390, 'p_3_390', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(391, 'p_3_391', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(392, 'p_3_392', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(393, 'p_3_393', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(394, 'p_3_394', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(395, 'p_3_395', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(396, 'p_3_396', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(397, 'p_3_397', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51');
-INSERT INTO `plots_300` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra_cost`, `gov_cost`, `total_price`, `status`, `customer_id`, `latitude`, `longitude`, `created_at`) VALUES
-(398, 'p_3_398', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(399, 'p_3_399', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(400, 'p_3_400', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(401, 'p_3_401', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(402, 'p_3_402', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(403, 'p_3_403', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(404, 'p_3_404', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(405, 'p_3_405', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(406, 'p_3_406', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(407, 'p_3_407', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(408, 'p_3_408', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(409, 'p_3_409', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(410, 'p_3_410', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(411, 'p_3_411', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(412, 'p_3_412', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(413, 'p_3_413', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(414, 'p_3_414', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(415, 'p_3_415', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(416, 'p_3_416', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(417, 'p_3_417', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(418, 'p_3_418', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(419, 'p_3_419', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(420, 'p_3_420', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(421, 'p_3_421', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(422, 'p_3_422', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(423, 'p_3_423', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(424, 'p_3_424', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(425, 'p_3_425', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(426, 'p_3_426', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(427, 'p_3_427', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(428, 'p_3_428', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(429, 'p_3_429', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(430, 'p_3_430', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(431, 'p_3_431', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(432, 'p_3_432', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(433, 'p_3_433', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(434, 'p_3_434', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(435, 'p_3_435', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(436, 'p_3_436', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(437, 'p_3_437', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(438, 'p_3_438', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(439, 'p_3_439', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(440, 'p_3_440', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(441, 'p_3_441', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(442, 'p_3_442', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(443, 'p_3_443', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(444, 'p_3_444', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(445, 'p_3_445', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(446, 'p_3_446', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(447, 'p_3_447', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(448, 'p_3_448', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(449, 'p_3_449', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(450, 'p_3_450', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(451, 'p_3_451', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(452, 'p_3_452', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(453, 'p_3_453', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(454, 'p_3_454', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(455, 'p_3_455', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(456, 'p_3_456', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(457, 'p_3_457', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(458, 'p_3_458', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(459, 'p_3_459', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(460, 'p_3_460', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(461, 'p_3_461', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(462, 'p_3_462', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(463, 'p_3_463', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(464, 'p_3_464', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(465, 'p_3_465', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(466, 'p_3_466', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(467, 'p_3_467', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(468, 'p_3_468', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(469, 'p_3_469', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(470, 'p_3_470', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(471, 'p_3_471', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(472, 'p_3_472', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(473, 'p_3_473', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(474, 'p_3_474', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(475, 'p_3_475', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(476, 'p_3_476', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(477, 'p_3_477', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(478, 'p_3_478', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(479, 'p_3_479', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(480, 'p_3_480', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(481, 'p_3_481', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(482, 'p_3_482', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(483, 'p_3_483', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(484, 'p_3_484', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(485, 'p_3_485', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(486, 'p_3_486', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(487, 'p_3_487', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(488, 'p_3_488', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(489, 'p_3_489', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(490, 'p_3_490', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(491, 'p_3_491', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(492, 'p_3_492', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(493, 'p_3_493', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(494, 'p_3_494', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(495, 'p_3_495', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(496, 'p_3_496', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(497, 'p_3_497', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(498, 'p_3_498', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(499, 'p_3_499', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(500, 'p_3_500', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(501, 'p_3_501', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(502, 'p_3_502', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(503, 'p_3_503', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(504, 'p_3_504', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(505, 'p_3_505', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(506, 'p_3_506', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(507, 'p_3_507', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(508, 'p_3_508', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(509, 'p_3_509', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(510, 'p_3_510', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(511, 'p_3_511', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(512, 'p_3_512', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(513, 'p_3_513', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(514, 'p_3_514', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(515, 'p_3_515', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(516, 'p_3_516', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(517, 'p_3_517', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(518, 'p_3_518', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(519, 'p_3_519', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(520, 'p_3_520', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(521, 'p_3_521', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(522, 'p_3_522', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(523, 'p_3_523', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(524, 'p_3_524', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(525, 'p_3_525', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(526, 'p_3_526', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(527, 'p_3_527', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(528, 'p_3_528', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(529, 'p_3_529', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(530, 'p_3_530', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(531, 'p_3_531', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(532, 'p_3_532', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(533, 'p_3_533', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(534, 'p_3_534', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(535, 'p_3_535', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(536, 'p_3_536', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(537, 'p_3_537', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(538, 'p_3_538', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(539, 'p_3_539', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(540, 'p_3_540', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(541, 'p_3_541', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(542, 'p_3_542', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(543, 'p_3_543', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(544, 'p_3_544', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(545, 'p_3_545', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(546, 'p_3_546', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(547, 'p_3_547', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(548, 'p_3_548', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(549, 'p_3_549', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(550, 'p_3_550', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(551, 'p_3_551', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(552, 'p_3_552', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(553, 'p_3_553', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(554, 'p_3_554', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(555, 'p_3_555', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(556, 'p_3_556', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(557, 'p_3_557', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(558, 'p_3_558', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(559, 'p_3_559', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(560, 'p_3_560', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(561, 'p_3_561', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(562, 'p_3_562', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(563, 'p_3_563', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(564, 'p_3_564', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(565, 'p_3_565', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(566, 'p_3_566', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(567, 'p_3_567', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(568, 'p_3_568', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(569, 'p_3_569', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(570, 'p_3_570', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(571, 'p_3_571', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(572, 'p_3_572', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(573, 'p_3_573', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(574, 'p_3_574', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(575, 'p_3_575', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(576, 'p_3_576', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:51'),
-(577, 'p_3_577', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(578, 'p_3_578', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(579, 'p_3_579', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(580, 'p_3_580', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(581, 'p_3_581', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(582, 'p_3_582', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(583, 'p_3_583', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(584, 'p_3_584', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(585, 'p_3_585', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(586, 'p_3_586', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(587, 'p_3_587', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(588, 'p_3_588', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(589, 'p_3_589', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(590, 'p_3_590', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(591, 'p_3_591', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(592, 'p_3_592', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(593, 'p_3_593', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(594, 'p_3_594', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(595, 'p_3_595', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(596, 'p_3_596', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(597, 'p_3_597', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(598, 'p_3_598', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(599, 'p_3_599', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(600, 'p_3_600', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(601, 'p_3_601', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(602, 'p_3_602', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(603, 'p_3_603', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(604, 'p_3_604', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(605, 'p_3_605', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(606, 'p_3_606', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(607, 'p_3_607', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(608, 'p_3_608', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(609, 'p_3_609', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(610, 'p_3_610', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(611, 'p_3_611', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(612, 'p_3_612', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(613, 'p_3_613', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(614, 'p_3_614', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(615, 'p_3_615', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(616, 'p_3_616', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(617, 'p_3_617', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(618, 'p_3_618', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(619, 'p_3_619', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(620, 'p_3_620', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(621, 'p_3_621', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(622, 'p_3_622', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(623, 'p_3_623', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(624, 'p_3_624', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(625, 'p_3_625', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(626, 'p_3_626', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(627, 'p_3_627', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(628, 'p_3_628', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(629, 'p_3_629', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(630, 'p_3_630', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(631, 'p_3_631', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(632, 'p_3_632', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(633, 'p_3_633', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(634, 'p_3_634', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(635, 'p_3_635', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(636, 'p_3_636', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(637, 'p_3_637', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(638, 'p_3_638', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(639, 'p_3_639', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(640, 'p_3_640', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(641, 'p_3_641', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(642, 'p_3_642', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(643, 'p_3_643', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(644, 'p_3_644', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(645, 'p_3_645', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(646, 'p_3_646', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52'),
-(647, 'p_3_647', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-05-19 05:09:52');
+(648, 'p_3_288', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-09-12 06:09:53'),
+(649, 'p_3_289', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-09-12 06:10:42'),
+(650, 'p_3_290', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-09-12 06:11:07'),
+(651, 'p_3_291', 'Three Biswa (300 sqm)', 300, 5000.00, 2240.00, 3000.00, 10240.00, 'available', NULL, NULL, NULL, '2026-09-12 06:11:29');
 
 -- --------------------------------------------------------
 
@@ -2115,7 +1756,8 @@ INSERT INTO `plots_400` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (49, 'p_4_49', 'Four Biswa (400 sqm)', 400, 10000.00, 2800.00, 4000.00, 16800.00, 'available', NULL, NULL, NULL, '2026-05-19 05:10:37'),
 (50, 'p_4_50', 'Four Biswa (400 sqm)', 400, 10000.00, 2800.00, 4000.00, 16800.00, 'available', NULL, NULL, NULL, '2026-05-19 05:10:37'),
 (51, 'p_4_51', 'Four Biswa (400 sqm)', 400, 10000.00, 2800.00, 4000.00, 16800.00, 'available', NULL, NULL, NULL, '2026-05-19 05:10:37'),
-(52, 'p_4_52', 'Four Biswa (400 sqm)', 400, 10000.00, 2800.00, 4000.00, 16800.00, 'available', NULL, NULL, NULL, '2026-05-19 05:10:37');
+(52, 'p_4_52', 'Four Biswa (400 sqm)', 400, 10000.00, 2800.00, 4000.00, 16800.00, 'available', NULL, NULL, NULL, '2026-05-19 05:10:37'),
+(53, 'p_4_53', 'Four Biswa (400 sqm)', 400, 10000.00, 2800.00, 4000.00, 16800.00, 'available', NULL, NULL, NULL, '2026-09-12 06:22:03');
 
 -- --------------------------------------------------------
 
@@ -2342,7 +1984,7 @@ INSERT INTO `plots_1000` (`id`, `plot_code`, `type`, `area`, `base_price`, `infr
 CREATE TABLE `plots_vip` (
   `id` int(11) NOT NULL,
   `plot_code` varchar(50) NOT NULL,
-  `type` varchar(50) DEFAULT 'vip',
+  `type` varchar(50) DEFAULT 'VIP',
   `area` int(11) DEFAULT NULL,
   `base_price` decimal(12,2) DEFAULT NULL,
   `infra_cost` decimal(12,2) DEFAULT NULL,
@@ -2360,25 +2002,45 @@ CREATE TABLE `plots_vip` (
 --
 
 INSERT INTO `plots_vip` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra_cost`, `gov_cost`, `total_price`, `status`, `customer_id`, `latitude`, `longitude`, `created_at`) VALUES
-(1, 'p_vip_1', 'vip', 0, 0.00, 0.00, 0.00, 0.00, 'sold', 1, NULL, NULL, '2026-05-19 05:13:18'),
-(2, 'p_vip_2', 'vip', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
-(3, 'p_vip_3', 'vip', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
-(4, 'p_vip_4', 'vip', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
-(5, 'p_vip_5', 'vip', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
-(6, 'p_vip_6', 'vip', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18');
+(1, 'p_vip_1', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'sold', 1, NULL, NULL, '2026-05-19 05:13:18'),
+(2, 'p_vip_2', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
+(3, 'p_vip_3', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
+(4, 'p_vip_4', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
+(5, 'p_vip_5', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
+(6, 'p_vip_6', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `admins`
+-- Indexes for table `blocks`
 --
-ALTER TABLE `admins`
+ALTER TABLE `blocks`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `national_id` (`national_id`);
+  ADD UNIQUE KEY `block_code` (`block_code`);
+
+--
+-- Indexes for table `block_amenities`
+--
+ALTER TABLE `block_amenities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `block_amenity_unique` (`block_id`,`amenity_key`);
+
+--
+-- Indexes for table `block_units`
+--
+ALTER TABLE `block_units`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `block_id` (`block_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `block_unit_features`
+--
+ALTER TABLE `block_unit_features`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unit_feature_unique` (`unit_id`,`feature_key`);
 
 --
 -- Indexes for table `customers`
@@ -2440,6 +2102,14 @@ ALTER TABLE `pay_600`
 ALTER TABLE `pay_1000`
   ADD PRIMARY KEY (`id`),
   ADD KEY `plot_id` (`plot_id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `pay_block_units`
+--
+ALTER TABLE `pay_block_units`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `unit_id` (`unit_id`),
   ADD KEY `customer_id` (`customer_id`);
 
 --
@@ -2511,10 +2181,28 @@ ALTER TABLE `plots_vip`
 --
 
 --
--- AUTO_INCREMENT for table `admins`
+-- AUTO_INCREMENT for table `blocks`
 --
-ALTER TABLE `admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `blocks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10027;
+
+--
+-- AUTO_INCREMENT for table `block_amenities`
+--
+ALTER TABLE `block_amenities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+
+--
+-- AUTO_INCREMENT for table `block_units`
+--
+ALTER TABLE `block_units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100041;
+
+--
+-- AUTO_INCREMENT for table `block_unit_features`
+--
+ALTER TABLE `block_unit_features`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `customers`
@@ -2526,7 +2214,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `pay_200`
 --
 ALTER TABLE `pay_200`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pay_260`
@@ -2565,6 +2253,12 @@ ALTER TABLE `pay_1000`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pay_block_units`
+--
+ALTER TABLE `pay_block_units`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `pay_vip`
 --
 ALTER TABLE `pay_vip`
@@ -2586,13 +2280,13 @@ ALTER TABLE `plots_260`
 -- AUTO_INCREMENT for table `plots_300`
 --
 ALTER TABLE `plots_300`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=648;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=652;
 
 --
 -- AUTO_INCREMENT for table `plots_400`
 --
 ALTER TABLE `plots_400`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `plots_510`
@@ -2621,6 +2315,25 @@ ALTER TABLE `plots_vip`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `block_amenities`
+--
+ALTER TABLE `block_amenities`
+  ADD CONSTRAINT `fk_block_amenities_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `block_units`
+--
+ALTER TABLE `block_units`
+  ADD CONSTRAINT `fk_block_units_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_block_units_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `block_unit_features`
+--
+ALTER TABLE `block_unit_features`
+  ADD CONSTRAINT `fk_unit_features_unit` FOREIGN KEY (`unit_id`) REFERENCES `block_units` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pay_200`
@@ -2670,6 +2383,13 @@ ALTER TABLE `pay_600`
 ALTER TABLE `pay_1000`
   ADD CONSTRAINT `pay_1000_ibfk_1` FOREIGN KEY (`plot_id`) REFERENCES `plots_1000` (`id`),
   ADD CONSTRAINT `pay_1000_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`);
+
+--
+-- Constraints for table `pay_block_units`
+--
+ALTER TABLE `pay_block_units`
+  ADD CONSTRAINT `fk_pay_block_unit_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_pay_block_unit_unit` FOREIGN KEY (`unit_id`) REFERENCES `block_units` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pay_vip`
@@ -2730,111 +2450,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
--- --------------------------------------------------------
--- Blocks & Apartments tables
--- KHAWARDB Real Estate System – database: map — version 2
--- --------------------------------------------------------
-
-SET NAMES utf8mb4;
-
---
--- Table structure for table `blocks`
---
-
-CREATE TABLE IF NOT EXISTS `blocks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `block_code` varchar(50) NOT NULL COMMENT 'Block code',
-  `block_name` varchar(100) DEFAULT NULL COMMENT 'Block name',
-  `size` int(11) NOT NULL COMMENT 'Block size (sqm) e.g. 114, 412, 644, 902',
-  `staircase_size` int(11) NOT NULL DEFAULT 45 COMMENT 'Staircase (sqm)',
-  `floors_count` int(11) NOT NULL COMMENT 'Number of floors',
-  `status` enum('active','inactive') NOT NULL DEFAULT 'active',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `block_code` (`block_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Table structure for table `block_units`
---
-
-CREATE TABLE IF NOT EXISTS `block_units` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `block_id` int(11) NOT NULL,
-  `floor_number` int(11) NOT NULL COMMENT 'Floor number',
-  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'Number of units on this floor (1 to 4 units)',
-  `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'Unit category: standard, premium, vip, vvip, etc.',
-  `unit_number` varchar(20) NOT NULL COMMENT 'Unit number (e.g. 1, 2, 3, 4)',
-  `unit_code` varchar(100) NOT NULL COMMENT 'Full unit code (block-floor-unit)',
-  `rooms` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'Number of rooms (1-Bedroom, 2-Bedroom, 3-Bedroom)',
-  `unit_size` decimal(10,2) NOT NULL COMMENT 'Unit area (sqm)',
-  `status` enum('available','reserved','sold') NOT NULL DEFAULT 'available' COMMENT 'For sale, reserved, sold',
-  `customer_id` int(11) DEFAULT NULL,
-  `unit_price_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'Unit price per sqm (set at the time of sale)',
-  `gov_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'Government services per sqm (set at the time of sale)',
-  `infra_cost_per_meter` decimal(10,2) DEFAULT NULL COMMENT 'Infrastructure services per sqm (set at the time of sale)',
-  `unit_price` decimal(12,2) DEFAULT NULL COMMENT 'Total unit price = price per sqm x area',
-  `gov_cost` decimal(12,2) DEFAULT NULL COMMENT 'Government services (total)',
-  `infra_cost` decimal(12,2) DEFAULT NULL COMMENT 'Infrastructure services (total)',
-  `total_price` decimal(12,2) DEFAULT NULL COMMENT 'Total unit price = unit price + government services + infrastructure',
-  `sold_at` timestamp NULL DEFAULT NULL COMMENT 'Sale date',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `block_id` (`block_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `fk_block_units_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_block_units_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Table structure for table `block_amenities`
---
-
-CREATE TABLE IF NOT EXISTS `block_amenities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `block_id` int(11) NOT NULL,
-  `amenity_key` varchar(50) NOT NULL COMMENT 'Amenity identifier (English letters)',
-  `amenity_label` varchar(100) NOT NULL COMMENT 'Amenity name (English)',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `block_amenity_unique` (`block_id`, `amenity_key`),
-  CONSTRAINT `fk_block_amenities_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Table structure for table `block_unit_features`
---
-
-CREATE TABLE IF NOT EXISTS `block_unit_features` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `unit_id` int(11) NOT NULL,
-  `feature_key` varchar(50) NOT NULL COMMENT 'Feature identifier (English letters)',
-  `feature_label` varchar(100) NOT NULL COMMENT 'Feature name (English)',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `unit_feature_unique` (`unit_id`, `feature_key`),
-  CONSTRAINT `fk_unit_features_unit` FOREIGN KEY (`unit_id`) REFERENCES `block_units` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Table structure for table `pay_block_units`
--- Payments for apartments/units (like pay_200, pay_400 for plots)
---
-
-CREATE TABLE IF NOT EXISTS `pay_block_units` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `unit_id` int(11) NOT NULL COMMENT 'Apartment/unit identifier (block_units.id)',
-  `customer_id` int(11) NOT NULL,
-  `amount` decimal(12,2) NOT NULL,
-  `payment_date` timestamp NOT NULL DEFAULT current_timestamp(),
-  `note` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `unit_id` (`unit_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `fk_pay_block_unit_unit` FOREIGN KEY (`unit_id`) REFERENCES `block_units` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_pay_block_unit_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-COMMIT;
