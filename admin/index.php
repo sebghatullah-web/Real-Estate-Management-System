@@ -16,7 +16,7 @@
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application -->
-    <link href="style/dest/style.css" rel="stylesheet">
+    <link href="style/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body, .navbar, .sidebar, .card, .table, .btn, .form-control, input, textarea, select, .nav-link, .dropdown-menu {

@@ -74,7 +74,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
-    <link href="style/dest/style.css" rel="stylesheet">
+    <link href="style/css/style.css" rel="stylesheet">
 </head>
 
 

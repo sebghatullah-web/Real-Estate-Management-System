@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application -->
-    <link href="style/dest/style.css" rel="stylesheet">
+    <link href="style/css/style.css" rel="stylesheet">
 </head>
 
 

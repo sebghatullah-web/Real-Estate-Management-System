@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login - KHAWAR DB</title>
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
-    <link href="style/dest/style.css" rel="stylesheet">
+    <link href="style/css/style.css" rel="stylesheet">
     <style>
         body {
             background: #2a2a2a;
