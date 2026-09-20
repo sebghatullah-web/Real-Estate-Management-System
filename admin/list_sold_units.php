@@ -18,6 +18,7 @@
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application -->
     <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/admin-modern.css" rel="stylesheet">
 </head>
 
 
@@ -194,6 +195,7 @@
     <script src="style/js/libs/pace.min.js"></script>
     <script src="style/js/libs/Chart.min.js"></script>
     <script src="style/js/app.js"></script>
+    <script src="style/js/admin-modern.js"></script>
     <script src="style/js/views/main.js"></script>
 </body>
 

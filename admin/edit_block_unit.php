@@ -128,6 +128,7 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/admin-modern.css" rel="stylesheet">
 </head>
 
 
@@ -278,6 +279,7 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
 
     <!-- CoreUI main scripts -->
     <script src="style/js/app.js"></script>
+    <script src="style/js/admin-modern.js"></script>
 
     <script src="style/js/views/main.js"></script>
 

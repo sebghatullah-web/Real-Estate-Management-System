@@ -94,6 +94,7 @@ $roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedro
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/admin-modern.css" rel="stylesheet">
 </head>
 
 
@@ -254,6 +255,7 @@ $roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedro
 
     <!-- CoreUI main scripts -->
     <script src="style/js/app.js"></script>
+    <script src="style/js/admin-modern.js"></script>
 
     <script src="style/js/views/main.js"></script>
 

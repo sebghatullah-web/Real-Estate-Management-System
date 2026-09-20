@@ -43,6 +43,7 @@
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <!-- Main styles for this application -->
     <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/admin-modern.css" rel="stylesheet">
 </head>
 
 
@@ -140,6 +141,7 @@
     <!-- CoreUI main scripts -->
 
     <script src="style/js/app.js"></script>
+    <script src="style/js/admin-modern.js"></script>
 
     <!-- Plugins and scripts required by this views -->
     <!-- Custom scripts required by this view -->

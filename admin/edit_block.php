@@ -75,6 +75,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     <link href="style/css/font-awesome.min.css" rel="stylesheet">
     <link href="style/css/simple-line-icons.css" rel="stylesheet">
     <link href="style/css/style.css" rel="stylesheet">
+    <link href="style/css/admin-modern.css" rel="stylesheet">
 </head>
 
 
@@ -175,6 +176,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
     <!-- CoreUI main scripts -->
     <script src="style/js/app.js"></script>
+    <script src="style/js/admin-modern.js"></script>
 
     <script src="style/js/views/main.js"></script>
 
