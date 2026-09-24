@@ -26,16 +26,23 @@ if ($block) {
 
     // Units
     $units = [];
-    $uStmt = $pdo->prepare("SELECT bu.*, c.full_name, c.fathar_name, c.phone
+    $uStmt = $pdo->prepare("SELECT bu.*, m.name AS manzel_name, m.code AS manzel_code,
+                            c.full_name, c.fathar_name, c.phone
                             FROM block_units bu
+                            LEFT JOIN manazil m ON bu.manzel_id = m.id
                             LEFT JOIN customers c ON bu.customer_id = c.id
                             WHERE bu.block_id = ?
-                            ORDER BY bu.floor_number ASC, bu.unit_number ASC");
+                            ORDER BY bu.manzel_id ASC, bu.unit_number ASC");
     $uStmt->execute([$block['id']]);
     while ($u = $uStmt->fetch(PDO::FETCH_ASSOC)) {
         $units[] = $u;
     }
     $block['units'] = $units;
+
+    // Buildings (manazil) of the block
+    $mStmt = $pdo->prepare("SELECT id, name, code, floors_count FROM manazil WHERE block_id = ? ORDER BY id ASC");
+    $mStmt->execute([$block['id']]);
+    $block['manazil'] = $mStmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Details of each unit
     $fStmt = $pdo->prepare("SELECT unit_id, feature_key, feature_label FROM block_unit_features ORDER BY id ASC");
@@ -84,12 +91,11 @@ if ($block) {
         .block-img .placeholder i { font-size: 6rem; opacity: 0.5; }
         .block-img .placeholder span { font-size: 1.2rem; margin-top: 15px; }
         .amenity-badge { background: #e9f2fb; color: #1a3a5c; border: 1px solid #cddbf0; border-radius: 50px; padding: 7px 18px; font-size: 0.9rem; }
-        .floor-title { background: #1a3a5c; color: #fff; padding: 10px 18px; border-radius: 12px; font-weight: bold; }
         .unit-cell { border: 2px solid #dee2e6; border-radius: 12px; padding: 10px; text-align: center; cursor: pointer; transition: all 0.2s; height: 100%; background: #fff; }
         .unit-cell:hover { border-color: #2c5f7c; box-shadow: 0 5px 15px rgba(44,95,124,0.2); transform: translateY(-2px); }
         .unit-cell .u-no { font-weight: bold; font-size: 1.05rem; color: #1a3a5c; }
         .unit-cell .u-status { font-size: 0.78rem; }
-        .unit-cell .u-rooms { font-size: 0.78rem; color: #6c757d; }
+        .unit-cell .u-size { font-size: 0.78rem; color: #6c757d; }
         .unit-sold { border-color: #dc3545; background: #fdecee; }
         .unit-reserved { border-color: #ffc107; background: #fff8e1; }
         .unit-available { border-color: #28a745; background: #e9f7ef; }
@@ -250,46 +256,60 @@ if ($block) {
             <div class="col-12">
                 <div class="detail-card card">
                     <div class="card-header">
-                        <h4 class="mb-0"><i class="bi bi-layers me-2"></i>Floors and Units of the Block</h4>
+                        <h4 class="mb-0"><i class="bi bi-layers me-2"></i>Buildings and Units of the Block</h4>
                         <small class="ms-2 text-white-50">Click on each unit to see its details</small>
                     </div>
                     <div class="card-body">
                         <?php if (count($block['units']) > 0): ?>
                             <?php
-                            $floors = [];
+                            // Group block units by building (manzel) first — each building gets its own column
+                            $bldGroups = [];
                             foreach ($block['units'] as $u) {
-                                $fn = intval($u['floor_number']);
-                                if (!isset($floors[$fn])) { $floors[$fn] = []; }
-                                $floors[$fn][] = $u;
+                                $mid = !empty($u['manzel_id']) ? intval($u['manzel_id']) : 0;
+                                if (!isset($bldGroups[$mid])) { $bldGroups[$mid] = []; }
+                                $bldGroups[$mid][] = $u;
                             }
-                            $maxUnitsPerFloor = 1;
-                            foreach ($floors as $fn => $list) {
-                                $n = count($list);
-                                if ($n > $maxUnitsPerFloor) { $maxUnitsPerFloor = $n; }
+                            $bldNames = [];
+                            $bldCodes = [];
+                            foreach ($block['manazil'] as $mz) {
+                                $bldNames[intval($mz['id'])] = $mz['name'];
+                                $bldCodes[intval($mz['id'])] = $mz['code'];
                             }
+                            if (isset($bldGroups[0])) { $bldNames[0] = 'No Building Assigned'; $bldCodes[0] = ''; }
+                            ksort($bldGroups);
+                            $nc = count($bldGroups);
+                            if ($nc === 1) { $bcol = 'col-12'; $ucol = 'col-6 col-md-3'; }
+                            elseif ($nc === 2) { $bcol = 'col-12 col-md-6'; $ucol = 'col-6'; }
+                            elseif ($nc === 3) { $bcol = 'col-12 col-md-6 col-lg-4'; $ucol = 'col-6'; }
+                            else { $bcol = 'col-12 col-md-6 col-lg-4 col-xl-2'; $ucol = 'col-12'; }
                             ?>
-                            <?php foreach ($floors as $fn => $unitList): ?>
-                                <div class="floor-title mb-3">
-                                    <i class="bi bi-layers me-1"></i>Floor No. <?= $fn ?>
-                                    <span class="badge bg-light text-dark ms-2"><?= count($unitList) ?> Units</span>
-                                </div>
-                                <div class="row g-3 mb-4">
-                                    <?php foreach ($unitList as $u): ?>
-                                        <div class="col-6 col-md-3" style="max-width: <?= $maxUnitsPerFloor > 1 ? round(100 / $maxUnitsPerFloor) : 25 ?>%;">
-                                            <div class="unit-cell unit-<?= $u['status'] ?>" data-unit-id="<?= $u['id'] ?>" data-bs-toggle="modal" data-bs-target="#unitModal">
-                                                <div class="u-no"><i class="bi bi-door-closed me-1"></i>Unit <?= htmlspecialchars($u['unit_number']) ?></div>
-                                                <div class="u-rooms">
-                                                    <?= $u['rooms'] == 2 ? '2-Bedroom' : ($u['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom') ?>
-                                                    | <?= htmlspecialchars($u['unit_size']) ?> m²
-                                                </div>
-                                                <div class="u-status">
-                                                    <?= $u['status'] === 'sold' ? '<span class="text-danger">Sold</span>' : ($u['status'] === 'reserved' ? '<span class="text-warning">Reserved</span>' : '<span class="text-success">For Sale</span>') ?>
-                                                </div>
+                            <div class="row g-4">
+                                <?php foreach ($bldGroups as $mid => $unitList): ?>
+                                    <div class="<?= $bcol ?>">
+                                        <div class="h-100 rounded-3 border bg-white p-3">
+                                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                                <div class="fw-bold" style="color: #1a3a5c;"><i class="bi bi-building me-1"></i>Building: <?= htmlspecialchars($bldNames[$mid] ?? ('#' . $mid)) ?><?php if (!empty($bldCodes[$mid])): ?> <span class="badge bg-secondary-subtle text-secondary fw-normal ms-1"><?= htmlspecialchars($bldCodes[$mid]) ?></span><?php endif; ?></div>
+                                                <span class="badge bg-light text-dark ms-2"><?= count($unitList) ?> Units</span>
+                                            </div>
+                                            <div class="row g-2">
+                                                <?php foreach ($unitList as $u): ?>
+                                                    <div class="<?= $ucol ?>">
+                                                        <div class="unit-cell unit-<?= $u['status'] ?>" data-unit-id="<?= $u['id'] ?>" data-bs-toggle="modal" data-bs-target="#unitModal">
+                                                            <div class="u-no"><i class="bi bi-door-closed me-1"></i>Unit <?= htmlspecialchars($u['unit_number']) ?></div>
+                                                            <div class="u-size">
+                                                                <?= htmlspecialchars($u['unit_size']) ?> m²
+                                                            </div>
+                                                            <div class="u-status">
+                                                                <?= $u['status'] === 'sold' ? '<span class="text-danger">Sold</span>' : ($u['status'] === 'reserved' ? '<span class="text-warning">Reserved</span>' : '<span class="text-success">For Sale</span>') ?>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endforeach; ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         <?php else: ?>
                             <div class="text-center py-5">
                                 <i class="bi bi-door-closed text-muted" style="font-size: 3rem;"></i>
@@ -332,6 +352,7 @@ if ($block) {
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
@@ -339,11 +360,6 @@ var blockUnits = <?= json_encode($block['units'] ?? []) ?>;
 var unitFeatures = <?= json_encode($unitFeatures) ?>;
 var unitPayments = <?= json_encode($unitPayments) ?>;
 
-function faRooms(n) {
-    if (n == 2) return '2-Bedroom';
-    if (n == 3) return '3-Bedroom';
-    return '1-Bedroom';
-}
 function faStatus(s) {
     if (s === 'sold') return '<span class="badge bg-danger">Sold</span>';
     if (s === 'reserved') return '<span class="badge bg-warning text-dark">Reserved</span>';
@@ -364,9 +380,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             if (!u) return;
 
+            var bldName = u.manzel_name ? String(u.manzel_name) : ('Building #' + String(u.manzel_id || 0));
             document.getElementById("unitModalTitle").innerHTML =
                 '<i class="bi bi-door-closed me-2"></i>Unit Details ' + String(u.unit_number) +
-                ' — Floor ' + String(u.floor_number);
+                ' — ' + bldName;
 
             var feats = unitFeatures[id] || [];
             var featsHtml = '';
@@ -386,11 +403,9 @@ document.addEventListener("DOMContentLoaded", function() {
             var html = '' +
             '<table class="table table-bordered detail-table mb-2">' +
                 '<tr><th><i class="bi bi-hash me-1"></i>Unit Code</th><td>' + String(u.unit_code) + '</td></tr>' +
-                '<tr><th><i class="bi bi-layers me-1"></i>Floor</th><td>' + String(u.floor_number) + '</td></tr>' +
+                '<tr><th><i class="bi bi-building me-1"></i>Building</th><td>' + (u.manzel_name ? String(u.manzel_name) + (u.manzel_code ? ' <span class="text-muted">(' + String(u.manzel_code) + ')</span>' : '') : 'N/A') + '</td></tr>' +
                 '<tr><th><i class="bi bi-door-closed me-1"></i>Unit Number</th><td>' + String(u.unit_number) + '</td></tr>' +
-                '<tr><th><i class="bi bi-grid me-1"></i>Units per Floor</th><td>' + String(u.units_per_floor) + '</td></tr>' +
                 '<tr><th><i class="bi bi-tags me-1"></i>Category</th><td>' + String(u.category || 'standard') + '</td></tr>' +
-                '<tr><th><i class="bi bi-door-open me-1"></i>Rooms</th><td>' + faRooms(u.rooms) + '</td></tr>' +
                 '<tr><th><i class="bi bi-rulers me-1"></i>Area</th><td>' + money(u.unit_size) + ' Square Meters</td></tr>' +
                 '<tr><th><i class="bi bi-flag me-1"></i>Status</th><td>' + faStatus(u.status) + '</td></tr>';
             if (u.customer_id) {

@@ -71,16 +71,50 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Building Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" placeholder="e.g. منزل 1 / Building 1" required>
+                            <label class="form-label">Floor Name <span class="text-danger">*</span></label>
+                            <select name="name" class="form-select" required>
+                                <option value="">-- Select Floor --</option>
+                                <option value="1st Floor">1st Floor</option>
+                                <option value="2nd Floor">2nd Floor</option>
+                                <option value="3rd Floor">3rd Floor</option>
+                                <option value="4th Floor">4th Floor</option>
+                                <option value="5th Floor">5th Floor</option>
+                                <option value="6th Floor">6th Floor</option>
+                                <option value="7th Floor">7th Floor</option>
+                                <option value="8th Floor">8th Floor</option>
+                                <option value="9th Floor">9th Floor</option>
+                                <option value="10th Floor">10th Floor</option>
+                                <option value="11th Floor">11th Floor</option>
+                                <option value="12th Floor">12th Floor</option>
+                                <option value="13th Floor">13th Floor</option>
+                                <option value="14th Floor">14th Floor</option>
+                                <option value="15th Floor">15th Floor</option>
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <label class="form-label">Short Code</label>
-                            <input type="text" name="code" class="form-control" placeholder="e.g. MZ1">
+                            <select name="code" class="form-select">
+                                <option value="">Select a Short Code</option>
+                                <option value="MZ1">MZ1</option>
+                                <option value="MZ2">MZ2</option>
+                                <option value="MZ3">MZ3</option>
+                                <option value="MZ4">MZ4</option>
+                                <option value="MZ5">MZ5</option>
+                                <option value="MZ6">MZ6</option>
+                                <option value="MZ7">MZ7</option>
+                                <option value="MZ8">MZ8</option>
+                                <option value="MZ9">MZ9</option>
+                                <option value="MZ10">MZ10</option>
+                                <option value="MZ11">MZ11</option>
+                                <option value="MZ12">MZ12</option>
+                                <option value="MZ13">MZ13</option>
+                                <option value="MZ14">MZ14</option>
+                                <option value="MZ15">MZ15</option>
+                            </select>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Floors Count</label>
-                            <input type="number" name="floors_count" class="form-control" min="1" value="1">
+                            <label class="form-label">Unit Count</label>
+                            <input type="text" name="floors_count" class="form-control" placeholder="Enter number of Units" pattern="\d*" title="Please enter a valid number">
                         </div>
                         <div class="col-md-2">
                             <label class="form-label">Notes</label>
@@ -123,7 +157,7 @@
                         <th>Block</th>
                         <th>Building / Manzel</th>
                         <th>Code</th>
-                        <th>Floors</th>
+                        <th>Units</th>
                         <th>Notes</th>
                         <th>Units</th>
                         <th>Actions</th>
@@ -151,7 +185,7 @@
                         </td>
                         <td><strong><?= htmlspecialchars($row['name']) ?></strong></td>
                         <td><?= htmlspecialchars($row['code'] ?? '') ?: '<span class="text-muted">-</span>' ?></td>
-                        <td><?= htmlspecialchars($row['floors_count']) ?> floor(s)</td>
+                        <td><?= htmlspecialchars($row['floors_count']) ?> Unit(s)</td>
                         <td><?= htmlspecialchars($row['notes'] ?? '') ?: '<span class="text-muted">-</span>' ?></td>
                         <td>
                             <a href="block_units.php?block_id=<?= $row['block_id'] ?>&manzel_id=<?= $row['id'] ?>" class="badge bg-primary text-decoration-none"><?= htmlspecialchars($row['unit_count']) ?> unit(s)</a>

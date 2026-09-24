@@ -94,15 +94,13 @@
             <?php elseif (isset($_GET['skipped']) && intval($_GET['skipped']) > 0): ?>
                 <div class="alert alert-warning"><?= intval($_GET['skipped']) ?> unit number(s) already existed and were skipped.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
-                <div class="alert alert-danger">This unit number already exists on this floor.</div>
+                <div class="alert alert-danger">This unit number already exists in this building.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'sold'): ?>
                 <div class="alert alert-danger">This unit is already sold and cannot be changed.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
-                <div class="alert alert-danger">Invalid input - please re-check unit number, floor and units per floor.</div>
+                <div class="alert alert-danger">Invalid input - please re-check the required fields.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'size'): ?>
                 <div class="alert alert-danger">Usable block size (size &minus; staircase) is zero or negative; reduce the staircase size.</div>
-            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'floor'): ?>
-                <div class="alert alert-danger">Floor number cannot be larger than the block floors count.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'block'): ?>
                 <div class="alert alert-danger">Selected block was not found.</div>
             <?php endif; ?>
@@ -156,18 +154,6 @@
                             <small class="text-muted">Free entry — editable anytime</small>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Floor <span class="text-muted">(optional)</span></label>
-                            <input type="number" name="floor_number" class="form-control" min="1" value="1">
-                        </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Rooms</label>
-                            <select name="rooms" class="form-select">
-                                <option value="1">1-Bedroom</option>
-                                <option value="2">2-Bedroom</option>
-                                <option value="3">3-Bedroom</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2">
                             <label class="form-label">Status</label>
                             <select name="status" class="form-select">
                                 <option value="available">For Sale</option>
@@ -176,15 +162,22 @@
                             </select>
                         </div>
                         <div class="col-12 mt-2">
-                            <label class="form-label fw-bold">Unit Details (rooms &amp; amenities - optional)</label>
-                            <div class="row">
-                                <?php foreach ($UNIT_FEATURES as $key => $label): ?>
-                                <div class="col-md-2 form-check ms-1">
-                                    <input class="form-check-input" type="checkbox" name="features[]" value="<?= $key ?>" id="feat_<?= $key ?>">
-                                    <label class="form-check-label small" for="feat_<?= $key ?>"><?= htmlspecialchars($label) ?></label>
+                            <div class="d-flex justify-content-between align-items-start mb-1">
+                                <label class="form-label fw-bold mb-0">Unit Details &mdash; <span id="features_cat_label"><?= htmlspecialchars(unit_category_label($UNIT_CATEGORIES[0])) ?></span> features <span class="text-muted">(all selected by default &mdash; uncheck the ones that don't apply)</span></label>
+                                <div class="text-nowrap ms-2">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" id="features_check_all">Select All</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" id="features_check_none">Clear All</button>
+                                </div>
+                            </div>
+                            <div id="features_box" class="row">
+                                <?php foreach (category_features_map($conn, $UNIT_CATEGORIES[0]) as $fid => $ftext): ?>
+                                <div class="col-md-4 form-check ms-1">
+                                    <input class="form-check-input" type="checkbox" name="features[]" value="<?= $fid ?>" id="feat_<?= $fid ?>" checked>
+                                    <label class="form-check-label small" for="feat_<?= $fid ?>"><?= htmlspecialchars($ftext) ?></label>
                                 </div>
                                 <?php endforeach; ?>
                             </div>
+                            <small class="text-muted" id="features_hint"></small>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-success">Save Apartment</button>
@@ -240,7 +233,6 @@
                         <th>Building / Manzel</th>
                         <th>Apartment / Unit</th>
                         <th>Category</th>
-                        <th>Rooms</th>
                         <th>Area (sqm)</th>
                         <th>Features</th>
                         <th>Unit Price</th>
@@ -273,7 +265,6 @@
                     $query .= " ORDER BY b.block_code ASC, COALESCE(m.name, '') ASC, bu.unit_number ASC";
                     $result = $conn->query($query);
                     while($row = $result->fetch_assoc()):
-                        $roomLabel = $row['rooms'] == 2 ? '2-Bedroom' : ($row['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
                         $catLabel = unit_category_label($row['category']);
                         $catClass = unit_category_class($row['category']);
                         $statusBadge = '';
@@ -304,7 +295,6 @@
                         </td>
                         <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong></td>
                         <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
-                        <td><?= $roomLabel ?></td>
                         <td><?= htmlspecialchars($row['unit_size']) ?> sqm</td>
                         <td>
                             <?php if ($row['feature_count'] > 0): ?>
@@ -408,8 +398,43 @@
         var cat = $('#category').val();
         var info = CAT_INFO[cat];
         $('#cat_hint').text(info ? (info.finish + ' — ' + info.parking) : '');
+        $('#features_cat_label').text(info ? info.label : cat);
     }
-    $('#category').on('change', categoryHint);
+
+    // ===== Dynamic per-category features (re-render on category change) =====
+    var FEATURES_MAP = <?= json_encode(category_features_all($conn)) ?>;
+    function renderFeatures(cat) {
+        var $box = $('#features_box');
+        var $hint = $('#features_hint');
+        var list = FEATURES_MAP[cat] || [];
+        $box.empty();
+        $hint.text('');
+        if (list.length === 0) {
+            $hint.html('<span class="text-warning">No features defined for this category yet. ' +
+                '<a href="category_features.php?cat=' + cat + '" target="_blank">Add features</a> first.</span>');
+            return;
+        }
+        var keys = Object.keys(list);
+        for (var i = 0; i < keys.length; i++) {
+            var fid = keys[i];
+            var html = '<div class="col-md-4 form-check ms-1">' +
+                       '<input class="form-check-input" type="checkbox" name="features[]" value="' + fid + '" id="feat_' + fid + '" checked>' +
+                       '<label class="form-check-label small" for="feat_' + fid + '">' + $('<span>').text(list[fid]).html() + '</label></div>';
+            $box.append(html);
+        }
+    }
+    // ===== Select All / Clear All for features =====
+    $('#features_check_all').on('click', function () {
+        $('#features_box input[type="checkbox"]').prop('checked', true);
+    });
+    $('#features_check_none').on('click', function () {
+        $('#features_box input[type="checkbox"]').prop('checked', false);
+    });
+    $('#category').on('change', function () {
+        categoryHint();
+        renderFeatures($(this).val());
+    });
+    renderFeatures($('#category').val());
     categoryHint();
     </script>
 

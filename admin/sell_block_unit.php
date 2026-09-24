@@ -76,7 +76,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'
     }
 }
 
-$roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -136,7 +135,6 @@ $roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedro
                         <div class="col-md-3"><strong>Block:</strong> <?= htmlspecialchars($unit['block_code']) ?> (<?= htmlspecialchars($unit['block_name'] ?? '') ?>)</div>
                         <div class="col-md-2"><strong>Building:</strong> <?= htmlspecialchars($unit['manzel_name'] ?? '-') ?></div>
                         <div class="col-md-2"><strong>Category:</strong> <?= htmlspecialchars(unit_category_label($unit['category'])) ?></div>
-                        <div class="col-md-2"><strong>Rooms:</strong> <?= $roomLabel ?></div>
                         <div class="col-md-2"><strong>Area:</strong> <?= htmlspecialchars($unit['unit_size']) ?> sqm</div>
                     </div>
                 </div>

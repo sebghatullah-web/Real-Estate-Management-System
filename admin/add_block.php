@@ -33,7 +33,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
-    // Insert block (no category/units_per_floor — these now belong to units)
+    // Insert block (category, units_per_floor, rooms were removed — they no longer exist)
     $stmt = $conn->prepare("INSERT INTO blocks (block_code, block_name, size, staircase_size, floors_count, status) VALUES (?, ?, ?, ?, ?, 'active')");
     $stmt->bind_param("ssiii", $block_code, $block_name, $size, $staircase, $floors);
     try {

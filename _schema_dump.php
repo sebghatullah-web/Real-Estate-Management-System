@@ -16,6 +16,6 @@ foreach ($tables as $t) {
 $r = $conn->query("SELECT id, block_code, block_name, size, staircase_size, floors_count, status FROM blocks ORDER BY id");
 echo "\n=== blocks rows ===\n";
 while ($row = $r->fetch_assoc()) echo json_encode($row) . "\n";
-$r = $conn->query("SELECT id, block_id, floor_number, unit_number, unit_code, category, rooms, unit_size, status, customer_id FROM block_units ORDER BY id LIMIT 30");
+$r = $conn->query("SELECT id, block_id, manzel_id, category, unit_number, unit_code, unit_size, status, customer_id FROM block_units ORDER BY id LIMIT 30");
 echo "\n=== block_units sample ===\n";
 while ($row = $r->fetch_assoc()) echo json_encode($row) . "\n";

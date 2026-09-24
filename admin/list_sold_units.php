@@ -102,13 +102,12 @@
                     if ($filter_block > 0) {
                         $sql .= " AND bu.block_id = " . intval($filter_block);
                     }
-                    $sql .= " GROUP BY bu.id, bu.block_id, bu.manzel_id, bu.floor_number, bu.units_per_floor, bu.category, bu.unit_number, bu.unit_code, bu.rooms, bu.unit_size, bu.status, bu.customer_id, bu.unit_price_per_meter, bu.gov_cost_per_meter, bu.infra_cost_per_meter, bu.unit_price, bu.gov_cost, bu.infra_cost, bu.total_price, bu.sold_at, b.block_code, b.block_name, m.name, c.full_name, c.fathar_name, c.national_id
+                    $sql .= " GROUP BY bu.id, bu.block_id, bu.manzel_id, bu.category, bu.unit_number, bu.unit_code, bu.unit_size, bu.status, bu.customer_id, bu.unit_price_per_meter, bu.gov_cost_per_meter, bu.infra_cost_per_meter, bu.unit_price, bu.gov_cost, bu.infra_cost, bu.total_price, bu.sold_at, b.block_code, b.block_name, m.name, c.full_name, c.fathar_name, c.national_id
                         ORDER BY bu.id ASC";
 
                     $result = $conn->query($sql);
 
                     while($row = $result->fetch_assoc()):
-                        $roomLabel = $row['rooms'] == 2 ? '2-Bedroom' : ($row['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
                         $catLabel = unit_category_label($row['category']);
                         $catClass = unit_category_class($row['category']);
                         $remaining = (float)$row['remaining_amount'];
@@ -128,7 +127,7 @@
                                 <span class="text-muted">-</span>
                             <?php endif; ?>
                         </td>
-                        <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong><br><small class="text-muted"><?= $roomLabel ?></small></td>
+                        <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong></td>
                         <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
                         <td><?= htmlspecialchars($row['unit_size']) ?> sqm</td>
                         <td><strong><?= number_format((float)$row['total_price'], 2) ?></strong> USD</td>

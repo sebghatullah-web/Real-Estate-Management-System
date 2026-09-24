@@ -51,7 +51,6 @@ invoice_a4_open($invoice_no, $date_str, 'Payment Invoice', 'PAYMENT INVOICE');
 invoice_a4_billto($unit);
 
 // ---------- Apartment details ----------
-$roomLabel = $unit['rooms'] == 2 ? '2 Rooms' : ($unit['rooms'] == 3 ? '3 Rooms' : '1 Room');
 $catLabel = unit_category_label($unit['category']);
 
 invoice_a4_section('Apartment / Unit Details');
@@ -63,7 +62,6 @@ invoice_a4_section('Apartment / Unit Details');
             <th>Block</th>
             <th>Building / Manzel</th>
             <th>Unit No.</th>
-            <th>Rooms</th>
             <th>Area (sqm)</th>
             <th>Category</th>
         </tr>
@@ -74,7 +72,6 @@ invoice_a4_section('Apartment / Unit Details');
             <td><?= htmlspecialchars($unit['block_code'] ?? '') ?> <?php if (!empty($unit['block_name'])): ?><small>(<?= htmlspecialchars($unit['block_name']) ?>)</small><?php endif; ?></td>
             <td><?= htmlspecialchars($unit['manzel_name'] ?? '-') ?></td>
             <td class="t-center"><?= htmlspecialchars($unit['unit_number'] ?? '') ?></td>
-            <td class="t-center"><?= $roomLabel ?></td>
             <td class="num"><?= htmlspecialchars($unit['unit_size'] ?? '') ?></td>
             <td class="t-center"><?= $catLabel ?></td>
         </tr>

@@ -60,7 +60,6 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['amount']))
     }
 }
 
-$roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -85,7 +84,7 @@ $roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedro
                 <div class="card-body">
                     <div class="row mb-3">
                         <div class="col-md-6">Block: <?= htmlspecialchars($unit['block_code']) ?> — Building: <?= htmlspecialchars($unit['manzel_name'] ?? '-') ?></div>
-                        <div class="col-md-6">Apartment: <?= htmlspecialchars($unit['unit_code']) ?> (<?= $roomLabel ?>, <?= htmlspecialchars($unit['unit_size']) ?> sqm)</div>
+                        <div class="col-md-6">Apartment: <?= htmlspecialchars($unit['unit_code']) ?> (<?= htmlspecialchars($unit['unit_size']) ?> sqm)</div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6">

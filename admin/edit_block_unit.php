@@ -22,18 +22,15 @@ while ($f = $fRes->fetch_assoc()) {
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
     $manzel_id = intval($_POST['manzel_id'] ?? 0);
-    $floor     = intval($_POST['floor_number'] ?? 1);
     $unit_no   = trim($_POST['unit_number'] ?? '');
     $category  = trim($_POST['category'] ?? '');
     $unit_size = floatval($_POST['unit_size'] ?? 0);
-    $rooms     = in_array($_POST['rooms'] ?? '1', ['1', '2', '3']) ? intval($_POST['rooms']) : 1;
     $status    = in_array($_POST['status'] ?? '', ['available', 'reserved', 'sold']) ? $_POST['status'] : 'available';
     $customer  = !empty($_POST['customer_id']) ? intval($_POST['customer_id']) : NULL;
 
     if ($category === '' || !isset($CATEGORY_INFO[$category])) {
         $category = 'standard';
     }
-    if ($floor < 1) $floor = 1;
 
     if ($manzel_id <= 0 || $unit_no === '' || $unit_size <= 0) {
         header("Location: edit_block_unit.php?id=$id&error=invalid");
@@ -43,16 +40,19 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     // Sold unit — only allow editing details (not sale information)
     if ($unit['status'] == 'sold') {
         $features = $_POST['features'] ?? [];
-        if (!is_array($features) && $features !== '' && $features !== null) {
-            $features = array($features);
+        if (!is_array($features)) {
+            $features = [];
         }
         $conn->query("DELETE FROM block_unit_features WHERE unit_id = $id");
-        if (count($features) > 0) {
+        $featureMap = category_features_map($conn, $unit['category']);
+        if (count($features) > 0 && count($featureMap) > 0) {
             $fStmt = $conn->prepare("INSERT INTO block_unit_features (unit_id, feature_key, feature_label) VALUES (?, ?, ?)");
-            foreach ($features as $key) {
-                $label = $UNIT_FEATURES[$key] ?? null;
+            foreach ($features as $fid) {
+                $fid = intval($fid);
+                $label = $featureMap[$fid] ?? null;
                 if ($label !== null) {
-                    $fStmt->bind_param("iss", $id, $key, $label);
+                    $fkey = (string)$fid;
+                    $fStmt->bind_param("iss", $id, $fkey, $label);
                     $fStmt->execute();
                 }
             }
@@ -76,9 +76,8 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     // Prevent duplicate unit number in the same block/building
     $check = $conn->prepare("SELECT id FROM block_units
                              WHERE block_id = ? AND unit_number = ?
-                               AND ( (manzel_id IS NULL AND floor_number = ?) OR manzel_id = ? )
-                               AND id != ?");
-    $check->bind_param("isiii", $unit['block_id'], $unit_no, $floor, $manzel_id, $id);
+                               AND manzel_id = ? AND id != ?");
+    $check->bind_param("isii", $unit['block_id'], $unit_no, $manzel_id, $id);
     $check->execute();
     $check->store_result();
 
@@ -90,25 +89,28 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $check->close();
 
     $stmt = $conn->prepare("UPDATE block_units SET
-            manzel_id=?, floor_number=?, unit_number=?, unit_code=?, units_per_floor=1,
-            category=?, rooms=?, unit_size=?, status=?, customer_id=?
+            manzel_id=?, unit_number=?, unit_code=?,
+            category=?, unit_size=?, status=?, customer_id=?
             WHERE id=?");
-    $stmt->bind_param("iisssidsii", $manzel_id, $floor, $unit_no, $unit_code, $category, $rooms, $unit_size, $status, $customer, $id);
+    $stmt->bind_param("iissdsii", $manzel_id, $unit_no, $unit_code, $category, $unit_size, $status, $customer, $id);
     $stmt->execute();
     $stmt->close();
 
-    // Save unit details
+    // Save unit details — dynamic per-category features
     $features = $_POST['features'] ?? [];
-    if (!is_array($features) && $features !== '' && $features !== null) {
-        $features = array($features);
+    if (!is_array($features)) {
+        $features = [];
     }
     $conn->query("DELETE FROM block_unit_features WHERE unit_id = $id");
-    if (count($features) > 0) {
+    $featureMap = category_features_map($conn, $category);
+    if (count($features) > 0 && count($featureMap) > 0) {
         $fStmt = $conn->prepare("INSERT INTO block_unit_features (unit_id, feature_key, feature_label) VALUES (?, ?, ?)");
-        foreach ($features as $key) {
-            $label = $UNIT_FEATURES[$key] ?? null;
+        foreach ($features as $fid) {
+            $fid = intval($fid);
+            $label = $featureMap[$fid] ?? null;
             if ($label !== null) {
-                $fStmt->bind_param("iss", $id, $key, $label);
+                $fkey = (string)$fid;
+                $fStmt->bind_param("iss", $id, $fkey, $label);
                 $fStmt->execute();
             }
         }
@@ -179,7 +181,7 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
             <?php if ($unit['status'] == 'sold' && $unit['total_price'] !== null): ?>
                 <!-- ========== Sale information (visible after the sale) ========== -->
                 <div class="alert alert-secondary mt-2">
-                    This unit is sold &mdash; only &quot;Unit Details&quot; can be changed; floor/number/category cannot be modified.
+                    This unit is sold &mdash; only &quot;Unit Details&quot; can be changed; unit number / category cannot be modified.
                 </div>
                 <div class="card mb-4">
                     <div class="card-header bg-success text-white"><strong>Sale Information</strong></div>
@@ -213,7 +215,7 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
                         </div>
                         <div class="col-md-2">
                             <label class="form-label">Category <span class="text-danger">*</span></label>
-                            <select name="category" class="form-select" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
+                            <select id="category" name="category" class="form-select" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                                 <?php foreach ($UNIT_CATEGORIES as $cat): ?>
                                 <option value="<?= $cat ?>" <?= $unit['category'] == $cat ? 'selected' : '' ?>><?= htmlspecialchars(unit_category_label($cat)) ?></option>
                                 <?php endforeach; ?>
@@ -224,18 +226,6 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
                             <label class="form-label">Unit Size (sqm) <span class="text-danger">*</span></label>
                             <input type="number" id="unit_size" name="unit_size" class="form-control" step="0.01" min="1" value="<?= htmlspecialchars($unit['unit_size']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                             <small class="text-muted">Free entry — editable anytime</small>
-                        </div>
-                        <div class="col-md-1">
-                            <label class="form-label">Floor</label>
-                            <input type="number" name="floor_number" class="form-control" min="1" value="<?= htmlspecialchars($unit['floor_number']) ?>" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                        </div>
-<div class="col-md-3">
-                            <label class="form-label">Rooms</label>
-                            <select name="rooms" class="form-select" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                                <option value="1" <?= $unit['rooms'] == '1' ? 'selected' : '' ?>>1 Room</option>
-                                <option value="2" <?= $unit['rooms'] == '2' ? 'selected' : '' ?>>2 Rooms</option>
-                                <option value="3" <?= $unit['rooms'] == '3' ? 'selected' : '' ?>>3 Rooms</option>
-                            </select>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Status</label>
@@ -257,15 +247,16 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
                             </select>
                         </div>
 <div class="col-12 mt-2">
-                            <label class="form-label fw-bold">Unit Details (rooms &amp; amenities - optional)</label>
-                            <div class="row">
-                                <?php foreach ($UNIT_FEATURES as $key => $label): ?>
-                                <div class="col-md-2 form-check ms-1">
-                                    <input class="form-check-input" type="checkbox" name="features[]" value="<?= $key ?>" id="feat_<?= $key ?>" <?= isset($curFeatures[$key]) ? 'checked' : '' ?>>
-                                    <label class="form-check-label small" for="feat_<?= $key ?>"><?= htmlspecialchars($label) ?></label>
+                            <label class="form-label fw-bold">Unit Details &mdash; <span id="features_cat_label"><?= htmlspecialchars(unit_category_label($unit['category'])) ?></span> features <span class="text-muted">(check the ones that apply)</span></label>
+                            <div id="features_box" class="row">
+                                <?php foreach (category_features_map($conn, $unit['category']) as $fid => $ftext): ?>
+                                <div class="col-md-4 form-check ms-1">
+                                    <input class="form-check-input" type="checkbox" name="features[]" value="<?= $fid ?>" id="feat_<?= $fid ?>" <?= isset($curFeatures[(string)$fid]) ? 'checked' : '' ?>>
+                                    <label class="form-check-label small" for="feat_<?= $fid ?>"><?= htmlspecialchars($ftext) ?></label>
                                 </div>
                                 <?php endforeach; ?>
                             </div>
+                            <small class="text-muted" id="features_hint"></small>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -303,8 +294,35 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
         var cat = $('#category').val();
         var info = CAT_INFO[cat];
         $('#cat_hint').text(info ? (info.finish + ' — ' + info.parking) : '');
+        $('#features_cat_label').text(info ? info.label : cat);
     }
-    $('#category').on('change', categoryHint);
+
+    // ===== Dynamic per-category features (re-render on category change) =====
+    var FEATURES_MAP = <?= json_encode(category_features_all($conn)) ?>;
+    function renderFeatures(cat) {
+        var $box = $('#features_box');
+        var $hint = $('#features_hint');
+        var list = FEATURES_MAP[cat] || [];
+        $box.empty();
+        $hint.text('');
+        if (list.length === 0) {
+            $hint.html('<span class="text-warning">No features defined for this category yet. ' +
+                '<a href="category_features.php?cat=' + cat + '" target="_blank">Add features</a> first.</span>');
+            return;
+        }
+        var keys = Object.keys(list);
+        for (var i = 0; i < keys.length; i++) {
+            var fid = keys[i];
+            var html = '<div class="col-md-4 form-check ms-1">' +
+                       '<input class="form-check-input" type="checkbox" name="features[]" value="' + fid + '" id="feat_' + fid + '">' +
+                       '<label class="form-check-label small" for="feat_' + fid + '">' + $('<span>').text(list[fid]).html() + '</label></div>';
+            $box.append(html);
+        }
+    }
+    $('#category').on('change', function () {
+        categoryHint();
+        renderFeatures($(this).val());
+    });
     categoryHint();
     </script>
 

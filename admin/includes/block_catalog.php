@@ -155,4 +155,39 @@ function unit_category_desc($cat) {
     }
     return '';
 }
+
+/**
+ * Map of feature-id => feature-text for one unit category.
+ * Used by the unit forms and handlers (dynamic per-category amenities).
+ */
+function category_features_map($conn, $category) {
+    $esc = $conn->real_escape_string($category);
+    $out = [];
+    $res = $conn->query("SELECT id, feature FROM unit_category_features WHERE category = '$esc' ORDER BY sort_order, id");
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            $out[intval($row['id'])] = $row['feature'];
+        }
+    }
+    return $out;
+}
+
+/**
+ * Full nested map: category => (feature-id => feature-text).
+ * Used to build the JS map that re-renders the feature checkboxes
+ * whenever the admin changes the unit category.
+ */
+function category_features_all($conn) {
+    $out = [];
+    $res = $conn->query("SELECT category, id, feature FROM unit_category_features ORDER BY category, sort_order, id");
+    if ($res) {
+        while ($row = $res->fetch_assoc()) {
+            if (!isset($out[$row['category']])) {
+                $out[$row['category']] = [];
+            }
+            $out[$row['category']][intval($row['id'])] = $row['feature'];
+        }
+    }
+    return $out;
+}
 ?>

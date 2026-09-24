@@ -29,8 +29,8 @@ $category = 'grand_penthouse';
 $unit_no = '10';
 $unit_size = 285.5;
 
-$stmt = $conn->prepare("INSERT INTO block_units (block_id, manzel_id, floor_number, units_per_floor, category, unit_number, unit_code, rooms, unit_size, status)
-                        VALUES (?, ?, 1, 1, ?, ?, ?, 3, ?, 'available')");
+$stmt = $conn->prepare("INSERT INTO block_units (block_id, manzel_id, category, unit_number, unit_code, unit_size, status)
+                        VALUES (?, ?, ?, ?, ?, ?, 'available')");
 $stmt->bind_param("iisssd", $bid, $mid, $category, $unit_no, $unit_code, $unit_size);
 $stmt->execute();
 $uid = $conn->insert_id;
