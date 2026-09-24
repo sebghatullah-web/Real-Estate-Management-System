@@ -35,9 +35,27 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
+    // Duplicate check: block_code must be unique (excluding this block)
+    $check = $conn->prepare("SELECT id FROM blocks WHERE block_code = ? AND id != ?");
+    $check->bind_param("si", $block_code, $id);
+    $check->execute();
+    $exists = $check->get_result()->fetch_assoc();
+    $check->close();
+
+    if ($exists) {
+        header("Location: edit_block.php?id=$id&error=duplicate");
+        exit;
+    }
+
     $stmt = $conn->prepare("UPDATE blocks SET block_code=?, block_name=?, size=?, staircase_size=?, floors_count=?, status=? WHERE id=?");
     $stmt->bind_param("ssiiisi", $block_code, $block_name, $size, $staircase, $floors, $status, $id);
-    $stmt->execute();
+    try {
+        $stmt->execute();
+    } catch (mysqli_sql_exception $e) {
+        $stmt->close();
+        header("Location: edit_block.php?id=$id&error=db");
+        exit;
+    }
     $stmt->close();
 
     // Update amenities: delete previous rows and insert the selected ones
@@ -105,6 +123,10 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
                 <div class="alert alert-danger mt-3">Invalid input. Please check the values.</div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
+                <div class="alert alert-warning mt-3"><strong>Duplicate block code!</strong> This code already belongs to another block. Please choose a different code.</div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'db'): ?>
+                <div class="alert alert-danger mt-3"><strong>Database error.</strong> Could not save the block. Please try again.</div>
             <?php endif; ?>
 
             <h2 class="mb-4">Edit Block: <?= htmlspecialchars($block['block_code']) ?></h2>

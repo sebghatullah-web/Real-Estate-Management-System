@@ -21,17 +21,21 @@ while ($f = $fRes->fetch_assoc()) {
 
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
-    $floor        = intval($_POST['floor_number'] ?? 0);
-    $unit_no      = trim($_POST['unit_number'] ?? '');
-    $units_per_fl = intval($_POST['units_per_floor'] ?? 0);
-    $category     = trim($_POST['category'] ?? '');
-    $rooms        = in_array($_POST['rooms'] ?? '1', ['1', '2', '3']) ? intval($_POST['rooms']) : 1;
-    $status       = in_array($_POST['status'] ?? '', ['available', 'reserved', 'sold']) ? $_POST['status'] : 'available';
-    $customer     = !empty($_POST['customer_id']) ? intval($_POST['customer_id']) : NULL;
+    $manzel_id = intval($_POST['manzel_id'] ?? 0);
+    $floor     = intval($_POST['floor_number'] ?? 1);
+    $unit_no   = trim($_POST['unit_number'] ?? '');
+    $category  = trim($_POST['category'] ?? '');
+    $unit_size = floatval($_POST['unit_size'] ?? 0);
+    $rooms     = in_array($_POST['rooms'] ?? '1', ['1', '2', '3']) ? intval($_POST['rooms']) : 1;
+    $status    = in_array($_POST['status'] ?? '', ['available', 'reserved', 'sold']) ? $_POST['status'] : 'available';
+    $customer  = !empty($_POST['customer_id']) ? intval($_POST['customer_id']) : NULL;
 
-    if ($category === '') $category = 'standard';
+    if ($category === '' || !isset($CATEGORY_INFO[$category])) {
+        $category = 'standard';
+    }
+    if ($floor < 1) $floor = 1;
 
-    if ($floor <= 0 || $unit_no === '' || $units_per_fl < 1 || $units_per_fl > 4) {
+    if ($manzel_id <= 0 || $unit_no === '' || $unit_size <= 0) {
         header("Location: edit_block_unit.php?id=$id&error=invalid");
         exit;
     }
@@ -54,15 +58,27 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
             }
             $fStmt->close();
         }
-        header("Location: block_units.php?block_id=" . $unit['block_id']);
+        header("Location: block_units.php?block_id=" . $unit['block_id'] . "&manzel_id=" . $unit['manzel_id']);
         exit;
     }
 
-    $unit_code = $unit['block_code'] . '-' . $floor . '-' . $unit_no;
+    // Manzel must exist and belong to the same block
+    $mRes = $conn->query("SELECT id, name, code FROM manazil WHERE id = $manzel_id AND block_id = " . intval($unit['block_id']));
+    $manzel = $mRes->fetch_assoc();
+    if (!$manzel) {
+        header("Location: edit_block_unit.php?id=$id&error=invalid");
+        exit;
+    }
 
-    // Prevent duplicate unit code
-    $check = $conn->prepare("SELECT id FROM block_units WHERE block_id = ? AND floor_number = ? AND unit_number = ? AND id != ?");
-    $check->bind_param("iisi", $unit['block_id'], $floor, $unit_no, $id);
+    $manzel_key = !empty($manzel['code']) ? $manzel['code'] : $manzel['name'];
+    $unit_code = $unit['block_code'] . '-' . $manzel_key . '-' . $unit_no;
+
+    // Prevent duplicate unit number in the same block/building
+    $check = $conn->prepare("SELECT id FROM block_units
+                             WHERE block_id = ? AND unit_number = ?
+                               AND ( (manzel_id IS NULL AND floor_number = ?) OR manzel_id = ? )
+                               AND id != ?");
+    $check->bind_param("isiii", $unit['block_id'], $unit_no, $floor, $manzel_id, $id);
     $check->execute();
     $check->store_result();
 
@@ -73,20 +89,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     }
     $check->close();
 
-    // Recalculate size when units per floor change
-    $usable = intval($unit['size']) - intval($unit['staircase_size']);
-    $unit_size = $usable > 0 ? round($usable / $units_per_fl, 2) : $unit['unit_size'];
-
-    $stmt = $conn->prepare("UPDATE block_units SET floor_number=?, unit_number=?, unit_code=?, units_per_floor=?, category=?, rooms=?, unit_size=?, status=?, customer_id=? WHERE id=?");
-    $stmt->bind_param("issiisidsi", $floor, $unit_no, $unit_code, $units_per_fl, $category, $rooms, $unit_size, $status, $customer, $id);
+    $stmt = $conn->prepare("UPDATE block_units SET
+            manzel_id=?, floor_number=?, unit_number=?, unit_code=?, units_per_floor=1,
+            category=?, rooms=?, unit_size=?, status=?, customer_id=?
+            WHERE id=?");
+    $stmt->bind_param("iisssidsii", $manzel_id, $floor, $unit_no, $unit_code, $category, $rooms, $unit_size, $status, $customer, $id);
     $stmt->execute();
     $stmt->close();
-
-    // Sync existing units on the same floor
-    $sync = $conn->prepare("UPDATE block_units SET units_per_floor=?, category=? WHERE block_id=? AND floor_number=? AND status='available' AND id != ?");
-    $sync->bind_param("isiii", $units_per_fl, $category, $unit['block_id'], $floor, $id);
-    $sync->execute();
-    $sync->close();
 
     // Save unit details
     $features = $_POST['features'] ?? [];
@@ -111,6 +120,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 }
 
 $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY full_name ASC");
+$manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id = " . intval($unit['block_id']) . " ORDER BY id");
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -187,34 +197,37 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
                 <div class="card-body">
                     <form method="POST" class="row g-3">
                         <div class="col-md-3">
-                            <label class="form-label">Floor <span class="text-danger">*</span></label>
-                            <input type="number" name="floor_number" class="form-control" min="1" value="<?= htmlspecialchars($unit['floor_number']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
+                            <label class="form-label">Building / Manzel <span class="text-danger">*</span></label>
+                            <select name="manzel_id" class="form-select" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
+                                <option value="">-- Select Building --</option>
+                                <?php while ($mn = $manazilResult->fetch_assoc()): ?>
+                                <option value="<?= $mn['id'] ?>" <?= $unit['manzel_id'] == $mn['id'] ? 'selected' : '' ?>>
+                                    <?= htmlspecialchars($mn['name']) ?><?php if (!empty($mn['code'])): ?> (<?= htmlspecialchars($mn['code']) ?>)<?php endif; ?>
+                                </option>
+                                <?php endwhile; ?>
+                            </select>
                         </div>
                         <div class="col-md-2">
                             <label class="form-label">Unit Number <span class="text-danger">*</span></label>
                             <input type="text" id="unit_no" name="unit_number" class="form-control" value="<?= htmlspecialchars($unit['unit_number']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Units Per Floor <span class="text-danger">*</span></label>
-                            <select id="units_per_floor" name="units_per_floor" class="form-select" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                                <option value="1" <?= $unit['units_per_floor'] == '1' ? 'selected' : '' ?>>1 Unit</option>
-                                <option value="2" <?= $unit['units_per_floor'] == '2' ? 'selected' : '' ?>>2 Units</option>
-                                <option value="3" <?= $unit['units_per_floor'] == '3' ? 'selected' : '' ?>>3 Units</option>
-                                <option value="4" <?= $unit['units_per_floor'] == '4' ? 'selected' : '' ?>>4 Units</option>
+                            <label class="form-label">Category <span class="text-danger">*</span></label>
+                            <select name="category" class="form-select" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
+                                <?php foreach ($UNIT_CATEGORIES as $cat): ?>
+                                <option value="<?= $cat ?>" <?= $unit['category'] == $cat ? 'selected' : '' ?>><?= htmlspecialchars(unit_category_label($cat)) ?></option>
+                                <?php endforeach; ?>
                             </select>
+                            <small class="text-muted d-block" id="cat_hint"></small>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Category</label>
-                            <input type="text" name="category" class="form-control" list="cat_options" value="<?= htmlspecialchars($unit['category']) ?>" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
-                            <datalist id="cat_options">
-                                <?php foreach ($UNIT_CATEGORIES as $cat): ?>
-                                <option value="<?= $cat ?>"><?= htmlspecialchars(unit_category_label($cat)) ?></option>
-                                <?php endforeach; ?>
-                            </datalist>
+                            <label class="form-label">Unit Size (sqm) <span class="text-danger">*</span></label>
+                            <input type="number" id="unit_size" name="unit_size" class="form-control" step="0.01" min="1" value="<?= htmlspecialchars($unit['unit_size']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
+                            <small class="text-muted">Free entry — editable anytime</small>
                         </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Unit Area</label>
-                            <div class="form-control bg-light fw-bold" id="unit_size_display"><?= htmlspecialchars($unit['unit_size']) ?> sqm</div>
+                        <div class="col-md-1">
+                            <label class="form-label">Floor</label>
+                            <input type="number" name="floor_number" class="form-control" min="1" value="<?= htmlspecialchars($unit['floor_number']) ?>" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                         </div>
 <div class="col-md-3">
                             <label class="form-label">Rooms</label>
@@ -284,16 +297,15 @@ $customersResult = $conn->query("SELECT id, full_name FROM customers ORDER BY fu
     <script src="style/js/views/main.js"></script>
 
     <script>
-    // ===== Update size when units per floor change =====
-    var blockSize   = <?= json_encode((float)$unit['size']) ?>;
-    var blockStairs = <?= json_encode((float)$unit['staircase_size']) ?>;
-
-    $('#units_per_floor').on('change', function() {
-        var units = parseInt(this.value) || 1;
-        var usable = blockSize - blockStairs;
-        var per = usable > 0 ? usable / units : 0;
-        $('#unit_size_display').text(per > 0 ? per.toFixed(2) + ' sqm' : '-');
-    });
+    // ===== Hint about the selected category (finish + parking) =====
+    var CAT_INFO = <?= json_encode($CATEGORY_INFO) ?>;
+    function categoryHint() {
+        var cat = $('#category').val();
+        var info = CAT_INFO[cat];
+        $('#cat_hint').text(info ? (info.finish + ' — ' + info.parking) : '');
+    }
+    $('#category').on('change', categoryHint);
+    categoryHint();
     </script>
 
     <!-- Grunt watch plugin -->

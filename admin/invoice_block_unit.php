@@ -13,10 +13,11 @@ if (!$unit_id) {
 
 // Apartment/unit info with customer and block
 $sql = "SELECT bu.*, c.full_name, c.fathar_name, c.national_id, c.phone, c.address,
-               b.block_code, b.block_name
+               b.block_code, b.block_name, m.name AS manzel_name
         FROM block_units bu
         LEFT JOIN customers c ON bu.customer_id = c.id
         LEFT JOIN blocks b ON bu.block_id = b.id
+        LEFT JOIN manazil m ON bu.manzel_id = m.id
         WHERE bu.id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $unit_id);
@@ -60,7 +61,7 @@ invoice_a4_section('Apartment / Unit Details');
         <tr>
             <th>Apartment Code</th>
             <th>Block</th>
-            <th>Floor</th>
+            <th>Building / Manzel</th>
             <th>Unit No.</th>
             <th>Rooms</th>
             <th>Area (sqm)</th>
@@ -71,7 +72,7 @@ invoice_a4_section('Apartment / Unit Details');
         <tr>
             <td><b><?= htmlspecialchars($unit['unit_code'] ?? '') ?></b></td>
             <td><?= htmlspecialchars($unit['block_code'] ?? '') ?> <?php if (!empty($unit['block_name'])): ?><small>(<?= htmlspecialchars($unit['block_name']) ?>)</small><?php endif; ?></td>
-            <td class="t-center"><?= htmlspecialchars($unit['floor_number'] ?? '') ?></td>
+            <td><?= htmlspecialchars($unit['manzel_name'] ?? '-') ?></td>
             <td class="t-center"><?= htmlspecialchars($unit['unit_number'] ?? '') ?></td>
             <td class="t-center"><?= $roomLabel ?></td>
             <td class="num"><?= htmlspecialchars($unit['unit_size'] ?? '') ?></td>
@@ -83,7 +84,7 @@ invoice_a4_section('Apartment / Unit Details');
 <?php
 invoice_a4_section('Financial Details');
 ?>
-<div class="inv-service"><b>Item:</b> Sale of apartment <?= htmlspecialchars($unit['unit_code'] ?? '') ?> — Floor No. <?= htmlspecialchars($unit['floor_number'] ?? '') ?> — area <?= htmlspecialchars($unit['unit_size'] ?? '') ?> sqm</div>
+<div class="inv-service"><b>Item:</b> Sale of apartment <?= htmlspecialchars($unit['unit_code'] ?? '') ?> — Building <?= htmlspecialchars($unit['manzel_name'] ?? '-') ?> — area <?= htmlspecialchars($unit['unit_size'] ?? '') ?> sqm</div>
 <table class="inv-table amount-table">
     <thead>
         <tr><th>Description</th><th>Rate / sqm (USD)</th><th>Amount (USD)</th></tr>

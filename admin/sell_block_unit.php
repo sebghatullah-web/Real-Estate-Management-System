@@ -9,9 +9,10 @@ if (!$id) {
     exit;
 }
 
-$stmt = $conn->prepare("SELECT bu.*, b.block_code, b.block_name, b.size, b.floors_count
+$stmt = $conn->prepare("SELECT bu.*, b.block_code, b.block_name, b.size, b.floors_count, m.name AS manzel_name
                         FROM block_units bu
                         JOIN blocks b ON bu.block_id = b.id
+                        LEFT JOIN manazil m ON bu.manzel_id = m.id
                         WHERE bu.id = ?");
 $stmt->bind_param("i", $id);
 $stmt->execute();
@@ -133,11 +134,10 @@ $roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedro
                     <div class="row">
                         <div class="col-md-3"><strong>Apartment Code:</strong> <?= htmlspecialchars($unit['unit_code']) ?></div>
                         <div class="col-md-3"><strong>Block:</strong> <?= htmlspecialchars($unit['block_code']) ?> (<?= htmlspecialchars($unit['block_name'] ?? '') ?>)</div>
-                        <div class="col-md-2"><strong>Floor:</strong> <?= htmlspecialchars($unit['floor_number']) ?></div>
+                        <div class="col-md-2"><strong>Building:</strong> <?= htmlspecialchars($unit['manzel_name'] ?? '-') ?></div>
                         <div class="col-md-2"><strong>Category:</strong> <?= htmlspecialchars(unit_category_label($unit['category'])) ?></div>
                         <div class="col-md-2"><strong>Rooms:</strong> <?= $roomLabel ?></div>
                         <div class="col-md-2"><strong>Area:</strong> <?= htmlspecialchars($unit['unit_size']) ?> sqm</div>
-                        <div class="col-md-2"><strong>Units/Floor:</strong> <?= htmlspecialchars($unit['units_per_floor']) ?></div>
                     </div>
                 </div>
             </div>

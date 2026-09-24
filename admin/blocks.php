@@ -53,6 +53,10 @@
 
             <?php if (isset($_GET['ok'])): ?>
                 <div class="alert alert-success">Block saved/updated successfully. Now add the apartments from the &quot;Units&quot; section.</div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
+                <div class="alert alert-warning"><strong>Duplicate block code!</strong> This block code already exists. Please choose a different code.</div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'db'): ?>
+                <div class="alert alert-danger"><strong>Database error.</strong> Could not save the block. Please try again.</div>
             <?php endif; ?>
 
             <!-- ========== Add block form ========== -->
@@ -62,7 +66,7 @@
                     <form action="add_block.php" method="POST" class="row g-3">
                         <div class="col-md-3">
                             <label class="form-label">Block Code <span class="text-danger">*</span></label>
-                            <input type="text" name="block_code" class="form-control" placeholder="e.g. B-412-A" required>
+                            <input type="text" name="block_code" class="form-control" placeholder="e.g. B-412-A" value="<?= htmlspecialchars($_GET['code'] ?? '') ?>" required>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Block Name</label>
@@ -118,6 +122,7 @@
                         <th>Size (m)</th>
                         <th>Floors</th>
                         <th>Staircase</th>
+                        <th>Buildings</th>
                         <th>Units</th>
                         <th>Amenities</th>
                         <th>Status</th>
@@ -128,7 +133,8 @@
                     <?php
                     $query = "SELECT b.*,
                         (SELECT COUNT(*) FROM block_units bu WHERE bu.block_id = b.id) AS unit_count,
-                        (SELECT COUNT(*) FROM block_amenities ba WHERE ba.block_id = b.id) AS amenity_count
+                        (SELECT COUNT(*) FROM block_amenities ba WHERE ba.block_id = b.id) AS amenity_count,
+                        (SELECT COUNT(*) FROM manazil m WHERE m.block_id = b.id) AS manazil_count
                         FROM blocks b
                         ORDER BY b.id DESC";
                     $result = $conn->query($query);
@@ -141,6 +147,11 @@
                         <td><?= htmlspecialchars($row['size']) ?> sqm</td>
                         <td><?= htmlspecialchars($row['floors_count']) ?> floors</td>
                         <td><?= htmlspecialchars($row['staircase_size']) ?> sqm</td>
+                        <td>
+                            <a href="manazil.php?block_id=<?= $row['id'] ?>" class="badge bg-info text-decoration-none">
+                                <?= htmlspecialchars($row['manazil_count']) ?> manazil
+                            </a>
+                        </td>
                         <td>
                             <a href="block_units.php?block_id=<?= $row['id'] ?>" class="badge bg-primary text-decoration-none">
                                 <?= htmlspecialchars($row['unit_count']) ?> unit(s)
@@ -162,6 +173,7 @@
                         </td>
                         <td>
                             <a href="block_units.php?block_id=<?= $row['id'] ?>" class="btn btn-sm btn-primary">Units</a>
+                            <a href="manazil.php?block_id=<?= $row['id'] ?>" class="btn btn-sm btn-info">Manazil</a>
                             <a href="edit_block.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
                             <a href="delete_block.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure? All apartments of this block will also be deleted.');">Delete</a>
                         </td>

@@ -1,0 +1,1273 @@
+=== STREAM 0 (len=9420) ===
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.062745 .164706 .227451 rg
+n 0 731.3386 595.2756 110.5512 re f*
+.72549 .592157 .345098 rg
+n 0 731.3386 595.2756 3.11811 re f*
+1 1 1 rg
+BT /F2 21 Tf 25.2 TL ET
+BT 1 0 0 1 130.8033 796.5354 Tm (KCC RESIDENTIAL COLLECTION) Tj T* ET
+.905882 .85098 .737255 rg
+BT /F1 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 206.2905 773.8583 Tm (Apartment types and building specifications) Tj T* ET
+Q
+q
+1 0 0 1 48.18898 663.8882 cm
+q
+.960784 .94902 .921569 rg
+n 0 41.60787 498.8976 -41.60787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 6 8.503937 cm
+q
+BT 1 0 0 1 0 16.1 Tm 12.3 TL /F2 8.5 Tf .133333 .156863 .176471 rg (FLOORS 2\2264) Tj /F1 8.5 Tf  T* (Standard) Tj T* ET
+Q
+Q
+q
+1 0 0 1 130.7244 8.503937 cm
+q
+BT 1 0 0 1 0 16.1 Tm 12.3 TL /F2 8.5 Tf .133333 .156863 .176471 rg (FLOOR 5) Tj /F1 8.5 Tf  T* (Premium A & B) Tj T* ET
+Q
+Q
+q
+1 0 0 1 255.4488 8.503937 cm
+q
+BT 1 0 0 1 0 16.1 Tm 12.3 TL /F2 8.5 Tf .133333 .156863 .176471 rg (FLOOR 6) Tj /F1 8.5 Tf  T* (VIP) Tj T* ET
+Q
+Q
+q
+1 0 0 1 380.1732 8.503937 cm
+q
+BT 1 0 0 1 0 16.1 Tm 12.3 TL /F2 8.5 Tf .133333 .156863 .176471 rg (FLOOR 7) Tj /F1 8.5 Tf  T* (Grand) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.5 w
+n 0 41.60787 m 498.8976 41.60787 l S
+n 0 0 m 498.8976 0 l S
+n 0 0 m 0 41.60787 l S
+n 498.8976 0 m 498.8976 41.60787 l S
+.35 w
+n 124.7244 0 m 124.7244 41.60787 l S
+n 249.4488 0 m 249.4488 41.60787 l S
+n 374.1732 0 m 374.1732 41.60787 l S
+Q
+Q
+Q
+q
+1 0 0 1 45.68504 652.5496 cm
+Q
+q
+1 0 0 1 48.18898 251.7921 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5.669291 204.3787 cm
+q
+.960784 .94902 .921569 rg
+n 0 193.3787 232.4409 -193.3787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 14.17323 168.0402 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (STANDARD) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 150.0402 cm
+q
+.72549 .592157 .345098 rg
+BT 1 0 0 1 0 3 Tm /F2 15 Tf 18 TL (201 m\262) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 125.4402 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Floors 2, 3 and 4 \177 4 apartments per floor \177 2-sided) Tj T* (corner exposure) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 122.0386 cm
+Q
+q
+1 0 0 1 14.17323 109.7386 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 3 bedrooms: 2 regular + 1 master) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 97.43858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 1 living hall \177 3 bathrooms) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 85.13858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Private laundry) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 72.83858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Fully equipped kitchen) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 60.53858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Washer and dryer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 48.23858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Built-in cabinets and wardrobes) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 35.93858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Fireplace \177 balcony) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 23.63858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Shared lift) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 11.33858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Shared outdoor parking) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.6 w
+n 0 193.3787 m 232.4409 193.3787 l S
+n 0 0 m 232.4409 0 l S
+n 0 0 m 0 193.3787 l S
+n 232.4409 0 m 232.4409 193.3787 l S
+Q
+Q
+Q
+q
+1 0 0 1 255.1181 216.6787 cm
+q
+.960784 .94902 .921569 rg
+n 0 181.0787 232.4409 -181.0787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 14.17323 155.7402 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (PREMIUM A) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 137.7402 cm
+q
+.72549 .592157 .345098 rg
+BT 1 0 0 1 0 3 Tm /F2 15 Tf 18 TL (268 m\262) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 125.4402 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (Floor 5 \177 2-sided exposure: northwest or northeast) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 122.0386 cm
+Q
+q
+1 0 0 1 14.17323 109.7386 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 4 bedrooms: 3 regular + 1 master) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 97.43858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 1 living hall \177 3 bathrooms) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 85.13858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Private laundry) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 72.83858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Fully equipped kitchen \177 washer and dryer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 48.23858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (\177 Semi-furnished: beds, wardrobes, cabinets and) Tj T* (selected furniture) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 35.93858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Fireplace \177 balcony) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 23.63858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Shared lift) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 11.33858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Dedicated indoor parking + shared outdoor parking) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.6 w
+n 0 181.0787 m 232.4409 181.0787 l S
+n 0 0 m 232.4409 0 l S
+n 0 0 m 0 181.0787 l S
+n 232.4409 0 m 232.4409 181.0787 l S
+Q
+Q
+Q
+q
+1 0 0 1 5.669291 5 cm
+q
+.960784 .94902 .921569 rg
+n 0 193.3787 232.4409 -193.3787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 14.17323 168.0402 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (PREMIUM B) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 150.0402 cm
+q
+.72549 .592157 .345098 rg
+BT 1 0 0 1 0 3 Tm /F2 15 Tf 18 TL (268 m\262) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 125.4402 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Floor 5 \177 3-sided exposure: north/east/west or) Tj T* (south/east/west) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 122.0386 cm
+Q
+q
+1 0 0 1 14.17323 109.7386 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 4 bedrooms: 2 regular + 2 master) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 97.43858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 2 living halls \177 3 bathrooms) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 85.13858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Private laundry) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 72.83858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Fully equipped kitchen \177 washer and dryer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 48.23858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (\177 Semi-furnished: beds, wardrobes, cabinets and) Tj T* (selected furniture) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 35.93858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Fireplace \177 balcony) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 23.63858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Shared lift) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 11.33858 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (\177 Dedicated indoor parking + shared outdoor parking) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.6 w
+n 0 193.3787 m 232.4409 193.3787 l S
+n 0 0 m 232.4409 0 l S
+n 0 0 m 0 193.3787 l S
+n 232.4409 0 m 232.4409 193.3787 l S
+Q
+Q
+Q
+q
+1 0 0 1 255.1181 3 cm
+q
+.062745 .164706 .227451 rg
+n 0 195.3787 232.4409 -195.3787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 14.17323 168.0402 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3 Tm /F2 13 Tf 16 TL (VIP) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 150.0402 cm
+q
+.72549 .592157 .345098 rg
+BT 1 0 0 1 0 3 Tm /F2 15 Tf 18 TL (402 m\262) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 137.7402 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (Floor 6 \177 2 apartments \177 3-sided exposure) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 134.3386 cm
+Q
+q
+1 0 0 1 14.17323 122.0386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 5 bedrooms: 4 regular + 1 master) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 109.7386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 2 living halls \177 5 bathrooms) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 97.43858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private laundry) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 85.13858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Fully equipped kitchen \177 washer and dryer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 60.53858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 16.2 Tm /F1 8.4 Tf 12.3 TL (\177 Furnished, with upgraded furniture, lighting,) Tj T* (appliances and finishes) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 48.23858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private sauna) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 35.93858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Fireplace \177 balcony) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 23.63858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Shared lift) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 11.33858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private indoor parking + shared outdoor parking) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.6 w
+n 0 195.3787 m 232.4409 195.3787 l S
+n 0 0 m 232.4409 0 l S
+n 0 0 m 0 195.3787 l S
+n 232.4409 0 m 232.4409 195.3787 l S
+Q
+Q
+Q
+q
+Q
+Q
+Q
+ 
+
+
+=== STREAM 1 (len=5620) ===
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.062745 .164706 .227451 rg
+n 0 731.3386 595.2756 110.5512 re f*
+.72549 .592157 .345098 rg
+n 0 731.3386 595.2756 3.11811 re f*
+1 1 1 rg
+BT /F2 21 Tf 25.2 TL ET
+BT 1 0 0 1 130.8033 796.5354 Tm (KCC RESIDENTIAL COLLECTION) Tj T* ET
+.905882 .85098 .737255 rg
+BT /F1 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 206.2905 773.8583 Tm (Apartment types and building specifications) Tj T* ET
+Q
+q
+1 0 0 1 45.68504 687.4961 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 4 Tm /F2 14 Tf 18 TL (FLOOR 7) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 657.8961 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Each building has one Grand apartment on Floor 7. Depending on the building design, it is configured as either a Grand Residence or) Tj T* (a Grand Penthouse.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 646.5575 cm
+Q
+q
+1 0 0 1 48.18898 408.2787 cm
+q
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5.669291 27.6 cm
+q
+.062745 .164706 .227451 rg
+n 0 207.6787 232.4409 -207.6787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 14.17323 180.3402 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3 Tm /F2 13 Tf 16 TL (GRAND RESIDENCE) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 162.3402 cm
+q
+.72549 .592157 .345098 rg
+BT 1 0 0 1 0 3 Tm /F2 15 Tf 18 TL (804 m\262) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 150.0402 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (Floor 7 \177 4-sided exposure: north, south, east and west) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 146.6386 cm
+Q
+q
+1 0 0 1 14.17323 134.3386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 8 bedrooms: 7 regular + 1 master) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 122.0386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 3 living halls \177 7 bathrooms) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 109.7386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Fully furnished and equipped) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 97.43858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private laundry \177 washer and dryer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 85.13858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private sauna) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 72.83858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private lift and arrival foyer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 60.53858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private indoor parking + shared outdoor parking) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 23.63858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 28.5 Tm /F1 8.4 Tf 12.3 TL (\177 Separate guest apartment: 1 master bedroom, 1) Tj T* (regular bedroom, 2 bathrooms, 1 living hall and) Tj T* (balcony) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 11.33858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Children's play hall) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.6 w
+n 0 207.6787 m 232.4409 207.6787 l S
+n 0 0 m 232.4409 0 l S
+n 0 0 m 0 207.6787 l S
+n 232.4409 0 m 232.4409 207.6787 l S
+Q
+Q
+Q
+q
+1 0 0 1 255.1181 3 cm
+q
+.062745 .164706 .227451 rg
+n 0 232.2787 232.4409 -232.2787 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 14.17323 204.9402 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3 Tm /F2 13 Tf 16 TL (GRAND PENTHOUSE) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 186.9402 cm
+q
+.72549 .592157 .345098 rg
+BT 1 0 0 1 0 3 Tm /F2 15 Tf 18 TL (804 m\262) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 174.6402 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (Floor 7 \177 4-sided exposure: north, south, east and west) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 171.2386 cm
+Q
+q
+1 0 0 1 14.17323 158.9386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 6 bedrooms: 4 regular + 2 master) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 146.6386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 3 living halls \177 6 bathrooms) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 134.3386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Fully furnished and equipped) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 122.0386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private laundry \177 washer and dryer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 109.7386 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private sauna) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 97.43858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private lift and arrival foyer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 85.13858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private indoor parking + shared outdoor parking) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 72.83858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Separate guest apartment) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 60.53858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 100 m\262 private open rooftop area) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 48.23858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Private pool) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 35.93858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 3.9 Tm /F1 8.4 Tf 12.3 TL (\177 Rooftop recreation area) Tj T* ET
+Q
+Q
+q
+1 0 0 1 14.17323 11.33858 cm
+q
+1 1 1 rg
+BT 1 0 0 1 0 16.2 Tm /F1 8.4 Tf 12.3 TL (\177 Outdoor seating, landscaped space and) Tj T* (dining/entertaining area) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.72549 .592157 .345098 RG
+.6 w
+n 0 232.2787 m 232.4409 232.2787 l S
+n 0 0 m 232.4409 0 l S
+n 0 0 m 0 232.2787 l S
+n 232.4409 0 m 232.4409 232.2787 l S
+Q
+Q
+Q
+q
+Q
+Q
+Q
+q
+1 0 0 1 45.68504 394.1055 cm
+Q
+q
+1 0 0 1 45.68504 369.5055 cm
+q
+BT 1 0 0 1 0 16.1 Tm 12.3 TL /F2 8.5 Tf .133333 .156863 .176471 rg (Grand Penthouse rooftop:) Tj /F1 8.5 Tf ( The 100 m\262 open rooftop area is planned as a private leisure space with a pool, landscaped terrace and) Tj T* (areas for seating, dining and recreation. Final pool and rooftop specifications will follow structural and MEP design.) Tj T* ET
+Q
+Q
+ 
+
+
+=== STREAM 2 (len=6682) ===
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.062745 .164706 .227451 rg
+n 0 731.3386 595.2756 110.5512 re f*
+.72549 .592157 .345098 rg
+n 0 731.3386 595.2756 3.11811 re f*
+1 1 1 rg
+BT /F2 21 Tf 25.2 TL ET
+BT 1 0 0 1 130.8033 796.5354 Tm (KCC RESIDENTIAL COLLECTION) Tj T* ET
+.905882 .85098 .737255 rg
+BT /F1 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 206.2905 773.8583 Tm (Apartment types and building specifications) Tj T* ET
+Q
+q
+1 0 0 1 45.68504 687.4961 cm
+q
+BT 1 0 0 1 0 4 Tm 18 TL /F2 14 Tf .062745 .164706 .227451 rg (BUILDING & COMMON AREAS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 679.6614 cm
+Q
+q
+1 0 0 1 48.18898 426.6142 cm
+q
+.960784 .94902 .921569 rg
+n 0 253.0472 136.063 -253.0472 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 11.33858 230.5433 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Lifts) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 219.9433 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Rounded panoramic glass lifts. Grand apartments have private lift access and a private) Tj T* (arrival foyer.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 188.9354 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Stairs and corridors) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 178.3354 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Marble, natural stone or comparable high-quality wall finishes, with coordinated flooring,) Tj T* (handrails and architectural lighting.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 147.3276 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (First-floor lobby) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 136.7276 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (A well-finished residential lobby with reception/seating space, feature lighting, stone) Tj T* (finishes and controlled access.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 91.71969 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 17 Tm /F2 11 Tf 14 TL (Apartment entrance) Tj T* (doors) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 95.11969 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Secure multi-access doors with fingerprint, PIN/password, physical key and electronic) Tj T* (access, depending on the final selected system.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 60.71181 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Security) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 50.11181 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Controlled building entrance, CCTV in common areas, video intercom and secure access) Tj T* (to lifts and shared areas.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 19.10394 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Waste collection) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 8.503937 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (An enclosed waste access point on each residential floor connected to a central collection) Tj T* (system, designed for hygiene, odor control and fire separation.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.843137 .815686 .768627 RG
+.45 w
+n 0 253.0472 m 498.8976 253.0472 l S
+n 0 0 m 498.8976 0 l S
+n 0 0 m 0 253.0472 l S
+n 498.8976 0 m 498.8976 253.0472 l S
+.3 w
+n 0 211.4394 m 498.8976 211.4394 l S
+n 0 169.8315 m 498.8976 169.8315 l S
+n 0 128.2236 m 498.8976 128.2236 l S
+n 0 83.21575 m 498.8976 83.21575 l S
+n 0 41.60787 m 498.8976 41.60787 l S
+n 136.063 0 m 136.063 253.0472 l S
+Q
+Q
+Q
+q
+1 0 0 1 45.68504 412.4409 cm
+Q
+q
+1 0 0 1 45.68504 394.4409 cm
+q
+BT 1 0 0 1 0 4 Tm 18 TL /F2 14 Tf .062745 .164706 .227451 rg (APARTMENT COMFORT & BUILDING SYSTEMS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 386.6063 cm
+Q
+q
+1 0 0 1 48.18898 105.9512 cm
+q
+.960784 .94902 .921569 rg
+n 0 280.6551 136.063 -280.6551 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 11.33858 258.1512 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Heating and cooling) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 259.8512 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 3.8 Tm /F1 8.5 Tf 12.3 TL (Central heating, air-conditioning and a fireplace in each apartment.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 227.1433 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Power supply) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 216.5433 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Connection to the public electricity network, supported by a building solar power system) Tj T* (and an emergency generator. Backup loads will be defined in the final engineering design.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 185.5354 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Windows) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 174.9354 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Large floor-to-ceiling windows with secure locking, insulated glass and appropriate thermal) Tj T* (and sound performance.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 143.9276 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Floor finishes) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 133.3276 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Premium ceramic/porcelain tile and engineered parquet, selected according to room use) Tj T* (and apartment category.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 102.3197 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Insulation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 91.71969 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Thermal and acoustic insulation for apartment separation walls, floors, windows and) Tj T* (relevant service shafts.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 60.71181 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Water and internet) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 50.11181 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Hot-water system, water storage and supply, fiber/internet readiness and individual utility) Tj T* (metering where applicable.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 19.10394 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Fire safety) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 8.503937 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Fire detection and firefighting provisions in accordance with final engineering design and) Tj T* (applicable requirements.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.843137 .815686 .768627 RG
+.45 w
+n 0 280.6551 m 498.8976 280.6551 l S
+n 0 0 m 498.8976 0 l S
+n 0 0 m 0 280.6551 l S
+n 498.8976 0 m 498.8976 280.6551 l S
+.3 w
+n 0 249.6472 m 498.8976 249.6472 l S
+n 0 208.0394 m 498.8976 208.0394 l S
+n 0 166.4315 m 498.8976 166.4315 l S
+n 0 124.8236 m 498.8976 124.8236 l S
+n 0 83.21575 m 498.8976 83.21575 l S
+n 0 41.60787 m 498.8976 41.60787 l S
+n 136.063 0 m 136.063 280.6551 l S
+Q
+Q
+Q
+q
+1 0 0 1 45.68504 91.77795 cm
+Q
+ 
+
+
+=== STREAM 3 (len=4020) ===
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.062745 .164706 .227451 rg
+n 0 731.3386 595.2756 110.5512 re f*
+.72549 .592157 .345098 rg
+n 0 731.3386 595.2756 3.11811 re f*
+1 1 1 rg
+BT /F2 21 Tf 25.2 TL ET
+BT 1 0 0 1 130.8033 796.5354 Tm (KCC RESIDENTIAL COLLECTION) Tj T* ET
+.905882 .85098 .737255 rg
+BT /F1 9.5 Tf 11.4 TL ET
+BT 1 0 0 1 206.2905 773.8583 Tm (Apartment types and building specifications) Tj T* ET
+Q
+q
+1 0 0 1 45.68504 687.4961 cm
+q
+BT 1 0 0 1 0 4 Tm 18 TL /F2 14 Tf .062745 .164706 .227451 rg (FINISH & FURNISHING LEVELS) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 679.6614 cm
+Q
+q
+1 0 0 1 48.18898 471.622 cm
+q
+.960784 .94902 .921569 rg
+n 0 208.0394 136.063 -208.0394 re f*
+0 0 0 rg
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 11.33858 185.5354 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Standard) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 174.9354 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL -0.047152 Tw (Equipped apartment: fitted kitchen, built-in wardrobes and cabinets, sanitary ware, lighting,) Tj T* 0 Tw (full kitchen appliances, washer and dryer.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 143.9276 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Premium) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 133.3276 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Semi-furnished apartment: Standard inclusions plus upgraded finishes and selected) Tj T* (bedroom and living furniture.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 102.3197 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (VIP) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 91.71969 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Furnished apartment: upgraded finishes, kitchen and appliances, bathrooms, lighting and) Tj T* (a broader furniture package.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 60.71181 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Grand) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 50.11181 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Fully furnished and equipped: complete furniture, appliances, lighting and coordinated) Tj T* (interior finishes for a move-in-ready apartment.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 11.33858 19.10394 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 3 Tm /F2 11 Tf 14 TL (Parking) Tj T* ET
+Q
+Q
+q
+1 0 0 1 147.4016 8.503937 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL -0.048002 Tw (Standard: shared outdoor parking. Premium: dedicated indoor parking plus shared outdoor) Tj T* 0 Tw (parking. VIP and Grand: private indoor parking plus shared outdoor parking.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.843137 .815686 .768627 RG
+.45 w
+n 0 208.0394 m 498.8976 208.0394 l S
+n 0 0 m 498.8976 0 l S
+n 0 0 m 0 208.0394 l S
+n 498.8976 0 m 498.8976 208.0394 l S
+.3 w
+n 0 166.4315 m 498.8976 166.4315 l S
+n 0 124.8236 m 498.8976 124.8236 l S
+n 0 83.21575 m 498.8976 83.21575 l S
+n 0 41.60787 m 498.8976 41.60787 l S
+n 136.063 0 m 136.063 208.0394 l S
+Q
+Q
+Q
+q
+1 0 0 1 45.68504 457.4488 cm
+Q
+q
+1 0 0 1 45.68504 439.4488 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 4 Tm /F2 14 Tf 18 TL (RESIDENTIAL MIX) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 409.8488 cm
+q
+.133333 .156863 .176471 rg
+BT 1 0 0 1 0 16.1 Tm /F1 8.5 Tf 12.3 TL (Floors 2\2264: 12 Standard apartments \177 Floor 5: 3 Premium apartments \177 Floor 6: 2 VIP apartments \177 Floor 7: 1 Grand apartment. Total:) Tj T* (18 residential apartments per building.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 395.6756 cm
+Q
+q
+1 0 0 1 45.68504 365.6756 cm
+q
+.062745 .164706 .227451 rg
+BT 1 0 0 1 0 20 Tm /F1 10 Tf 15 TL (Apartment size, exposure, privacy, furnishing, parking and amenities increase progressively from Standard to) Tj T* (Grand.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 45.68504 342.9984 cm
+Q
+q
+1 0 0 1 45.68504 321.9984 cm
+q
+.415686 .45098 .478431 rg
+BT 1 0 0 1 0 13.7 Tm /F1 7.3 Tf 10.5 TL (Specifications shown are part of the current KCC residential concept and remain subject to final architectural, structural, MEP, fire-safety and) Tj T* (product-selection design.) Tj T* ET
+Q
+Q
+ 
+
+
+=== STREAM 4 (len=24280) ===
+  ^Øjumb   jumdc2pa    ª 8qc2pa   ^²jumb   Gjumdc2ma    ª 8qurn:c2pa:11cc5460-b62e-4dd1-8444-40cf5ec767d5   ¢jumb   )jumdc2as    ª 8qc2pa.assertions   	¹jumb   #jumd@Ë2»H§*ÖôCic2pa.icon    bfdb image/svg+xml   	wbidb<svg width="716" height="716" viewBox="0 0 716 716" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M508.749 317.399C516.777 287.314 508.991 253.884 485.389 230.282C461.788 206.681 428.36 198.895 398.273 206.923C376.231 184.928 343.39 174.956 311.148 183.596C278.906 192.234 255.45 217.292 247.36 247.361C217.291 255.451 192.233 278.91 183.595 311.149C174.957 343.391 184.927 376.232 206.924 398.274C198.896 428.359 206.683 461.789 230.284 485.391C253.885 508.992 287.313 516.779 317.401 508.75C339.442 530.745 372.286 540.717 404.525 532.079C436.767 523.441 460.223 498.384 468.313 468.315C498.383 460.224 523.44 436.766 532.078 404.526C540.716 372.285 530.747 339.443 508.749 317.402V317.399ZM470.899 244.776C486.892 260.77 493.488 282.601 490.687 303.412L415.577 260.046C412.411 258.218 408.509 258.218 405.345 260.046L317.401 310.82V277.526C317.401 275.191 318.652 273.005 320.676 271.837L387.644 233.174C414.178 218.353 448.346 222.223 470.901 244.776H470.899ZM357.837 311.144L398.275 334.491V381.185L357.837 404.532L317.398 381.185V334.491L357.837 311.144ZM264.776 269.693C265.207 239.305 285.644 211.649 316.453 203.393C338.3 197.54 360.505 202.744 377.127 215.573L302.014 258.937C298.848 260.764 296.898 264.144 296.898 267.798V369.346L268.065 352.699C266.043 351.531 264.776 349.353 264.776 347.017V269.691V269.693ZM203.391 316.454C209.244 294.608 224.854 277.978 244.276 269.999V356.73C244.276 360.384 246.226 363.763 249.392 365.591L337.337 416.365L308.503 433.013C306.481 434.181 303.961 434.188 301.939 433.02L234.971 394.357C208.868 378.789 195.138 347.261 203.391 316.454ZM244.775 470.9C228.781 454.906 222.186 433.075 224.986 412.264L300.096 455.63C303.263 457.457 307.164 457.457 310.328 455.63L398.273 404.856V438.149C398.273 440.485 397.022 442.671 394.997 443.839L328.029 482.502C301.495 497.322 267.327 493.452 244.772 470.9H244.775ZM450.897 445.982C450.466 476.371 430.029 504.027 399.22 512.283C377.373 518.136 355.168 512.932 338.547 500.102L413.659 456.738C416.826 454.911 418.775 451.532 418.775 447.877V346.329L447.609 362.977C449.631 364.145 450.897 366.323 450.897 368.659V445.985V445.982ZM512.282 399.221C506.429 421.068 490.819 437.697 471.397 445.676V358.946C471.397 355.292 469.448 351.912 466.281 350.085L378.336 299.311L407.17 282.663C409.192 281.495 411.712 281.487 413.734 282.655L480.702 321.318C506.805 336.887 520.536 368.415 512.282 399.221Z" fill="black"/>
+</svg>
+  jumb   )jumdcbor    ª 8qc2pa.actions.v2    ãcbor¢gactions¤factionlc2pa.createdqdigitalSourceTypexFhttp://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMediamsoftwareAgent¢dnameggpt-5-6gversionggpt-5-6dwhenx2026-09-17T06:19:11.837211ZrallActionsIncludedô   ¤jumb   (jumdcbor    ª 8qc2pa.hash.data    tcbor¥jexclusions¢estart'Ýflength^Ødnamenjumbf manifestcalgfsha256dhashX ¥oÝ¹\À¡¯y¸Ä	84M:m,¬å×`Îcpad@  jumb   'jumdc2cl    ª 8qc2pa.claim.v2   Zcbor¦jinstanceIDx,xmp:iid:8560701a-f3da-43fe-97b9-24ce2ddf2c06tclaim_generator_info£dnamegChatGPTdicon¢curlx$self#jumbf=c2pa.assertions/c2pa.icondhashX u>ð=W1³¨NëLûÁt·'wÖÐ6Çe6ãñkspecVersione2.2.0isignaturexMself#jumbf=/c2pa/urn:c2pa:11cc5460-b62e-4dd1-8444-40cf5ec767d5/c2pa.signaturercreated_assertions¢curlx$self#jumbf=c2pa.assertions/c2pa.icondhashX u>ð=W1³¨NëLûÁt·'wÖÐ6Çe6ãñ¢curlx*self#jumbf=c2pa.assertions/c2pa.actions.v2dhashX  Å&ÐåN ·¯ÆôÏ²àª»dï5MÜùæ]p¼£¢curlx)self#jumbf=c2pa.assertions/c2pa.hash.datadhashX M0î¹³ÜïKAUcúÒM¨ Û¬b%¦ï1ãhdc:titleiimage.pdfcalgfsha256  P8jumb   (jumdc2cs    ª 8qc2pa.signature   PcborÒYè¢8$!Y00l ¥üépò1îDds0	*H÷ 0J1!0USSL.com C2PA ICA R1 202510U
+SSL Corporation10	UUS0260422155105Z270423155104Z0G10	UUS10U
+OpenAI OpCo, LLC10UOpenAI Media Service0"0	*H÷  0
+ ºjLMê¶Ñ¾^XNr¡ßiq|å!#Ó¢5L£J<ïn+¿æd®×Ki$ZcÏêv
+²eÛ|<áþÁ3w¯'Þ; :´cÍM¿´3DªT07F¸ýyDsWU£c|Ý¬X/æz®Þ¥ÃNHðZøà|¤KÕlºÊÂ*È¾uÔgµWªjm00,×UajÒS¶ x^ECN£ñ¯[Ñ²ëþïº×7	«d-Éø¿.Ðçcy 76£5ÉHÉ,céD5¬¹§SlhsÈ
+9ÌIó £g0c0Uÿ0 0U#09=GÜ¯{MsÍåî¤¥*0o+c0a09+0-http://crt-c2pa.ssl.com/SSL.com-C2PA-I-R1.cer0$+0http://ocsp-c2pa.ssl.com0U 00
++è^0)U%"0 ++$
++è^0UóMÔËrøF
+vG¥hOt0UÿÀ0	+è^
++è^
+03	+è^&$019bc403-5cd7-7669-afe6-fdb17177d4280	*H÷  8le¡7 ñùítºÕ¦[5õglÏ+fi@ÍõüÒrVßÊ(êøfÞBC=øx h(­µîüõ2Ò¸_çlnë[|[0ç.B¸Æpþþ 	¬5FÕ IEÃºUÇZoÒëØy:¼D44}ôA¥3/.lQR
+m=I°ËÇXÌÜî.éÆ9¸3\ Úî W3T.p(J%)O|.ÒúÝg.zèPx9Qº:Ú~#õbXåÂ¨sÅØqéï\d{î7/vxVdçoBÑ}¼jomdØÿ"í¹ï²Ð\}h]5[K±ÅiHyæh Äa:LøÀ$yå¦hàïýÖÖ.-AduV_¶¡<¶ÀèmóÅCçv,h¤òæËè{*r$=!Æcm/%£[ª)¥ýGêá÷kåû[P&m+¡]1õÝb¨|2ÜLÇ¥,r0PWâè®³§¯Y4®rï*®x¬â3ìSµÉÒ(¨*7¡N«üÌ~X'mEá´*½0W¡1. .ÉâÈTÛ¡O¾$5þ/iÜ¸MãÞ/èlõÁâÓþrwÓ¨+ÔW®Ø ¾¶YS0O07 '+cÈÌM-Qrlô^2Q®Þ0	*H÷ 0O1&0$USSL.com C2PA RSA Root CA 202510U
+SSL Corporation10	UUS0251222181730Z301221181730Z0J1!0USSL.com C2PA ICA R1 202510U
+SSL Corporation10	UUS0"0	*H÷  0
+ Ë:´Í¸Ë)V¸y§øköùØrÃ¦­*AÚa.GR½tQ¾]ìz¶Àûúè'¥èþbó`ñ_HÊssäNnÌNz5ÞXá×ÜÒGCwßHy£9¤YN^àNGòuB×v=¶¤"ÜíÆoÔrFÖQÇµ·zòù#'ÕPup héç¼(|*ê)©À/þÉvFU°/cê}ô°D¤@Þ@6\DTkWHÿ»o¤ÕêÂ×|Ø¼Îi¿  ME;.yÒÏ)»FÙxc03Q^múå4JXx³)l]|¸u<w!{Ø´JëÚÍÇ
+ÖÉ¢Þ®³¶QÚÃ²»PÄþ¶¤L]-jObåà*÷i Õ¹ ÚÑ»^OÆ¯ù)LÐÉìëó²qP{v'hùP¸w5ØÍ¡á×Ó)çJÆTY$Âg²m	5ÛºÎ¸F¥àÚá§jÎ`ÒÄ÷ÁÞsyUàp´ïêÌÇþvNf
+i-íÃF¢*äÔWF-XbÕÊ¨ú~øÂÙajË5] £²e¨/íïçü~ºHôª¡qü¯ê§NsiÕBÀùOËT³=:øÝ)eyÊC¸X!ïÑ{ £&0"0Uÿ0ÿ 0Uÿ0)U%"0 ++$
++è^0U9=GÜ¯{MsÍåî¤¥*0U 00
++è^0U#0ü*Ju:úcðsWì¾°}Ã{0x+l0j0$+0http://ocsp-c2pa.ssl.com0B+06http://crt-c2pa.ssl.com/SSL.com-C2PA-Root-2025-RSA.cer0	*H÷  Î6ú>ï6-¯Ufÿ{+ kVõË­½*­¥¦ÐM£>äiÕä¨næ7Tâ%ìef(<3=¢¢»ÍgdJç¾t!¡nÃ«&Ä;,ÚU¹ýGNàx7Ät;ÅGaïmAr¤Û]CSÉNåà:ß¨Ý.Ñ¯XÖçô_r#<kÏ½9«¨§vY>áõ÷ÙûFb«nnÔF ³/*j_¥NÚøÔüÌÙ£<©wE
+Áù¹9ËÌ¡qÀ*qÓäö%âQ!mÖßäSoJ}^ÀºÕwy!zÎí÷¶²BVkA*þkî£(Ï_óéÐdÖîÂKëÏõ¯Â'M¸¡7%æýÜô¼Ç7{¾´-gXð/çÃ³qåDz0¶¥²u>[#~;ÓT¦:¹ÇÌ3Õj5zv/þWÚiø>?ïT{FÃcúíÄ/p+öVô§Ë$×l^${:½©X;i³Òptÿn&»Ã«EÇSGµÆF«^õüh£5å|jeµ«ë¹ÿº¸àJG²Îì/}î¯MÄÉÎõ2=÷&4þ"zíù^^g_Q[Û$VûÑY¡·Þf	¶Ñ.ú}~yDf|6öõ£gsigTst2¡itstTokens¡cvalY0	*H÷ w0s10	`He 0*H÷	 wu0s
++¿0010	`He  ³0íq¹ÊM×ùqýß£KüFw}a½¡]Î.j«Keµ,20260917061917.904879Z0\¥k*Óî f0ö0^ aÛF(2J·¿þ`ãl?q·0	*H÷ 0{10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Issuing CA0260408174626Z370709174626Z0u10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Leaf0¢0	*H÷  0 êÊÅ­ýðý'Çx§aÊÿ)a*û¡Í_¨¢/È¼°=UÁ6j­ièÛ,D2¨
+Íwå5èî¨d[þ¸àç ¡(Ã5Ý§7é"÷	M´sÀ.|©PG( ´ðið°)zYþ5BùÙiRJ 7òhÌñ-· KF\=¤¸KEf8¢NM'ÊºuÌNjtÃ $_Ä~\®þóí ß<õ*^ÖÐÝÉúÈMÃÉZI,ä8s`R¸LîÆó·¶ØÝj©Î º]ÖÄ\5dò#S?be]p+ÔÉk	ERèWíZF]Ú]v%yhQ¤urUÿØãCb±íig'A¼Åòj+Ièá-4»9¯g½´È²½EgÍr_UK,­¯í¥ô$¯w>dQ9K°=®ú¡>=ð¾6¡.õcµ £x0v0Uÿ0 0UÿÀ0U%ÿ0
++0U¤'T¢{=ÅÍ?pÙÂQx0U#0òð°ÇT=#CÜÊsÐr=¸¨0	*H÷   û$OAÀÀ¼²2  H5OÄFV~§>?¶¥#ù*H>àQE@xÁ»NPÉ'hßMÎòöÒy«ïêÁÚ?õYæpÍôîGªËìÿ~áFØæ¸ä4FÿaÒxø}89ãRí_fèsÀ r;ä¨«*£7!ù;ß{\TØLÇj*KÏCt`s£ÉÑw¯©ýµ±jn¿*Î¡«¢H7ÅcQÛR|ogÉiBÕÏõû­^âày<.j¥è%AíäÁ :þRPïÞádÍUù! ß¶)ï'nÑº4F«J"OçbwÝE#Ýa-Â1)Ä¹~y«´WÔÁìÏá\{eI°ëM«¤Ç'@N¦´µÏ|Ã´C§vÓ^0cî¨®5(td«Z5ã[/:>N
+aÖ0MCÿN.Æ!¹>:, W0ujdK¢Ð	Ñ× g&Amgøpv¸%&Vù&'ÃKI0~0f ÊÆÅÅÚ°¼ñN¥ê¼0	*H÷ 0x10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Root CA0 260408174626Z21260409174626Z0{10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Issuing CA0¢0	*H÷  0 ¼Ô¹âÈ¡¾a»Þ<df~§¾mÓ©0&<ôàk 9ß4í©¢eHÛ72Ì
+J Àó4l ÀÍ+¥ôË|Ù&Þ~ÉM¢ïc[æöY¨ÒúNùÙ8+ZÍ`Z¨×SÆãÖ.H¬CW	éòGùlE`·÷®/^¢5N8i4ÐMØC=Í4mücüÓp»JèvèjNfI íüø¾ï·¨w¬ï·8Ì¹Ô*3ÄvÖ@wËþÇ]-@ÓÞ<ÀÖ@AË?,} kRüÊP·	GEá#Uú±OoTô}ºøhá"zÜC¶.C±b ¾Ê$.ï¿¤ÑMè¸?1Ï&=Å PêòÙ$ díÕs.pxªÞV<ùÔ¢è­¯öû¨£\Ëh«DÛ0wòÄ4tkUmÆûò2<qE÷ìPûþÖ1&»ÐÄMaâBÛ¯Ã+n_+æâ°ï\DÍÀs}¢é½m¼%e0ií £{0y0Uÿ0ÿ 0Uÿ0U%0
++0Uòð°ÇT=#CÜÊsÐr=¸¨0U#0XÂ@ <Gv+¨æn¨È·Ùä0	*H÷  ì7\ÞlëdÚ®¡	0r®Ürõ;¼z=ÖÆá/ö3}èW@NLªkÔÙÛkÖLøÊÐY3Ó¡ 8\#D$ûáö'¼¡íL_g]ÿ5«1Òì{Ô@C7OÂºdÈ°¢~6øáÐ³PC²àU½ÈYRNJtÞ]ÇEX·ú0ª;ÜG¼Õ.,¹8c,yZ·ÝU­=BßÏñhþs ÔZ·Þ$ÀçgþÜ¦
+ó¥F³QÏ¯_ãÈ¸@Æ½ãùÖKqÐd]ådÂKÀ^wÑ=Ç[Ï{ýçKQÚûdô«ð5ñö¾~+Ý²=PÝPÃdm«s(;wÐíoEO±3._Fë¶©a¼×®øoÂãi0æm|:D+-¯Ü4Á¾¥*HçÈÞ8µ3ÊãPpñ²KÞOöÜ_úñæÑ×Ê§î´ö!x)ðãpXw¤:KFèÚÂjvÉ©Ë!E¾e± .¼YKMCm´×àüðÕÈaCjÃñ!<]þ;ÖØ#9E_qú2ý DµO åÃtýâNrôðQ½Ôµ+5l¤;kjºýÀ;vÂÕ9IÚã>Pj×LâaïëÏÅÃ@npz80æ0Î P;lð$3,÷Oû}ì0	*H÷ 0x10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Root CA0 260408174625Z21260409174625Z0x10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Root CA0"0	*H÷  0
+ öéÒº­á¬u¨VØª±³j_yõ·-$ø¿À¯`¾ÁÍyÜlþ6Á¤?ä,º¥¥Ps³
+ÂùóÄI/x½Òì¼ç?ôÑò a¢,%ÊQù%ÒÆ/ôÄAþ&Óm5Íì»5`@¨Q¾öîñ*ØzkjÙ.Ùcóå\)Å"ÁhÍë8©P[#Cû8ÿB|;:¡Q/%ÉHÜ1ÿPrîð|¡wÍoaó?¿nèÒ±¦6äk2ûþw¨^\ÝÝ1LeÿËAÎ(1SÊCÎHn}Öd³)ä´.:·TZrVWó¨j}ïæaÝeÈH	I2tð
+¢ÌÝ S¬#½ ±ï¾í¡w î:F3¢ì¯é1f´fo² ~!ÎAø^ðéÍ¹ÀÕ3]xÐÐ'1ÏP0rsÚjÂÀÏ­ÜdöûNvõ>ïÿ,w.öÜ¶	:ýô	Ç_Zé~H	+µò[<,¯¢A·RhÑ¿°ÀÚO`½î)ªíq\(£%cEØü{alFT;\É°¯È±#?[î¢×Tµ*S®»Û¦úìróz@É¶XG[ñ$a9¢LÞØÆ¨"ò¿[L,Ë £f0d0Uÿ0ÿ0Uÿ0UXÂ@ <Gv+¨æn¨È·Ùä0U#0XÂ@ <Gv+¨æn¨È·Ùä0	*H÷  XøòlaþÈÖ[¦Ö¾¸¦]]IË¸¡)Í-¸Xùð=<øoÕj´*¢Uðg^µTûFãQ SÀÁWÞïU~ãô}ë&üÿ!¨Á¬ÞÛ«ÍÐ0v:Îªg9.tßmð~v/éêPA8=låà>î/ÛdT6^¾bE¶Ñ!´<ëÚÖJ©ÕTe[kÑX~ÀIëëK_;×ö¡YÎGð8¬Ã°tdÑÀR;¡±{(káiø(;'ÿ®¤÷eË ôê¹½ÎDâ±
+HhîU©!¥`þÊÖ}Ñ{ ó¨xÐÆÚ@.È\b¨*ÁûVçy¯ìåÛÓpþFÌc¨dñ<é¯¥d¼^¿-°Îã¹Ó¤×R»pû.¿
+öÒU+#B+C\ì¡a?Ïqí°÷éäËÂ<ü¬w·¶Ü ÁLé²²/Ã~dµÞÌý°KµC}Òé­ýÙ-½ îÀ´GV#|HNg {bÁÉ^UñöÆQ#Woï¾ Fy¾±È (&UfRïÙKº¨ZéÂ,­Ã\Bó¡õ'dyq
+Zý¹ùEypájµ7XýE¿T%=Ù&3#ÐXw¦¸1h0d00{10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Issuing CAaÛF(2J·¿þ`ãl?q·0	`He  %0	*H÷	1*H÷	0/	*H÷	1" Ï:3ÕÆ?ãyÎ(Ý-òÔ&ü£*
+åØ x?Ü¬0Õ*H÷	/1Å0Â0¿0¼ ½O¹²L6gnïAámþÙ"¿[JÐ¢Ä`F"z00¤}0{10	UUS10	UCA10USan Francisco10U
+OpenAI OpCo, LLC10
+UTSA10UOpenAI TSA Issuing CAaÛF(2J·¿þ`ãl?q·0	*H÷ s70~	S¥J½åJê«0Cñ-Ø®H»®%|»¢-EÅ¹DæªºÏØ]i}ÍHH¹(ð÷ïøñwN¡ùAi¥rE!g¿sø¬:ö[^¢Wõ"(Ô8«V?÷Ò
+%>xWËEX6ÃÌ?WØU¸Ø¯#ÚÌÁ¢ÏïÆú9ÛV£	!Ã~oµ©ûÚq¤1ÝO»ó§p³¢HÛw³sí³¶p}G%\ãOÄÐØÚæ`røÒ´/¼z0¬jr,z¥(Æ½ â¨@#Ø­ÊÄDó+	ÖþïB,äÏeó1øú:ë\È©g¯:.LÈå*uixEEÌ«k0Rd%¥,Ó¡4ø;Ó°eÞyâ84XëêÎòÙ£
+òíw5Qó_Û`¶¦\óÒþ>Êãe
+HªDA®"¼\9±Ðák¼ÞðùZ¸÷~áÁÐ¶~E¤þå Î(¹í~P>à9erVals¡hocspValsY×0Ó
+  Ì0È	+0¹0µ0é¢có¢^ÍÍÅR¹?óÓ5fmÈ~20260916220332Z000I0	+ ß7S^SØ3±à=$5ñuæá
+9=GÜ¯{MsÍåî¤¥*¥üépò1îDds 20260916220332Z 20260923220331Z¡"0 0	+020160918220332Z¡#0!0	+0%ÛXà5¨ »Ý.aî90	*H÷  \=èú/ýV/æsá1Ëç¨ü/ôjÔñæÒ\ÌÉ¤ãD:¤õ<dp¶Üñ·j¶XÛwrÊ¢B$ý»oÐþD ú×¿mWöÆh¼	ÆÖ 2_G¶6r+(W·4k0ý¼bÔÜÜî¨ÎÏcHèéMõãX»¢ÚÀ¾dß7ì²O1¡3¡ OQ`|M [,Ö!_=8SÒ'ÙßÞnie¯lSZÚDª-LdÐ Ólë>ûÜ­×kÐ³ÅÒÆÉ¥È¸t+~¨UËÔsöµ¡G¹SÑ>h	DB4ò¸ùqYEÛ;Ñ½XèiÌ«!45ÿaÂ_Åp¢¾tû¯M³Du1.À@ëãÁ»ÊHææAinè°«©3µ0Uóxfå"¨+EyêzLØ9ùÎÃôQRVlC§¬*ô°Ð(®ÖÆc*Ç$¡a	ù`ÆØùÆ 10-0)0 /	èÄH¨EMÑg+a0	*H÷ 0J1!0USSL.com C2PA ICA R1 202510U
+SSL Corporation10	UUS0260102212505Z270102212504Z0M10	UUS10U
+SSL Corp1+0)U"SSL.com C2PA ICA R1 OCSP Responder0¢0	*H÷  0 ÅçøÉùå-ÏhwéiPÜ©\OÀ«Ñ)ãÙùY÷f*«¦ùdkV¸NÄê,D[p\K¼çAøV Ó &Tn=Æ³¶tZøÛkPhÜZ©CÞÏz`ë¯)¸	G­U[^
+êÌõm$8èzûÁÂÐí+õçpçz¹Ô4hsà2`¯ÆªtFðµ0fòëzðªDxCÊ«bñÒ·L1R¦$Dý#Ö2ÒyÁÚ¬,fìèC/m,<ñ¬'ÔIÓkbÆh*(¦Ès¥lélÔ°
+Êó§%lYÂ¸²rn4â£x;3 q%Ê­¥¹É[·CN¢Ó[üd^t;{Ä:ïS«ûíqv<ÂnmìYdï9«ú@ÿ¹<±ÌOßM%4¯Ì]¹Bk6[á0s×ò÷?àÌÑ¹ÏÔÄ\fû­ñ £00Uÿ0 0U#09=GÜ¯{MsÍåî¤¥*0	+0 0U%0
++	0Ucó¢^ÍÍÅR¹?óÓ5fmÈ~0Uÿ0	*H÷  wìº'8øÌõl>(Ô³
+Ïwõh|uåIÄhúÃf½ÒpwüL&÷0KTdÎ| ¯·Zµäª6é`°"½æÿÁ5Ød_¬Ñ>á@¨Ìç 2fµ.¿ñ9Mýls¾ö 6pãÕ_yÙÖrÁ2Lô©B¸F3Åh,»åü2_Ðþk\^tPñ)PÊÄVøø	¥xw³äåÊ*¶á²Å±!½¢8£¬¸:9 ^Ö1¶þº:ª ºðSNòó*OØdyZÜOÔSÂ=zÀ¶¦½*ë4ì2û µiã_:±QÉXRÐ6¯Ýdj^cY´N§ü­÷C9CqQIÛÇÇBÊ`E¯C[iüJ<1ö|;À[^ð¨ %õíEüFþ{¹öM,A$¤`¯£óëã¸õqÈI½?èØ4X6ßÕÎ¶%ÅY÷sÁ3û0o¹é=Ò{h>6öùìx*û±úðBt1îØHn±øÐ+ÉÄû<zÏÇäÒ§jÃ3ÓÖÁÊµè"L®_4ïi{Û|Ìeõ1´UUNÈnÉÃÛO»^×EST}hL÷\Ú)Ýµv,6zGícà£«4ÙÅ°E¹ºæ¥rÝ¶¸!ÞÇgcpadY&v                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      öY c$¹ßb´
+[Ê!íÙÚ'ûU¡cô2xnøÓg;çEg4 uýuø½ß4í¹Áp+r+.CsJp"Y`æâîøaµì =ñy³üZcy-$ÅG
+M¶TÖ»d -ÉÛ±Aº¸LÛwÙÐ&ß¼õT*>Èôs%½r	ÕcnNK+A	¢H°2ê.è4.ÅÛWÎ¸&GÅ¤À¢}Q´jÓ
+x 1Ú°(L.¿ï×*:BBÇ=ÐwzÎÿHäXL9G»¿Eå`ÂÈM©¦á

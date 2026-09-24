@@ -76,10 +76,9 @@
                     <tr>
                         <th>ID</th>
                         <th>Block</th>
+                        <th>Building / Manzel</th>
                         <th>Apartment / Unit</th>
                         <th>Category</th>
-                        <th>Floor</th>
-                        <th>Units/Floor</th>
                         <th>Area (sqm)</th>
                         <th>Total Price</th>
                         <th>Paid</th>
@@ -90,19 +89,20 @@
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT bu.*, b.block_code, b.block_name,
+                    $sql = "SELECT bu.*, b.block_code, b.block_name, m.name AS manzel_name,
                             c.full_name, c.fathar_name, c.national_id,
                             IFNULL(SUM(pay.amount),0) AS paid_amount,
                             (bu.total_price - IFNULL(SUM(pay.amount),0)) AS remaining_amount
                         FROM block_units bu
                         LEFT JOIN blocks b ON bu.block_id = b.id
+                        LEFT JOIN manazil m ON bu.manzel_id = m.id
                         LEFT JOIN customers c ON bu.customer_id = c.id
                         LEFT JOIN pay_block_units pay ON bu.id = pay.unit_id
                         WHERE bu.status = 'sold'";
                     if ($filter_block > 0) {
                         $sql .= " AND bu.block_id = " . intval($filter_block);
                     }
-                    $sql .= " GROUP BY bu.id, bu.block_id, bu.floor_number, bu.units_per_floor, bu.category, bu.unit_number, bu.unit_code, bu.rooms, bu.unit_size, bu.status, bu.customer_id, bu.unit_price_per_meter, bu.gov_cost_per_meter, bu.infra_cost_per_meter, bu.unit_price, bu.gov_cost, bu.infra_cost, bu.total_price, bu.sold_at, b.block_code, b.block_name, c.full_name, c.fathar_name, c.national_id
+                    $sql .= " GROUP BY bu.id, bu.block_id, bu.manzel_id, bu.floor_number, bu.units_per_floor, bu.category, bu.unit_number, bu.unit_code, bu.rooms, bu.unit_size, bu.status, bu.customer_id, bu.unit_price_per_meter, bu.gov_cost_per_meter, bu.infra_cost_per_meter, bu.unit_price, bu.gov_cost, bu.infra_cost, bu.total_price, bu.sold_at, b.block_code, b.block_name, m.name, c.full_name, c.fathar_name, c.national_id
                         ORDER BY bu.id ASC";
 
                     $result = $conn->query($sql);
@@ -121,10 +121,15 @@
                                 <br><small class="text-muted"><?= htmlspecialchars($row['block_name']) ?></small>
                             <?php endif; ?>
                         </td>
+                        <td>
+                            <?php if (!empty($row['manzel_name'])): ?>
+                                <strong><?= htmlspecialchars($row['manzel_name']) ?></strong>
+                            <?php else: ?>
+                                <span class="text-muted">-</span>
+                            <?php endif; ?>
+                        </td>
                         <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong><br><small class="text-muted"><?= $roomLabel ?></small></td>
                         <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
-                        <td><?= htmlspecialchars($row['floor_number']) ?> floor</td>
-                        <td><?= htmlspecialchars($row['units_per_floor']) ?> unit(s)</td>
                         <td><?= htmlspecialchars($row['unit_size']) ?> sqm</td>
                         <td><strong><?= number_format((float)$row['total_price'], 2) ?></strong> USD</td>
                         <td class="text-success"><?= number_format((float)$row['paid_amount'], 2) ?> USD</td>

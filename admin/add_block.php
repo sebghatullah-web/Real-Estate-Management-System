@@ -21,10 +21,28 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         exit;
     }
 
+    // Duplicate check: block_code must be unique
+    $check = $conn->prepare("SELECT id FROM blocks WHERE block_code = ?");
+    $check->bind_param("s", $block_code);
+    $check->execute();
+    $exists = $check->get_result()->fetch_assoc();
+    $check->close();
+
+    if ($exists) {
+        header("Location: blocks.php?error=duplicate&code=" . urlencode($block_code));
+        exit;
+    }
+
     // Insert block (no category/units_per_floor — these now belong to units)
     $stmt = $conn->prepare("INSERT INTO blocks (block_code, block_name, size, staircase_size, floors_count, status) VALUES (?, ?, ?, ?, ?, 'active')");
     $stmt->bind_param("ssiii", $block_code, $block_name, $size, $staircase, $floors);
-    $stmt->execute();
+    try {
+        $stmt->execute();
+    } catch (mysqli_sql_exception $e) {
+        $stmt->close();
+        header("Location: blocks.php?error=db");
+        exit;
+    }
     $stmt->close();
 
     $block_id = $conn->insert_id;

@@ -9,10 +9,11 @@ if (!$unit_id) {
 }
 
 // Get sold apartment/unit and customer info
-$sql = "SELECT bu.*, c.full_name, c.fathar_name, c.national_id, b.block_code
+$sql = "SELECT bu.*, c.full_name, c.fathar_name, c.national_id, b.block_code, m.name AS manzel_name
         FROM block_units bu
         LEFT JOIN customers c ON bu.customer_id = c.id
         LEFT JOIN blocks b ON bu.block_id = b.id
+        LEFT JOIN manazil m ON bu.manzel_id = m.id
         WHERE bu.id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $unit_id);
@@ -83,7 +84,7 @@ $roomLabel = $unit['rooms'] == 2 ? '2-Bedroom' : ($unit['rooms'] == 3 ? '3-Bedro
                 <div class="card-header"><strong>Information</strong></div>
                 <div class="card-body">
                     <div class="row mb-3">
-                        <div class="col-md-6">Block: <?= htmlspecialchars($unit['block_code']) ?></div>
+                        <div class="col-md-6">Block: <?= htmlspecialchars($unit['block_code']) ?> — Building: <?= htmlspecialchars($unit['manzel_name'] ?? '-') ?></div>
                         <div class="col-md-6">Apartment: <?= htmlspecialchars($unit['unit_code']) ?> (<?= $roomLabel ?>, <?= htmlspecialchars($unit['unit_size']) ?> sqm)</div>
                     </div>
                     <div class="row mb-3">

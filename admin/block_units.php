@@ -51,14 +51,31 @@
         <div class="container-fluid">
 
             <?php
-            $filter_block = isset($_GET['block_id']) ? intval($_GET['block_id']) : 0;
+            $filter_block  = isset($_GET['block_id']) ? intval($_GET['block_id']) : 0;
+            $filter_manzel = isset($_GET['manzel_id']) ? intval($_GET['manzel_id']) : 0;
             $selectedBlock = null;
+            $selectedManzel = null;
             if ($filter_block > 0) {
                 $res = $conn->query("SELECT * FROM blocks WHERE id = $filter_block");
                 $selectedBlock = $res->fetch_assoc();
             }
+            if ($filter_manzel > 0 && $filter_block > 0) {
+                $mres = $conn->query("SELECT id, name FROM manazil WHERE id = $filter_manzel AND block_id = $filter_block");
+                $selectedManzel = $mres->fetch_assoc();
+                if (!$selectedManzel) $filter_manzel = 0;
+            }
 
             $blocksResult = $conn->query("SELECT id, block_code, size, staircase_size, floors_count FROM blocks ORDER BY id DESC");
+
+            // Map of block id -> buildings (manazil) for the cascading dropdown
+            $MANAZIL_MAP = [];
+            $allManazil = $conn->query("SELECT id, block_id, name, code FROM manazil ORDER BY block_id, id");
+            while ($m = $allManazil->fetch_assoc()) {
+                if (!isset($MANAZIL_MAP[$m['block_id']])) {
+                    $MANAZIL_MAP[$m['block_id']] = [];
+                }
+                $MANAZIL_MAP[$m['block_id']][] = ['id' => intval($m['id']), 'name' => $m['name'], 'code' => ($m['code'] ?? '')];
+            }
 
             $customers = [];
             $custRes = $conn->query("SELECT id, full_name FROM customers ORDER BY full_name ASC");
@@ -107,40 +124,40 @@
                                 $blocksResult->data_seek(0);
                                 while ($b = $blocksResult->fetch_assoc()):
                                 ?>
-                                <option value="<?= $b['id'] ?>" data-size="<?= htmlspecialchars($b['size']) ?>" data-stairs="<?= htmlspecialchars($b['staircase_size']) ?>" <?= ($filter_block == $b['id']) ? 'selected' : '' ?>>
+                                <option value="<?= $b['id'] ?>" <?= ($filter_block == $b['id']) ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($b['block_code']) ?> — <?= htmlspecialchars($b['size']) ?> sqm (<?= htmlspecialchars($b['floors_count']) ?> floors)
                                 </option>
                                 <?php endwhile; ?>
                             </select>
                         </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Floor <span class="text-danger">*</span></label>
-                            <input type="number" name="floor_number" class="form-control" min="1" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Units Per Floor <span class="text-danger">*</span></label>
-                            <select id="units_per_floor" name="units_per_floor" class="form-select" required>
-                                <option value="">--</option>
-                                <option value="1">1 unit</option>
-                                <option value="2">2 units</option>
-                                <option value="3">3 units</option>
-                                <option value="4">4 units</option>
+                        <div class="col-md-3">
+                            <label class="form-label">Building / Manzel <span class="text-danger">*</span></label>
+                            <select id="manzel_id" name="manzel_id" class="form-select" required>
+                                <option value="">-- Select Block First --</option>
                             </select>
+                            <small class="text-muted d-block" id="manzel_hint"></small>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Unit Category</label>
-                            <input type="text" id="category" name="category" class="form-control" list="cat_options" value="standard">
-                            <datalist id="cat_options">
+                            <label class="form-label">Unit Number <span class="text-danger">*</span></label>
+                            <input type="text" id="unit_number" name="unit_number" class="form-control" placeholder="e.g. 1" required>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Category <span class="text-danger">*</span></label>
+                            <select id="category" name="category" class="form-select" required>
                                 <?php foreach ($UNIT_CATEGORIES as $cat): ?>
                                 <option value="<?= $cat ?>"><?= htmlspecialchars(unit_category_label($cat)) ?></option>
                                 <?php endforeach; ?>
-                            </datalist>
-                            <small class="text-muted">e.g. standard or vip</small>
+                            </select>
+                            <small class="text-muted d-block" id="cat_hint"></small>
                         </div>
                         <div class="col-md-2">
-                            <label class="form-label">Unit Number (one or more) <span class="text-danger">*</span></label>
-                            <input type="text" id="unit_number" name="unit_number" class="form-control" placeholder="e.g. 1,2,3,4" required>
-                            <small class="text-muted d-block">Enter the floor number.</small>
+                            <label class="form-label">Unit Size (sqm) <span class="text-danger">*</span></label>
+                            <input type="number" id="unit_size" name="unit_size" class="form-control" step="0.01" min="1" placeholder="e.g. 114.00" required>
+                            <small class="text-muted">Free entry — editable anytime</small>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Floor <span class="text-muted">(optional)</span></label>
+                            <input type="number" name="floor_number" class="form-control" min="1" value="1">
                         </div>
                         <div class="col-md-2">
                             <label class="form-label">Rooms</label>
@@ -158,10 +175,6 @@
                                 <option value="sold">Sold</option>
                             </select>
                         </div>
-                        <div class="col-md-2">
-                            <label class="form-label">Unit Area (preview)</label>
-                            <div class="form-control bg-light fw-bold" id="unit_size_preview">-</div>
-                        </div>
                         <div class="col-12 mt-2">
                             <label class="form-label fw-bold">Unit Details (rooms &amp; amenities - optional)</label>
                             <div class="row">
@@ -175,7 +188,7 @@
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn btn-success">Save Apartment</button>
-                            <small class="text-muted ms-2">Size = (block size − staircase) ÷ units on this floor; when adding multiple units, all new units share the same category, size and details.</small>
+                            <small class="text-muted ms-2">Unit size is entered manually and stays editable.</small>
                         </div>
                     </form>
                 </div>
@@ -199,6 +212,21 @@
                         </select>
                     </div>
                     <div class="col-auto">
+                        <select name="manzel_id" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Buildings</option>
+                            <?php
+                            if ($filter_block > 0):
+                                $fm = $conn->query("SELECT id, name FROM manazil WHERE block_id = $filter_block ORDER BY id");
+                                while ($mn = $fm->fetch_assoc()):
+                            ?>
+                            <option value="<?= $mn['id'] ?>" <?= ($filter_manzel == $mn['id']) ? 'selected' : '' ?>><?= htmlspecialchars($mn['name']) ?></option>
+                            <?php
+                                endwhile;
+                            endif;
+                            ?>
+                        </select>
+                    </div>
+                    <div class="col-auto">
                         <a href="block_units.php" class="btn btn-secondary">All Units</a>
                     </div>
                 </form>
@@ -209,9 +237,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Block</th>
+                        <th>Building / Manzel</th>
                         <th>Apartment / Unit</th>
-                        <th>Floor</th>
-                        <th>Unit / Floor</th>
                         <th>Category</th>
                         <th>Rooms</th>
                         <th>Area (sqm)</th>
@@ -227,15 +254,23 @@
                 </thead>
                 <tbody>
                     <?php
-                    $query = "SELECT bu.*, b.block_code, b.block_name, b.size,
+                    $query = "SELECT bu.*, b.block_code, b.block_name, b.size, m.name AS manzel_name,
                         (SELECT COUNT(*) FROM block_unit_features f WHERE f.unit_id = bu.id) AS feature_count,
                         (SELECT GROUP_CONCAT(f.feature_label) FROM block_unit_features f WHERE f.unit_id = bu.id) AS feature_labels
                         FROM block_units bu
-                        JOIN blocks b ON bu.block_id = b.id";
+                        JOIN blocks b ON bu.block_id = b.id
+                        LEFT JOIN manazil m ON bu.manzel_id = m.id";
+                    $qwhere = [];
                     if ($filter_block > 0) {
-                        $query .= " WHERE bu.block_id = $filter_block";
+                        $qwhere[] = "bu.block_id = $filter_block";
                     }
-                    $query .= " ORDER BY b.block_code ASC, bu.floor_number ASC, bu.unit_number ASC";
+                    if ($filter_manzel > 0) {
+                        $qwhere[] = "bu.manzel_id = $filter_manzel";
+                    }
+                    if (count($qwhere) > 0) {
+                        $query .= " WHERE " . implode(" AND ", $qwhere);
+                    }
+                    $query .= " ORDER BY b.block_code ASC, COALESCE(m.name, '') ASC, bu.unit_number ASC";
                     $result = $conn->query($query);
                     while($row = $result->fetch_assoc()):
                         $roomLabel = $row['rooms'] == 2 ? '2-Bedroom' : ($row['rooms'] == 3 ? '3-Bedroom' : '1-Bedroom');
@@ -260,9 +295,14 @@
                                 <br><small class="text-muted"><?= htmlspecialchars($row['block_name']) ?></small>
                             <?php endif; ?>
                         </td>
+                        <td>
+                            <?php if (!empty($row['manzel_name'])): ?>
+                                <strong><?= htmlspecialchars($row['manzel_name']) ?></strong>
+                            <?php else: ?>
+                                <span class="text-muted">-</span>
+                            <?php endif; ?>
+                        </td>
                         <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong></td>
-                        <td><?= htmlspecialchars($row['floor_number']) ?> floor</td>
-                        <td><?= htmlspecialchars($row['units_per_floor']) ?> unit(s)</td>
                         <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
                         <td><?= $roomLabel ?></td>
                         <td><?= htmlspecialchars($row['unit_size']) ?> sqm</td>
@@ -295,7 +335,7 @@
                                 <button class="btn btn-sm btn-secondary" disabled>Sale</button>
                             <?php endif; ?>
                             <a href="edit_block_unit.php?id=<?= $row['id'] ?>&block_id=<?= $row['block_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="delete_block_unit.php?id=<?= $row['id'] ?>&block_id=<?= $filter_block ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                            <a href="delete_block_unit.php?id=<?= $row['id'] ?>&block_id=<?= $filter_block ?>&manzel_id=<?= $filter_manzel ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
                         </td>
                     </tr>
                     <?php endwhile; ?>
@@ -332,29 +372,45 @@
         });
     });
 
-    // ===== Live calculation of unit size based on block and units per floor =====
-    function calcUnitSize() {
-        var sel = $('#block_id').val() ? $('#block_id').options[$('#block_id').selectedIndex] : null;
-        var size = sel ? parseFloat(sel.getAttribute('data-size')) : 0;
-        var stairs = sel ? parseFloat(sel.getAttribute('data-stairs')) : 0;
-        var units = parseInt($('#units_per_floor').val()) || 1;
-        var usable = size - stairs;
-        var per = units > 0 ? usable / units : 0;
-        $('#unit_size_preview').text(per > 0 ? per.toFixed(2) + ' sqm' : '-');
-    }
+    // ===== Cascading dropdown: Block -> Building (Manzel) =====
+    var MANAZIL_MAP = <?= json_encode($MANAZIL_MAP) ?>;
+    var CAT_INFO = <?= json_encode($CATEGORY_INFO) ?>;
 
-    $('#block_id, #units_per_floor').on('change', calcUnitSize);
-
-    // ===== Auto-fill unit numbers based on units per floor =====
-    $('#units_per_floor').on('change', function() {
-        var n = parseInt(this.value) || 1;
-        var current = ($('#unit_number').val() || '').trim();
-        if (current === '') {
-            var nums = [];
-            for (var i = 1; i <= n; i++) nums.push(i);
-            $('#unit_number').val(nums.join(','));
+    function reloadManazil() {
+        var bid = $('#block_id').val();
+        var $sel = $('#manzel_id');
+        var hint = $('#manzel_hint');
+        $sel.find('option').remove();
+        if (!bid) {
+            $sel.append($('<option>').val('').text('-- Select Block First --'));
+            hint.text('');
+            return;
         }
-    });
+        var list = MANAZIL_MAP[bid] || [];
+        if (list.length === 0) {
+            $sel.append($('<option>').val('').text('-- No Buildings Yet --'));
+            hint.html('<span class="text-warning">No buildings defined for this block. <a href="manazil.php?block_id=' + bid + '">Add buildings</a> first.</span>');
+            return;
+        }
+        $sel.append($('<option>').val('').text('-- Select Building --'));
+        for (var i = 0; i < list.length; i++) {
+            var lbl = list[i].name;
+            if (list[i].code) lbl += ' (' + list[i].code + ')';
+            $sel.append($('<option>').val(list[i].id).text(lbl));
+        }
+        hint.html('<span class="text-muted">' + list.length + ' building(s)</span>');
+    }
+    $('#block_id').on('change', reloadManazil);
+    reloadManazil();
+
+    // ===== Category hint (finish level + parking) =====
+    function categoryHint() {
+        var cat = $('#category').val();
+        var info = CAT_INFO[cat];
+        $('#cat_hint').text(info ? (info.finish + ' — ' + info.parking) : '');
+    }
+    $('#category').on('change', categoryHint);
+    categoryHint();
     </script>
 
     <!-- Bootstrap and necessary plugins -->

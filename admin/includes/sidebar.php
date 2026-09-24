@@ -14,6 +14,7 @@
             <span class="kw-nav-label">Management</span>
             <a class="kw-nav-link" href="customers.php"><i class="fa fa-users"></i><span>Customers</span></a>
             <a class="kw-nav-link" href="blocks.php"><i class="fa fa-building-o"></i><span>Blocks</span></a>
+            <a class="kw-nav-link" href="manazil.php"><i class="fa fa-cubes"></i><span>Manazil / Buildings</span></a>
             <a class="kw-nav-link" href="block_units.php"><i class="fa fa-th-large"></i><span>Apartments / Units</span></a>
         </div>
 
