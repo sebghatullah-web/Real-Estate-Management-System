@@ -28,12 +28,26 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $status    = in_array($_POST['status'] ?? '', ['available', 'reserved', 'sold']) ? $_POST['status'] : 'available';
     $customer  = !empty($_POST['customer_id']) ? intval($_POST['customer_id']) : NULL;
 
+    // ----- Pricing (set at registration time; editable while the unit is not sold) -----
+    $unit_price_per_meter = floatval($_POST['unit_price_per_meter'] ?? 0);
+    $gov_cost_per_meter   = floatval($_POST['gov_cost_per_meter'] ?? 0);
+    $infra_cost_per_meter = floatval($_POST['infra_cost_per_meter'] ?? 0);
+
+    if ($unit_price_per_meter < 0) { $unit_price_per_meter = 0; }
+    if ($gov_cost_per_meter < 0)   { $gov_cost_per_meter = 0; }
+    if ($infra_cost_per_meter < 0) { $infra_cost_per_meter = 0; }
+
     if ($category === '' || !isset($CATEGORY_INFO[$category])) {
         $category = 'standard';
     }
 
     if ($manzel_id <= 0 || $unit_no === '' || $unit_size <= 0) {
         header("Location: edit_block_unit.php?id=$id&error=invalid");
+        exit;
+    }
+
+    if ($unit['status'] != 'sold' && $unit_price_per_meter <= 0) {
+        header("Location: edit_block_unit.php?id=$id&error=price");
         exit;
     }
 
@@ -88,11 +102,20 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     }
     $check->close();
 
+    $unit_price  = round($unit_price_per_meter * $unit_size, 2);
+    $gov_cost    = round($gov_cost_per_meter   * $unit_size, 2);
+    $infra_cost  = round($infra_cost_per_meter * $unit_size, 2);
+    $total_price = round($unit_price + $gov_cost + $infra_cost, 2);
+
     $stmt = $conn->prepare("UPDATE block_units SET
             manzel_id=?, unit_number=?, unit_code=?,
-            category=?, unit_size=?, status=?, customer_id=?
+            category=?, unit_size=?, status=?, customer_id=?,
+            unit_price_per_meter=?, gov_cost_per_meter=?, infra_cost_per_meter=?,
+            unit_price=?, gov_cost=?, infra_cost=?, total_price=?
             WHERE id=?");
-    $stmt->bind_param("iissdsii", $manzel_id, $unit_no, $unit_code, $category, $unit_size, $status, $customer, $id);
+    $stmt->bind_param("isssdsidddddddi", $manzel_id, $unit_no, $unit_code, $category, $unit_size, $status, $customer,
+                      $unit_price_per_meter, $gov_cost_per_meter, $infra_cost_per_meter,
+                      $unit_price, $gov_cost, $infra_cost, $total_price, $id);
     $stmt->execute();
     $stmt->close();
 
@@ -171,9 +194,11 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
         <div class="container-fluid">
 
             <?php if (isset($_GET['error']) && $_GET['error'] == 'duplicate'): ?>
-                <div class="alert alert-danger mt-3">This unit number already exists on this floor.</div>
+                <div class="alert alert-danger mt-3">This unit number already exists in this building.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'invalid'): ?>
                 <div class="alert alert-danger mt-3">Invalid input.</div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'price'): ?>
+                <div class="alert alert-danger mt-3">Please enter a valid unit price per square meter (greater than zero).</div>
             <?php endif; ?>
 
             <h2 class="mb-4">Edit Apartment: <?= htmlspecialchars($unit['unit_code']) ?></h2>
@@ -246,6 +271,44 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
                                 <?php endwhile; ?>
                             </select>
                         </div>
+                        <?php if ($unit['status'] != 'sold'): ?>
+                        <div class="col-12 mt-2">
+                            <div class="bg-light p-2 mb-1 rounded-3">
+                                <strong class="text-secondary">Pricing (USD)</strong>
+                                <small class="text-muted">&mdash; set at registration so customers can see the price of each unit on the public website</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Unit Price (per sqm) <span class="text-danger">*</span></label>
+                            <input type="number" step="0.01" min="0.01" id="unit_rate" name="unit_price_per_meter" class="form-control" value="<?= htmlspecialchars($unit['unit_price_per_meter'] ?? '') ?>" required>
+                            <small class="text-muted">e.g. 350 USD per square meter</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Government Services (per sqm)</label>
+                            <input type="number" step="0.01" min="0" id="gov_rate" name="gov_cost_per_meter" class="form-control" value="<?= htmlspecialchars($unit['gov_cost_per_meter'] !== null ? $unit['gov_cost_per_meter'] : '0') ?>">
+                            <small class="text-muted">e.g. 10 USD per square meter</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Infrastructure Services (per sqm)</label>
+                            <input type="number" step="0.01" min="0" id="infra_rate" name="infra_cost_per_meter" class="form-control" value="<?= htmlspecialchars($unit['infra_cost_per_meter'] !== null ? $unit['infra_cost_per_meter'] : '0') ?>">
+                            <small class="text-muted">e.g. 8 USD per square meter</small>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-sm mb-0">
+                                    <thead class="table-dark">
+                                        <tr><th>Description</th><th>Rate / sqm</th><th>Area (sqm)</th><th>Amount (USD)</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Unit Price</td><td id="pv_unit_rate">-</td><td id="pv_size"><?= htmlspecialchars($unit['unit_size']) ?></td><td><strong id="pv_unit_price">-</strong></td></tr>
+                                        <tr><td>Government Fee</td><td id="pv_gov_rate">-</td><td id="pv_size_gov"><?= htmlspecialchars($unit['unit_size']) ?></td><td id="pv_gov_cost">-</td></tr>
+                                        <tr><td>Infrastructure Fee</td><td id="pv_infra_rate">-</td><td id="pv_size_infra"><?= htmlspecialchars($unit['unit_size']) ?></td><td id="pv_infra_cost">-</td></tr>
+                                        <tr class="table-success"><td colspan="3" class="text-center fw-bold">Total Price</td><td><strong id="pv_total">-</strong></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <?php endif; ?>
 <div class="col-12 mt-2">
                             <label class="form-label fw-bold">Unit Details &mdash; <span id="features_cat_label"><?= htmlspecialchars(unit_category_label($unit['category'])) ?></span> features <span class="text-muted">(check the ones that apply)</span></label>
                             <div id="features_box" class="row">
@@ -288,6 +351,28 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
     <script src="style/js/views/main.js"></script>
 
     <script>
+    // ===== Live price calculation (edit-unit form — set at registration) =====
+    function fmtMoneyEdit(n) {
+        return parseFloat(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function calcEditPrice() {
+        var sz = parseFloat($('#unit_size').val()) || 0;
+        var ur = parseFloat($('#unit_rate').val()) || 0;
+        var gr = parseFloat($('#gov_rate').val()) || 0;
+        var ir = parseFloat($('#infra_rate').val()) || 0;
+        $('#pv_unit_rate').text(ur > 0 ? fmtMoneyEdit(ur) : '-');
+        $('#pv_gov_rate').text(gr > 0 ? fmtMoneyEdit(gr) : '-');
+        $('#pv_infra_rate').text(ir > 0 ? fmtMoneyEdit(ir) : '-');
+        $('#pv_unit_price').text(ur > 0 ? fmtMoneyEdit(ur * sz) : '-');
+        $('#pv_gov_cost').text(gr > 0 ? fmtMoneyEdit(gr * sz) : '-');
+        $('#pv_infra_cost').text(ir > 0 ? fmtMoneyEdit(ir * sz) : '-');
+        $('#pv_total').text((ur + gr + ir) > 0 ? fmtMoneyEdit((ur + gr + ir) * sz) : '-');
+    }
+    if ($('#unit_rate').length) {
+        $('#unit_rate, #gov_rate, #infra_rate, #unit_size').on('input change', calcEditPrice);
+        calcEditPrice();
+    }
+
     // ===== Hint about the selected category (finish + parking) =====
     var CAT_INFO = <?= json_encode($CATEGORY_INFO) ?>;
     function categoryHint() {

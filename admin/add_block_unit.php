@@ -12,12 +12,27 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $unit_size = floatval($_POST['unit_size'] ?? 0);
     $status    = in_array($_POST['status'] ?? '', ['available', 'reserved', 'sold']) ? $_POST['status'] : 'available';
 
+    // ----- Pricing (set at registration time — customers see it on the public website) -----
+    $unit_price_per_meter = floatval($_POST['unit_price_per_meter'] ?? 0);
+    $gov_cost_per_meter   = floatval($_POST['gov_cost_per_meter'] ?? 0);
+    $infra_cost_per_meter = floatval($_POST['infra_cost_per_meter'] ?? 0);
+
+    if ($unit_price_per_meter < 0) { $unit_price_per_meter = 0; }
+    if ($gov_cost_per_meter < 0)   { $gov_cost_per_meter = 0; }
+    if ($infra_cost_per_meter < 0) { $infra_cost_per_meter = 0; }
+
     if ($category === '' || !isset($CATEGORY_INFO[$category])) {
         $category = 'standard';
     }
 
     if ($block_id <= 0 || $manzel_id <= 0 || $unit_no === '' || $unit_size <= 0) {
         header("Location: block_units.php?block_id=$block_id&manzel_id=$manzel_id&error=invalid");
+        exit;
+    }
+
+    // Price must always be set when registering a unit (customers see it on the public website)
+    if ($unit_price_per_meter <= 0) {
+        header("Location: block_units.php?block_id=$block_id&manzel_id=$manzel_id&error=price");
         exit;
     }
 
@@ -55,10 +70,20 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $manzel_key = !empty($manzel['code']) ? $manzel['code'] : $manzel['name'];
     $unit_code  = $block['block_code'] . '-' . $manzel_key . '-' . $unit_no;
 
+    // Calculate total price = (unit + government + infrastructure) per sqm x unit size
+    $unit_price  = round($unit_price_per_meter * $unit_size, 2);
+    $gov_cost    = round($gov_cost_per_meter   * $unit_size, 2);
+    $infra_cost  = round($infra_cost_per_meter * $unit_size, 2);
+    $total_price = round($unit_price + $gov_cost + $infra_cost, 2);
+
     $stmt = $conn->prepare("INSERT INTO block_units
-        (block_id, manzel_id, category, unit_number, unit_code, unit_size, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iisssds", $block_id, $manzel_id, $category, $unit_no, $unit_code, $unit_size, $status);
+        (block_id, manzel_id, category, unit_number, unit_code, unit_size,
+         unit_price_per_meter, gov_cost_per_meter, infra_cost_per_meter,
+         unit_price, gov_cost, infra_cost, total_price, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iisssdddddddds", $block_id, $manzel_id, $category, $unit_no, $unit_code, $unit_size,
+                      $unit_price_per_meter, $gov_cost_per_meter, $infra_cost_per_meter,
+                      $unit_price, $gov_cost, $infra_cost, $total_price, $status);
     $stmt->execute();
     $unit_id = $conn->insert_id;
     $stmt->close();

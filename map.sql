@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2026 at 09:40 AM
+-- Generation Time: Sep 24, 2026 at 10:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -227,20 +227,7 @@ CREATE TABLE `blocks` (
 --
 
 INSERT INTO `blocks` (`id`, `block_code`, `block_name`, `size`, `staircase_size`, `floors_count`, `status`, `created_at`) VALUES
-(10011, 'b_114_97', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 06:27:23'),
-(10012, 'b_114_98', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:52:45'),
-(10013, 'b_114_99', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:53:18'),
-(10014, 'b_114_100', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:53:46'),
-(10015, 'b_114_101', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:54:10'),
-(10016, 'b_114_102', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:54:31'),
-(10017, 'b_114_103', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:54:56'),
-(10018, 'b_114_104', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:55:25'),
-(10019, 'b_114_105', '114 Square Meter Blocks', 159, 45, 5, 'active', '2026-09-09 08:55:50'),
-(10021, 'b_412_22', '412 Square Meter Blocks', 412, 45, 7, 'active', '2026-09-12 06:28:11'),
-(10023, 'b_412_23', '412 Square Meter Blocks', 412, 45, 7, 'active', '2026-09-12 10:21:15'),
-(10024, 'b_902_26', '902 Square Meter Blocks', 902, 45, 7, 'active', '2026-09-12 10:36:30'),
-(10025, 'b_644_59', '644 Square Meter Blocks', 644, 45, 10, 'active', '2026-09-12 10:37:50'),
-(10026, 'b_114_106', 'بلاک های 114 متر مربع', 159, 45, 5, 'active', '2026-09-20 05:11:07');
+(10034, 'b_902_26', '902 Square Meter Block', 902, 45, 7, 'active', '2026-09-24 06:14:50');
 
 -- --------------------------------------------------------
 
@@ -261,103 +248,19 @@ CREATE TABLE `block_amenities` (
 --
 
 INSERT INTO `block_amenities` (`id`, `block_id`, `amenity_key`, `amenity_label`, `created_at`) VALUES
-(24, 10011, 'staircase', 'Staircase', '2026-09-09 06:27:23'),
-(25, 10011, 'parking', 'Parking', '2026-09-09 06:27:23'),
-(26, 10011, 'green_space', 'Green Space', '2026-09-09 06:27:23'),
-(27, 10011, 'kids_play', 'Children\'s Play Area', '2026-09-09 06:27:23'),
-(28, 10011, 'security', 'Security / Guard', '2026-09-09 06:27:23'),
-(29, 10011, 'water_tank', 'Water Tank', '2026-09-09 06:27:23'),
-(30, 10011, 'garbage_area', 'Garbage Collection Area', '2026-09-09 06:27:23'),
-(31, 10012, 'staircase', 'Staircase', '2026-09-09 08:52:45'),
-(32, 10012, 'parking', 'Parking', '2026-09-09 08:52:45'),
-(33, 10012, 'green_space', 'Green Space', '2026-09-09 08:52:45'),
-(34, 10012, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:52:45'),
-(35, 10012, 'security', 'Security / Guard', '2026-09-09 08:52:45'),
-(36, 10012, 'water_tank', 'Water Tank', '2026-09-09 08:52:45'),
-(37, 10012, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:52:45'),
-(38, 10013, 'staircase', 'Staircase', '2026-09-09 08:53:18'),
-(39, 10013, 'parking', 'Parking', '2026-09-09 08:53:18'),
-(40, 10013, 'green_space', 'Green Space', '2026-09-09 08:53:18'),
-(41, 10013, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:53:18'),
-(42, 10013, 'security', 'Security / Guard', '2026-09-09 08:53:18'),
-(43, 10013, 'water_tank', 'Water Tank', '2026-09-09 08:53:18'),
-(44, 10013, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:53:18'),
-(45, 10014, 'staircase', 'Staircase', '2026-09-09 08:53:46'),
-(46, 10014, 'parking', 'Parking', '2026-09-09 08:53:46'),
-(47, 10014, 'green_space', 'Green Space', '2026-09-09 08:53:46'),
-(48, 10014, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:53:46'),
-(49, 10014, 'security', 'Security / Guard', '2026-09-09 08:53:46'),
-(50, 10014, 'water_tank', 'Water Tank', '2026-09-09 08:53:46'),
-(51, 10014, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:53:46'),
-(52, 10015, 'staircase', 'Staircase', '2026-09-09 08:54:10'),
-(53, 10015, 'parking', 'Parking', '2026-09-09 08:54:10'),
-(54, 10015, 'green_space', 'Green Space', '2026-09-09 08:54:10'),
-(55, 10015, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:54:10'),
-(56, 10015, 'security', 'Security / Guard', '2026-09-09 08:54:10'),
-(57, 10015, 'water_tank', 'Water Tank', '2026-09-09 08:54:10'),
-(58, 10015, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:54:10'),
-(59, 10016, 'staircase', 'Staircase', '2026-09-09 08:54:31'),
-(60, 10016, 'parking', 'Parking', '2026-09-09 08:54:31'),
-(61, 10016, 'green_space', 'Green Space', '2026-09-09 08:54:31'),
-(62, 10016, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:54:31'),
-(63, 10016, 'security', 'Security / Guard', '2026-09-09 08:54:31'),
-(64, 10016, 'water_tank', 'Water Tank', '2026-09-09 08:54:31'),
-(65, 10016, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:54:31'),
-(73, 10018, 'staircase', 'Staircase', '2026-09-09 08:55:25'),
-(74, 10018, 'parking', 'Parking', '2026-09-09 08:55:25'),
-(75, 10018, 'green_space', 'Green Space', '2026-09-09 08:55:25'),
-(76, 10018, 'kids_play', 'Children\'s Play Area', '2026-09-09 08:55:25'),
-(77, 10018, 'security', 'Security / Guard', '2026-09-09 08:55:25'),
-(78, 10018, 'water_tank', 'Water Tank', '2026-09-09 08:55:25'),
-(79, 10018, 'garbage_area', 'Garbage Collection Area', '2026-09-09 08:55:25'),
-(101, 10019, 'staircase', 'Staircase', '2026-09-12 10:17:42'),
-(102, 10019, 'parking', 'Parking', '2026-09-12 10:17:42'),
-(103, 10019, 'green_space', 'Green Space', '2026-09-12 10:17:42'),
-(104, 10019, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:17:42'),
-(105, 10019, 'security', 'Security / Guard', '2026-09-12 10:17:42'),
-(106, 10019, 'water_tank', 'Water Tank', '2026-09-12 10:17:42'),
-(107, 10019, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:17:42'),
-(108, 10017, 'staircase', 'Staircase', '2026-09-12 10:17:51'),
-(109, 10017, 'parking', 'Parking', '2026-09-12 10:17:51'),
-(110, 10017, 'green_space', 'Green Space', '2026-09-12 10:17:51'),
-(111, 10017, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:17:51'),
-(112, 10017, 'security', 'Security / Guard', '2026-09-12 10:17:51'),
-(113, 10017, 'water_tank', 'Water Tank', '2026-09-12 10:17:51'),
-(114, 10017, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:17:51'),
-(115, 10021, 'staircase', 'Staircase', '2026-09-12 10:20:47'),
-(116, 10021, 'parking', 'Parking', '2026-09-12 10:20:47'),
-(117, 10021, 'green_space', 'Green Space', '2026-09-12 10:20:47'),
-(118, 10021, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:20:47'),
-(119, 10021, 'security', 'Security / Guard', '2026-09-12 10:20:47'),
-(120, 10021, 'water_tank', 'Water Tank', '2026-09-12 10:20:47'),
-(121, 10021, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:20:47'),
-(122, 10023, 'staircase', 'Staircase', '2026-09-12 10:21:15'),
-(123, 10023, 'parking', 'Parking', '2026-09-12 10:21:15'),
-(124, 10023, 'green_space', 'Green Space', '2026-09-12 10:21:15'),
-(125, 10023, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:21:15'),
-(126, 10023, 'security', 'Security / Guard', '2026-09-12 10:21:15'),
-(127, 10023, 'water_tank', 'Water Tank', '2026-09-12 10:21:15'),
-(128, 10023, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:21:15'),
-(129, 10024, 'staircase', 'Staircase', '2026-09-12 10:36:30'),
-(130, 10024, 'parking', 'Parking', '2026-09-12 10:36:30'),
-(131, 10024, 'green_space', 'Green Space', '2026-09-12 10:36:30'),
-(132, 10024, 'kids_play', 'Children\'s Play Area', '2026-09-12 10:36:30'),
-(133, 10024, 'security', 'Security / Guard', '2026-09-12 10:36:30'),
-(134, 10024, 'water_tank', 'Water Tank', '2026-09-12 10:36:30'),
-(135, 10024, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:36:30'),
-(136, 10025, 'staircase', 'Staircase', '2026-09-12 10:37:50'),
-(137, 10025, 'parking', 'Parking', '2026-09-12 10:37:50'),
-(138, 10025, 'green_space', 'Green Space', '2026-09-12 10:37:50'),
-(139, 10025, 'security', 'Security / Guard', '2026-09-12 10:37:50'),
-(140, 10025, 'water_tank', 'Water Tank', '2026-09-12 10:37:50'),
-(141, 10025, 'garbage_area', 'Garbage Collection Area', '2026-09-12 10:37:50'),
-(142, 10026, 'elevator', 'Elevator', '2026-09-20 05:11:07'),
-(143, 10026, 'parking', 'Parking', '2026-09-20 05:11:07'),
-(144, 10026, 'green_space', 'Green Space', '2026-09-20 05:11:07'),
-(145, 10026, 'kids_play', 'Children\'s Play Area', '2026-09-20 05:11:07'),
-(146, 10026, 'facilities_room', 'Facilities Room', '2026-09-20 05:11:07'),
-(147, 10026, 'water_tank', 'Water Tank', '2026-09-20 05:11:07'),
-(148, 10026, 'fire_fighting', 'Fire Fighting System', '2026-09-20 05:11:07');
+(149, 10034, 'lobby', 'Lobby', '2026-09-24 06:14:50'),
+(150, 10034, 'staircase', 'Staircase', '2026-09-24 06:14:50'),
+(151, 10034, 'elevator', 'Elevator', '2026-09-24 06:14:50'),
+(152, 10034, 'parking', 'Parking', '2026-09-24 06:14:50'),
+(153, 10034, 'green_space', 'Green Space', '2026-09-24 06:14:50'),
+(154, 10034, 'kids_play', 'Children\'s Play Area', '2026-09-24 06:14:50'),
+(155, 10034, 'security', 'Security / Guard', '2026-09-24 06:14:50'),
+(156, 10034, 'cctv', 'CCTV System', '2026-09-24 06:14:50'),
+(157, 10034, 'facilities_room', 'Facilities Room', '2026-09-24 06:14:50'),
+(158, 10034, 'water_tank', 'Water Tank', '2026-09-24 06:14:50'),
+(159, 10034, 'generator', 'Generator / Emergency Power', '2026-09-24 06:14:50'),
+(160, 10034, 'fire_fighting', 'Fire Fighting System', '2026-09-24 06:14:50'),
+(161, 10034, 'garbage_area', 'Garbage Collection Area', '2026-09-24 06:14:50');
 
 -- --------------------------------------------------------
 
@@ -368,12 +271,10 @@ INSERT INTO `block_amenities` (`id`, `block_id`, `amenity_key`, `amenity_label`,
 CREATE TABLE `block_units` (
   `id` int(11) NOT NULL,
   `block_id` int(11) NOT NULL,
-  `floor_number` int(11) NOT NULL COMMENT 'شماره منزل/طبقه',
-  `units_per_floor` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد واحد در این منزل (۱ تا ۴ عدد)',
+  `manzel_id` int(11) DEFAULT NULL,
   `category` varchar(50) NOT NULL DEFAULT 'standard' COMMENT 'کتگوری واحد: standard، premium، vip، vvip و ...',
   `unit_number` varchar(20) NOT NULL COMMENT 'شماره واحد (مثلاً 1، 2، 3)',
   `unit_code` varchar(100) NOT NULL COMMENT 'کد کامل واحد (بلاک-طبقه-واحد)',
-  `rooms` tinyint(4) NOT NULL DEFAULT 1 COMMENT 'تعداد اتاق (۱ اتاقه، ۲ اتاقه، ۳ اتاقه)',
   `unit_size` decimal(10,2) NOT NULL COMMENT 'متراژ واحد (متر مربع)',
   `status` enum('available','reserved','sold') NOT NULL DEFAULT 'available' COMMENT 'قابل فروش، رزرو شده، فروخته شده',
   `customer_id` int(11) DEFAULT NULL,
@@ -392,13 +293,25 @@ CREATE TABLE `block_units` (
 -- Dumping data for table `block_units`
 --
 
-INSERT INTO `block_units` (`id`, `block_id`, `floor_number`, `units_per_floor`, `category`, `unit_number`, `unit_code`, `rooms`, `unit_size`, `status`, `customer_id`, `created_at`, `unit_price_per_meter`, `gov_cost_per_meter`, `infra_cost_per_meter`, `unit_price`, `gov_cost`, `infra_cost`, `total_price`, `sold_at`) VALUES
-(100035, 10011, 1, 1, 'standard', '1', 'b_114_97-1-1', 3, 114.00, 'sold', 3, '2026-09-09 06:29:26', 300.00, 14.00, 19.00, 34200.00, 1596.00, 2166.00, 37962.00, '2026-09-09 06:31:30'),
-(100036, 10011, 2, 1, 'standard', '2', 'b_114_97-2-2', 3, 114.00, 'available', NULL, '2026-09-09 06:36:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(100037, 10011, 3, 1, 'standard', '3', 'b_114_97-3-3', 3, 114.00, 'available', NULL, '2026-09-09 08:57:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(100038, 10011, 4, 4, 'standard', '4', 'b_114_97-4-4', 3, 28.50, 'available', NULL, '2026-09-09 08:57:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(100039, 10011, 5, 1, 'standard', '5', 'b_114_97-5-5', 3, 114.00, 'available', NULL, '2026-09-09 08:57:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(100040, 10012, 1, 2, 'standard', '1', 'b_114_98-1-1', 2, 57.00, 'available', NULL, '2026-09-20 05:12:25', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `block_units` (`id`, `block_id`, `manzel_id`, `category`, `unit_number`, `unit_code`, `unit_size`, `status`, `customer_id`, `created_at`, `unit_price_per_meter`, `gov_cost_per_meter`, `infra_cost_per_meter`, `unit_price`, `gov_cost`, `infra_cost`, `total_price`, `sold_at`) VALUES
+(100065, 10034, 17, 'standard', '1', 'b_902_26-MZ2-1', 201.00, 'available', NULL, '2026-09-24 06:18:30', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100066, 10034, 17, 'standard', '2', 'b_902_26-MZ2-2', 201.00, 'available', NULL, '2026-09-24 06:18:56', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100067, 10034, 17, 'standard', '3', 'b_902_26-MZ2-3', 201.00, 'available', NULL, '2026-09-24 06:19:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100068, 10034, 17, 'standard', '4', 'b_902_26-MZ2-4', 201.00, 'available', NULL, '2026-09-24 06:19:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100069, 10034, 18, 'standard', '1', 'b_902_26-MZ3-1', 201.00, 'available', NULL, '2026-09-24 06:22:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100070, 10034, 18, 'standard', '2', 'b_902_26-MZ3-2', 201.00, 'available', NULL, '2026-09-24 06:23:09', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100071, 10034, 18, 'standard', '3', 'b_902_26-MZ3-3', 201.00, 'available', NULL, '2026-09-24 06:23:24', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100072, 10034, 18, 'standard', '4', 'b_902_26-MZ3-4', 201.00, 'available', NULL, '2026-09-24 06:23:40', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100073, 10034, 19, 'standard', '1', 'b_902_26-MZ4-1', 201.00, 'available', NULL, '2026-09-24 06:24:03', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100074, 10034, 19, 'standard', '2', 'b_902_26-MZ4-2', 201.00, 'available', NULL, '2026-09-24 06:32:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100075, 10034, 19, 'standard', '3', 'b_902_26-MZ4-3', 201.00, 'available', NULL, '2026-09-24 06:32:45', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100076, 10034, 19, 'standard', '4', 'b_902_26-MZ4-4', 201.00, 'available', NULL, '2026-09-24 06:32:53', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100077, 10034, 20, 'premium', '1', 'b_902_26-MZ5-1', 268.00, 'available', NULL, '2026-09-24 06:33:23', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100078, 10034, 20, 'premium', '2', 'b_902_26-MZ5-2', 268.00, 'available', NULL, '2026-09-24 06:33:34', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100079, 10034, 20, 'premium', '3', 'b_902_26-MZ5-3', 268.00, 'available', NULL, '2026-09-24 06:33:45', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100080, 10034, 21, 'vip', '1', 'b_902_26-MZ6-1', 402.00, 'available', NULL, '2026-09-24 06:33:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100081, 10034, 21, 'vip', '2', 'b_902_26-MZ6-2', 402.00, 'available', NULL, '2026-09-24 06:34:18', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(100082, 10034, 22, 'grand_residence', '1', 'b_902_26-MZ7-1', 804.00, 'available', NULL, '2026-09-24 06:34:57', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -410,7 +323,7 @@ CREATE TABLE `block_unit_features` (
   `id` int(11) NOT NULL,
   `unit_id` int(11) NOT NULL,
   `feature_key` varchar(50) NOT NULL COMMENT 'شناسه جزئیات (لطفاً با حروف انگلیسی)',
-  `feature_label` varchar(100) NOT NULL COMMENT 'نام جزئیات به فارسی',
+  `feature_label` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -419,65 +332,194 @@ CREATE TABLE `block_unit_features` (
 --
 
 INSERT INTO `block_unit_features` (`id`, `unit_id`, `feature_key`, `feature_label`, `created_at`) VALUES
-(43, 100035, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 06:29:26'),
-(44, 100035, 'living_room', 'Living Room', '2026-09-09 06:29:26'),
-(45, 100035, 'kitchen', 'Kitchen', '2026-09-09 06:29:26'),
-(46, 100035, 'master_bedroom', 'Master Bedroom', '2026-09-09 06:29:26'),
-(47, 100035, 'bathroom', 'Bathroom', '2026-09-09 06:29:26'),
-(48, 100035, 'toilet', 'Toilet', '2026-09-09 06:29:26'),
-(49, 100035, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 06:29:26'),
-(50, 100035, 'balcony', 'Balcony', '2026-09-09 06:29:26'),
-(51, 100035, 'storage', 'Internal Storage', '2026-09-09 06:29:26'),
-(52, 100036, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 06:36:33'),
-(53, 100036, 'living_room', 'Living Room', '2026-09-09 06:36:33'),
-(54, 100036, 'dining_room', 'Dining Room', '2026-09-09 06:36:33'),
-(55, 100036, 'kitchen', 'Kitchen', '2026-09-09 06:36:33'),
-(56, 100036, 'master_bedroom', 'Master Bedroom', '2026-09-09 06:36:33'),
-(57, 100036, 'bathroom', 'Bathroom', '2026-09-09 06:36:33'),
-(58, 100036, 'toilet', 'Toilet', '2026-09-09 06:36:33'),
-(59, 100036, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 06:36:33'),
-(60, 100036, 'balcony', 'Balcony', '2026-09-09 06:36:33'),
-(61, 100036, 'storage', 'Internal Storage', '2026-09-09 06:36:33'),
-(62, 100037, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 08:57:00'),
-(63, 100037, 'living_room', 'Living Room', '2026-09-09 08:57:00'),
-(64, 100037, 'dining_room', 'Dining Room', '2026-09-09 08:57:00'),
-(65, 100037, 'kitchen', 'Kitchen', '2026-09-09 08:57:00'),
-(66, 100037, 'master_bedroom', 'Master Bedroom', '2026-09-09 08:57:00'),
-(67, 100037, 'bathroom', 'Bathroom', '2026-09-09 08:57:00'),
-(68, 100037, 'toilet', 'Toilet', '2026-09-09 08:57:00'),
-(69, 100037, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 08:57:00'),
-(70, 100037, 'balcony', 'Balcony', '2026-09-09 08:57:00'),
-(71, 100037, 'storage', 'Internal Storage', '2026-09-09 08:57:00'),
-(72, 100038, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 08:57:35'),
-(73, 100038, 'living_room', 'Living Room', '2026-09-09 08:57:35'),
-(74, 100038, 'dining_room', 'Dining Room', '2026-09-09 08:57:35'),
-(75, 100038, 'kitchen', 'Kitchen', '2026-09-09 08:57:35'),
-(76, 100038, 'master_bedroom', 'Master Bedroom', '2026-09-09 08:57:35'),
-(77, 100038, 'bathroom', 'Bathroom', '2026-09-09 08:57:35'),
-(78, 100038, 'toilet', 'Toilet', '2026-09-09 08:57:35'),
-(79, 100038, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 08:57:35'),
-(80, 100038, 'balcony', 'Balcony', '2026-09-09 08:57:35'),
-(81, 100038, 'storage', 'Internal Storage', '2026-09-09 08:57:35'),
-(82, 100039, 'entrance_foyer', 'Entrance Foyer', '2026-09-09 08:57:58'),
-(83, 100039, 'living_room', 'Living Room', '2026-09-09 08:57:58'),
-(84, 100039, 'dining_room', 'Dining Room', '2026-09-09 08:57:58'),
-(85, 100039, 'kitchen', 'Kitchen', '2026-09-09 08:57:58'),
-(86, 100039, 'master_bedroom', 'Master Bedroom', '2026-09-09 08:57:58'),
-(87, 100039, 'bathroom', 'Bathroom', '2026-09-09 08:57:58'),
-(88, 100039, 'toilet', 'Toilet', '2026-09-09 08:57:58'),
-(89, 100039, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-09 08:57:58'),
-(90, 100039, 'balcony', 'Balcony', '2026-09-09 08:57:58'),
-(91, 100039, 'storage', 'Internal Storage', '2026-09-09 08:57:58'),
-(92, 100040, 'entrance_foyer', 'Entrance / Foyer', '2026-09-20 05:12:25'),
-(93, 100040, 'living_room', 'Living Room / Reception', '2026-09-20 05:12:25'),
-(94, 100040, 'dining_room', 'Dining Room', '2026-09-20 05:12:25'),
-(95, 100040, 'kitchen', 'Kitchen', '2026-09-20 05:12:25'),
-(96, 100040, 'master_bedroom', 'Master Bedroom', '2026-09-20 05:12:25'),
-(97, 100040, 'bathroom', 'Bathroom', '2026-09-20 05:12:25'),
-(98, 100040, 'master_bathroom', 'Master Bedroom Private Bathroom', '2026-09-20 05:12:25'),
-(99, 100040, 'balcony', 'Balcony / Terrace', '2026-09-20 05:12:25'),
-(100, 100040, 'walkin_closet', 'Walk-in Closet / Wardrobe', '2026-09-20 05:12:25'),
-(101, 100040, 'storage', 'Storage Room', '2026-09-20 05:12:25');
+(276, 100065, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:18:30'),
+(277, 100065, '2', '1 living hall', '2026-09-24 06:18:30'),
+(278, 100065, '3', '1-2 bathrooms', '2026-09-24 06:18:30'),
+(279, 100065, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:18:30'),
+(280, 100065, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:18:30'),
+(281, 100065, '6', 'Sanitary ware and lighting', '2026-09-24 06:18:30'),
+(282, 100065, '7', 'Washer and dryer', '2026-09-24 06:18:30'),
+(283, 100065, '8', 'Balcony', '2026-09-24 06:18:30'),
+(284, 100065, '9', 'Shared lift', '2026-09-24 06:18:30'),
+(285, 100065, '10', 'Shared outdoor parking', '2026-09-24 06:18:30'),
+(286, 100066, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:18:56'),
+(287, 100066, '2', '1 living hall', '2026-09-24 06:18:56'),
+(288, 100066, '3', '1-2 bathrooms', '2026-09-24 06:18:56'),
+(289, 100066, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:18:56'),
+(290, 100066, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:18:56'),
+(291, 100066, '6', 'Sanitary ware and lighting', '2026-09-24 06:18:56'),
+(292, 100066, '7', 'Washer and dryer', '2026-09-24 06:18:56'),
+(293, 100066, '8', 'Balcony', '2026-09-24 06:18:56'),
+(294, 100066, '9', 'Shared lift', '2026-09-24 06:18:56'),
+(295, 100066, '10', 'Shared outdoor parking', '2026-09-24 06:18:56'),
+(296, 100067, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:19:35'),
+(297, 100067, '2', '1 living hall', '2026-09-24 06:19:35'),
+(298, 100067, '3', '1-2 bathrooms', '2026-09-24 06:19:35'),
+(299, 100067, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:19:35'),
+(300, 100067, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:19:35'),
+(301, 100067, '6', 'Sanitary ware and lighting', '2026-09-24 06:19:35'),
+(302, 100067, '7', 'Washer and dryer', '2026-09-24 06:19:35'),
+(303, 100067, '8', 'Balcony', '2026-09-24 06:19:35'),
+(304, 100067, '9', 'Shared lift', '2026-09-24 06:19:35'),
+(305, 100067, '10', 'Shared outdoor parking', '2026-09-24 06:19:35'),
+(306, 100068, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:19:53'),
+(307, 100068, '2', '1 living hall', '2026-09-24 06:19:53'),
+(308, 100068, '3', '1-2 bathrooms', '2026-09-24 06:19:53'),
+(309, 100068, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:19:53'),
+(310, 100068, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:19:53'),
+(311, 100068, '6', 'Sanitary ware and lighting', '2026-09-24 06:19:53'),
+(312, 100068, '7', 'Washer and dryer', '2026-09-24 06:19:53'),
+(313, 100068, '8', 'Balcony', '2026-09-24 06:19:53'),
+(314, 100068, '9', 'Shared lift', '2026-09-24 06:19:53'),
+(315, 100068, '10', 'Shared outdoor parking', '2026-09-24 06:19:53'),
+(316, 100069, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:22:50'),
+(317, 100069, '2', '1 living hall', '2026-09-24 06:22:50'),
+(318, 100069, '3', '1-2 bathrooms', '2026-09-24 06:22:50'),
+(319, 100069, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:22:50'),
+(320, 100069, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:22:50'),
+(321, 100069, '6', 'Sanitary ware and lighting', '2026-09-24 06:22:50'),
+(322, 100069, '7', 'Washer and dryer', '2026-09-24 06:22:50'),
+(323, 100069, '8', 'Balcony', '2026-09-24 06:22:50'),
+(324, 100069, '9', 'Shared lift', '2026-09-24 06:22:50'),
+(325, 100069, '10', 'Shared outdoor parking', '2026-09-24 06:22:50'),
+(326, 100070, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:23:09'),
+(327, 100070, '2', '1 living hall', '2026-09-24 06:23:09'),
+(328, 100070, '3', '1-2 bathrooms', '2026-09-24 06:23:09'),
+(329, 100070, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:23:09'),
+(330, 100070, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:23:09'),
+(331, 100070, '6', 'Sanitary ware and lighting', '2026-09-24 06:23:09'),
+(332, 100070, '7', 'Washer and dryer', '2026-09-24 06:23:09'),
+(333, 100070, '8', 'Balcony', '2026-09-24 06:23:09'),
+(334, 100070, '9', 'Shared lift', '2026-09-24 06:23:09'),
+(335, 100070, '10', 'Shared outdoor parking', '2026-09-24 06:23:09'),
+(336, 100071, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:23:24'),
+(337, 100071, '2', '1 living hall', '2026-09-24 06:23:24'),
+(338, 100071, '3', '1-2 bathrooms', '2026-09-24 06:23:24'),
+(339, 100071, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:23:24'),
+(340, 100071, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:23:24'),
+(341, 100071, '6', 'Sanitary ware and lighting', '2026-09-24 06:23:24'),
+(342, 100071, '7', 'Washer and dryer', '2026-09-24 06:23:24'),
+(343, 100071, '8', 'Balcony', '2026-09-24 06:23:24'),
+(344, 100071, '9', 'Shared lift', '2026-09-24 06:23:24'),
+(345, 100071, '10', 'Shared outdoor parking', '2026-09-24 06:23:24'),
+(346, 100072, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:23:40'),
+(347, 100072, '2', '1 living hall', '2026-09-24 06:23:40'),
+(348, 100072, '3', '1-2 bathrooms', '2026-09-24 06:23:40'),
+(349, 100072, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:23:40'),
+(350, 100072, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:23:40'),
+(351, 100072, '6', 'Sanitary ware and lighting', '2026-09-24 06:23:40'),
+(352, 100072, '7', 'Washer and dryer', '2026-09-24 06:23:40'),
+(353, 100072, '8', 'Balcony', '2026-09-24 06:23:40'),
+(354, 100072, '9', 'Shared lift', '2026-09-24 06:23:40'),
+(355, 100072, '10', 'Shared outdoor parking', '2026-09-24 06:23:40'),
+(356, 100073, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:24:03'),
+(357, 100073, '2', '1 living hall', '2026-09-24 06:24:03'),
+(358, 100073, '3', '1-2 bathrooms', '2026-09-24 06:24:03'),
+(359, 100073, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:24:03'),
+(360, 100073, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:24:03'),
+(361, 100073, '6', 'Sanitary ware and lighting', '2026-09-24 06:24:03'),
+(362, 100073, '7', 'Washer and dryer', '2026-09-24 06:24:03'),
+(363, 100073, '8', 'Balcony', '2026-09-24 06:24:03'),
+(364, 100073, '9', 'Shared lift', '2026-09-24 06:24:03'),
+(365, 100073, '10', 'Shared outdoor parking', '2026-09-24 06:24:03'),
+(366, 100074, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:32:37'),
+(367, 100074, '2', '1 living hall', '2026-09-24 06:32:37'),
+(368, 100074, '3', '1-2 bathrooms', '2026-09-24 06:32:37'),
+(369, 100074, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:32:37'),
+(370, 100074, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:32:37'),
+(371, 100074, '6', 'Sanitary ware and lighting', '2026-09-24 06:32:37'),
+(372, 100074, '7', 'Washer and dryer', '2026-09-24 06:32:37'),
+(373, 100074, '8', 'Balcony', '2026-09-24 06:32:37'),
+(374, 100074, '9', 'Shared lift', '2026-09-24 06:32:37'),
+(375, 100074, '10', 'Shared outdoor parking', '2026-09-24 06:32:37'),
+(376, 100075, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:32:45'),
+(377, 100075, '2', '1 living hall', '2026-09-24 06:32:45'),
+(378, 100075, '3', '1-2 bathrooms', '2026-09-24 06:32:45'),
+(379, 100075, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:32:45'),
+(380, 100075, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:32:45'),
+(381, 100075, '6', 'Sanitary ware and lighting', '2026-09-24 06:32:45'),
+(382, 100075, '7', 'Washer and dryer', '2026-09-24 06:32:45'),
+(383, 100075, '8', 'Balcony', '2026-09-24 06:32:45'),
+(384, 100075, '9', 'Shared lift', '2026-09-24 06:32:45'),
+(385, 100075, '10', 'Shared outdoor parking', '2026-09-24 06:32:45'),
+(386, 100076, '1', '1 master bedroom + 1 additional bedroom', '2026-09-24 06:32:53'),
+(387, 100076, '2', '1 living hall', '2026-09-24 06:32:53'),
+(388, 100076, '3', '1-2 bathrooms', '2026-09-24 06:32:53'),
+(389, 100076, '4', 'Fitted kitchen with full kitchen appliances', '2026-09-24 06:32:53'),
+(390, 100076, '5', 'Built-in wardrobes and cabinets', '2026-09-24 06:32:53'),
+(391, 100076, '6', 'Sanitary ware and lighting', '2026-09-24 06:32:53'),
+(392, 100076, '7', 'Washer and dryer', '2026-09-24 06:32:53'),
+(393, 100076, '8', 'Balcony', '2026-09-24 06:32:53'),
+(394, 100076, '9', 'Shared lift', '2026-09-24 06:32:53'),
+(395, 100076, '10', 'Shared outdoor parking', '2026-09-24 06:32:53'),
+(396, 100077, '11', '1 master bedroom + 2 additional bedrooms', '2026-09-24 06:33:23'),
+(397, 100077, '12', '1-2 living halls', '2026-09-24 06:33:23'),
+(398, 100077, '13', '2 bathrooms', '2026-09-24 06:33:23'),
+(399, 100077, '14', 'Fully equipped kitchen', '2026-09-24 06:33:23'),
+(400, 100077, '15', 'Selected bedroom and living furniture (semi-furnished)', '2026-09-24 06:33:23'),
+(401, 100077, '16', 'Upgraded finishes', '2026-09-24 06:33:23'),
+(402, 100077, '17', 'Washer and dryer', '2026-09-24 06:33:23'),
+(403, 100077, '18', 'Built-in cabinets and wardrobes', '2026-09-24 06:33:23'),
+(404, 100077, '19', 'Balcony', '2026-09-24 06:33:23'),
+(405, 100077, '20', 'Dedicated indoor parking + shared outdoor parking', '2026-09-24 06:33:23'),
+(406, 100077, '21', 'Shared lift', '2026-09-24 06:33:23'),
+(407, 100078, '11', '1 master bedroom + 2 additional bedrooms', '2026-09-24 06:33:34'),
+(408, 100078, '12', '1-2 living halls', '2026-09-24 06:33:34'),
+(409, 100078, '13', '2 bathrooms', '2026-09-24 06:33:34'),
+(410, 100078, '14', 'Fully equipped kitchen', '2026-09-24 06:33:34'),
+(411, 100078, '15', 'Selected bedroom and living furniture (semi-furnished)', '2026-09-24 06:33:34'),
+(412, 100078, '16', 'Upgraded finishes', '2026-09-24 06:33:34'),
+(413, 100078, '17', 'Washer and dryer', '2026-09-24 06:33:34'),
+(414, 100078, '18', 'Built-in cabinets and wardrobes', '2026-09-24 06:33:34'),
+(415, 100078, '19', 'Balcony', '2026-09-24 06:33:34'),
+(416, 100078, '20', 'Dedicated indoor parking + shared outdoor parking', '2026-09-24 06:33:34'),
+(417, 100078, '21', 'Shared lift', '2026-09-24 06:33:34'),
+(418, 100079, '11', '1 master bedroom + 2 additional bedrooms', '2026-09-24 06:33:45'),
+(419, 100079, '12', '1-2 living halls', '2026-09-24 06:33:45'),
+(420, 100079, '13', '2 bathrooms', '2026-09-24 06:33:45'),
+(421, 100079, '14', 'Fully equipped kitchen', '2026-09-24 06:33:45'),
+(422, 100079, '15', 'Selected bedroom and living furniture (semi-furnished)', '2026-09-24 06:33:45'),
+(423, 100079, '16', 'Upgraded finishes', '2026-09-24 06:33:45'),
+(424, 100079, '17', 'Washer and dryer', '2026-09-24 06:33:45'),
+(425, 100079, '18', 'Built-in cabinets and wardrobes', '2026-09-24 06:33:45'),
+(426, 100079, '19', 'Balcony', '2026-09-24 06:33:45'),
+(427, 100079, '20', 'Dedicated indoor parking + shared outdoor parking', '2026-09-24 06:33:45'),
+(428, 100079, '21', 'Shared lift', '2026-09-24 06:33:45'),
+(440, 100081, '22', '1 master bedroom + 2-3 additional bedrooms', '2026-09-24 06:34:18'),
+(441, 100081, '23', '1-2 living halls', '2026-09-24 06:34:18'),
+(442, 100081, '24', '2-3 bathrooms', '2026-09-24 06:34:18'),
+(443, 100081, '25', 'Fully furnished', '2026-09-24 06:34:18'),
+(444, 100081, '26', 'Upgraded kitchen and appliances', '2026-09-24 06:34:18'),
+(445, 100081, '27', 'Upgraded finishes and lighting', '2026-09-24 06:34:18'),
+(446, 100081, '28', 'Washer and dryer', '2026-09-24 06:34:18'),
+(447, 100081, '29', 'Built-in cabinets and wardrobes', '2026-09-24 06:34:18'),
+(448, 100081, '30', 'Balcony / terrace', '2026-09-24 06:34:18'),
+(449, 100081, '31', 'Private indoor parking + shared outdoor parking', '2026-09-24 06:34:18'),
+(450, 100081, '32', 'Shared lift', '2026-09-24 06:34:18'),
+(451, 100080, '22', '1 master bedroom + 2-3 additional bedrooms', '2026-09-24 06:34:30'),
+(452, 100080, '23', '1-2 living halls', '2026-09-24 06:34:30'),
+(453, 100080, '24', '2-3 bathrooms', '2026-09-24 06:34:30'),
+(454, 100080, '25', 'Fully furnished', '2026-09-24 06:34:30'),
+(455, 100080, '26', 'Upgraded kitchen and appliances', '2026-09-24 06:34:30'),
+(456, 100080, '27', 'Upgraded finishes and lighting', '2026-09-24 06:34:30'),
+(457, 100080, '28', 'Washer and dryer', '2026-09-24 06:34:30'),
+(458, 100080, '29', 'Built-in cabinets and wardrobes', '2026-09-24 06:34:30'),
+(459, 100080, '30', 'Balcony / terrace', '2026-09-24 06:34:30'),
+(460, 100080, '31', 'Private indoor parking + shared outdoor parking', '2026-09-24 06:34:30'),
+(461, 100080, '32', 'Shared lift', '2026-09-24 06:34:30'),
+(462, 100082, '45', '1 master bedroom + 2-3 additional bedrooms', '2026-09-24 06:34:57'),
+(463, 100082, '46', '2 living halls', '2026-09-24 06:34:57'),
+(464, 100082, '47', '3 bathrooms', '2026-09-24 06:34:57'),
+(465, 100082, '48', 'Fully furnished & equipped', '2026-09-24 06:34:57'),
+(466, 100082, '49', 'Complete furniture, appliances and lighting', '2026-09-24 06:34:57'),
+(467, 100082, '50', 'Coordinated interior finishes', '2026-09-24 06:34:57'),
+(468, 100082, '51', 'Fully equipped kitchen', '2026-09-24 06:34:57'),
+(469, 100082, '52', 'Private laundry', '2026-09-24 06:34:57'),
+(470, 100082, '53', 'Washer and dryer', '2026-09-24 06:34:57'),
+(471, 100082, '54', 'Built-in cabinets and wardrobes', '2026-09-24 06:34:57'),
+(472, 100082, '55', 'Balcony / terrace', '2026-09-24 06:34:57'),
+(473, 100082, '56', 'Private indoor parking + shared outdoor parking', '2026-09-24 06:34:57'),
+(474, 100082, '57', 'Shared lift', '2026-09-24 06:34:57');
 
 -- --------------------------------------------------------
 
@@ -507,6 +549,34 @@ INSERT INTO `customers` (`id`, `full_name`, `fathar_name`, `address`, `occupatio
 (3, 'Baryali', 'Haji Shah', 'Dehsabz, District 19', 'Designer', '0791349150', 'baryali03@gmail.com', '127689', 'img/profilePic/1779350221_images.jpg', '2026-05-21 07:57:01'),
 (4, 'Mohammad Alam', 'Ahmad Khan', 'District 5, Kabul - Afghanistan', 'Self-employed', '0784848653', 'mohammad@gmail.com', '0435678', NULL, '2026-06-16 05:38:40'),
 (5, 'Haji Zalmai', 'Haji Ghulam', 'Macroryan 3', 'Self-employed', '0791349150', 'zalmai03@gmail.com', '12345', NULL, '2026-08-16 04:22:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manazil`
+--
+
+CREATE TABLE `manazil` (
+  `id` int(11) NOT NULL,
+  `block_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT 'Building / manzel name, e.g. منزل 1',
+  `code` varchar(50) DEFAULT NULL COMMENT 'Optional short code',
+  `floors_count` int(11) NOT NULL DEFAULT 1 COMMENT 'Number of floors',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `manazil`
+--
+
+INSERT INTO `manazil` (`id`, `block_id`, `name`, `code`, `floors_count`, `notes`, `created_at`) VALUES
+(17, 10034, '2nd Floor', 'MZ2', 4, '', '2026-09-24 06:15:55'),
+(18, 10034, '3rd Floor', 'MZ3', 4, '', '2026-09-24 06:20:41'),
+(19, 10034, '4th Floor', 'MZ4', 4, '', '2026-09-24 06:21:03'),
+(20, 10034, '5th Floor', 'MZ5', 3, '', '2026-09-24 06:21:30'),
+(21, 10034, '6th Floor', 'MZ6', 2, '', '2026-09-24 06:21:45'),
+(22, 10034, '7th Floor', 'MZ7', 1, '', '2026-09-24 06:22:01');
 
 -- --------------------------------------------------------
 
@@ -2009,6 +2079,109 @@ INSERT INTO `plots_vip` (`id`, `plot_code`, `type`, `area`, `base_price`, `infra
 (5, 'p_vip_5', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18'),
 (6, 'p_vip_6', 'VIP', 0, 0.00, 0.00, 0.00, 0.00, 'available', NULL, NULL, NULL, '2026-05-19 05:13:18');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unit_category_features`
+--
+
+CREATE TABLE `unit_category_features` (
+  `id` int(11) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `feature` varchar(255) NOT NULL,
+  `sort_order` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `unit_category_features`
+--
+
+INSERT INTO `unit_category_features` (`id`, `category`, `feature`, `sort_order`, `created_at`) VALUES
+(1, 'standard', '1 master bedroom + 1 additional bedroom', 1, '2026-09-24 04:49:27'),
+(2, 'standard', '1 living hall', 2, '2026-09-24 04:49:27'),
+(3, 'standard', '1-2 bathrooms', 3, '2026-09-24 04:49:27'),
+(4, 'standard', 'Fitted kitchen with full kitchen appliances', 4, '2026-09-24 04:49:27'),
+(5, 'standard', 'Built-in wardrobes and cabinets', 5, '2026-09-24 04:49:27'),
+(6, 'standard', 'Sanitary ware and lighting', 6, '2026-09-24 04:49:27'),
+(7, 'standard', 'Washer and dryer', 7, '2026-09-24 04:49:27'),
+(8, 'standard', 'Balcony', 8, '2026-09-24 04:49:27'),
+(9, 'standard', 'Shared lift', 9, '2026-09-24 04:49:27'),
+(10, 'standard', 'Shared outdoor parking', 10, '2026-09-24 04:49:27'),
+(11, 'premium', '1 master bedroom + 2 additional bedrooms', 1, '2026-09-24 04:49:27'),
+(12, 'premium', '1-2 living halls', 2, '2026-09-24 04:49:27'),
+(13, 'premium', '2 bathrooms', 3, '2026-09-24 04:49:27'),
+(14, 'premium', 'Fully equipped kitchen', 4, '2026-09-24 04:49:27'),
+(15, 'premium', 'Selected bedroom and living furniture (semi-furnished)', 5, '2026-09-24 04:49:27'),
+(16, 'premium', 'Upgraded finishes', 6, '2026-09-24 04:49:27'),
+(17, 'premium', 'Washer and dryer', 7, '2026-09-24 04:49:27'),
+(18, 'premium', 'Built-in cabinets and wardrobes', 8, '2026-09-24 04:49:27'),
+(19, 'premium', 'Balcony', 9, '2026-09-24 04:49:27'),
+(20, 'premium', 'Dedicated indoor parking + shared outdoor parking', 10, '2026-09-24 04:49:27'),
+(21, 'premium', 'Shared lift', 11, '2026-09-24 04:49:27'),
+(22, 'vip', '1 master bedroom + 2-3 additional bedrooms', 1, '2026-09-24 04:49:27'),
+(23, 'vip', '1-2 living halls', 2, '2026-09-24 04:49:27'),
+(24, 'vip', '2-3 bathrooms', 3, '2026-09-24 04:49:27'),
+(25, 'vip', 'Fully furnished', 4, '2026-09-24 04:49:27'),
+(26, 'vip', 'Upgraded kitchen and appliances', 5, '2026-09-24 04:49:27'),
+(27, 'vip', 'Upgraded finishes and lighting', 6, '2026-09-24 04:49:27'),
+(28, 'vip', 'Washer and dryer', 7, '2026-09-24 04:49:27'),
+(29, 'vip', 'Built-in cabinets and wardrobes', 8, '2026-09-24 04:49:27'),
+(30, 'vip', 'Balcony / terrace', 9, '2026-09-24 04:49:27'),
+(31, 'vip', 'Private indoor parking + shared outdoor parking', 10, '2026-09-24 04:49:27'),
+(32, 'vip', 'Shared lift', 11, '2026-09-24 04:49:27'),
+(33, 'vvip', '1 master bedroom + 2-3 additional bedrooms', 1, '2026-09-24 04:49:27'),
+(34, 'vvip', '1-2 living halls', 2, '2026-09-24 04:49:27'),
+(35, 'vvip', '3 bathrooms', 3, '2026-09-24 04:49:27'),
+(36, 'vvip', 'Private laundry', 4, '2026-09-24 04:49:27'),
+(37, 'vvip', 'Fully equipped kitchen', 5, '2026-09-24 04:49:27'),
+(38, 'vvip', 'Washer and dryer', 6, '2026-09-24 04:49:27'),
+(39, 'vvip', 'Built-in cabinets and wardrobes', 7, '2026-09-24 04:49:27'),
+(40, 'vvip', 'Fireplace and balcony', 8, '2026-09-24 04:49:27'),
+(41, 'vvip', 'Shared lift', 9, '2026-09-24 04:49:27'),
+(42, 'vvip', 'Fully furnished and equipped', 10, '2026-09-24 04:49:27'),
+(43, 'vvip', 'Dedicated parking space(s), plus access to shared parking', 11, '2026-09-24 04:49:27'),
+(44, 'vvip', 'No private lift, sauna or separate guest apartment', 12, '2026-09-24 04:49:27'),
+(45, 'grand_residence', '1 master bedroom + 2-3 additional bedrooms', 1, '2026-09-24 04:49:27'),
+(46, 'grand_residence', '2 living halls', 2, '2026-09-24 04:49:27'),
+(47, 'grand_residence', '3 bathrooms', 3, '2026-09-24 04:49:27'),
+(48, 'grand_residence', 'Fully furnished & equipped', 4, '2026-09-24 04:49:27'),
+(49, 'grand_residence', 'Complete furniture, appliances and lighting', 5, '2026-09-24 04:49:27'),
+(50, 'grand_residence', 'Coordinated interior finishes', 6, '2026-09-24 04:49:27'),
+(51, 'grand_residence', 'Fully equipped kitchen', 7, '2026-09-24 04:49:27'),
+(52, 'grand_residence', 'Private laundry', 8, '2026-09-24 04:49:27'),
+(53, 'grand_residence', 'Washer and dryer', 9, '2026-09-24 04:49:27'),
+(54, 'grand_residence', 'Built-in cabinets and wardrobes', 10, '2026-09-24 04:49:27'),
+(55, 'grand_residence', 'Balcony / terrace', 11, '2026-09-24 04:49:27'),
+(56, 'grand_residence', 'Private indoor parking + shared outdoor parking', 12, '2026-09-24 04:49:27'),
+(57, 'grand_residence', 'Shared lift', 13, '2026-09-24 04:49:27'),
+(58, 'grand_penthouse', '1 master bedroom + 2 additional bedrooms', 1, '2026-09-24 04:49:27'),
+(59, 'grand_penthouse', '2 living halls', 2, '2026-09-24 04:49:27'),
+(60, 'grand_penthouse', '3 bathrooms', 3, '2026-09-24 04:49:27'),
+(61, 'grand_penthouse', 'Luxury penthouse finishes', 4, '2026-09-24 04:49:27'),
+(62, 'grand_penthouse', 'Fully furnished & equipped', 5, '2026-09-24 04:49:27'),
+(63, 'grand_penthouse', 'Fully equipped kitchen', 6, '2026-09-24 04:49:27'),
+(64, 'grand_penthouse', 'Private laundry', 7, '2026-09-24 04:49:27'),
+(65, 'grand_penthouse', 'Washer and dryer', 8, '2026-09-24 04:49:27'),
+(66, 'grand_penthouse', 'Built-in cabinets and wardrobes', 9, '2026-09-24 04:49:27'),
+(67, 'grand_penthouse', 'Balcony / terrace with best exposure', 10, '2026-09-24 04:49:27'),
+(68, 'grand_penthouse', 'Premium private indoor parking', 11, '2026-09-24 04:49:27'),
+(69, 'grand_penthouse', 'Private lift access', 12, '2026-09-24 04:49:27'),
+(70, 'royal_penthouse', '2 master bedrooms + 2-3 additional bedrooms', 1, '2026-09-24 04:49:27'),
+(71, 'royal_penthouse', '2-3 living halls', 2, '2026-09-24 04:49:27'),
+(72, 'royal_penthouse', '3-4 bathrooms', 3, '2026-09-24 04:49:27'),
+(73, 'royal_penthouse', 'Signature royal penthouse finishing', 4, '2026-09-24 04:49:27'),
+(74, 'royal_penthouse', 'Fully furnished and equipped', 5, '2026-09-24 04:49:27'),
+(75, 'royal_penthouse', 'Fully equipped gourmet kitchen', 6, '2026-09-24 04:49:27'),
+(76, 'royal_penthouse', 'Private laundry / maid room', 7, '2026-09-24 04:49:27'),
+(77, 'royal_penthouse', 'Washer and dryer', 8, '2026-09-24 04:49:27'),
+(78, 'royal_penthouse', 'Built-in cabinets and wardrobes', 9, '2026-09-24 04:49:27'),
+(79, 'royal_penthouse', 'Fireplace and large balcony / terrace', 10, '2026-09-24 04:49:27'),
+(80, 'royal_penthouse', 'Private lift', 11, '2026-09-24 04:49:27'),
+(81, 'royal_penthouse', 'Sauna and separate guest apartment', 12, '2026-09-24 04:49:27'),
+(82, 'royal_penthouse', 'Premium private indoor parking', 13, '2026-09-24 04:49:27'),
+(83, 'royal_penthouse', '24/7 security and concierge', 14, '2026-09-24 04:49:27');
+
 --
 -- Indexes for dumped tables
 --
@@ -2033,7 +2206,8 @@ ALTER TABLE `block_amenities`
 ALTER TABLE `block_units`
   ADD PRIMARY KEY (`id`),
   ADD KEY `block_id` (`block_id`),
-  ADD KEY `customer_id` (`customer_id`);
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `manzel_id` (`manzel_id`);
 
 --
 -- Indexes for table `block_unit_features`
@@ -2047,6 +2221,13 @@ ALTER TABLE `block_unit_features`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `manazil`
+--
+ALTER TABLE `manazil`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `manzel_block_name` (`block_id`,`name`);
 
 --
 -- Indexes for table `pay_200`
@@ -2177,6 +2358,13 @@ ALTER TABLE `plots_vip`
   ADD KEY `fk_customer_vip` (`customer_id`);
 
 --
+-- Indexes for table `unit_category_features`
+--
+ALTER TABLE `unit_category_features`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uq_cat_feature` (`category`,`feature`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -2184,31 +2372,37 @@ ALTER TABLE `plots_vip`
 -- AUTO_INCREMENT for table `blocks`
 --
 ALTER TABLE `blocks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10027;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10035;
 
 --
 -- AUTO_INCREMENT for table `block_amenities`
 --
 ALTER TABLE `block_amenities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=149;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `block_units`
 --
 ALTER TABLE `block_units`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100041;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100083;
 
 --
 -- AUTO_INCREMENT for table `block_unit_features`
 --
 ALTER TABLE `block_unit_features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=475;
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `manazil`
+--
+ALTER TABLE `manazil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pay_200`
@@ -2313,6 +2507,12 @@ ALTER TABLE `plots_vip`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `unit_category_features`
+--
+ALTER TABLE `unit_category_features`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -2327,13 +2527,20 @@ ALTER TABLE `block_amenities`
 --
 ALTER TABLE `block_units`
   ADD CONSTRAINT `fk_block_units_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_block_units_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_block_units_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_block_units_manzel` FOREIGN KEY (`manzel_id`) REFERENCES `manazil` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `block_unit_features`
 --
 ALTER TABLE `block_unit_features`
   ADD CONSTRAINT `fk_unit_features_unit` FOREIGN KEY (`unit_id`) REFERENCES `block_units` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `manazil`
+--
+ALTER TABLE `manazil`
+  ADD CONSTRAINT `fk_manazil_block` FOREIGN KEY (`block_id`) REFERENCES `blocks` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pay_200`

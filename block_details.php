@@ -99,6 +99,9 @@ if ($block) {
         .unit-sold { border-color: #dc3545; background: #fdecee; }
         .unit-reserved { border-color: #ffc107; background: #fff8e1; }
         .unit-available { border-color: #28a745; background: #e9f7ef; }
+        .unit-cell .u-price { font-size: 0.8rem; font-weight: 600; color: #1a6b2f; }
+        .btn-buy { background: linear-gradient(135deg, #28a745, #20c997); color: #fff; border: none; padding: 12px 32px; border-radius: 50px; font-weight: bold; display: inline-block; text-decoration: none; box-shadow: 0 5px 20px rgba(40,167,69,0.2); transition: all 0.3s; }
+        .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(40,167,69,0.3); color: #fff; }
         .whatsapp-float { position: fixed; bottom: 20px; left: 20px; z-index: 999; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; text-align: center; line-height: 60px; font-size: 30px; box-shadow: 0 5px 20px rgba(37,211,102,0.3); }
         .whatsapp-float:hover { transform: scale(1.1); color: #fff; }
         .bg-soft { background: #eef4fa; }
@@ -302,6 +305,9 @@ if ($block) {
                                                             <div class="u-status">
                                                                 <?= $u['status'] === 'sold' ? '<span class="text-danger">Sold</span>' : ($u['status'] === 'reserved' ? '<span class="text-warning">Reserved</span>' : '<span class="text-success">For Sale</span>') ?>
                                                             </div>
+                                                            <?php if ($u['total_price'] !== null && floatval($u['total_price']) > 0 && $u['status'] === 'available'): ?>
+                                                            <div class="u-price"><i class="bi bi-tag me-1"></i><?= number_format($u['total_price']) ?> USD</div>
+                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 <?php endforeach; ?>
@@ -412,11 +418,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 html += '<tr><th><i class="bi bi-person me-1"></i>Customer</th><td>' + String(u.full_name || '') + (u.fathar_name ? ' (Son of: ' + String(u.fathar_name) + ')' : '') + '</td></tr>';
             }
             if (u.total_price) {
-                html += '<tr><th><i class="bi bi-currency-dollar me-1"></i>Total Price</th><td>' + money(u.total_price) + ' USD</td></tr>';
-                html += '<tr><th><i class="bi bi-cash-coin me-1"></i>Paid</th><td>' + money(paid) + ' AFN</td></tr>';
-                html += '<tr><th><i class="bi bi-hourglass-split me-1"></i>Remaining</th><td class="text-danger">' + money(remaining) + ' USD</td></tr>';
+                html += '<tr><th><i class="bi bi-currency-dollar me-1"></i>Unit Price</th><td>' + money(u.unit_price) + ' USD</td></tr>';
+                html += '<tr><th><i class="bi bi-bank me-1"></i>Gov. Services</th><td>' + money(u.gov_cost) + ' USD</td></tr>';
+                html += '<tr><th><i class="bi bi-tools me-1"></i>Infrastructure</th><td>' + money(u.infra_cost) + ' USD</td></tr>';
+                html += '<tr class="table-success"><th class="fw-bold"><i class="bi bi-cash-stack me-1"></i>Total Price</th><td class="fw-bold fs-5">' + money(u.total_price) + ' USD</td></tr>';
+                if (String(u.status) === 'sold') {
+                    html += '<tr><th><i class="bi bi-cash-coin me-1"></i>Paid</th><td>' + money(paid) + ' AFN</td></tr>';
+                    html += '<tr><th><i class="bi bi-hourglass-split me-1"></i>Remaining</th><td class="text-danger">' + money(remaining) + ' USD</td></tr>';
+                }
             }
             html += '</table>' + featsHtml;
+
+            // Buy button — shown for every available unit. If the price is not set yet,
+            // the buy page itself shows a friendly "price not announced" contact panel.
+            if (String(u.status) === 'available') {
+                html += '<div class="text-center mt-3">' +
+                        '<a class="btn btn-buy" href="buy_block_unit.php?id=' + String(u.id) + '">' +
+                        '<i class="bi bi-cart-check me-2"></i>Buy This Unit</a></div>';
+            }
 
             document.getElementById("unitModalBody").innerHTML = html;
         });

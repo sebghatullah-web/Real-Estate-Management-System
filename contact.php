@@ -83,7 +83,7 @@
                 <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
                     <h5 class="fw-bold" style="color: #1a3a5c;"><i class="bi bi-geo-alt me-2"></i>Address</h5>
                     <p class="text-muted mb-0"><span style="color: #ffc107;">Head Office:</span> Sherpur Main Road, House No. 27, Kabul - Afghanistan</p>
-                    <p class="text-muted mb-0"><span style="color: #ffc107;">Field Office:</span> Dehsabz, District 19, Shahsabz, Kabul - Afghanistan</p>
+                    <p class="text-muted mb-0"><span style="color: #ffc107;">Field Office:</span> Dehsabz, District 19, Shahraksabz, Kabul - Afghanistan</p>
                 </div>
                 <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
                     <h5 class="fw-bold" style="color: #1a3a5c;"><i class="bi bi-telephone me-2"></i>Phone Numbers</h5>

@@ -29,6 +29,11 @@ if ($unit['status'] != 'available') {
 
 $customers = $conn->query("SELECT id, full_name, fathar_name, national_id FROM customers ORDER BY full_name ASC")->fetch_all(MYSQLI_ASSOC);
 
+// Prices are defined when the unit is registered — prefill them here (the admin may still adjust them)
+$val_rate  = $unit['unit_price_per_meter'] !== null ? (string)$unit['unit_price_per_meter'] : '';
+$val_gov   = $unit['gov_cost_per_meter'] !== null ? (string)$unit['gov_cost_per_meter'] : '0';
+$val_infra = $unit['infra_cost_per_meter'] !== null ? (string)$unit['infra_cost_per_meter'] : '0';
+
 $error = '';
 if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'])) {
 
@@ -146,7 +151,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'
 
 <!-- ========== Sale form ========== -->
             <div class="card">
-                <div class="card-header"><strong>Register Sale &mdash; prices are calculated per square meter</strong></div>
+                <div class="card-header"><strong>Register Sale &mdash; prices are set at registration (pre-filled below, calculate per square meter)</strong></div>
                 <div class="card-body">
                     <form method="POST" class="row g-3">
                         <div class="col-md-6">
@@ -168,17 +173,17 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'
                         </div>
 <div class="col-md-4">
                             <label class="form-label">Unit Price (per sqm) <span class="text-danger">*</span></label>
-                            <input type="number" step="0.01" min="0.01" id="unit_rate" name="unit_price_per_meter" class="form-control" required>
+                            <input type="number" step="0.01" min="0.01" id="unit_rate" name="unit_price_per_meter" class="form-control" value="<?= htmlspecialchars($val_rate) ?>" required>
                             <small class="text-muted">e.g. 350 USD per square meter</small>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Government Services (per sqm)</label>
-                            <input type="number" step="0.01" min="0" id="gov_rate" name="gov_cost_per_meter" class="form-control" value="0">
+                            <input type="number" step="0.01" min="0" id="gov_rate" name="gov_cost_per_meter" class="form-control" value="<?= htmlspecialchars($val_gov) ?>">
                             <small class="text-muted">e.g. 10 USD per square meter</small>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label">Infrastructure Services (per sqm)</label>
-                            <input type="number" step="0.01" min="0" id="infra_rate" name="infra_cost_per_meter" class="form-control" value="0">
+                            <input type="number" step="0.01" min="0" id="infra_rate" name="infra_cost_per_meter" class="form-control" value="<?= htmlspecialchars($val_infra) ?>">
                             <small class="text-muted">e.g. 8 USD per square meter</small>
                         </div>
 
@@ -225,7 +230,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST' && isset($_POST['sell_unit'
                         <div class="col-12">
                             <p class="text-muted small mb-2">
                                 <i class="icon-info"></i>
-                                The unit price, government service fee and infrastructure service fee are all calculated per square meter and recorded at the time of sale, because they may differ for each customer.
+                                The prices on this page were defined when the unit was registered and are shown to customers on the public website. You may adjust them before confirming the sale.
                             </p>
                             <button type="submit" name="sell_unit" class="btn btn-success btn-lg">Confirm Sale</button>
                             <a href="block_units.php?block_id=<?= $unit['block_id'] ?>" class="btn btn-secondary btn-lg">Back</a>

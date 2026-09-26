@@ -93,11 +93,11 @@
                             <small class="text-muted">It will be deducted from the area of each floor</small>
                         </div>
 <div class="col-12 mt-2">
-                            <label class="form-label fw-bold">Block Amenities (optional - select one or more)</label>
+                            <label class="form-label fw-bold">Block Amenities (optional - select one or more) <span class="text-muted">(all selected by default &mdash; uncheck the ones that don't apply)</span></label>
                             <div class="row">
                                 <?php foreach ($BLOCK_AMENITIES as $key => $label): ?>
                                 <div class="col-md-2 form-check ms-1">
-                                    <input class="form-check-input" type="checkbox" name="amenities[]" value="<?= $key ?>" id="am_<?= $key ?>">
+                                    <input class="form-check-input" type="checkbox" name="amenities[]" value="<?= $key ?>" id="am_<?= $key ?>" checked>
                                     <label class="form-check-label small" for="am_<?= $key ?>"><?= htmlspecialchars($label) ?></label>
                                 </div>
                                 <?php endforeach; ?>

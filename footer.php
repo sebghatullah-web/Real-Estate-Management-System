@@ -28,7 +28,7 @@
                     <h5>Contact Information</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">Head Office:</span> Sherpur Main Road, House No. 27, Kabul - Afghanistan</li>
-                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">Field Office:</span> 19th area, Shahrak Sabz, Kabul - Afghanistan</li>
+                        <li class="mb-2"><i class="bi bi-geo-alt me-2"></i><span style="color: #ffc107;">Field Office:</span> Dehsabz, District 19, Shahraksabz, Kabul - Afghanistan</li>
                         <li class="mb-2"><i class="bi bi-telephone me-2"></i> +93 074 501 6818 / +93 078 588 4444 / +93 070 853 0635 </li>
                         <li class="mb-2"><i class="bi bi-envelope me-2"></i> info@kabulnewcity.com / properties@kabulnewcity.com / invest@kabulnewcity.com </li>
                         <li class="mb-2"><i class="bi bi-clock me-2"></i>Saturday - Thursday: 08:00 - 16:00</li>

@@ -101,6 +101,8 @@
                 <div class="alert alert-danger">Invalid input - please re-check the required fields.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'size'): ?>
                 <div class="alert alert-danger">Usable block size (size &minus; staircase) is zero or negative; reduce the staircase size.</div>
+            <?php elseif (isset($_GET['error']) && $_GET['error'] == 'price'): ?>
+                <div class="alert alert-danger">Please enter a valid unit price per square meter (greater than zero) &mdash; the price is set when the unit is registered so customers can see it on the public website.</div>
             <?php elseif (isset($_GET['error']) && $_GET['error'] == 'block'): ?>
                 <div class="alert alert-danger">Selected block was not found.</div>
             <?php endif; ?>
@@ -160,6 +162,65 @@
                                 <option value="reserved">Reserved</option>
                                 <option value="sold">Sold</option>
                             </select>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="bg-light p-2 mb-1 rounded-3">
+                                <strong class="text-secondary">Pricing (USD)</strong>
+                                <small class="text-muted">&mdash; set at registration so customers can see the price of each unit on the public website</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Unit Price (per sqm) <span class="text-danger">*</span></label>
+                            <input type="number" step="0.01" min="0.01" id="unit_rate" name="unit_price_per_meter" class="form-control" required>
+                            <small class="text-muted">e.g. 350 USD per square meter</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Government Services (per sqm)</label>
+                            <input type="number" step="0.01" min="0" id="gov_rate" name="gov_cost_per_meter" class="form-control" value="0">
+                            <small class="text-muted">e.g. 10 USD per square meter</small>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Infrastructure Services (per sqm)</label>
+                            <input type="number" step="0.01" min="0" id="infra_rate" name="infra_cost_per_meter" class="form-control" value="0">
+                            <small class="text-muted">e.g. 8 USD per square meter</small>
+                        </div>
+                        <div class="col-12 mt-2">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-sm mb-0">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Rate / sqm</th>
+                                            <th>Area (sqm)</th>
+                                            <th>Amount (USD)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Unit Price</td>
+                                            <td id="pv_unit_rate">-</td>
+                                            <td id="pv_size">-</td>
+                                            <td><strong id="pv_unit_price">-</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Government Fee</td>
+                                            <td id="pv_gov_rate">-</td>
+                                            <td id="pv_size_gov">-</td>
+                                            <td id="pv_gov_cost">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Infrastructure Fee</td>
+                                            <td id="pv_infra_rate">-</td>
+                                            <td id="pv_size_infra">-</td>
+                                            <td id="pv_infra_cost">-</td>
+                                        </tr>
+                                        <tr class="table-success">
+                                            <td colspan="3" class="text-center fw-bold">Total Price</td>
+                                            <td><strong id="pv_total">-</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="col-12 mt-2">
                             <div class="d-flex justify-content-between align-items-start mb-1">
@@ -276,7 +337,7 @@
                             $statusBadge = '<span class="badge bg-danger">Sold</span>';
                         }
                         $customerName = isset($customers[$row['customer_id']]) ? htmlspecialchars($customers[$row['customer_id']]) : ($row['customer_id'] ? 'ID: ' . $row['customer_id'] : '');
-                        $hasPrice = $row['status'] == 'sold' && $row['total_price'] !== null;
+                        $hasPrice = $row['total_price'] !== null;
                     ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
@@ -361,6 +422,31 @@
             }
         });
     });
+
+    // ===== Live price calculation (add-unit form — set at registration) =====
+    function fmtMoney(n) {
+        return parseFloat(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    function calcAddPrice() {
+        var sz = parseFloat($('#unit_size').val()) || 0;
+        var ur = parseFloat($('#unit_rate').val()) || 0;
+        var gr = parseFloat($('#gov_rate').val()) || 0;
+        var ir = parseFloat($('#infra_rate').val()) || 0;
+
+        $('#pv_size').text(sz > 0 ? fmtMoney(sz) : '-');
+        $('#pv_size_gov').text(sz > 0 ? fmtMoney(sz) : '-');
+        $('#pv_size_infra').text(sz > 0 ? fmtMoney(sz) : '-');
+
+        $('#pv_unit_rate').text(ur > 0 ? fmtMoney(ur) : '-');
+        $('#pv_gov_rate').text(gr > 0 ? fmtMoney(gr) : '-');
+        $('#pv_infra_rate').text(ir > 0 ? fmtMoney(ir) : '-');
+
+        $('#pv_unit_price').text(ur > 0 ? fmtMoney(ur * sz) : '-');
+        $('#pv_gov_cost').text(gr > 0 ? fmtMoney(gr * sz) : '-');
+        $('#pv_infra_cost').text(ir > 0 ? fmtMoney(ir * sz) : '-');
+        $('#pv_total').text((ur + gr + ir) > 0 ? fmtMoney((ur + gr + ir) * sz) : '-');
+    }
+    $('#unit_size, #unit_rate, #gov_rate, #infra_rate').on('input change', calcAddPrice);
 
     // ===== Cascading dropdown: Block -> Building (Manzel) =====
     var MANAZIL_MAP = <?= json_encode($MANAZIL_MAP) ?>;
