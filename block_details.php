@@ -67,7 +67,7 @@ if ($block) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Block Details <?= htmlspecialchars($block_code) ?></title>
+    <title>Building Details <?= htmlspecialchars($block_code) ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -128,7 +128,7 @@ if ($block) {
     <?php if ($block): ?>
 <div class="text-center mb-4 pt-3">
             <h1 class="fw-bold" style="color: #1a3a5c;">
-                <i class="bi bi-building me-2"></i>Block Code: <?= htmlspecialchars($block['block_code']) ?>
+                <i class="bi bi-building me-2"></i>Building Code: <?= htmlspecialchars($block['block_code']) ?>
             </h1>
             <p class="text-muted"><?= htmlspecialchars($block['block_name'] ?? '') ?> </p>
         </div>
@@ -137,7 +137,7 @@ if ($block) {
             <div class="col-lg-7">
                 <div class="detail-card card">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Block Details</h4>
+                        <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Building Details</h4>
                         <span class="status-badge badge <?= $block['status'] === 'active' ? 'bg-success' : 'bg-secondary' ?>">
                             <?= $block['status'] === 'active' ? 'Active' : 'Inactive' ?>
                         </span>
@@ -145,15 +145,15 @@ if ($block) {
                     <div class="card-body">
                         <table class="table table-bordered detail-table mb-0">
                             <tr>
-                                <th><i class="bi bi-hash me-1"></i>Block Code</th>
+                                <th><i class="bi bi-hash me-1"></i>Building Code</th>
                                 <td><?= htmlspecialchars($block['block_code']) ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-tag me-1"></i>Block Name</th>
+                                <th><i class="bi bi-tag me-1"></i>Building Name</th>
                                 <td><?= htmlspecialchars($block['block_name'] ?? '—') ?></td>
                             </tr>
                             <tr>
-                                <th><i class="bi bi-arrows-fullscreen me-1"></i>Block Size (Square Meters)</th>
+                                <th><i class="bi bi-arrows-fullscreen me-1"></i>Building Size (Square Meters)</th>
                                 <td><?= htmlspecialchars($block['size']) ?> Square Meters</td>
                             </tr>
                             <tr>
@@ -178,7 +178,7 @@ if ($block) {
 
                 <div class="detail-card card mt-3">
                     <div class="card-header">
-                        <h4 class="mb-0"><i class="bi bi-stars me-2"></i>Block Amenities</h4>
+                        <h4 class="mb-0"><i class="bi bi-stars me-2"></i>Building Amenities</h4>
                     </div>
                     <div class="card-body">
                         <?php if (count($block['amenities']) > 0): ?>
@@ -319,8 +319,8 @@ if ($block) {
                         <?php else: ?>
                             <div class="text-center py-5">
                                 <i class="bi bi-door-closed text-muted" style="font-size: 3rem;"></i>
-                                <h5 class="mt-3 text-muted">No units have been registered for this block yet</h5>
-                                <p class="text-muted">Units of this block will be added soon</p>
+                                <h5 class="mt-3 text-muted">No units have been registered for this building yet</h5>
+                                <p class="text-muted">Units of this Building will be added soon</p>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -330,8 +330,8 @@ if ($block) {
 <?php else: ?>
         <div class="text-center py-5">
             <i class="bi bi-exclamation-triangle text-warning" style="font-size: 4rem;"></i>
-            <h3 class="mt-3">Block not found</h3>
-            <p class="text-muted">This block is not registered in the database</p>
+            <h3 class="mt-3">Building not found</h3>
+            <p class="text-muted">This building is not registered in the database</p>
             <a href="map.php" class="btn btn-primary mt-3">
                 <i class="bi bi-map me-2"></i>Back to Map
             </a>

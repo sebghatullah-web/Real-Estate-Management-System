@@ -159,15 +159,15 @@ include 'header.php';
         <!-- Block & Apartment Stats -->
         <div class="text-center mb-4 mt-5">
             <h4 class="fw-bold" style="color:#1a3a5c;">
-                <i class="bi bi-buildings me-2"></i>Blocks & Apartments Statistics
+                <i class="bi bi-buildings me-2"></i>Building & Apartments Statistics
             </h4>
-            <p class="text-muted">Status of our blocks and apartment units</p>
+            <p class="text-muted">Status of our Buildings and apartment units</p>
         </div>
         <div class="row g-4">
             <div class="col-md-3 col-6">
                 <div class="stats-box">
                     <h3><?= number_format($total_blocks) ?></h3>
-                    <p><i class="bi bi-building me-1"></i>Total Blocks</p>
+                    <p><i class="bi bi-building me-1"></i>Total Buildings</p>
                 </div>
             </div>
             <div class="col-md-3 col-6">
