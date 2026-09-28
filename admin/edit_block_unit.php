@@ -41,6 +41,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         $category = 'standard';
     }
 
+    // Position of the unit inside the building (north/south/east/west/center) — editable while not sold
+    $allowedDir = ['north', 'south', 'east', 'west', 'center'];
+    $direction  = trim($_POST['direction'] ?? '');
+    if (!in_array($direction, $allowedDir)) { $direction = null; }
+
     if ($manzel_id <= 0 || $unit_no === '' || $unit_size <= 0) {
         header("Location: edit_block_unit.php?id=$id&error=invalid");
         exit;
@@ -109,11 +114,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
 
     $stmt = $conn->prepare("UPDATE block_units SET
             manzel_id=?, unit_number=?, unit_code=?,
-            category=?, unit_size=?, status=?, customer_id=?,
+            category=?, unit_size=?, direction=?, status=?, customer_id=?,
             unit_price_per_meter=?, gov_cost_per_meter=?, infra_cost_per_meter=?,
             unit_price=?, gov_cost=?, infra_cost=?, total_price=?
             WHERE id=?");
-    $stmt->bind_param("isssdsidddddddi", $manzel_id, $unit_no, $unit_code, $category, $unit_size, $status, $customer,
+    $stmt->bind_param("isssdssidddddddi", $manzel_id, $unit_no, $unit_code, $category, $unit_size, $direction, $status, $customer,
                       $unit_price_per_meter, $gov_cost_per_meter, $infra_cost_per_meter,
                       $unit_price, $gov_cost, $infra_cost, $total_price, $id);
     $stmt->execute();
@@ -251,6 +256,18 @@ $manazilResult = $conn->query("SELECT id, name, code FROM manazil WHERE block_id
                             <label class="form-label">Unit Size (sqm) <span class="text-danger">*</span></label>
                             <input type="number" id="unit_size" name="unit_size" class="form-control" step="0.01" min="1" value="<?= htmlspecialchars($unit['unit_size']) ?>" required <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
                             <small class="text-muted">Free entry — editable anytime</small>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label">Position in Building</label>
+                            <select name="direction" class="form-select" <?= $unit['status'] == 'sold' ? 'disabled' : '' ?>>
+                                <option value="">-- Select --</option>
+                                <option value="north" <?= $unit['direction'] == 'north' ? 'selected' : '' ?>>North</option>
+                                <option value="south" <?= $unit['direction'] == 'south' ? 'selected' : '' ?>>South</option>
+                                <option value="east" <?= $unit['direction'] == 'east' ? 'selected' : '' ?>>East</option>
+                                <option value="west" <?= $unit['direction'] == 'west' ? 'selected' : '' ?>>West</option>
+                                <option value="center" <?= $unit['direction'] == 'center' ? 'selected' : '' ?>>Center</option>
+                            </select>
+                            <small class="text-muted">Where the unit sits inside the building</small>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Status</label>

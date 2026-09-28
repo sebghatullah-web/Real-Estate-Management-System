@@ -156,6 +156,18 @@
                             <small class="text-muted">Free entry — editable anytime</small>
                         </div>
                         <div class="col-md-2">
+                            <label class="form-label">Position in Building</label>
+                            <select name="direction" class="form-select">
+                                <option value="">-- Select --</option>
+                                <option value="north">North</option>
+                                <option value="south">South</option>
+                                <option value="east">East</option>
+                                <option value="west">West</option>
+                                <option value="center">Center</option>
+                            </select>
+                            <small class="text-muted">Where the unit sits inside the building</small>
+                        </div>
+                        <div class="col-md-2">
                             <label class="form-label">Status</label>
                             <select name="status" class="form-select">
                                 <option value="available">For Sale</option>
@@ -295,6 +307,7 @@
                         <th>Apartment / Unit</th>
                         <th>Category</th>
                         <th>Area (sqm)</th>
+                        <th>Position</th>
                         <th>Features</th>
                         <th>Unit Price</th>
                         <th>Gov. Services</th>
@@ -338,6 +351,8 @@
                         }
                         $customerName = isset($customers[$row['customer_id']]) ? htmlspecialchars($customers[$row['customer_id']]) : ($row['customer_id'] ? 'ID: ' . $row['customer_id'] : '');
                         $hasPrice = $row['total_price'] !== null;
+                        $dirLabels = ['north' => 'North', 'south' => 'South', 'east' => 'East', 'west' => 'West', 'center' => 'Center'];
+                        $dirLabel = !empty($row['direction']) && isset($dirLabels[$row['direction']]) ? $dirLabels[$row['direction']] : '-';
                     ?>
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
@@ -357,6 +372,12 @@
                         <td><strong><?= htmlspecialchars($row['unit_code']) ?></strong></td>
                         <td class="<?= $catClass ?>"><strong><?= $catLabel ?></strong></td>
                         <td><?= htmlspecialchars($row['unit_size']) ?> sqm</td>
+                        <td>
+                            <?= htmlspecialchars($dirLabel) ?>
+                            <?php if ($row['direction'] && isset($dirLabels[$row['direction']])): ?>
+                                <span class="text-muted small">(<?= htmlspecialchars($row['direction']) ?>)</span>
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <?php if ($row['feature_count'] > 0): ?>
                                 <span class="badge bg-info text-dark" title="<?= htmlspecialchars($row['feature_labels']) ?>"><?= htmlspecialchars($row['feature_count']) ?> features</span>

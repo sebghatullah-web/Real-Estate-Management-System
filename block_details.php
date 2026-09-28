@@ -375,6 +375,7 @@ function money(n) {
     var v = parseFloat(n || 0);
     return v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+var dirMap = {north: 'North', south: 'South', east: 'East', west: 'West', center: 'Center'};
 
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll(".unit-cell").forEach(el => {
@@ -413,6 +414,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 '<tr><th><i class="bi bi-door-closed me-1"></i>Unit Number</th><td>' + String(u.unit_number) + '</td></tr>' +
                 '<tr><th><i class="bi bi-tags me-1"></i>Category</th><td>' + String(u.category || 'standard') + '</td></tr>' +
                 '<tr><th><i class="bi bi-rulers me-1"></i>Area</th><td>' + money(u.unit_size) + ' Square Meters</td></tr>' +
+                '<tr><th><i class="bi bi-compass me-1"></i>Position in Building</th><td>' + (u.direction && dirMap[u.direction] ? dirMap[u.direction] : '\u2014') + '</td></tr>' +
                 '<tr><th><i class="bi bi-flag me-1"></i>Status</th><td>' + faStatus(u.status) + '</td></tr>';
             if (u.customer_id) {
                 html += '<tr><th><i class="bi bi-person me-1"></i>Customer</th><td>' + String(u.full_name || '') + (u.fathar_name ? ' (Son of: ' + String(u.fathar_name) + ')' : '') + '</td></tr>';

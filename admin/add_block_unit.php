@@ -25,6 +25,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
         $category = 'standard';
     }
 
+    // Position of the unit inside the building (north/south/east/west/center) — optional at registration
+    $allowedDir = ['north', 'south', 'east', 'west', 'center'];
+    $direction  = trim($_POST['direction'] ?? '');
+    if (!in_array($direction, $allowedDir)) { $direction = null; }
+
     if ($block_id <= 0 || $manzel_id <= 0 || $unit_no === '' || $unit_size <= 0) {
         header("Location: block_units.php?block_id=$block_id&manzel_id=$manzel_id&error=invalid");
         exit;
@@ -77,11 +82,11 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') == 'POST') {
     $total_price = round($unit_price + $gov_cost + $infra_cost, 2);
 
     $stmt = $conn->prepare("INSERT INTO block_units
-        (block_id, manzel_id, category, unit_number, unit_code, unit_size,
+        (block_id, manzel_id, category, unit_number, unit_code, unit_size, direction,
          unit_price_per_meter, gov_cost_per_meter, infra_cost_per_meter,
          unit_price, gov_cost, infra_cost, total_price, status)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iisssdddddddds", $block_id, $manzel_id, $category, $unit_no, $unit_code, $unit_size,
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iisssdsddddddds", $block_id, $manzel_id, $category, $unit_no, $unit_code, $unit_size, $direction,
                       $unit_price_per_meter, $gov_cost_per_meter, $infra_cost_per_meter,
                       $unit_price, $gov_cost, $infra_cost, $total_price, $status);
     $stmt->execute();

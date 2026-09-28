@@ -205,6 +205,15 @@ if (isset($_GET['success']) && $_GET['success'] == '1') {
                                 <td><?= htmlspecialchars($unit['unit_size']) ?> Square Meters</td>
                             </tr>
                             <tr>
+                                <th class="bg-light">Position in Building</th>
+                                <td>
+                                    <?php
+                                    $dirLabels = ['north' => 'North', 'south' => 'South', 'east' => 'East', 'west' => 'West', 'center' => 'Center'];
+                                    echo !empty($unit['direction']) && isset($dirLabels[$unit['direction']]) ? $dirLabels[$unit['direction']] : '-';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
                                 <th class="bg-light">Unit Price</th>
                                 <td><?= number_format($unit['unit_price']) ?> $</td>
                             </tr>
